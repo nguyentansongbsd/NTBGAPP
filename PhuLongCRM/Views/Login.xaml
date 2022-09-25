@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             xmlns:ffimageloadding="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             BackgroundColor="#eeeeee"
+             Shell.NavBarIsVisible="False"
+             x:Class="PhuLongCRM.Views.Login">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Padding="0,0,0,20">
+                <StackLayout Margin="20,0" Spacing="10" VerticalOptions="Center" >
+                    <Image Source="phulong_contact_logo.png" Margin="0,15" />
+                    <telerikPrimitives:RadBorder CornerRadius="10" BackgroundColor="White" Padding="0" HeightRequest="65">
+                        <Grid Margin="10,5" RowDefinitions="Auto,Auto" RowSpacing="0" VerticalOptions="Center">
+                            <Label x:Name="lblUserName" Text="{x:Static lang:Language.ten_dang_nhap}" FontSize="14" TextColor="#4EABF5"/>
+                            <controls:BorderEntry x:Name="entryUserName" Grid.RowSpan="2" BackgroundColor="White" PlaceholderColor="Gray" Text="{Binding UserName}" Focused="UserName_Focused" Unfocused="UserName_UnFocused" Placeholder="{x:Static lang:Language.ten_dang_nhap}" />
+                        </Grid>
+                    </telerikPrimitives:RadBorder>
+                    <telerikPrimitives:RadBorder CornerRadius="10" BackgroundColor="White" Padding="0" HeightRequest="65">
+                        <Grid Margin="10,5" RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto" RowSpacing="0" VerticalOptions="Center">
+                            <Label x:Name="lblPassword" Grid.Row="1" Grid.Column="0" Text="{x:Static lang:Language.mat_khau}" FontSize="14" TextColor="#4EABF5"/>
+                            <controls:BorderEntry x:Name="entryPassword" Grid.Row="1" Grid.Column="0" BackgroundColor="White" PlaceholderColor="Gray" Text="{Binding Password}" Focused="Password_Focused" Unfocused="Password_UnFocused" TextChanged="Password_TextChanged" IsPassword="{Binding IsShowPass}" Placeholder="{x:Static lang:Language.mat_khau}" />
+                            <Label x:Name="lblEyePass" Grid.RowSpan="2" Grid.Column="1" Text="&#xf070;" FontFamily="FontAwesomeRegular" FontSize="20" VerticalOptions="Center" IsEnabled="{Binding EyePass}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ShowHidePass_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </telerikPrimitives:RadBorder>
+
+                    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" Margin="0,10">
+                        <CheckBox x:Name="checkboxRememberAcc" Color="#2196F3"/>
+                        <Label x:Name="lbRemember" Text="{x:Static lang:Language.ghi_nho_dang_nhap}" VerticalTextAlignment="Center" FontSize="16" TextColor="#444444">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="IsRemember_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <Button Text="{x:Static lang:Language.dang_nhap}" BackgroundColor="#2196F3" TextColor="White" FontAttributes="Bold" CornerRadius="10" HeightRequest="40" Padding="10,5" FontSize="18" Clicked="Button_Clicked" x:Name="btnLogin" />
+                    <Button Text="{x:Static lang:Language.dang_nhap_voi_user_crm}" BackgroundColor="White" TextColor="#2196F3" FontAttributes="Bold" BorderWidth="1" BorderColor="#2196F3" CornerRadius="10" HeightRequest="40" Padding="10,5" FontSize="18" Clicked="LoginUserCRM_Clicked" x:Name="btnLoginUserCRM" />
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,20,0,0" HorizontalOptions="Center">
+                        <telerikPrimitives:RadBorder x:Name="flagVN" CornerRadius="5" BorderThickness="2" BorderColor="#2196F3" Padding="0">
+                            <telerikPrimitives:RadBorder.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Flag_Tapped" CommandParameter="vi"/>
+                            </telerikPrimitives:RadBorder.GestureRecognizers>
+                            <ffimageloadding:CachedImage Source="ic_vietnam.jpg" Aspect="AspectFill" HeightRequest="20" WidthRequest="30"/>
+                        </telerikPrimitives:RadBorder>
+                        <telerikPrimitives:RadBorder x:Name="flagEN" CornerRadius="5" BorderThickness="2" BorderColor="#eeeeee" Padding="0">
+                            <telerikPrimitives:RadBorder.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Flag_Tapped" CommandParameter="en"/>
+                            </telerikPrimitives:RadBorder.GestureRecognizers>
+                            <ffimageloadding:CachedImage Source="ic_english.png" Aspect="AspectFill" HeightRequest="20" WidthRequest="30"/>
+                        </telerikPrimitives:RadBorder>
+                    </StackLayout>
+                    <Label x:Name="lbfogotPassword" Text="{x:Static lang:Language.quen_mat_khau}" TextColor="#444444" FontSize="15" HorizontalTextAlignment="Center" FontAttributes="Bold" Margin="0,10">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ForgotPassword_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </ScrollView>
+            <Label Text="{Binding VerApp}" FontSize="15" TextColor="#444444" HorizontalOptions="End" Margin="0,0,20,20" AbsoluteLayout.LayoutBounds="0,1,1,40" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

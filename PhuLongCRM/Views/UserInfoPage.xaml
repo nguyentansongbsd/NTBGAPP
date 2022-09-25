@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffimagetransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:converters="clr-namespace:PhuLongCRM.Converters"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Title="{x:Static lang:Language.thong_tin_ca_nhan}"
+             x:Class="PhuLongCRM.Views.UserInfoPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:Base64ToImageSourceConverter x:Key="Base64ToImagesource"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Padding=" 0,0,0,60">
+                <StackLayout Padding="10,30,10,0">
+                    <Grid HorizontalOptions="CenterAndExpand" HeightRequest="78">
+                        <controls:ExtendedFrame Padding="4" CornerRadius="39" HorizontalOptions="Center" VerticalOptions="Start">
+                            <ffimageloading:CachedImage Source="{Binding Avatar, Converter={StaticResource Base64ToImagesource}}" LoadingPlaceholder="user.png" HeightRequest="70" WidthRequest="70" DownsampleWidth="500">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <ffimagetransformations:CircleTransformation/>
+                                </ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
+                        </controls:ExtendedFrame>
+                        <telerikPrimitives:RadBorder Margin="0,0,-8,-8" VerticalOptions="EndAndExpand" HorizontalOptions="End" BorderColor="{StaticResource NavigationPrimary}" BorderThickness="2" CornerRadius="20" Padding="8" BackgroundColor="White">
+                            <telerikPrimitives:RadBorder.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeAvatar_Tapped"/>
+                            </telerikPrimitives:RadBorder.GestureRecognizers>
+                            <Label Text="&#xf030;" FontFamily="FontAwesomeSolid" FontSize="16" TextColor="{StaticResource NavigationPrimary}"/>
+                        </telerikPrimitives:RadBorder>
+                    </Grid>
+                    
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.ho_ten}" Margin="0,20,0,0"/>
+                    <controls:MainEntry Text="{Binding ContactModel.bsd_fullname}" IsEnabled="False" ShowClearButton="False"/>
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.tai_khoan}" />
+                    <controls:MainEntry Text="{Binding UserName}" IsEnabled="False" ShowClearButton="False"/>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.email}"/>
+                    <controls:MainEntry Text="{Binding ContactModel.emailaddress1}" Placeholder="{x:Static lang:Language.nhap_email}"/>
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.so_dien_thoai}"/>
+                    <controls:PhoneEntryControl Text="{Binding PhoneNumber}" Keyboard="Numeric" Unfocused="PhoneNum_Unfocused" FontSize="15" Placeholder="+84-033XXXXXXX"/>
+                    <!--<controls:MainEntry Text="{Binding PhoneNumber}" Keyboard="Numeric" Unfocused="PhoneNum_Unfocused" Placeholder="{x:Static lang:Language.nhap_so_dien_thoai}"/>-->
+
+                    <controls:FormLabel Text="{x:Static lang:Language.mat_khau}"/>
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="0">
+                        <controls:MainEntry Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Password}" IsPassword="True" ShowClearButton="False"/>
+                        <StackLayout Grid.Column="0"/>
+                        <Label Grid.Column="1" Text="&#xf044;" FontSize="16" TextColor="#333333" FontFamily="FontAwesomeRegular" Padding="6,0" VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangePassword_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.ngay_sinh}"/>
+                    <controls:DatePickerBoderControl Date="{Binding ContactModel.birthdate}" ShowTime="False" Placeholder="{x:Static lang:Language.chon_ngay_sinh}"/>
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.gioi_tinh}"/>
+                    <controls:LookUp NameDisplay="Label" BottomModal="{Reference LookUpModal}" Placeholder="{x:Static lang:Language.chon_gioi_tinh}" SelectedItem="{Binding Gender}" ItemsSource="{Binding Genders}"/>
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.dia_chi}"/>
+                    <controls:LookUpAddress Placeholder="{x:Static lang:Language.chon_dia_chi}" BottomModal="{Reference LookUpModal}" SelectedItem="{Binding AddressContact}" CenterModal="{Reference CenterModal}"/>
+
+                </StackLayout>
+            </ScrollView>
+            <StackLayout Padding="10" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0,1,1,60" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional">
+                <Button Text="{x:Static lang:Language.luu}" Clicked="SaveUserInfor_Clicked" HeightRequest="40" CornerRadius="5" BackgroundColor="{StaticResource NavigationPrimary}" TextColor="White" FontSize="15" FontAttributes="Bold"/>
+            </StackLayout>
+
+            <controls:CenterModal x:Name="centerModelPassword" Title="{x:Static lang:Language.doi_mat_khau}">
+                <controls:CenterModal.Body>
+                    <StackLayout Padding="14">
+                        <controls:FormLabelRequired Text="{x:Static lang:Language.mat_khau_cu}"/>
+                        <controls:MainEntry Text="{Binding OldPassword}" Placeholder="{x:Static lang:Language.nhap_mat_khau_cu}" TextChanged="OldPassword_TextChanged"/>
+
+                        <controls:FormLabelRequired Text="{x:Static lang:Language.mat_khau_moi}"/>
+                        <controls:MainEntry Text="{Binding NewPassword}" Placeholder="{x:Static lang:Language.nhap_mat_khau_moi}" TextChanged="NewPassword_TextChanged"/>
+
+                        <controls:FormLabelRequired Text="{x:Static lang:Language.xac_nhan_mat_khau_moi}"/>
+                        <controls:MainEntry Text="{Binding ConfirmNewPassword}" Placeholder="{x:Static lang:Language.nhap_xac_nhan_mat_khau_moi}" TextChanged="ConfirmPassword_TextChanged"/>
+                    </StackLayout>
+                </controls:CenterModal.Body>
+                <controls:CenterModal.Footer>
+                    <Button Text="{x:Static lang:Language.luu}" Margin="14,8" Clicked="SaveChangedPassword_Clicked" HeightRequest="40" BackgroundColor="{StaticResource NavigationPrimary}" TextColor="White" FontSize="15" FontAttributes="Bold"/>
+                </controls:CenterModal.Footer>
+            </controls:CenterModal>
+
+            <controls:CenterModal x:Name="CenterModal" />
+            <controls:BottomModal x:Name="LookUpModal"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources" xmlns:views="clr-namespace:PhuLongCRM.Views"
+             x:Class="PhuLongCRM.Views.LichLamViecTheoNgay"
+             Title="{x:Static lang:Language.lich_lam_viec_theo_ngay_title}">
+    <ContentPage.Resources>
+        <Style TargetType="telerikPrimitives:RadBorder" x:Key="radBorder">
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="Padding" Value="0,5"/>
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Active">
+                            <VisualState.Setters>
+                                <Setter Property="BorderThickness" Value="0,0,0,2"/>
+                                <Setter Property="BorderColor" Value="#026294"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="InActive">
+                            <VisualState.Setters>
+                                <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                <Setter Property="BorderColor" Value="#808080"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="labelTap">
+            <Setter Property="Margin" Value="15,10"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="LineBreakMode" Value="TailTruncation"/>
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Active">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#026294"/>
+                                <Setter Property="FontAttributes" Value="Bold"/>
+                                <Setter Property="FontSize" Value="16"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="InActive">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#808080"/>
+                                <Setter Property="FontAttributes" Value="None"/>
+                                <Setter Property="FontSize" Value="15"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid RowDefinitions="Auto,*" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Grid Grid.Row="0" ColumnDefinitions="*,*,*" ColumnSpacing="0" VerticalOptions="Center" >
+                    <telerikPrimitives:RadBorder x:Name="radBorderTask" Grid.Column="0" Style="{StaticResource radBorder}">
+                        <telerikPrimitives:RadBorder.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Task_Tapped"/>
+                        </telerikPrimitives:RadBorder.GestureRecognizers>
+                        <Label x:Name="lblTask" Text="{x:Static lang:Language.cong_viec}" Style="{StaticResource labelTap}"/>
+                    </telerikPrimitives:RadBorder>
+                    <telerikPrimitives:RadBorder x:Name="radBorderMeeting" Grid.Column="1" Style="{StaticResource radBorder}">
+                        <telerikPrimitives:RadBorder.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Meeting_Tapped"/>
+                        </telerikPrimitives:RadBorder.GestureRecognizers>
+                        <Label x:Name="lblMeeting" Text="{x:Static lang:Language.cuoc_hop}" Style="{StaticResource labelTap}"/>
+                    </telerikPrimitives:RadBorder>
+                    <telerikPrimitives:RadBorder x:Name="radBorderPhoneCall" Grid.Column="2" Style="{StaticResource radBorder}">
+                        <telerikPrimitives:RadBorder.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="PhoneCall_Tapped"/>
+                        </telerikPrimitives:RadBorder.GestureRecognizers>
+                        <Label x:Name="lblPhoneCall" Text="{x:Static lang:Language.cuoc_goi}" Style="{StaticResource labelTap}"/>
+                    </telerikPrimitives:RadBorder>
+                </Grid>
+                <telerikInput:RadCalendar Grid.Row="1" ViewMode="Day"
+                                      AppointmentsSource="{Binding lstEvents, Mode=TwoWay}"
+                                      AppointmentTapped="Handle_AppointmentTapped" DisplayDateChanged="Handle_DisplayDateChanged">
+                    <telerikInput:RadCalendar.DayViewSettings>
+                        <telerikInput:DayViewSettings DayStartTime="00:00:00"
+                                                  DayEndTime="23:59:59"
+                                                  TimelineInterval="00:30"/>
+                    </telerikInput:RadCalendar.DayViewSettings>
+                    <telerikInput:RadCalendar.DayViewStyle>
+                        <telerikInput:DayViewStyle TimelineLabelsTextColor="DarkGray"
+                                               TimelineLabelsFontSize="10"
+                                               AppointmentFontSize="12"
+                                               AppointmentDetailsFontSize="10"
+                                               AppointmentTextColor="Black"
+                                               AppointmentDetailsTextColor="Black"/>
+                    </telerikInput:RadCalendar.DayViewStyle>
+                </telerikInput:RadCalendar>
+                <Button Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,6,6" Text="&#xf067;" Clicked="AddButton_Clicked"  TextColor="White" FontSize="18" FontFamily="FontAwesomeSolid" WidthRequest="44" HeightRequest="44" CornerRadius="22" BackgroundColor="#1399D5"/>
+            </Grid>
+            <views:ActivityPopupContentView x:Name="ActivityPopup" HidePopupActivity="ActivityPopup_HidePopupActivity"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             Title="{x:Static lang:Language.tai_lieu_kinh_doanh}"
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns:converter ="clr-namespace:PhuLongCRM.Converters"
+             x:Class="PhuLongCRM.Views.ListTaiLieuKinhDoanh">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid RowDefinitions="Auto,*" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <controls:SearchBarFrame Margin="10,5" Grid.Row="0">
+                    <controls:SearchBar Text="{Binding Keyword}" SearchButtonPressed="SearchBar_SearchButtonPressed" TextChanged="SearchBar_TextChanged"/>
+                </controls:SearchBarFrame>
+                <controls:BsdListView x:Name="listView" Grid.Row="1"  HasUnevenRows="True" ItemTapped="listView_ItemTapped">
+                    <controls:BsdListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout BackgroundColor ="White" Padding="20,15" Margin="0,1" Spacing="10">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding name}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" LineBreakMode="TailTruncation"/>
+                                        <Label FontSize="14" Grid.Row="0" Grid.Column="1" Text="{Binding createdon_format}" LineBreakMode="TailTruncation" VerticalTextAlignment="Center"/>
+                                    </Grid>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.tieu_de}" Text="{Binding subjecttitle}"/>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.loai}" Text="{Binding literaturetypecode_format}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:BsdListView.ItemTemplate>
+                </controls:BsdListView>
+            </Grid>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

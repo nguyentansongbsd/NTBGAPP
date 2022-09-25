@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="White"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             x:Name="rootPage"
+             x:Class="PhuLongCRM.Views.AccountForm">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="0,0,0,60">
+                <StackLayout BackgroundColor="White" Padding="0,10">
+                    <controls:FormLabel x:Name="customerCode" Text="{x:Static lang:Language.ma_khach_hang}" FontSize="15" IsVisible="false" Margin="10,0" />
+                    <telerikPrimitives:RadBorder BorderColor="#f1f1f1" IsVisible="{Binding Path=IsVisible,Source={Reference customerCode}}" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1" Margin="10,0" >
+                        <Label Text="{Binding singleAccount.bsd_customercode}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
+                    </telerikPrimitives:RadBorder>
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.loai_khach_hang}" Margin="10,10,10,0"/>
+                    <controls:LookUp x:Name="Lookup_Localization" Placeholder="{x:Static lang:Language.chon_localization}" ItemsSource="{Binding LocalizationOptionList}" SelectedItem="{Binding Localization}" BottomModal="{x:Reference BottomModal}" NameDisplay="Label" Margin="10,0" />
+
+                    <controls:FormLabel Text="{x:Static lang:Language.nhom_khach_hang}" FontSize="15" Margin="10,10,10,0"/>
+                    <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1" Margin="10,0" >
+                        <Label Text="{Binding BusinessType.Label}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
+                    </telerikPrimitives:RadBorder>
+                    <!--<controls:LookUpMultipleOptions x:Name="Lookup_BusinessType" Placeholder="Chọn nhóm khách hàng" ItemsSource="{Binding BusinessTypeOptionList}" SelectedIds="{Binding BusinessType}" CenterModal="{x:Reference CenterModal}" ShowClearButton="False" ShowCloseButton="False" IsEnabled="False"/>-->
+
+                    <controls:FormLabel Text="{x:Static lang:Language.tinh_trang}" FontSize="15" Margin="10,10,10,0"/>
+                    <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1" Margin="10,0" >
+                        <Label Text="{Binding CustomerStatusReason.Label}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
+                    </telerikPrimitives:RadBorder>
+                    <!--<controls:LookUp x:Name="lookUpTinhTrang" Placeholder="{x:Static lang:Language.chon_tinh_trang}" BottomModal="{Reference BottomModal}" NameDisplay="Label" ItemsSource="{Binding CustomerStatusReasons}" SelectedItem="{Binding CustomerStatusReason}"/>-->
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.ten_cong_ty}" Margin="10,10,10,0"/>
+                    <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_ten_cong_ty}" Text="{Binding singleAccount.bsd_name}" FontSize="15" IsEnabled="{Binding IsOfficial}" Margin="10,0" />
+
+                    <controls:FormLabel Text="{x:Static lang:Language.ten_cong_ty_khac}" Margin="10,10,10,0"/>
+                    <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_ten_cong_ty_khac}" Text="{Binding singleAccount.bsd_accountnameother}" FontSize="15" IsEnabled="{Binding IsOfficial}" Margin="10,0" />
+
+                    <controls:FormLabel Text="{x:Static lang:Language.ten_viet_tat}" Margin="10,10,10,0"/>
+                    <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_ten_viet_tat}" Text="{Binding singleAccount.bsd_companycode}" FontSize="15" IsEnabled="{Binding IsOfficial}" Margin="10,0" />
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.pham_vi_hoat_dong}" Margin="10,10,10,0"/>
+                    <controls:LookUp x:Name="lookUpOperationScope" Placeholder="{x:Static lang:Language.chon_pham_vi_hoat_dong}" BottomModal="{Reference BottomModal}" NameDisplay="Label" ItemsSource="{Binding OperationScopes}" SelectedItem="{Binding OperationScope}" Margin="10,0" />
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.nguoi_dai_dien}" Margin="10,10,10,0"/>
+                    <controls:LookUp x:Name="Lookup_PrimaryContact" Placeholder="{x:Static lang:Language.chon_nguoi_dai_dien}" SearchPress="Lookup_PrimaryContact_SearchPress" IsSearchPress="True" ItemsSource="{Binding PrimaryContactOptionList}" SelectedItem="{Binding PrimaryContact}" BottomModal="{x:Reference BottomModal}" NameDisplay="Name" Margin="10,0" />
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.giay_phep_kinh_doanh}" Margin="10,10,10,0"/>
+                    <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_so_giay_phep_kinh_doanh}" Text="{Binding singleAccount.bsd_registrationcode}" FontSize="15" IsEnabled="{Binding IsOfficial}" Margin="10,0" Unfocused="so_gpkd_Unfocused" Keyboard="Numeric" />
+
+                    <controls:FormLabel Text="{x:Static lang:Language.ngay_cap}" FontSize="15" Margin="10,10,10,0"/>
+                    <controls:DatePickerBoderControl x:Name="datePickerNgayCap" Date="{Binding singleAccount.bsd_issuedon}" Placeholder="{x:Static lang:Language.chon_ngay_cap}" ShowTime="False" Margin="10,0" />
+
+                    <controls:FormLabel Text="{x:Static lang:Language.noi_cap}" FontSize="15" Margin="10,10,10,0"/>
+                    <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_noi_cap}" Text="{Binding singleAccount.bsd_placeofissue}" FontSize="15" IsEnabled="{Binding IsOfficial}" Margin="10,0" />
+
+                    <controls:FormLabel Text="{x:Static lang:Language.ma_so_thue}" FontSize="15" Margin="10,10,10,0"/>
+                    <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_ma_so_thue}" Text="{Binding singleAccount.bsd_vatregistrationnumber}" FontSize="15" IsEnabled="{Binding IsOfficial}" Margin="10,0" />
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.dia_chi_lien_lac}" Margin="10,10,10,0"/>
+                    <controls:LookUpAddress Placeholder="{x:Static lang:Language.chon_dia_chi_lien_lac}" BottomModal="{Reference BottomModal}" SelectedItem="{Binding Address1}" CenterModal="{Reference CenterModal}" AddressCopy="{Binding AddressCopy}" EnableCopyAddress="True" Margin="10,0" />
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.dia_chi_tru_so_chinh}" Margin="10,10,10,0"/>
+                    <controls:LookUpAddress Placeholder="{x:Static lang:Language.chon_dia_chi_tru_so_chinh}" BottomModal="{Reference BottomModal}" SelectedItem="{Binding Address2}" CenterModal="{Reference CenterModal2}" AddressCopy="{Binding AddressCopy}" EnableCopyAddress="True" Margin="10,0" />
+                    <!--<controls:MainEntry Text="{Binding singleAccount.bsd_permanentaddress1}" Placeholder="Chọn địa chỉ trụ sở chính" FontSize="15"/>-->
+
+                    <telerikPrimitives:RadExpander IsExpanded="True" BorderColor="Transparent">
+                        <telerikPrimitives:RadExpander.Header>
+                            <telerikPrimitives:ExpanderHeader Style="{x:StaticResource ExpanderHeaderStyle}">
+                                <Label Style="{x:StaticResource ExpanderHeadingText}" Text="{x:Static lang:Language.thong_tin_lien_he_title}"/>
+                            </telerikPrimitives:ExpanderHeader>
+                        </telerikPrimitives:RadExpander.Header>
+                        <telerikPrimitives:RadExpander.Content>
+                            <StackLayout BackgroundColor="#ffffff" Padding="10,0">
+                                <controls:FormLabelRequired Text="{x:Static lang:Language.so_dien_thoai_cong_ty}" Margin="0,10,0,0"/>
+                                <controls:PhoneEntryControl Text="{Binding singleAccount.telephone1}" Unfocused="Phone_Unfocused" Keyboard="Numeric" FontSize="15" Placeholder="+84-033XXXXXXX" IsEnabled="{Binding IsOfficial}"/>
+                                <!--<controls:MainEntry Placeholder="{x:Static lang:Language.nhap_so_dien_thoai_cong_ty}" Text="{Binding singleAccount.telephone1}" FontSize="15" Keyboard="Numeric" IsEnabled="{Binding IsOfficial}"/>-->
+
+                                <controls:FormLabelRequired Text="{x:Static lang:Language.email}" Margin="0,10,0,0"/>
+                                <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_email}" Text="{Binding singleAccount.emailaddress1}" FontSize="15" IsEnabled="{Binding IsOfficial}"/>
+
+                                <controls:FormLabel Text="{Binding Source={x:Static lang:Language.email},StringFormat='{0} 2'}" FontSize="15" Margin="0,10,0,0"/>
+                                <controls:MainEntry Placeholder="{Binding Source={x:Static lang:Language.nhap_email},StringFormat='{0} 2'}" Text="{Binding singleAccount.bsd_email2}" FontSize="15" IsEnabled="{Binding IsOfficial}"/>
+
+                                <controls:FormLabel Text="Fax" FontSize="15" Margin="0,10,0,0"/>
+                                <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_fax_cua_cong_ty}" Text="{Binding singleAccount.fax}" FontSize="15" IsEnabled="{Binding IsOfficial}"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.trang_web}" FontSize="15" Margin="0,10,0,0"/>
+                                <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_website_cua_cong_ty}" Text="{Binding singleAccount.websiteurl}" FontSize="15" IsEnabled="{Binding IsOfficial}"/>
+                            </StackLayout>
+                        </telerikPrimitives:RadExpander.Content>
+                    </telerikPrimitives:RadExpander>
+                </StackLayout>
+            </ScrollView>
+            <Grid AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White" VerticalOptions="EndAndExpand">
+                <Button x:Name="btnSave" Margin="10" Padding="10,5" HeightRequest="40" TextColor="White" FontAttributes="Bold" CornerRadius="10" BackgroundColor="{StaticResource NavigationPrimary}" BorderWidth="1" BorderColor="{StaticResource NavigationPrimary}" />
+            </Grid>
+
+            <controls:CenterModal x:Name="CenterModal" />
+            <controls:CenterModal x:Name="CenterModal2" />
+            <controls:BottomModal x:Name="BottomModal"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

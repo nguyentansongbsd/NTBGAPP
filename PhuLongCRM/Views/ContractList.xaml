@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             xmlns:converter="clr-namespace:PhuLongCRM.Converters"
+             x:Class="PhuLongCRM.Views.ContractList"
+             Title="{x:Static lang:Language.hop_dong_title}">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid RowDefinitions="Auto,Auto,*" RowSpacing="0"  AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <controls:SearchBarFrame x:Name="searchBar" Grid.Row="0" Margin="10,5">
+                    <controls:SearchBar  Text="{Binding Keyword}" SearchButtonPressed="SearchBar_SearchButtonPressed" TextChanged="SearchBar_TextChanged"/>
+                </controls:SearchBarFrame>
+
+                <Grid ColumnDefinitions="*,*" Grid.Row="1" Margin="10,5">
+                    <controls:Filter x:Name="FiltersProject" Grid.Column="0" Placeholder="{x:Static lang:Language.du_an}" SelectedItemChange="FiltersProject_SelectedItemChange" ItemsSource="{Binding FiltersProject}" BottomModal="{x:Reference BottomModal}" NameDisplay="Label" SelectedItem="{Binding FilterProject}" Multiple="False"/>
+                    <controls:Filter x:Name="FiltersStatus" Grid.Column="1" Placeholder="{x:Static lang:Language.tinh_trang}" SelectedItemChanged="FiltersStatus_SelectedItemChanged" ItemsSource="{Binding FiltersStatus}" BottomModal="{x:Reference BottomModal}" NameDisplay="Label" SelectedIds="{Binding FilterStatus}" Multiple="True" SelectedDisplay="Selected"/>
+                </Grid>
+
+                <controls:BsdListView x:Name="listView" Grid.Row="2" ItemsSource="{Binding Data}" HasUnevenRows="True" ItemTapped="listView_ItemTapped">
+                    <controls:BsdListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout BackgroundColor ="White" Padding="20" Margin="0,1">
+                                    <Grid ColumnDefinitions="Auto,*" Grid.Row="0" Grid.Column="0">
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding statuscode_color}" VerticalOptions="StartAndExpand">
+                                            <Label Grid.Column="0" Text="{Binding statuscode_format}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
+                                        </telerikPrimitives:RadBorder>
+                                        <Label Grid.Column="1" Text="{Binding unit_name}" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" MaxLines="1" VerticalOptions="Center" LineBreakMode="TailTruncation" />
+                                    </Grid>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.khach_hang}" Text="{Binding customer_name}"/>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.du_an}" Text="{Binding project_name}"/>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.ma_hop_dong}" Text="{Binding bsd_contractnumber}"/>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.tong_tien}" Text="{Binding totalamount_format, StringFormat='{0} đ'}" TextColor="Red" FontAttributes="Bold"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:BsdListView.ItemTemplate>
+                </controls:BsdListView>
+            </Grid>
+            <controls:BottomModal x:Name="BottomModal"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+      RowDefinitions="Auto"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PhuLongCRM.Controls.DecimalEntry">
+    <controls:MainEntry x:Name="EntryPrice" TextChanged="TextChanged" Placeholder="{Binding Placeholder}" Keyboard="Numeric" Text="{Binding Text}" FontSize="15" Unfocused="EntryPrice_Unfocused"/>
+    <Button x:Name="BtnClear" Style="{StaticResource ClearButtonStyle}" Padding="0" FontFamily="FontAwesomeSolid" />
+</Grid>

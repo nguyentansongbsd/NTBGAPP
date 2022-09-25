@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+    xmlns:mr="clr-namespace:MR.Gestures;assembly=MR.Gestures"
+    x:Class="PhuLongCRM.BlankPage">
+    <!--<Label Text="Trang chu" TextColor="Black" FontSize="30" VerticalOptions="Center" HorizontalOptions="Center"/>-->
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout Margin="0,100,0,0">
+                <controls:LookUp x:Name="lookupChieuKhau" IsEnabled="False" Placeholder="test" BottomModal="{Reference lookUpModal}" NameDisplay="Label" ItemsSource="{Binding DiscountLists}" SelectedItem="{Binding DiscountList}" />
+            </StackLayout>
+            
+            <controls:BottomModal x:Name="lookUpModal"/>
+        </AbsoluteLayout>
+        
+        <!--<WebView x:Name="webview" />-->
+    </ContentPage.Content>
+</ContentPage>

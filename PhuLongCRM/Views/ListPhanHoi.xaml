@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             Title="{x:Static lang:Language.phan_hoi_title}"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns:converters="clr-namespace:PhuLongCRM.Converters" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             x:Class="PhuLongCRM.Views.ListPhanHoi">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:PhanHoiStatusCodeConvert x:Key="StatucToColor"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid RowDefinitions="Auto,*" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <controls:SearchBarFrame x:Name="searchBar" Grid.Row="0" Margin="10,10,10,5">
+                    <controls:SearchBar  Text="{Binding Keyword}" SearchButtonPressed="SearchBar_SearchButtonPressed" TextChanged="SearchBar_TextChanged"/>
+                </controls:SearchBarFrame>
+                <controls:BsdListView x:Name="listView" Grid.Row="1" ItemsSource="{Binding Data}" HasUnevenRows="True" ItemTapped="listView_ItemTapped">
+                    <controls:BsdListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout BackgroundColor ="White" Padding="15,10" Margin="0,1" Spacing="10">
+                                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto" Grid.Row="0" Grid.Column="0">
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding statuscode,Converter={StaticResource StatucToColor}}" VerticalOptions="Start">
+                                            <Label Grid.Column="0" Text="{Binding statuscodevalue}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
+                                        </telerikPrimitives:RadBorder>
+                                        <Label Grid.Column="1" Text="{Binding title}" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                                    </Grid>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.loai}" Text="{Binding casetypecodevalue}"/>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.khach_hang}" Text="{Binding contactname}"/>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.nguon}" Text="{Binding caseorigincodevalue}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:BsdListView.ItemTemplate>
+                </controls:BsdListView>
+            </Grid>
+            <controls:ExtendedFrame AbsoluteLayout.LayoutBounds="0,1,1,59" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" BackgroundColor="#1399D5" Padding="0" HorizontalOptions="End" Margin="0,0,15,15" HeightRequest="44" WidthRequest="44" CornerRadius="22">
+                <Button Text="&#xf067;" Clicked="NewCase_Clicked"  TextColor="White" FontSize="18" FontFamily="FontAwesomeSolid" WidthRequest="44" HeightRequest="44" CornerRadius="22" BackgroundColor="#1399D5"/>
+            </controls:ExtendedFrame>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

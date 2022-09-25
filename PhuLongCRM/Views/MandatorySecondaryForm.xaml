@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Title="{x:Static lang:Language.them_nguoi_uy_quyen}"
+             x:Class="PhuLongCRM.Views.MandatorySecondaryForm">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ExpanderHeaderStyle" TargetType="telerikPrimitives:ExpanderHeader">
+                <Setter Property="IndicatorText" Value="&#xf105;"/>
+                <Setter Property="IndicatorLocation" Value="End"/>
+                <Setter Property="IndicatorFontSize" Value="18"/>
+                <Setter Property="IndicatorColor" Value="#939393"/>
+                <Setter Property="BackgroundColor" Value="#30F1F1F1"/>
+                <Setter Property="BorderColor" Value="#F1F1F1"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="17,8"/>
+                <Setter Property="IndicatorFontFamily" Value="FontAwesomeSolid"/>
+            </Style>
+            <Style x:Key="ExpanderHeadingText" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="#444444"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="0,10,0,60">
+                <StackLayout BackgroundColor="White" Padding="10">
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.tieu_de}"/>
+                    <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_tieu_de}" Text="{Binding mandatorySecondary.bsd_name}" FontSize="15"/>
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.cong_ty}" Margin="0,10,0,0"/>
+                    <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                        <Label Text="{Binding mandatorySecondary.bsd_developeraccount}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" />
+                    </telerikPrimitives:RadBorder>
+                    <!--<controls:MainEntry Text="{Binding mandatorySecondary.bsd_developeraccount}" Placeholder="{x:Static lang:Language.nhap_cong_ty}" FontSize="15" IsEnabled="False"/>-->
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.nguoi_uy_quyen}" Margin="0,10,0,0"/>
+                    <controls:LookUp x:Name="Lookup_Account" Placeholder="{x:Static lang:Language.chon_nguoi_uy_quyen}" ItemsSource="{Binding list_contact_lookup}" SelectedItem="{Binding Contact}" BottomModal="{x:Reference BottomModal}" NameDisplay="Name"/>
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.thoi_gian_hieu_luc}" Margin="0,10,0,0"/>
+                    <Grid ColumnDefinitions="*,*">
+                        <Grid ColumnDefinitions="Auto,*" Grid.Column="0">
+                            <controls:FormLabel Text="{x:Static lang:Language.tu}" FontSize="15" Grid.Column="0"/>
+                            <controls:DatePickerBoderControl Date="{Binding mandatorySecondary.bsd_effectivedateto}" Placeholder="{x:Static lang:Language.chon_ngay}" Grid.Column="1" Date_Selected="Effectivedateto_DateSelected" ShowTime="False"/> 
+                        </Grid>
+                        <Grid ColumnDefinitions="Auto,*" Grid.Column="1">
+                            <controls:FormLabel Text="{x:Static lang:Language.den}" FontSize="15" Grid.Column="0"/>
+                            <controls:DatePickerBoderControl Date="{Binding mandatorySecondary.bsd_effectivedatefrom}" Placeholder="{x:Static lang:Language.chon_ngay}" Grid.Column="1" Date_Selected="Effectivedatefrom_DateSelected" ShowTime="False"/>
+                        </Grid>
+                    </Grid>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.chuc_vu_vn}" FontSize="15" Margin="0,10,0,0"/>
+                    <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_chuc_vu_vn}" Text="{Binding mandatorySecondary.bsd_jobtitlevn}" FontSize="15"/>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.chuc_vu_en}" FontSize="15" Margin="0,10,0,0"/>
+                    <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_chuc_vu_en}" Text="{Binding mandatorySecondary.bsd_jobtitleen}" FontSize="15"/>
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.mo_ta_vn}" Margin="0,10,0,0"/>
+                    <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_mo_ta_vn}" Text="{Binding mandatorySecondary.bsd_descriptionsvn}" FontSize="15"/>
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.mo_ta_en}" Margin="0,10,0,0"/>
+                    <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_mo_ta_en}" Text="{Binding mandatorySecondary.bsd_descriptionsen}" FontSize="15"/>
+                </StackLayout>
+            </ScrollView>
+            <Grid Padding="20,10" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" VerticalOptions="EndAndExpand" BackgroundColor="White">
+                <Button Text="{x:Static lang:Language.luu}" Clicked="AddMandatorySecondary_Clicked" HeightRequest="40" BackgroundColor="{StaticResource NavigationPrimary}" TextColor="White" BorderWidth="0" CornerRadius="10"/>
+            </Grid>
+            <controls:BottomModal x:Name="BottomModal"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

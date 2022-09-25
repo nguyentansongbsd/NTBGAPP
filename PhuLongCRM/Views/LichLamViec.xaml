@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             x:Class="PhuLongCRM.Views.LichLamViec"
+             Title="{x:Static lang:Language.lich_lam_viec}" BackgroundColor="White">
+    <ContentPage.Content>
+        <Grid Padding="10">
+            <ListView x:Name="listView" SelectionMode="None" SeparatorColor="Transparent" HasUnevenRows="true" ItemTapped="Handle_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame BackgroundColor="Gray" Padding="3" CornerRadius="5" Margin="0,5" HasShadow="false">
+                                <Frame Padding="10" BackgroundColor="White" CornerRadius="5" HasShadow="false">
+                                    <StackLayout Orientation="Horizontal" Spacing="10">
+                                        <Image Source="calendar_icon.png"/>
+                                        <Label Text="{Binding Label}"/>
+                                    </StackLayout>
+                                </Frame>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

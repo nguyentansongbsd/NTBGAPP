@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
+             xmlns:ffimagetransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:converters="clr-namespace:PhuLongCRM.Converters"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Title="{x:Static lang:Language.thong_tin_user_title}"
+             x:Class="PhuLongCRM.Views.UserCRMInfoPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:Base64ToImageSourceConverter x:Key="Base64ToImagesource"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Padding=" 0,0,0,60">
+                <StackLayout Padding="10,30,10,0">
+                    <Grid HorizontalOptions="CenterAndExpand" HeightRequest="78">
+                        <controls:ExtendedFrame Padding="4" CornerRadius="39" HorizontalOptions="Center" VerticalOptions="Start">
+                            <ffimageloading:CachedImage Source="{Binding Avatar, Converter={StaticResource Base64ToImagesource}}" LoadingPlaceholder="user.png" HeightRequest="70" WidthRequest="70" DownsampleWidth="500">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <ffimagetransformations:CircleTransformation/>
+                                </ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
+                        </controls:ExtendedFrame>
+                        <!--<telerikPrimitives:RadBorder Margin="0,0,-8,-8" VerticalOptions="EndAndExpand" HorizontalOptions="End" BorderColor="{StaticResource NavigationPrimary}" BorderThickness="2" CornerRadius="20" Padding="8" BackgroundColor="White">
+                            <Label Text="&#xf030;" FontFamily="FontAwesomeSolid" FontSize="16" TextColor="{StaticResource NavigationPrimary}"/>
+                        </telerikPrimitives:RadBorder>-->
+                    </Grid>
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.ten}" Margin="0,20,0,0"/>
+                    <controls:MainEntry Text="{Binding UserCRM.fullname}" IsEnabled="False" ShowClearButton="False"/>
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.ten_user}" />
+                    <controls:MainEntry Text="{Binding UserCRM.domainname}" IsEnabled="False" ShowClearButton="False"/>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.don_vi_kinh_doanh}" />
+                    <controls:MainEntry Text="{Binding UserCRM.businessunitid}" IsEnabled="False" ShowClearButton="False"/>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.email}" />
+                    <controls:MainEntry Text="{Binding UserCRM.internalemailaddress}" IsEnabled="False" ShowClearButton="False"/>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.so_dien_thoai}" />
+                    <controls:MainEntry Text="{Binding UserCRM.mobilephone}" IsEnabled="False" ShowClearButton="False"/>
+
+                </StackLayout>
+            </ScrollView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+    xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+    xmlns:contentViews="clr-namespace:PhuLongCRM.Views"
+    Title="{x:Static lang:Language.khach_hang_title}" BackgroundColor="White"
+    x:Class="PhuLongCRM.Views.CustomerPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" RowDefinitions="Auto,*">
+                <controls:TabControl IndexTab="TabControl_IndexTab" ListTab="tiem_nang,ca_nhan,doanh_nghiep" Grid.Row="0"/>
+                <Grid x:Name="CustomerContentView" Grid.Row="1"/>
+            </Grid>
+            <controls:ExtendedFrame AbsoluteLayout.LayoutBounds="0,1,1,59" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" BackgroundColor="#1399D5" Padding="0" HorizontalOptions="End" Margin="0,0,15,15" HeightRequest="44" WidthRequest="44" CornerRadius="22">
+                <Button Text="&#xf067;" Clicked="NewCustomer_Clicked"  TextColor="White" FontSize="18" FontFamily="FontAwesomeSolid" WidthRequest="44" HeightRequest="44" CornerRadius="22" BackgroundColor="#1399D5"/>
+            </controls:ExtendedFrame>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

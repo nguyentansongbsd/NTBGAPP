@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             x:Class="PhuLongCRM.Controls.LookUpViewAddress"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             Padding="10"
+             x:Name="main">
+    <controls:FormLabel Text="{x:Static lang:Language.quoc_gia}"/>
+    <controls:LookUp x:Name="lookUpCountry" Placeholder="{x:Static lang:Language.chon_quoc_gia}" NameDisplay="Name" SelectedItemChange="CountryAddress_Changed"/> <!--SelectedItem="{Binding Country}" ItemsSource="{Binding list_country_lookup}"-->
+
+    <controls:FormLabel Text="{x:Static lang:Language.tinh_thanh}"/>
+    <controls:LookUp x:Name="lookUpProvince" Placeholder="{x:Static lang:Language.chon_tinh_thanh}" NameDisplay="Name" SelectedItem="{Binding Province}" ItemsSource="{Binding list_province_lookup}" SelectedItemChange="StateProvinceAddress_Changed"/>
+
+    <controls:FormLabel Text="{x:Static lang:Language.quan_huyen}"/>
+    <controls:LookUp x:Name="lookUpDistrict" Placeholder="{x:Static lang:Language.chon_quan_huyen}" NameDisplay="Name"/> <!--SelectedItem="{Binding District}" ItemsSource="{Binding list_district_lookup}"-->
+
+    <controls:FormLabelRequired Text="{x:Static lang:Language.so_nha_duong_phuong}"/>
+    <controls:LookUpEntry x:Name="lineAddress" Placeholder="{x:Static lang:Language.nhap_so_nha_duong_phuong}"/>
+</StackLayout>

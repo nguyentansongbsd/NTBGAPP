@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             x:Class="PhuLongCRM.Views.ContactsContentview">
+    <ContentView.Content>
+        <AbsoluteLayout>
+            <Grid RowDefinitions="Auto,*" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="0">
+                    <controls:SearchBarFrame Margin="10,5,0,5" Grid.Column="0">
+                        <controls:SearchBar Text="{Binding Keyword}" SearchButtonPressed="SearchBar_SearchButtonPressed" TextChanged="SearchBar_TextChanged"/>
+                    </controls:SearchBarFrame>
+                    <Label Text="&#xf0b0;" TextColor="#444444" FontFamily="FontAwesomeSolid" FontSize="15" Grid.Column="1" Padding="10,8" Margin="0,0,15,0" VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Filter_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+                <controls:BsdListView x:Name="listView" Grid.Row="1" ItemsSource="{Binding Data}" ItemTapped="listView_ItemTapped">
+                    <controls:BsdListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" BackgroundColor ="White" Padding="20" Margin="0,1">
+                                    <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding statuscode_color}" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0">
+                                        <Label Text="{Binding statuscode_format}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
+                                    </telerikPrimitives:RadBorder>
+                                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding bsd_fullname}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" MaxLines="1" VerticalOptions="Center" LineBreakMode="TailTruncation" />
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.ma_khach_hang}" Text="{Binding bsd_customercode}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.so_dien_thoai}" Text="{Binding mobilephone_format}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.dia_chi}" Text="{Binding bsd_contactaddress}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                </Grid>
+                                <!--<StackLayout BackgroundColor ="White" Padding="20,15" Margin="0,1">
+                                    <Grid ColumnDefinitions="Auto,*" Grid.Row="0" Grid.Column="0">
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding statuscode_color}" VerticalOptions="StartAndExpand">
+                                            <Label Grid.Column="0" Text="{Binding statuscode_format}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
+                                        </telerikPrimitives:RadBorder>
+                                        <Label Grid.Column="1" Text="{Binding bsd_fullname}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" MaxLines="1" VerticalOptions="Center" LineBreakMode="TailTruncation" />
+                                    </Grid>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.ma_khach_hang}" Text="{Binding bsd_customercode}"/>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.so_dien_thoai}" Text="{Binding mobilephone_format}"/>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.dia_chi}" Text="{Binding bsd_contactaddress}"/>
+                                </StackLayout>-->
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:BsdListView.ItemTemplate>
+                </controls:BsdListView>
+            </Grid>
+            <StackLayout x:Name="FilterView" BackgroundColor="#90000000" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" IsVisible="false">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Filter_Tapped"/>
+                </StackLayout.GestureRecognizers>
+                <telerikPrimitives:RadBorder BorderColor="Transparent" BorderThickness="0" CornerRadius="0,0,10,10">
+                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="0" BackgroundColor="#f1f1f1" RowSpacing="1">
+
+                        <Label Grid.Row="0" Grid.Column="0" Text="&#xf007;" TextColor="Red" FontFamily="FontAwesomeSolid" BackgroundColor="White" Padding="20,8,3,8" FontSize="22" VerticalOptions="Center" />
+                        <Label x:Name="label_All" Grid.Row="0" Grid.Column="1" Text="{x:Static lang:Language.tat_ca}" TextColor="#1399D5" BackgroundColor="White" FontAttributes="Bold" FontSize="15" Padding="3,8,20,8" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="SelectFilter_Tapped" CommandParameter="0"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <Label Grid.Row="1" Grid.Column="0" Text="&#xf4fc;" TextColor="#2FCC71" FontFamily="FontAwesomeSolid" BackgroundColor="White" Padding="20,8,3,8" FontSize="22" VerticalOptions="Center" />
+                        <Label x:Name="label_official" Grid.Row="1" Grid.Column="1" Text="{x:Static lang:Language.chinh_thuc}" TextColor="#444444" BackgroundColor="White" FontSize="15" Padding="3,8,20,8" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="SelectFilter_Tapped" CommandParameter="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        
+                        <Label Grid.Row="2" Grid.Column="0" Text="&#xf4fd;" TextColor="#04A8F4" FontFamily="FontAwesomeSolid" FontSize="22" BackgroundColor="White" Padding="20,8,3,8"  VerticalOptions="Center" />
+                        <Label x:Name="label_potential" Grid.Row="2" Grid.Column="1" Text="{x:Static lang:Language.tiem_nang_sts}" TextColor="#444444" BackgroundColor="White" FontSize="15" Padding="3,8,20,8" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="SelectFilter_Tapped" CommandParameter="2"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                      
+                    </Grid>
+                </telerikPrimitives:RadBorder>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

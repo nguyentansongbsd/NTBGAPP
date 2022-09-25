@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+    Title="{x:Static lang:Language.xac_nhan_ma_otp}"
+    x:Class="PhuLongCRM.Views.ConformOTPPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </StackLayout.GestureRecognizers>
+                    <Grid VerticalOptions="CenterAndExpand" Margin="20,10">
+                        <Entry Grid.Row="0" Opacity="0" x:Name="mainEntry"  IsVisible="true" TextChanged="mainEntry_TextChanged" Keyboard="Numeric" MaxLength="4"/>
+                        <Label Grid.Row="0" x:Name="lblTitle" FontSize="16" TextColor="Black" HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static lang:Language.otp_duoc_gui_ve_so_dien_thoai}" />
+                                    <Span Text=" " />
+                                    <Span x:Name="LblPhone" FontFamily="SegoeBold" TextColor="DarkGreen"/>
+                                    <Span Text=". " />
+                                    <Span Text="{x:Static lang:Language.vui_long_nhap_otp_de_xac_nhan_tai_khoan}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Grid Grid.Row="1" RowDefinitions="40" ColumnDefinitions="40,40,40,40"  HorizontalOptions="Center" ColumnSpacing="10">
+                            <Grid Grid.Column="0" BackgroundColor="White">
+                                <BoxView HeightRequest="2" WidthRequest="5" VerticalOptions="CenterAndExpand" BackgroundColor="{x:StaticResource NavigationPrimary}" />
+                                <Label x:Name="Code1" FontSize="20" TextColor="Black" FontFamily="SegoeBold" IsVisible="false" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            </Grid>
+                            <Grid Grid.Column="1" BackgroundColor="White">
+                                <BoxView HeightRequest="2"  WidthRequest="5" VerticalOptions="CenterAndExpand" BackgroundColor="{x:StaticResource NavigationPrimary}" />
+                                <Label x:Name="Code2" FontSize="20" TextColor="Black" FontFamily="SegoeBold" IsVisible="false" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            </Grid>
+                            <Grid Grid.Column="2" BackgroundColor="White">
+                                <BoxView HeightRequest="2"  WidthRequest="5" VerticalOptions="CenterAndExpand" BackgroundColor="{x:StaticResource NavigationPrimary}" />
+                                <Label x:Name="Code3" FontSize="20" TextColor="Black" FontFamily="SegoeBold" IsVisible="false" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            </Grid>
+                            <Grid Grid.Column="3" BackgroundColor="White">
+                                <BoxView HeightRequest="2"  WidthRequest="5" VerticalOptions="CenterAndExpand" BackgroundColor="{x:StaticResource NavigationPrimary}" />
+                                <Label x:Name="Code4" FontSize="20" TextColor="Black" FontFamily="SegoeBold" IsVisible="false" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            </Grid>
+                        </Grid>
+
+                        <Grid Grid.Row="2" Margin="0,10" ColumnDefinitions="*,*" RowDefinitions="35">
+                            <Button Text="{x:Static lang:Language.huy}" BackgroundColor="White" Grid.Column="0" BorderWidth="1" BorderColor="{StaticResource NavigationPrimary}" TextColor="{StaticResource NavigationPrimary}" Clicked="Cancel_Clicked"/>
+                            <Button x:Name="BtnConform" IsEnabled="False" Text="{x:Static lang:Language.xac_nhan}" Grid.Column="1" BackgroundColor="{StaticResource NavigationPrimary}" TextColor="White" Clicked="ConfirmOTP_Clicked"/>
+                        </Grid>
+                        <Label Margin="0,5" Grid.Row="3" Text="{x:Static lang:Language.ban_chua_nhan_duoc_ma_gui_lai}" TextColor="Blue" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Resend_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

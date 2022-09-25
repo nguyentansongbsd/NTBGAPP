@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" xmlns:views="clr-namespace:PhuLongCRM.Views"
+             x:Class="PhuLongCRM.Views.LichLamViecTheoThang"
+             Title="{x:Static lang:Language.lich_lam_viec_theo_thang_title}">
+    <ContentPage.Resources>
+        <Style TargetType="telerikPrimitives:RadBorder" x:Key="radBorder">
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="Padding" Value="0,5"/>
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Active">
+                            <VisualState.Setters>
+                                <Setter Property="BorderThickness" Value="0,0,0,2"/>
+                                <Setter Property="BorderColor" Value="#026294"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="InActive">
+                            <VisualState.Setters>
+                                <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                <Setter Property="BorderColor" Value="#808080"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="labelTap">
+            <Setter Property="Margin" Value="15,10"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="LineBreakMode" Value="TailTruncation"/>
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Active">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#026294"/>
+                                <Setter Property="FontAttributes" Value="Bold"/>
+                                <Setter Property="FontSize" Value="16"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="InActive">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#808080"/>
+                                <Setter Property="FontAttributes" Value="None"/>
+                                <Setter Property="FontSize" Value="15"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#F7F7F7" RowDefinitions="Auto,5*,Auto,2*" >
+                <Grid Grid.Row="0" ColumnDefinitions="*,*,*" ColumnSpacing="0" VerticalOptions="Center" >
+                    <telerikPrimitives:RadBorder x:Name="radBorderTask" Grid.Column="0" Style="{StaticResource radBorder}">
+                        <telerikPrimitives:RadBorder.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Task_Tapped"/>
+                        </telerikPrimitives:RadBorder.GestureRecognizers>
+                        <Label x:Name="lblTask" Text="{x:Static lang:Language.cong_viec}" Style="{StaticResource labelTap}"/>
+                    </telerikPrimitives:RadBorder>
+                    <telerikPrimitives:RadBorder x:Name="radBorderMeeting" Grid.Column="1" Style="{StaticResource radBorder}">
+                        <telerikPrimitives:RadBorder.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Meeting_Tapped"/>
+                        </telerikPrimitives:RadBorder.GestureRecognizers>
+                        <Label x:Name="lblMeeting" Text="{x:Static lang:Language.cuoc_hop}" Style="{StaticResource labelTap}"/>
+                    </telerikPrimitives:RadBorder>
+                    <telerikPrimitives:RadBorder x:Name="radBorderPhoneCall" Grid.Column="2" Style="{StaticResource radBorder}">
+                        <telerikPrimitives:RadBorder.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="PhoneCall_Tapped"/>
+                        </telerikPrimitives:RadBorder.GestureRecognizers>
+                        <Label x:Name="lblPhoneCall" Text="{x:Static lang:Language.cuoc_goi}" Style="{StaticResource labelTap}"/>
+                    </telerikPrimitives:RadBorder>
+                </Grid>
+                <telerikInput:RadCalendar x:Name="calendar" Grid.Row="1" WidthRequest="350"
+                                  WeekNumbersDisplayMode="Hide"
+                                  DayNamesDisplayMode="Show"
+                                  SelectionChanged="Handle_SelectionChanged"
+                                  AppointmentsSource="{Binding lstEvents, Mode=TwoWay}">
+                </telerikInput:RadCalendar>
+
+                <Grid Padding="16, 12, 16, 3" Grid.Row="2" ColumnDefinitions="*,Auto">
+                    <Label x:Name="label" Text="{Binding DayLabel}" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center">
+                        <Label.FontSize>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android">20</On>
+                                <On Platform="iOS">18</On>
+                            </OnPlatform>
+                        </Label.FontSize>
+                    </Label>
+                    <Label Grid.Column="1" Text="&#xf067;" FontFamily="FontAwesomeSolid" FontSize="20" TextColor="Black">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="AddButton_Clicked"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+
+                <ListView ItemsSource="{Binding selectedDateEvents}" HasUnevenRows="true" 
+                  x:Name="listview" Grid.Row="3"
+                  SelectionMode="None" SeparatorColor="Transparent" ItemTapped="Event_Tapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout BackgroundColor="Transparent" Padding="0,5">
+                                    <Grid Padding="16,0,16,0" BackgroundColor="Transparent">
+                                        <Grid Grid.ColumnSpacing="0" ColumnDefinitions="4,*">
+                                            <Grid Grid.Column="0" BackgroundColor="{Binding LeadBorderColor}" />
+                                            <StackLayout Grid.Column="1" BackgroundColor="{Binding ItemBackgroundColor}" Padding="8,12,12,12">
+                                                <StackLayout VerticalOptions="Start" Orientation="Horizontal" Spacing="15">
+                                                    <Label Text="{Binding activitytype_label}" FontAttributes="Bold" VerticalTextAlignment="Center"/>
+                                                    <StackLayout Spacing="5" Orientation="Horizontal">
+                                                        <Label Text="(" FontAttributes="Italic" FontSize="Micro" VerticalTextAlignment="Center"/>
+                                                        <Label Text="{Binding StartTimeString}" FontAttributes="Italic" FontSize="Micro" VerticalTextAlignment="Center"/>
+                                                        <Label Text="-" FontSize="Micro" VerticalTextAlignment="Center"/>
+                                                        <Label Text="{Binding EndTimeString}" FontAttributes="Italic" FontSize="Micro" VerticalTextAlignment="Center"/>
+                                                        <Label Text=")" FontAttributes="Italic" FontSize="Micro" VerticalTextAlignment="Center"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+
+                                                <Grid VerticalOptions="FillAndExpand" ColumnDefinitions="*,Auto">
+                                                    <Label Text="{Binding Title}" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center" >
+                                                        <Label.FontSize>
+                                                            <OnPlatform x:TypeArguments="x:Double">
+                                                                <On Platform="Android">12</On>
+                                                                <On Platform="iOS">14</On>
+                                                            </OnPlatform>
+                                                        </Label.FontSize>
+                                                    </Label>
+
+                                                    <Label Grid.Column="1" VerticalOptions="Center" Text="{Binding status_label}" TextColor="Gray"/>
+                                                </Grid>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            <views:ActivityPopupContentView x:Name="ActivityPopup" HidePopupActivity="ActivityPopup_HidePopupActivity"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

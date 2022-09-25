@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" ColumnSpacing="0"
+      xmlns:controls="clr-namespace:PhuLongCRM.Controls" ColumnDefinitions="6*,Auto,4*"
+      xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+      x:Class="PhuLongCRM.Controls.DatePickerBoderControl">
+    <controls:DatePickerBorder x:Name="datePicker" Grid.Column="0" OnChangeState="datePicker_OnChangeState" DateSelected="datePicker_DateSelected" Unfocused="datePicker_Unfocused"/>
+    <Label x:Name="lblDash" Grid.Column="1" Text="-" VerticalOptions="Center" TextColor="Gray" Margin="4,0"/>
+    <controls:TimePickerBorder x:Name="timePicker" Grid.Column="2" OnChangeState="timePicker_OnChangeState" />
+
+    <controls:LookUpEntry x:Name="entry" Grid.Column="0" IsEnabled="False"/>
+    <controls:LookUpEntry x:Name="entryTime" Grid.Column="2" IsEnabled="False" Placeholder="{x:Static lang:Language.thoi_gian}"/>
+
+    <Label x:Name="btnClear" Grid.Column="0" Text="&#xf057;" IsVisible="false" FontFamily="FontAwesomeRegular" TextColor="Gray" FontSize="15" Padding="8,6" Margin="0,0,2,0" HorizontalOptions="End" VerticalOptions="Center" >
+        <Label.GestureRecognizers>
+            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ClearDate_Tapped"/>
+        </Label.GestureRecognizers>
+    </Label>
+    <Label x:Name="btnClearTime" Grid.Column="2" Text="&#xf057;" IsVisible="false" FontFamily="FontAwesomeRegular" TextColor="Gray" FontSize="15" Padding="8,6" Margin="0,0,2,0" HorizontalOptions="End" VerticalOptions="Center" >
+        <Label.GestureRecognizers>
+            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ClearTime_Tapped"/>
+        </Label.GestureRecognizers>
+    </Label>
+</Grid>

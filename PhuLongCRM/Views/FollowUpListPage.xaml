@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+    xmlns:converters="clr-namespace:PhuLongCRM.Converters"
+    xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+    Title="{x:Static lang:Language.danh_sach_theo_doi_title}"
+    x:Class="PhuLongCRM.Views.FollowUpListPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:GroupConverter x:Key="groupConverter"/>
+            <converters:NullToHideConverter x:Key="nullToHideConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid RowDefinitions="Auto,*" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <controls:SearchBarFrame x:Name="searchBar" Grid.Row="0" Margin="10,10,10,5">
+                    <controls:SearchBar  Text="{Binding Keyword}" SearchButtonPressed="SearchBar_SearchButtonPressed" TextChanged="SearchBar_TextChanged"/>
+                </controls:SearchBarFrame>
+                <controls:BsdListView x:Name="listView" Grid.Row="1" ItemsSource="{Binding Data}" HasUnevenRows="True" ItemTapped="listView_ItemTapped">
+                    <controls:BsdListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout BackgroundColor ="White" Padding="20" Margin="0,1">
+                                    <Grid ColumnDefinitions="*,Auto" Grid.Row="0">
+                                        <Grid ColumnDefinitions="Auto,*" HorizontalOptions="Start" Grid.Column="0">
+                                            <Label Text="{Binding Source={x:Static lang:Language.danh_sach_theo_doi},StringFormat='{0}:'}" TextColor="Gray" FontSize="14" Grid.Column="0"/>
+                                            <Label Text="{Binding bsd_followuplistcode}" TextColor="Gray" FontSize="14" Grid.Column="1" LineBreakMode="TailTruncation" />
+                                        </Grid>
+                                        <Label Text="{Binding bsd_expiredate,StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" FontSize="14" TextColor="Gray"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" Grid.Row="1" Grid.Column="0">
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding statuscode_color}" VerticalOptions="StartAndExpand">
+                                            <Label Grid.Column="0" Text="{Binding statuscode_format}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
+                                        </telerikPrimitives:RadBorder>
+                                        <Label Grid.Column="1" Text="{Binding bsd_name}" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" MaxLines="1" VerticalOptions="Center" LineBreakMode="TailTruncation" />
+                                    </Grid>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.khach_hang}" Text="{Binding customer}"/>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.san_pham}" Text="{Binding bsd_units}"/>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.loai}" Text="{Binding bsd_type_format}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:BsdListView.ItemTemplate>
+                </controls:BsdListView>
+            </Grid>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

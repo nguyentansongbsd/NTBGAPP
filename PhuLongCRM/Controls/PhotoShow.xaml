@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns:mr="clr-namespace:MR.Gestures;assembly=MR.Gestures"
+             x:Class="PhuLongCRM.Controls.PhotoShow"
+             BackgroundColor="Transparent">
+    <AbsoluteLayout>
+        <Grid  AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <mr:Grid Swiped="Image_Swiped">
+                <controls:PinchZoomImage>
+                    <controls:PinchZoomImage.Content>
+                        <ffimageloading:CachedImage x:Name="image" Aspect="AspectFill"/>
+                    </controls:PinchZoomImage.Content>
+                </controls:PinchZoomImage>
+            </mr:Grid>
+            <!--<CarouselView x:Name="carousel" ItemsSource="{Binding ItemsSource}" BackgroundColor="#333333" Loop="False">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <controls:PinchZoomImage>
+                                    <controls:PinchZoomImage.Content>
+                                        <ffimageloading:CachedImage Source="{Binding ImageSoure}" Aspect="AspectFill"/>
+                                    </controls:PinchZoomImage.Content>
+                                </controls:PinchZoomImage>
+                            </Grid>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>-->
+            <Label Text="&#xf060;" TextColor="White" FontFamily="FontAwesomeSolid" FontSize="20" VerticalOptions="Start" HorizontalOptions="Start" Margin="10,10,0,0" Padding="10">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Hide_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+    </AbsoluteLayout>
+</ContentPage>

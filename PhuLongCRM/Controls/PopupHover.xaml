@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<AbsoluteLayout xmlns="http://xamarin.com/schemas/2014/forms" 
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                xmlns:primitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+                x:Class="PhuLongCRM.Controls.PopupHover" 
+                BackgroundColor="#40111111"
+                AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                AbsoluteLayout.LayoutFlags="All" 
+                IsVisible="false">
+    <primitives:RadBorder BackgroundColor="White" BorderColor="White" BorderThickness="1" CornerRadius="0,0,5,5" 
+                          VerticalOptions="Start" HorizontalOptions="Fill" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+        <Label x:Name="label" FontSize="15" TextColor="#444444" Padding="10"/>
+    </primitives:RadBorder>
+    <AbsoluteLayout.GestureRecognizers>
+        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Close_Tapped"/>
+    </AbsoluteLayout.GestureRecognizers>
+</AbsoluteLayout>

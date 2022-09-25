@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PhuLongCRM.Controls.MyListViewMenu">
+    <ContentView.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7.5*"/>
+                <RowDefinition Height="2.5*"/>
+            </Grid.RowDefinitions>
+            <StackLayout>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Handle_Tapped"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <StackLayout x:Name="main_content" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
+                
+                <Label x:Name="title_label" Text="{Binding Title}" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="16" IsVisible="{Binding HasTitle}"/>
+                <StackLayout x:Name="header_line" BackgroundColor="Black" HeightRequest=".9" IsVisible="{Binding HasTitle}" Margin="30,0"/>
+                
+                <ListView x:Name="menu_listview" 
+                          HasUnevenRows="true" 
+                          IsEnabled="{Binding isTapable}" 
+                          ItemsSource="{Binding ItemSource}" 
+                          ItemTemplate="{Binding ItemTemplate}"
+                          SelectedItem="{Binding SelectedItem}" />
+                
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

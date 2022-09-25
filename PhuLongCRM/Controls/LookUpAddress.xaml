@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:controls="clr-namespace:PhuLongCRM.Controls" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             x:Class="PhuLongCRM.Controls.LookUpAddress"
+      ColumnDefinitions="*,Auto">
+    <Grid Grid.Column="0">
+        <controls:LookUpEntry x:Name="Entry" Placeholder="{Binding Placeholder}" HorizontalOptions="FillAndExpand"/>
+        <StackLayout VerticalOptions="Fill" HorizontalOptions="Fill">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OpenLookUp_Tapped" />
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+        <Button x:Name="BtnClear" Style="{x:StaticResource ClearButtonStyle}" FontFamily="FontAwesomeRegular" Padding="0" Clicked="Clear_Clicked" />
+    </Grid>
+    <telerikPrimitives:RadBorder x:Name="BtnCopy" Grid.Column="1" BorderThickness="1" CornerRadius="5" BorderColor="Gray" IsVisible="false" Padding="5,0,5,0" HorizontalOptions="EndAndExpand">
+        <Label Text="&#xf044;" FontFamily="FontAwesomeRegular" TextColor="#444444" FontSize="15" Margin="1" VerticalOptions="Center"/>
+        <telerikPrimitives:RadBorder.GestureRecognizers>
+            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="CopyAddress_Tapped"/>
+        </telerikPrimitives:RadBorder.GestureRecognizers>
+    </telerikPrimitives:RadBorder>
+</Grid>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerikPrimitives:RadBorder xmlns="http://xamarin.com/schemas/2014/forms"
+             BorderThickness="1"
+             CornerRadius="3"
+             BorderColor="LightGray"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PhuLongCRM.Controls.Filter">
+    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="8">
+        <Label x:Name="lblText" VerticalOptions="Center"  VerticalTextAlignment="Center"  HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="#444444" MaxLines="1" LineBreakMode="TailTruncation" FontSize="14"/>
+        <Label x:Name="lblIcon" VerticalOptions="Center" VerticalTextAlignment="Center" Text="&#xf107;" TextColor="#939393" FontFamily="FontAwesomeSolid" FontSize="14"  />
+    </StackLayout>
+</telerikPrimitives:RadBorder>

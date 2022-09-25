@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            BackgroundColor="White"
+            xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            ios:Page.UseSafeArea="true"
+            xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+            xmlns:controls="clr-namespace:PhuLongCRM.Controls" 
+            xmlns:converter="clr-namespace:PhuLongCRM.Converters"
+            xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+            x:Name="rootPage"
+            x:Class="PhuLongCRM.Views.ContactForm">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ExpanderHeaderStyle" TargetType="telerikPrimitives:ExpanderHeader">
+                <Setter Property="IndicatorText" Value="&#xf105;"/>
+                <Setter Property="IndicatorLocation" Value="End"/>
+                <Setter Property="IndicatorFontSize" Value="18"/>
+                <Setter Property="IndicatorColor" Value="#939393"/>
+                <Setter Property="BackgroundColor" Value="#F2F2F2"/>
+                <Setter Property="BorderColor" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Padding" Value="17,8"/>
+                <Setter Property="IndicatorFontFamily" Value="FontAwesomeSolid"/>
+            </Style>
+            <Style x:Key="ExpanderHeadingText" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="#444444"/>
+            </Style>
+            <converter:NullToHideConverter x:Key="NullToHideConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="MainScreen" LayoutChanged="Handle_LayoutChanged">
+            <ScrollView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="0,0,0,60">
+                <StackLayout Margin="0,10,0,0">
+                    <telerikPrimitives:RadExpander IsExpanded="True" BorderColor="Transparent">
+
+                        <telerikPrimitives:RadExpander.Header>
+                            <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
+                                <Label Style="{StaticResource ExpanderHeadingText}" Text="{x:Static lang:Language.thong_tin_co_ban}"/>
+                            </telerikPrimitives:ExpanderHeader>
+                        </telerikPrimitives:RadExpander.Header>
+                        <telerikPrimitives:RadExpander.Content>
+                            <StackLayout BackgroundColor="White" Padding="10">
+
+                                <controls:FormLabel x:Name="customerCode" Text="{x:Static lang:Language.ma_khach_hang}" FontSize="15" IsVisible="false"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" IsVisible="{Binding Path=IsVisible,Source={Reference customerCode}}" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding singleContact.bsd_customercode}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabelRequired Text="{x:Static lang:Language.ho_ten}" Margin="0,10,0,0"/>
+                                <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_ho_ten_khach_hang}" Text="{Binding singleContact.bsd_fullname}" FontSize="15" IsEnabled="{Binding IsOfficial}"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.nhom_khach_hang_contact}" FontSize="15" Margin="0,10,0,0"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding ContactType.Label}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.tinh_trang}" FontSize="15" Margin="0,10,0,0"/>
+                                <controls:LookUp x:Name="lookUpTinhTrang" Placeholder="{x:Static lang:Language.chon_tinh_trang}" BottomModal="{Reference BottomModal}" NameDisplay="Label" ItemsSource="{Binding CustomerStatusReasons}" SelectedItem="{Binding CustomerStatusReason}"/>
+
+                                <controls:FormLabelRequired Text="{x:Static lang:Language.so_dien_thoai}" Margin="0,10,0,0"/>
+                                <controls:PhoneEntryControl Text="{Binding singleContact.mobilephone}" Unfocused="Phone_Unfocused" Keyboard="Numeric" FontSize="15" Placeholder="+84-033XXXXXXX" IsEnabled="{Binding IsOfficial}"/>
+                                <!--<controls:MainEntry Placeholder="{x:Static lang:Language.nhap_so_dien_thoai}" Text="{Binding singleContact.mobilephone}" FontSize="15" Keyboard="Numeric" />-->
+
+                                <controls:FormLabelRequired Text="{x:Static lang:Language.gioi_tinh}" Margin="0,10,0,0"/>
+                                <controls:LookUp x:Name="Lookup_GenderOptions" Placeholder="{x:Static lang:Language.chon_gioi_tinh}" ItemsSource="{Binding GenderOptions}" SelectedItem="{Binding singleGender}" BottomModal="{x:Reference BottomModal}" NameDisplay="Label" />
+
+                                <controls:FormLabelRequired Text="{x:Static lang:Language.quoc_tich}" Margin="0,10,0,0"/>
+                                <controls:LookUp x:Name="Lookup_LocalizationOptions" Placeholder="{x:Static lang:Language.chon_quoc_tich}" ItemsSource="{Binding LocalizationOptions}" SelectedItem="{Binding singleLocalization}" BottomModal="{x:Reference BottomModal}" NameDisplay="Label"/>
+
+                                <controls:FormLabelRequired Text="{x:Static lang:Language.ngay_sinh}" Margin="0,10,0,0"/>
+                                <controls:DatePickerBoderControl Date="{Binding singleContact.birthdate}" Placeholder="{x:Static lang:Language.chon_ngay_sinh}" ShowTime="False"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.email}" FontSize="15" Margin="0,10,0,0"/>
+                                <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_email}" Text="{Binding singleContact.emailaddress1}" FontSize="15" IsEnabled="{Binding IsOfficial}"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.cong_ty}" FontSize="15" Margin="0,10,0,0"/>
+                                <controls:LookUp x:Name="Lookup_Account"  NameDisplay="Name" BottomModal="{Reference BottomModal}" Placeholder="{x:Static lang:Language.chon_cong_ty}" SelectedItem="{Binding Account}" ItemsSource="{Binding list_account_lookup}"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.chuc_vu}" FontSize="15" Margin="0,10,0,0"/>
+                                <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_chuc_vu}" Text="{Binding singleContact.bsd_jobtitlevn}" FontSize="15" IsEnabled="{Binding IsOfficial}"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.so_dien_thoai_kinh_doanh}" FontSize="15" Margin="0,10,0,0"/>
+                                <controls:PhoneEntryControl Text="{Binding singleContact.telephone1}" Unfocused="Phone_Unfocused" Keyboard="Numeric" FontSize="15" Placeholder="+84-033XXXXXXX" IsEnabled="{Binding IsOfficial}"/>
+                                <!--<controls:MainEntry Placeholder="{x:Static lang:Language.nhap_so_dien_thoai_kinh_doanh}" Text="{Binding singleContact.telephone1}" FontSize="15" Keyboard="Numeric" IsEnabled="{Binding IsOfficial}"/>-->
+
+                                <controls:FormLabelRequired Text="{x:Static lang:Language.dia_chi_lien_lac}" Margin="0,10,0,0"/>
+                                <controls:LookUpAddress Placeholder="{x:Static lang:Language.chon_dia_chi_lien_lac}" BottomModal="{Reference BottomModal}" SelectedItem="{Binding Address1}" CenterModal="{Reference CenterModal}" AddressCopy="{Binding AddressCopy}" EnableCopyAddress="True"/>
+
+                                <controls:FormLabelRequired Text="{x:Static lang:Language.dia_chi_thuong_tru}" Margin="0,10,0,0"/>
+                                <controls:LookUpAddress Placeholder="{x:Static lang:Language.chon_dia_chi_thuong_tru}" BottomModal="{Reference BottomModal}" SelectedItem="{Binding Address2}" CenterModal="{Reference CenterModal2}" AddressCopy="{Binding AddressCopy}" EnableCopyAddress="True"/>
+                            </StackLayout>
+                        </telerikPrimitives:RadExpander.Content>
+                    </telerikPrimitives:RadExpander>
+
+                    <telerikPrimitives:RadExpander IsExpanded="True" BorderColor="Transparent">
+                        <telerikPrimitives:RadExpander.Header>
+                            <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
+                                <Label Style="{StaticResource ExpanderHeadingText}" Text="{x:Static lang:Language.thong_tin_cmnd_ho_chieu}"/>
+                            </telerikPrimitives:ExpanderHeader>
+                        </telerikPrimitives:RadExpander.Header>
+                        <telerikPrimitives:RadExpander.Content>
+                            <StackLayout BackgroundColor="White" Padding="10">
+                                <controls:FormLabel Text="{x:Static lang:Language.hinh_chup_cmnd}" FontSize="15" IsVisible="true"/>
+                                <Grid ColumnDefinitions="*,*" IsVisible="true">
+                                    <telerikPrimitives:RadBorder x:Name="MatTruocCMND" BorderThickness="1" BorderColor="#f1f1f1f1" CornerRadius="5" Grid.Column="0">
+                                        <telerikPrimitives:RadBorder.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="MatTruocCMND_Tapped" NumberOfTapsRequired="1"/>
+                                        </telerikPrimitives:RadBorder.GestureRecognizers>
+                                        <Grid>
+                                            <Label Text="{x:Static lang:Language.mat_truoc_cmnd}" FontSize="15" TextColor="#444444" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                            <ffimageloading:CachedImage Source="{Binding singleContact.bsd_mattruoccmnd_source}" DownsampleWidth="500" Aspect="AspectFill" IsVisible="{Binding singleContact.bsd_mattruoccmnd_source, Converter={StaticResource NullToHideConverter}}"/>
+                                        </Grid>
+                                    </telerikPrimitives:RadBorder>
+                                    <telerikPrimitives:RadBorder x:Name="MatSauCMND" BorderThickness="1" BorderColor="#f1f1f1f1" CornerRadius="5" Grid.Column="1">
+                                        <telerikPrimitives:RadBorder.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="MatSauCMND_Tapped" NumberOfTapsRequired="1"/>
+                                        </telerikPrimitives:RadBorder.GestureRecognizers>
+                                        <Grid>
+                                            <Label Text="{x:Static lang:Language.mat_sau_cmnd}" FontSize="15" TextColor="#444444" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                            <ffimageloading:CachedImage Source="{Binding singleContact.bsd_matsaucmnd_source}" DownsampleWidth="500" Aspect="AspectFill" IsVisible="{Binding singleContact.bsd_matsaucmnd_source, Converter={StaticResource NullToHideConverter}}"/>
+                                        </Grid>
+                                    </telerikPrimitives:RadBorder>
+                                </Grid>
+
+                                <controls:FormLabelRequired Text="{x:Static lang:Language.so_the_can_cuoc}" Margin="0,10,0,0"/>
+                                <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_so_the_can_cuoc}" Text="{Binding singleContact.bsd_identitycard}" FontSize="15" Keyboard="Numeric" Unfocused="CCCD_Unfocused" IsEnabled="{Binding IsOfficial}"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.ngay_cap_the_can_cuoc}" Margin="0,10,0,0"/>
+                                <controls:DatePickerBoderControl Date="{Binding singleContact.bsd_identitycarddategrant}" Placeholder="{x:Static lang:Language.chon_ngay_cap_the_can_cuoc}" ShowTime="False"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.noi_cap_the_can_cuoc}" FontSize="15" Margin="0,10,0,0"/>
+                                <controls:MainEntry Text="{Binding singleContact.bsd_placeofissueidentitycard}" Placeholder="{x:Static lang:Language.nhap_noi_cap_the_can_cuoc}" FontSize="15" IsEnabled="{Binding IsOfficial}"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.so_cmnd}" Margin="0,10,0,0"/>
+                                <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_so_cmnd}" Text="{Binding singleContact.bsd_identitycardnumber}" FontSize="15" Keyboard="Numeric" Unfocused="CMND_Unfocused" IsEnabled="{Binding IsOfficial}"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.ngay_cap}" Margin="0,10,0,0"/>
+                                <controls:DatePickerBoderControl x:Name="datePickerNgayCap" Date="{Binding singleContact.bsd_dategrant}" Placeholder="{x:Static lang:Language.chon_ngay_cap}" ShowTime="False"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.noi_cap}" FontSize="15" Margin="0,10,0,0"/>
+                                <controls:MainEntry Text="{Binding singleContact.bsd_placeofissue}" Placeholder="{x:Static lang:Language.nhap_noi_cap}" FontSize="15" IsEnabled="{Binding IsOfficial}"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.so_ho_chieu}" Margin="0,10,0,0"/>
+                                <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_so_ho_chieu}" Text="{Binding singleContact.bsd_passport}" FontSize="15" Unfocused="PassPort_Unfocused" IsEnabled="{Binding IsOfficial}"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.ngay_cap_ho_chieu}" Margin="0,10,0,0"/>
+                                <controls:DatePickerBoderControl x:Name="datePickerNgayCapHoChieu" Date="{Binding singleContact.bsd_issuedonpassport}" Placeholder="{x:Static lang:Language.chon_ngay_cap_ho_chieu}" ShowTime="False"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.noi_cap_ho_chieu}" FontSize="15" Margin="0,10,0,0"/>
+                                <controls:MainEntry Text="{Binding singleContact.bsd_placeofissuepassport}" Placeholder="{x:Static lang:Language.nhap_noi_cap_ho_chieu}" FontSize="15" IsEnabled="{Binding IsOfficial}"/>
+                            </StackLayout>
+                        </telerikPrimitives:RadExpander.Content>
+                    </telerikPrimitives:RadExpander>
+                </StackLayout>
+            </ScrollView>
+
+            <StackLayout x:Name="footer_form_lead" AbsoluteLayout.LayoutBounds="0,1,1,50" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" Padding="10,5" BackgroundColor="White">
+                <Button x:Name="btn_save_contact" BackgroundColor="#1399D5" TextColor="White" FontAttributes="Bold" HeightRequest="40" Padding="10,5" FontSize="16" BorderColor="#1399D5" BorderWidth="1" CornerRadius="5"/>
+            </StackLayout>
+
+            <controls:MyListViewMenu x:Name="popup_menu_imageCMND" HasTitle="false" IsVisible="false" ItemTapped="MenuItem_Tapped">
+                <controls:MyListViewMenu.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding Label}" FontSize="16" HeightRequest="48" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        </ViewCell>
+                    </DataTemplate>
+                </controls:MyListViewMenu.ItemTemplate>
+            </controls:MyListViewMenu>
+            <!-- End Popup -->
+
+            <!--Popup Detail CMND Image -->
+            <controls:ModalContentView x:Name="popup_detailCMNDImage" BackgroundColor="Black" Padding="0" IsVisible="false">
+                <AbsoluteLayout>
+                    <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                        <controls:PinchToZoomContainer>
+                            <Image x:Name="image_detailCMNDImage" Aspect="AspectFit"/>
+                        </controls:PinchToZoomContainer>
+                    </Grid>
+
+                    <ImageButton Source="btn_close.png" 
+                                 VerticalOptions="Start"
+                                 BackgroundColor="#C0808080"
+                                 HorizontalOptions="End" 
+                                 Margin="10"
+                                 HeightRequest="30"
+                                 WidthRequest="30"
+                                 Clicked="BtnCloseModalImage_Clicked"
+                                 AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                                 Aspect="AspectFit"
+                                 AbsoluteLayout.LayoutFlags="All"/>
+                </AbsoluteLayout>
+            </controls:ModalContentView>
+            <controls:CenterModal x:Name="CenterModal" />
+            <controls:CenterModal x:Name="CenterModal2" />
+            <controls:BottomModal x:Name="BottomModal"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+      RowDefinitions="Auto"
+      xmlns:telerick="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PhuLongCRM.Controls.LookUpMultipleOptions">
+
+    <controls:MainEntry x:Name="Entry"/>
+    <StackLayout VerticalOptions="Fill"
+                         HorizontalOptions="Fill">
+        <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Tapped="OpenLookUp_Tapped" />
+        </StackLayout.GestureRecognizers>
+    </StackLayout>
+    <FlexLayout Wrap="Wrap" AlignItems="Start" x:Name="flexLayout" IsVisible="false">
+        <FlexLayout.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OpenLookUp_Tapped" />
+        </FlexLayout.GestureRecognizers>
+        <BindableLayout.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Padding="1">
+                    <telerick:RadBorder BorderColor="Gray" BorderThickness="1" CornerRadius="5" Padding="5">
+                        <Label Text="{Binding Label}" Margin="5,0" FontSize="14" TextColor="Black" />
+                    </telerick:RadBorder>
+                </StackLayout>
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
+    </FlexLayout>
+</Grid>

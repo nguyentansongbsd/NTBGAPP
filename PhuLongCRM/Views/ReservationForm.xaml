@@ -1,0 +1,534 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             Title="{x:Static lang:Language.tao_bang_tinh_gia_title}"
+             x:Class="PhuLongCRM.Views.ReservationForm">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TitleFormStyle" TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="17"/>
+                <Setter Property="BackgroundColor" Value="#1399D5"/>
+                <Setter Property="Padding" Value="10"/>
+            </Style>
+
+            <Style TargetType="telerikPrimitives:RadBorder" x:Key="radBorder">
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="Padding" Value="0,5"/>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState x:Name="Active">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderThickness" Value="0,0,0,2"/>
+                                    <Setter Property="BorderColor" Value="#026294"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="InActive">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                    <Setter Property="BorderColor" Value="#808080"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style TargetType="Label" x:Key="labelTap">
+                <Setter Property="Margin" Value="15,10"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="LineBreakMode" Value="TailTruncation"/>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState x:Name="Active">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#026294"/>
+                                    <Setter Property="FontAttributes" Value="Bold"/>
+                                    <Setter Property="FontSize" Value="16"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="InActive">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#808080"/>
+                                    <Setter Property="FontAttributes" Value="None"/>
+                                    <Setter Property="FontSize" Value="15"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid RowDefinitions="Auto,*" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" >
+                <Grid Grid.Row="0" ColumnDefinitions="*,*,*" ColumnSpacing="0" VerticalOptions="Center" >
+                    <telerikPrimitives:RadBorder x:Name="radBorderChinhSach" Grid.Column="0" Style="{StaticResource radBorder}" CornerRadius="0" Padding="0,5" BorderColor="#026294" BorderThickness="0,0,0,2">
+                        <telerikPrimitives:RadBorder.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChinhSach_Tapped"/>
+                        </telerikPrimitives:RadBorder.GestureRecognizers>
+                        <Label x:Name="lblChinhSach" Text="{x:Static lang:Language.chinh_sach}" Style="{StaticResource labelTap}" Margin="15,10" HorizontalOptions="Center" LineBreakMode="TailTruncation" TextColor="#026294" FontSize="16" FontAttributes="Bold"/>
+                    </telerikPrimitives:RadBorder>
+                    <telerikPrimitives:RadBorder x:Name="radBorderTongHop" Grid.Column="1" Style="{StaticResource radBorder}" CornerRadius="0" Padding="0,5" BorderColor="#808080" BorderThickness="0,0,0,1">
+                        <telerikPrimitives:RadBorder.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TongHop_Tapped"/>
+                        </telerikPrimitives:RadBorder.GestureRecognizers>
+                        <Label x:Name="lblTongHop" Text="{x:Static lang:Language.tong_hop}" Style="{StaticResource labelTap}" Margin="15,10" HorizontalOptions="Center" LineBreakMode="TailTruncation" TextColor="#808080" FontSize="15" FontAttributes="None"/>
+                    </telerikPrimitives:RadBorder>
+                    <telerikPrimitives:RadBorder x:Name="radBorderChiTiet" Grid.Column="2" Style="{StaticResource radBorder}" CornerRadius="0" Padding="0,5" BorderColor="#808080" BorderThickness="0,0,0,1">
+                        <telerikPrimitives:RadBorder.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChiTiet_Tapped"/>
+                        </telerikPrimitives:RadBorder.GestureRecognizers>
+                        <Label x:Name="lblChiTiet" Text="{x:Static lang:Language.chi_tiet}" Style="{StaticResource labelTap}" Margin="15,10" HorizontalOptions="Center" LineBreakMode="TailTruncation" TextColor="#808080" FontSize="15" FontAttributes="None"/>
+                    </telerikPrimitives:RadBorder>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <!--chinh sach-->
+                    <ScrollView x:Name="contentChinhSach" Padding="0,0,0,60">
+                        <StackLayout Padding="10">
+                            <controls:FormLabel Text="{x:Static lang:Language.dong_so_huu}" Margin="0,10,0,0"/>
+                            <telerikPrimitives:RadBorder CornerRadius="10" >
+                                <telerikPrimitives:RadBorder.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="CoOwner_Tapped"/>
+                                </telerikPrimitives:RadBorder.GestureRecognizers>
+                                <Grid>
+                                    <Rectangle Fill="white"
+                                       Stroke="#B2B2B2"
+                                       StrokeThickness="1"
+                                       StrokeDashArray="8,8"
+                                       StrokeDashOffset="1"
+                                       HeightRequest="40"
+                                       HorizontalOptions="FillAndExpand" />
+                                    <Label TextColor="#B2B2B2" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="&#xf067;" FontSize="14" FontFamily="FontAwesomeSolid"/>
+                                                <Span Text="  "/>
+                                                <Span Text="{x:Static lang:Language.them_nguoi_dong_so_huu}" FontSize="15" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+                            </telerikPrimitives:RadBorder>
+                            <StackLayout Margin="0,10,0,0" BindableLayout.ItemsSource="{Binding CoOwnerList}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BorderColor="#B3B3B3" BorderThickness="1" HeightRequest="40">
+                                            <Grid ColumnDefinitions="*,Auto">
+                                                <Grid.GestureRecognizers>
+                                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UpdateCoOwner_Tapped" CommandParameter="{Binding .}"/>
+                                                </Grid.GestureRecognizers>
+                                                <Label Grid.Column="0" Text="{Binding bsd_name}" FontSize="15" TextColor="#444444" VerticalOptions="Center" Margin="10,0"/>
+                                                <Label Grid.Column="1" Text="&#xf00d;" FontFamily="FontAwesomeSolid" FontSize="15" TextColor="#808080" VerticalTextAlignment="Center" Padding="5,0,10,0">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UnSelectCoOwner_Clicked" CommandParameter="{Binding .}"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Grid>
+                                        </telerikPrimitives:RadBorder>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+
+                            <controls:FormLabelRequired Text="{x:Static lang:Language.dieu_kien_ban_giao}"/>
+                            <controls:LookUp x:Name="lookupDieuKienBanGiao" Placeholder="{x:Static lang:Language.chon_dieu_kien_ban_giao}" NameDisplay="Label" BottomModal="{Reference lookUpModal}" SelectedItem="{Binding HandoverCondition}" ItemsSource="{Binding HandoverConditions}" SelectedItemChange="HandoverCondition_SelectedItemChange"/>
+
+                            <controls:FormLabelRequired Text="{x:Static lang:Language.phuong_thuc_thanh_toan}"  Margin="0,10,0,0"/>
+                            <controls:LookUp x:Name="lookupPhuongThucThanhToan" Placeholder="{x:Static lang:Language.chon_phuong_thuc_thanh_toan}" BottomModal="{Reference lookUpModal}" NameDisplay="bsd_name" SelectedItem="{Binding PaymentScheme}" ItemsSource="{Binding PaymentSchemes}" SelectedItemChange="PTTT_SelectedItemChange"/>
+
+                            <controls:FormLabel Text="{x:Static lang:Language.loai_gop_dot}"  Margin="0,10,0,0"/>
+                            <controls:LookUp x:Name="lookupLoaiGopDot" Placeholder="{x:Static lang:Language.chon_loai_gop_dot}" BottomModal="{Reference lookUpModal}" NameDisplay="Label" SelectedItem="{Binding PaymentSchemeType}" ItemsSource="{Binding PaymentSchemeTypes}" SelectedItemChange="LoaiGopDot_SelectedItemChange"/>
+
+                            <controls:FormLabelRequired Text="{x:Static lang:Language.ngay_bat_dau_tinh_ltt}" IsVisible="{Binding Path=IsVisible, Source={Reference datePickerNgayBatDauTinhLTT}}"/>
+                            <controls:DatePickerBoderControl x:Name="datePickerNgayBatDauTinhLTT" IsVisible="false" Date="{Binding Quote.bsd_startingdatecalculateofps}" Placeholder="{x:Static lang:Language.chon_ngay_bat_dau_tinh_ltt}" ShowTime="False"/>
+                            <StackLayout Spacing="0" BindableLayout.ItemsSource="{Binding DiscountChildsPaymentSchemes}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="DiscountChildPaymentSchemeItem_Tapped" CommandParameter="{Binding .}" />
+                                            </StackLayout.GestureRecognizers>
+                                            <CheckBox Color="#2093EE" HeightRequest="35" IsEnabled="{Binding IsEnableChecked}" IsChecked="{Binding Selected}" CheckedChanged="DiscountChildPaymentSchemeItem_CheckedChanged"/>
+                                            <Label Text="{Binding name_format}" FontSize="15" TextColor="{Binding ItemColor}" VerticalOptions="CenterAndExpand"/>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+
+                            <controls:FormLabel Text="{x:Static lang:Language.chiet_khau_chung}" Margin="0,10,0,0"/>
+                            <controls:LookUp x:Name="lookupChieuKhau" IsEnabled="{Binding IsLocked}" Placeholder="{x:Static lang:Language.chon_chiet_khau_chung}" BottomModal="{Reference lookUpModal}" NameDisplay="Label" ItemsSource="{Binding DiscountLists}" SelectedItem="{Binding DiscountList}" SelectedItemChange="DiscountListItem_Changed"/>
+                            <StackLayout Spacing="0" BindableLayout.ItemsSource="{Binding DiscountChilds}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="DiscountChildItem_Tapped" CommandParameter="{Binding .}" />
+                                            </StackLayout.GestureRecognizers>
+                                            <CheckBox Color="#2093EE" HeightRequest="35" IsEnabled="{Binding IsEnableChecked}" IsChecked="{Binding Selected}" CheckedChanged="DiscountChildItem_CheckedChanged"/>
+                                            <Label Text="{Binding name_format}" FontSize="15" TextColor="{Binding ItemColor}" VerticalOptions="CenterAndExpand"/>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+
+                            <controls:FormLabel Text="{x:Static lang:Language.chiet_khau_noi_bo}" Margin="0,10,0,0"/>
+                            <controls:LookUp x:Name="lookupChieuKhauNoiBo" IsEnabled="{Binding IsLocked}" Placeholder="{x:Static lang:Language.chon_chiet_khau_noi_bo}" BottomModal="{Reference lookUpModal}" NameDisplay="Label" ItemsSource="{Binding DiscountInternelLists}" SelectedItem="{Binding DiscountInternelList}" SelectedItemChange="DiscountInternelListItem_Changed"/>
+                            <StackLayout Spacing="0" BindableLayout.ItemsSource="{Binding DiscountChildsInternel}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="DiscountChildInternelItem_Tapped" CommandParameter="{Binding .}" />
+                                            </StackLayout.GestureRecognizers>
+                                            <CheckBox Color="#2093EE" HeightRequest="35" IsEnabled="{Binding IsEnableChecked}" IsChecked="{Binding Selected}" CheckedChanged="DiscountChildInternelItem_CheckedChanged"/>
+                                            <Label Text="{Binding name_format}" FontSize="15" TextColor="{Binding ItemColor}" VerticalOptions="CenterAndExpand"/>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+
+                            <controls:FormLabel Text="{x:Static lang:Language.khuyen_mai}" Margin="0,10,0,0"/>
+                            <telerikPrimitives:RadBorder CornerRadius="10" >
+                                <telerikPrimitives:RadBorder.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Promotion_Tapped"/>
+                                </telerikPrimitives:RadBorder.GestureRecognizers>
+                                <Grid>
+                                    <Rectangle Fill="white"
+                                       Stroke="#B2B2B2"
+                                       StrokeThickness="1"
+                                       StrokeDashArray="8,8"
+                                       StrokeDashOffset="1"
+                                       HeightRequest="40"
+                                       HorizontalOptions="FillAndExpand" />
+                                    <Label TextColor="#B2B2B2" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="&#xf067;" FontSize="14" FontFamily="FontAwesomeSolid"/>
+                                                <Span Text="  "/>
+                                                <Span Text="{x:Static lang:Language.them_khuyen_mai}" FontSize="15" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+                            </telerikPrimitives:RadBorder>
+                            <StackLayout Margin="0,10,0,0" BindableLayout.ItemsSource="{Binding PromotionsSelected}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BorderColor="#B3B3B3" BorderThickness="1" HeightRequest="40">
+                                            <Grid ColumnDefinitions="*,Auto">
+                                                <Label Grid.Column="0" Text="{Binding Label}" FontSize="15" TextColor="#444444" VerticalOptions="Center" Margin="10,0"/>
+                                                <Label Grid.Column="1" Text="&#xf00d;" FontFamily="FontAwesomeSolid" FontSize="15" TextColor="#808080" VerticalTextAlignment="Center" Padding="5,0,10,0">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UnSelect_Clicked" CommandParameter="{Binding .}"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Grid>
+                                        </telerikPrimitives:RadBorder>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+
+                            <controls:FormLabel Text="{x:Static lang:Language.chiet_khau_quy_doi}" Margin="0,10,0,0"/>
+                            <controls:LookUp x:Name="lookupChieuKhauQuyDoi" IsEnabled="{Binding IsLocked}" Placeholder="{x:Static lang:Language.chon_chiet_khau_quy_doi}" BottomModal="{Reference lookUpModal}" NameDisplay="Label" ItemsSource="{Binding DiscountExchangeLists}" SelectedItem="{Binding DiscountExchangeList}" SelectedItemChange="DiscountListExchangeItem_Changed"/>
+                            <StackLayout Spacing="0" BindableLayout.ItemsSource="{Binding DiscountChildsExchanges}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="DiscountChildExchangeItem_Tapped" CommandParameter="{Binding .}" />
+                                            </StackLayout.GestureRecognizers>
+                                            <CheckBox Color="#2093EE" HeightRequest="35" IsEnabled="{Binding IsEnableChecked}" IsChecked="{Binding Selected}" CheckedChanged="DiscountChildExchangeItem_CheckedChanged"/>
+                                            <Label Text="{Binding name_format}" FontSize="15" TextColor="{Binding ItemColor}" VerticalOptions="CenterAndExpand"/>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </ScrollView>
+
+                    <!--tong hop-->
+                    <ScrollView x:Name="contentTongHop" IsVisible="false" Padding="0,0,0,60">
+                        <StackLayout>
+                            <!--Thong tin ban hang-->
+                            <telerikPrimitives:RadExpander IsExpanded="True" BorderColor="Transparent">
+                                <telerikPrimitives:RadExpander.Header>
+                                    <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
+                                        <Label Text="{x:Static lang:Language.thong_tin_ban_hang}" FontSize="15" FontAttributes="Bold" TextColor="#333333"/>
+                                    </telerikPrimitives:ExpanderHeader>
+                                </telerikPrimitives:RadExpander.Header>
+                                <telerikPrimitives:RadExpander.Content>
+                                    <StackLayout Padding="10">
+                                        <controls:FormLabel x:Name="lblGiuCho" Text="{x:Static lang:Language.danh_sach_giu_cho}" Margin="0,10,0,0"/>
+                                        <controls:LookUp x:Name="lookupGiuCho" Placeholder="{x:Static lang:Language.chon_giu_cho}" BottomModal="{Reference lookUpModal}" NameDisplay="Label" SelectedItem="{Binding Queue}" ItemsSource="{Binding Queues}"/>
+
+                                        <controls:FormLabelRequired Text="{x:Static lang:Language.khach_hang}" Margin="0,10,0,0"/>
+                                        <controls:LookUpMultipleTabs x:Name="lookupNguoiMua" SelectedItemChange="Buyer_SelectedItemChange" Placeholder="{x:Static lang:Language.chon_khach_hang}" ShowContact="True" ShowAccount="True" SelectedItem="{Binding Buyer}" CenterModal="{Reference centerModal}" />
+
+                                        <!--<controls:FormLabelRequired Text="Loại hợp đồng" Margin="0,10,0,0"/>
+                                        <controls:LookUp x:Name="lookupLoaiHopDong" Placeholder="Chọn loại hợp đồng" BottomModal="{Reference lookUpModal}" NameDisplay="Label" SelectedItem="{Binding ContractType}" ItemsSource="{Binding ContractTypes}"/>-->
+
+                                        <controls:FormLabelRequired Text="{x:Static lang:Language.tieu_de}" Margin="0,10,0,0"/>
+                                        <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_tieu_de}" Text="{Binding Quote.name}"/>
+                                    </StackLayout>
+                                </telerikPrimitives:RadExpander.Content>
+                            </telerikPrimitives:RadExpander>
+
+                            <!--Thong tin san pham-->
+                            <telerikPrimitives:RadExpander IsExpanded="True" BorderColor="Transparent">
+                                <telerikPrimitives:RadExpander.Header>
+                                    <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
+                                        <Label Text="{x:Static lang:Language.thong_tin_san_pham}" FontSize="15" FontAttributes="Bold" TextColor="#333333"/>
+                                    </telerikPrimitives:ExpanderHeader>
+                                </telerikPrimitives:RadExpander.Header>
+                                <telerikPrimitives:RadExpander.Content>
+                                    <StackLayout Padding="10">
+                                        <controls:FormLabel Text="{x:Static lang:Language.san_pham}"/>
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="#F2F2F2" HeightRequest="40">
+                                            <Label Text="{Binding Quote.unit_name}" FontSize="15" TextColor="#666666" Margin="10,0" VerticalOptions="Center"/>
+                                        </telerikPrimitives:RadBorder>
+
+                                        <controls:FormLabel Text="{x:Static lang:Language.tinh_trang_san_pham}" Margin="0,10,0,0"/>
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="#F2F2F2" HeightRequest="40">
+                                            <Label Text="{Binding StatusUnit.Name}" FontSize="15" TextColor="#666666" Margin="10,0" VerticalOptions="Center"/>
+                                        </telerikPrimitives:RadBorder>
+
+                                        <controls:FormLabel Text="{x:Static lang:Language.dien_tich_xay_dung}" Margin="0,10,0,0"/>
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="#F2F2F2" HeightRequest="40">
+                                            <Label Text="{Binding Quote.bsd_constructionarea_format}" FontSize="15" TextColor="#666666" Margin="10,0" VerticalOptions="Center"/>
+                                        </telerikPrimitives:RadBorder>
+
+                                        <controls:FormLabel Text="{x:Static lang:Language.dien_tich_su_dung}" Margin="0,10,0,0"/>
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="#F2F2F2" HeightRequest="40">
+                                            <Label Text="{Binding Quote.bsd_netusablearea_format}" FontSize="15" TextColor="#666666" Margin="10,0" VerticalOptions="Center"/>
+                                        </telerikPrimitives:RadBorder>
+
+                                        <controls:FormLabel Text="{x:Static lang:Language.dien_tich_thuc_te}" Margin="0,10,0,0"/>
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="#F2F2F2" HeightRequest="40">
+                                            <Label Text="{Binding Quote.bsd_actualarea_format}" FontSize="15" TextColor="#666666" Margin="10,0" VerticalOptions="Center"/>
+                                        </telerikPrimitives:RadBorder>
+                                    </StackLayout>
+                                </telerikPrimitives:RadExpander.Content>
+                            </telerikPrimitives:RadExpander>
+
+                            <!--Chi tiet-->
+                            <telerikPrimitives:RadExpander IsExpanded="True" BorderColor="Transparent">
+                                <telerikPrimitives:RadExpander.Header>
+                                    <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
+                                        <Label Text="{x:Static lang:Language.chi_tiet}" FontSize="15" FontAttributes="Bold" TextColor="#333333"/>
+                                    </telerikPrimitives:ExpanderHeader>
+                                </telerikPrimitives:RadExpander.Header>
+                                <telerikPrimitives:RadExpander.Content>
+                                    <StackLayout Padding="10">
+                                        <controls:FormLabel Text="{x:Static lang:Language.du_an}"/>
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="#F2F2F2" HeightRequest="40">
+                                            <Label Text="{Binding Quote.project_name}" FontSize="15" TextColor="#666666" Margin="10,0" VerticalOptions="Center"/>
+                                        </telerikPrimitives:RadBorder>
+
+                                        <controls:FormLabel Text="{x:Static lang:Language.dot_mo_ban}" Margin="0,10,0,0"/>
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="#F2F2F2" HeightRequest="40">
+                                            <Label Text="{Binding Quote.phaseslaunch_name}" FontSize="15" TextColor="#666666" Margin="10,0" VerticalOptions="Center"/>
+                                        </telerikPrimitives:RadBorder>
+
+                                        <controls:FormLabel Text="{x:Static lang:Language.bang_gia_goc}" Margin="0,10,0,0"/>
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="#F2F2F2" HeightRequest="40">
+                                            <Label Text="{Binding PriceListApply.Label}" FontSize="15" TextColor="#666666" Margin="10,0" VerticalOptions="Center"/>
+                                        </telerikPrimitives:RadBorder>
+
+                                        <controls:FormLabel Text="{x:Static lang:Language.tax_code}" Margin="0,10,0,0"/>
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="#F2F2F2" HeightRequest="40">
+                                            <Label Text="{Binding TaxCode.bsd_value_format,StringFormat='{0}%'}" FontSize="15" TextColor="#666666" Margin="10,0" VerticalOptions="Center"/>
+                                        </telerikPrimitives:RadBorder>
+
+                                        <controls:FormLabel Text="{x:Static lang:Language.tien_giu_cho}" Margin="0,10,0,0"/>
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="#F2F2F2" HeightRequest="40">
+                                            <Label Text="{Binding Quote.bsd_bookingfee_format,StringFormat='{0} đ'}" FontSize="15" TextColor="#666666" Margin="10,0" VerticalOptions="Center"/>
+                                        </telerikPrimitives:RadBorder>
+
+                                        <controls:FormLabel Text="{x:Static lang:Language.tien_dat_coc}" Margin="0,10,0,0"/>
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="#F2F2F2" HeightRequest="40">
+                                            <Label Text="{Binding Quote.bsd_depositfee_format,StringFormat='{0} đ'}" FontSize="15" TextColor="#666666" Margin="10,0" VerticalOptions="Center"/>
+                                        </telerikPrimitives:RadBorder>
+
+                                    </StackLayout>
+                                </telerikPrimitives:RadExpander.Content>
+                            </telerikPrimitives:RadExpander>
+
+                            <!--Thong tin bao gia-->
+                            <telerikPrimitives:RadExpander IsExpanded="True" BorderColor="Transparent">
+                                <telerikPrimitives:RadExpander.Header>
+                                    <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
+                                        <Label Text="{x:Static lang:Language.thong_tin_bao_gia}" FontSize="15" FontAttributes="Bold" TextColor="#333333"/>
+                                    </telerikPrimitives:ExpanderHeader>
+                                </telerikPrimitives:RadExpander.Header>
+                                <telerikPrimitives:RadExpander.Content>
+                                    <StackLayout Padding="10">
+
+                                        <controls:FormLabel Text="{x:Static lang:Language.dai_ly_san_giao_dich}"/>
+                                        <controls:LookUp x:Name="lookupDaiLySanGiaoDich" Placeholder="{x:Static lang:Language.chon_dai_ly_san_giao_dich}" SelectedItemChange="SalesAgent_SelectedItemChange" BottomModal="{Reference lookUpModal}" NameDisplay="Label" SelectedItem="{Binding SalesAgent}" ItemsSource="{Binding SalesAgents}" IsEnabled="False"/>
+
+                                        <controls:FormLabel Text="{x:Static lang:Language.nhan_vien_dai_ly_san}" Margin="0,10,0,0"/>
+                                        <controls:MainEntry x:Name="entryNhanVienDaiLy" Placeholder="{x:Static lang:Language.nhap_nhan_vien_dao_ly}" Text="{Binding Quote.bsd_nameofstaffagent}" IsEnabled="False"/>
+
+                                        <controls:FormLabel Text="{x:Static lang:Language.cong_tac_vien}" FontSize="15" Margin="0,10,0,0"/>
+                                        <controls:LookUp x:Name="lookUpCollaborator" Grid.Column="1" Grid.Row="3" Placeholder="{x:Static lang:Language.chon_cong_tac_vien}" ItemsSource="{Binding ListCollaborator}" SelectedItem="{Binding Collaborator}" NameDisplay="Name" BottomModal="{x:Reference lookUpModal}" SelectedItemChange="lookUpCollaborator_SelectedItemChange" IsEnabled="False"/>
+
+                                        <controls:FormLabel Text="{x:Static lang:Language.khach_hang_gioi_thieu}" FontSize="15" Margin="0,10,0,0"/>
+                                        <controls:LookUp x:Name="lookUpCustomerReferral" Grid.Column="1" Grid.Row="3" Placeholder="{x:Static lang:Language.chon_khach_hang_gioi_thieu}" ItemsSource="{Binding ListCustomerReferral}" SelectedItem="{Binding CustomerReferral}" NameDisplay="Name" BottomModal="{x:Reference lookUpModal}" SelectedItemChange="lookUpCustomerReferral_SelectedItemChange" IsEnabled="False"/>
+                                    </StackLayout>
+                                </telerikPrimitives:RadExpander.Content>
+                            </telerikPrimitives:RadExpander>
+                        </StackLayout>
+                    </ScrollView>
+
+                    <!--Chi tiet-->
+                    <ScrollView x:Name="contentChiTiet" IsVisible="false" Padding="0,0,0,60">
+                        <StackLayout>
+                            <!--Thong tin gia-->
+                            <telerikPrimitives:RadExpander IsExpanded="True" BorderColor="Transparent">
+                                <telerikPrimitives:RadExpander.Header>
+                                    <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
+                                        <Label Text="{x:Static lang:Language.thong_tin_gia}" FontSize="15" FontAttributes="Bold" TextColor="#333333"/>
+                                    </telerikPrimitives:ExpanderHeader>
+                                </telerikPrimitives:RadExpander.Header>
+                                <telerikPrimitives:RadExpander.Content>
+                                    <StackLayout BackgroundColor="#eeeeee" Spacing="1">
+                                        <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                            <Label Text="{x:Static lang:Language.gia_ban_goc}" FontSize="15" TextColor="#333333" Grid.Column="0" Padding="25,10,0,10"/>
+                                            <Label Text="{Binding TotalReservation.ListedPrice_format,StringFormat='{0} đ'}" FontSize="15" TextColor="#333333" HorizontalOptions="EndAndExpand" Grid.Column="1" Padding="0,10,25,10"/>
+                                        </Grid>
+
+                                        <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                            <Label Text="{Binding Source={x:Static lang:Language.chiet_khau},StringFormat='(-) {0}'}" FontSize="15" TextColor="#333333" Grid.Column="0" Padding="25,10,0,10"/>
+                                            <Label Text="{Binding TotalReservation.Discount_format,StringFormat='{0} đ'}" FontSize="15" TextColor="#333333" HorizontalOptions="EndAndExpand" Grid.Column="1" Padding="0,10,25,10"/>
+                                        </Grid>
+
+                                        <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                            <Label Text="{Binding Source={x:Static lang:Language.tong_tien_dkbg},StringFormat='(+) {0}'}" FontSize="15" TextColor="#333333" Grid.Column="0" Padding="25,10,0,10"/>
+                                            <Label Text="{Binding TotalReservation.HandoverAmount_format,StringFormat='{0} đ'}" FontSize="15" TextColor="#333333" HorizontalOptions="EndAndExpand" Grid.Column="1" Padding="0,10,25,10"/>
+                                        </Grid>
+
+                                        <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                            <Label Text="{x:Static lang:Language.gia_ban_truoc_thue}" FontSize="15" TextColor="#333333" Grid.Column="0" Padding="25,10,0,10"/>
+                                            <Label Text="{Binding TotalReservation.NetSellingPrice_format,StringFormat='{0} đ'}" FontSize="15" TextColor="#333333" HorizontalOptions="EndAndExpand" Grid.Column="1" Padding="0,10,25,10"/>
+                                        </Grid>
+
+                                        <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                            <Label Text="{Binding Source={x:Static lang:Language.tong_gia_tri_qsdd},StringFormat='(-) {0}'}" FontSize="15" TextColor="#333333" Grid.Column="0" Padding="25,10,0,10"/>
+                                            <Label Text="{Binding TotalReservation.LandValue_format,StringFormat='{0} đ'}" FontSize="15" TextColor="#333333" HorizontalOptions="EndAndExpand" Grid.Column="1" Padding="0,10,25,10"/>
+                                        </Grid>
+
+                                        <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                            <Label Text="{Binding Source={x:Static lang:Language.tong_tien_thue_vat},StringFormat='(+) {0}'}" FontSize="15" TextColor="#333333" Grid.Column="0" Padding="25,10,0,10"/>
+                                            <Label Text="{Binding TotalReservation.TotalTax_format,StringFormat='{0} đ'}" FontSize="15" TextColor="#333333" HorizontalOptions="EndAndExpand" Grid.Column="1" Padding="0,10,25,10"/>
+                                        </Grid>
+
+                                        <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                            <Label Text="{Binding Source={x:Static lang:Language.phi_bao_tri},StringFormat='(+) {0}'}" FontSize="15" TextColor="#333333" Grid.Column="0" Padding="25,10,0,10"/>
+                                            <Label Text="{Binding TotalReservation.MaintenanceFee_format,StringFormat='{0} đ'}" FontSize="15" TextColor="#333333" HorizontalOptions="EndAndExpand" Grid.Column="1" Padding="0,10,25,10"/>
+                                        </Grid>
+
+                                        <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                            <Label Text="{x:Static lang:Language.gia_ban_sau_thue}" FontSize="15" TextColor="#333333" Grid.Column="0" Padding="25,10,0,10"/>
+                                            <Label Text="{Binding TotalReservation.NetSellingPriceAfterVAT_format,StringFormat='{0} đ'}" FontSize="15" TextColor="#333333" HorizontalOptions="EndAndExpand" Grid.Column="1" Padding="0,10,25,10"/>
+                                        </Grid>
+
+                                        <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                            <Label Text="{x:Static lang:Language.tong_tien}" FontSize="15" FontAttributes="Bold" TextColor="#333333" Grid.Column="0" Padding="25,10,0,10"/>
+                                            <Label Text="{Binding TotalReservation.TotalAmount_format,StringFormat='{0} đ'}" FontSize="15" TextColor="Red" FontAttributes="Bold" HorizontalOptions="EndAndExpand" Grid.Column="1" Padding="0,10,25,10"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </telerikPrimitives:RadExpander.Content>
+                            </telerikPrimitives:RadExpander>
+
+                            <!--Thong tin phi quan ly-->
+                            <telerikPrimitives:RadExpander IsExpanded="True" BorderColor="Transparent">
+                                <telerikPrimitives:RadExpander.Header>
+                                    <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
+                                        <Label Text="{x:Static lang:Language.thong_tin_phi_quan_ly}" FontSize="15" FontAttributes="Bold" TextColor="#333333"/>
+                                    </telerikPrimitives:ExpanderHeader>
+                                </telerikPrimitives:RadExpander.Header>
+                                <telerikPrimitives:RadExpander.Content>
+                                    <StackLayout Padding="10">
+                                        <controls:FormLabel Text="{x:Static lang:Language.so_thang_dong_phi}"/>
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="#F2F2F2" HeightRequest="40">
+                                            <Label Text="{Binding Quote.bsd_numberofmonthspaidmf}" FontSize="15" TextColor="#666666" Margin="10,0" VerticalOptions="Center"/>
+                                        </telerikPrimitives:RadBorder>
+
+                                        <controls:FormLabel Text="{x:Static lang:Language.phi_quan_ly}" Margin="0,10,0,0"/>
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="#F2F2F2" HeightRequest="40">
+                                            <Label Text="{Binding Quote.bsd_managementfee_format,StringFormat='{0} đ'}" FontSize="15" TextColor="#666666" Margin="10,0" VerticalOptions="Center"/>
+                                        </telerikPrimitives:RadBorder>
+
+                                        <!--<controls:FormLabelRequired Text="Miễn giảm (Tháng)"/>
+                                        <controls:MainEntry Placeholder="Điền số tháng miễn giảm phí quản lý" Text="{Binding Quote.bsd_waivermanafeemonth}" Keyboard="Numeric"/>-->
+                                    </StackLayout>
+                                </telerikPrimitives:RadExpander.Content>
+                            </telerikPrimitives:RadExpander>
+                        </StackLayout>
+                    </ScrollView>
+                </Grid>
+            </Grid>
+
+            <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,60" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" Padding="10,5,10,10" BackgroundColor="White" >
+                <Button x:Name="buttonSave" Text="{x:Static lang:Language.tao_bang_tinh_gia}" Clicked="SaveQuote_Clicked" BackgroundColor="{StaticResource NavigationPrimary}" TextColor="White" FontAttributes="Bold" HeightRequest="40" Padding="10,5" FontSize="15" CornerRadius="5"/>
+            </StackLayout>
+
+            <controls:CenterModal x:Name="centerModalPromotions" Title="{x:Static lang:Language.chon_khuyen_mai}">
+                <controls:CenterModal.Body>
+                    <Grid RowDefinitions="Auto,*">
+                        <controls:SearchBarFrame Grid.Row="0" Margin="10,5">
+                            <controls:SearchBar Text="{Binding KeywordPromotion}" SearchButtonPressed="SearchPromotion_Pressed" TextChanged="SearchPromotion_TexChanged"/>
+                        </controls:SearchBarFrame>
+                        <ListView Grid.Row="1" ItemsSource="{Binding Promotions}" HasUnevenRows="True" SelectionMode="None" SeparatorVisibility="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout BackgroundColor="#eeeeee" Padding="0,0,0,1" Orientation="Horizontal" Spacing="0">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="PromotionItem_Tapped" CommandParameter="{Binding .}"/>
+                                            </StackLayout.GestureRecognizers>
+                                            <Label Text="{Binding Label}" FontSize="15" HorizontalOptions="FillAndExpand" TextColor="#333333" BackgroundColor="White" Padding="10"/>
+                                            <Label Text="&#xf00c;" IsVisible="{Binding Selected}" HorizontalOptions="End" BackgroundColor="White" Padding="10" FontFamily="FontAwesomeSolid" FontSize="15" TextColor="{StaticResource NavigationPrimary}"/>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </controls:CenterModal.Body>
+                <controls:CenterModal.Footer>
+                    <Button Text="{x:Static lang:Language.luu}" Clicked="SaveSelectedPromotion_CLicked" Margin="10,5" HeightRequest="40" BackgroundColor="{StaticResource NavigationPrimary}" TextColor="White" FontSize="15" FontAttributes="Bold" CornerRadius="5"/>
+                </controls:CenterModal.Footer>
+            </controls:CenterModal>
+
+            <controls:CenterModal x:Name="centerModalCoOwner" Title="{x:Static lang:Language.them_dong_so_huu}">
+                <controls:CenterModal.Body>
+                    <StackLayout Padding="10">
+                        <controls:FormLabelRequired Text="{x:Static lang:Language.tieu_de}"/>
+                        <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_tieu_de}" Text="{Binding TitleCoOwner}"/>
+
+                        <controls:FormLabelRequired Text="{x:Static lang:Language.khach_hang}"/>
+                        <controls:LookUpMultipleTabs x:Name="lookupMultiTabsCustomer" Placeholder="{x:Static lang:Language.chon_khach_hang}" ShowAccount="True" ShowContact="True" SelectedItem="{Binding CustomerCoOwner}" CenterModal="{x:Reference centerModal}"/>
+
+                        <controls:FormLabelRequired Text="{x:Static lang:Language.quan_he}"/>
+                        <controls:LookUp x:Name="lookupQuanHe" Placeholder="{x:Static lang:Language.chon_quan_he}" BottomModal="{Reference lookUpModal}" NameDisplay="Label" SelectedItem="{Binding Relationship}" ItemsSource="{Binding Relationships}"/>
+                    </StackLayout>
+                </controls:CenterModal.Body>
+                <controls:CenterModal.Footer>
+                    <Button Text="{x:Static lang:Language.luu}" Clicked="SaveCoOwner_CLicked" Margin="10,5" HeightRequest="40" BackgroundColor="{StaticResource NavigationPrimary}" TextColor="White" FontSize="15" FontAttributes="Bold" CornerRadius="5"/>
+                </controls:CenterModal.Footer>
+            </controls:CenterModal>
+
+            <controls:BottomModal x:Name="lookUpModal"/>
+            <controls:CenterModal x:Name="centerModal"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

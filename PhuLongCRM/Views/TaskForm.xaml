@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             ios:Page.UseSafeArea="true"
+             Title="{Binding Title}"
+             BackgroundColor="White"
+             x:Class="PhuLongCRM.Views.TaskForm">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="0,0,0,20">
+                <StackLayout Padding="10">
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.chu_de}" />
+                    <controls:MainEntry Text="{Binding TaskFormModel.subject}" Placeholder="{x:Static lang:Language.nhap_chu_de_cong_viec}" FontSize="15" />
+
+                    <controls:FormLabel Text="{x:Static lang:Language.nguoi_lien_quan}"/>
+                    <controls:LookUpMultipleTabs x:Name="Lookup_NguoiLienQuan" Placeholder="{x:Static lang:Language.chon_nguoi_lien_quan}" ShowAccount="True" ShowContact="True" ShowLead="True" LoadNewLead="True" SelectedItem="{Binding Customer}" CenterModal="{x:Reference centerModal}"/>
+                    <telerikPrimitives:RadBorder x:Name="ContactMapping" BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1" IsVisible="false">
+                        <Label Text="{Binding Customer.Label}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                    </telerikPrimitives:RadBorder>
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.thoi_gian_bat_dau}"/>
+                    <controls:DatePickerBoderControl x:Name="dateStart" Date="{Binding TaskFormModel.scheduledstart}" ShowTime="True" Placeholder="{x:Static lang:Language.chon_thoi_gian_bat_dau}" Date_Selected="DateStart_Selected"/>
+
+                    <!--<StackLayout Orientation="Horizontal" Spacing="15">
+                        <Label Text="{x:Static lang:Language.su_kien_ca_ngay}" TextColor="#444444" FontSize="15" VerticalTextAlignment="Center" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="EventAllDay_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <CheckBox x:Name="checkBoxEventAllDay" IsChecked="{Binding IsEventAllDay}" CheckedChanged="CheckedBoxEventAllDay_Change"/>
+                    </StackLayout>-->
+                    
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.thoi_gian_ket_thuc}"/>
+                    <controls:DatePickerBoderControl x:Name="dateEnd" Date="{Binding TaskFormModel.scheduledend}" ShowTime="True" Placeholder="{x:Static lang:Language.chon_thoi_gian_ket_thuc}" Date_Selected="DateEnd_Selected"/>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.mo_ta}" />
+                    <controls:MainEditor Text="{Binding TaskFormModel.description}"  HeightRequest="100" Placeholder="{x:Static lang:Language.nhap_mo_ta}" FontSize="15"/>
+
+                </StackLayout>
+            </ScrollView>
+
+            <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,60" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" BackgroundColor="White">
+                <Button x:Name="btnSave" Text="{x:Static lang:Language.tao_cong_viec}" FontAttributes="Bold"  Clicked="SaveTask_Clicked" TextColor="White" BackgroundColor="{StaticResource NavigationPrimary}" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="40" Margin="10" Padding="10,5"/>
+            </StackLayout>
+
+            <controls:CenterModal x:Name="centerModal"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

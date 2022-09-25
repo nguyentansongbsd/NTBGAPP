@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<AbsoluteLayout xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             IsVisible="false"
+             AbsoluteLayout.LayoutBounds="0,0,1,1"
+             AbsoluteLayout.LayoutFlags="All"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             x:Class="PhuLongCRM.Controls.BottomModal">
+    <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,0.4" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional,HeightProportional">
+        <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer Tapped="Hide_Tapped" />
+        </StackLayout.GestureRecognizers>
+    </StackLayout>
+    <telerikPrimitives:RadBorder x:Name="ModalPopup" CornerRadius="13,13,0,0" TranslationY="{Binding Path=Height, Source={x:Reference ModalPopup}}" AbsoluteLayout.LayoutBounds="1,1,1,0.6" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional,HeightProportional">
+        <Grid x:Name="ModalPopupContent" BackgroundColor="White" VerticalOptions="End" RowSpacing="0" RowDefinitions="Auto,*">
+            <StackLayout Grid.Row="0" Orientation="Horizontal" Margin="10,5">
+                <Label x:Name="ModalTitle" TextColor="Black" FontSize="16" VerticalOptions="Center" VerticalTextAlignment="Center" FontFamily="SegoeBold" Text="{Binding Title}" />
+                <Button Text="&#xf057;" Padding="0" FontSize="20" WidthRequest="30" Margin="0" HeightRequest="30" CornerRadius="22" FontFamily="FontAwesomeRegular" HorizontalOptions="EndAndExpand" BackgroundColor="transparent" TextColor="#7f7e7e" Clicked="Hide_Tapped" />
+            </StackLayout>
+            <ContentView Grid.Row="1" Content="{Binding ModalContent}" BackgroundColor="White" />
+        </Grid>
+    </telerikPrimitives:RadBorder>
+</AbsoluteLayout>

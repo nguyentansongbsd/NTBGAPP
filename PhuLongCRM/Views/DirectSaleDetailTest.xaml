@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PhuLongCRM.Views.DirectSaleDetailTest"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" xmlns:controls="clr-namespace:PhuLongCRM.Controls" xmlns:converter="clr-namespace:PhuLongCRM.Converters"
+             Title="{x:Static lang:Language.gio_hang}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="statusCodeUnit">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Padding" Value="10,5" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="Label" x:Key="lblNumStatusInFloor">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="WidthRequest" Value="30"/>
+            </Style>
+            <converter:CustomIndicatorConverter x:Key="customIndicatorConverter" />
+            <converter:DecimalToVndConverter x:Key="DecimalToVndConverter"/>
+            <converter:NullToHideConverter x:Key="NullToHideConverter"/>
+            <converter:UnitItemWidthConverter x:Key="UnitItemWidthConverter"/>
+            <converter:BackgroundUnitConverter x:Key="BackgroundUnitConverter"/>
+            <converter:HidePriceOnDirectSaleConverter x:Key="HidePriceOnDirectSaleConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid RowDefinitions="Auto,Auto,*" RowSpacing="0" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" BackgroundColor="{StaticResource NavigationPrimary}" Padding="0,0,0,1">
+                    <StackLayout x:Name="stackBlocks" BindableLayout.ItemsSource="{Binding Blocks}" HorizontalOptions="Fill" Spacing="10" Orientation="Horizontal" Padding="10" BackgroundColor="White">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <telerikPrimitives:RadBorder Style="{StaticResource rabBorder_Blocks}" >
+                                    <telerikPrimitives:RadBorder.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Block_Tapped" CommandParameter="{Binding}" />
+                                    </telerikPrimitives:RadBorder.GestureRecognizers>
+                                    <Label Style="{StaticResource Lb_Block}" TextColor="#B3B3B3" FontSize="15">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}{0} ({1})">
+                                                <Binding Path="bsd_name" />
+                                                <Binding Path="TotalUnitInBlock" />
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                </telerikPrimitives:RadBorder>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
+
+                <Grid Grid.Row="1" RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,*,*,*" Margin="20" RowSpacing="15" ColumnSpacing="20">
+                    <Label x:Name="test" Grid.Row="0" Grid.Column="0" Text="{Binding Block.NumChuanBiInBlock}" BackgroundColor="#F1C50D" Style="{StaticResource statusCodeUnit}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="NumberUnit_Tapped" CommandParameter="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding Block.NumSanSangInBlock}" BackgroundColor="#2FCC71" Style="{StaticResource statusCodeUnit}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="NumberUnit_Tapped" CommandParameter="2"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding Block.NumBookingInBlock}" BackgroundColor="#00CED1" Style="{StaticResource statusCodeUnit}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="NumberUnit_Tapped" CommandParameter="3"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Row="0" Grid.Column="3" Text="{Binding Block.NumGiuChoInBlock}" BackgroundColor="#04A8F4" Style="{StaticResource statusCodeUnit}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="NumberUnit_Tapped" CommandParameter="4"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding Block.NumDatCocInBlock}" BackgroundColor="#14A184" Style="{StaticResource statusCodeUnit}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="NumberUnit_Tapped" CommandParameter="5"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding Block.NumDongYChuyenCoInBlock}" BackgroundColor="#8F44AD" Style="{StaticResource statusCodeUnit}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="NumberUnit_Tapped" CommandParameter="6"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Row="1" Grid.Column="2" Text="{Binding Block.NumDaDuTienCocInBlock}" BackgroundColor="#e67e22" Style="{StaticResource statusCodeUnit}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="NumberUnit_Tapped" CommandParameter="7"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Row="1" Grid.Column="3" Text="{Binding Block.NumOptionInBlock}" BackgroundColor="#808080" Style="{StaticResource statusCodeUnit}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="NumberUnit_Tapped" CommandParameter="8"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Row="2" Grid.Column="0" Text="{Binding Block.NumThanhToanDot1InBlock}" BackgroundColor="#808080" Style="{StaticResource statusCodeUnit}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="NumberUnit_Tapped" CommandParameter="9"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding Block.NumSignedDAInBlock}" BackgroundColor="#A0DB8E" Style="{StaticResource statusCodeUnit}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="NumberUnit_Tapped" CommandParameter="10"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Row="2" Grid.Column="2" Text="{Binding Block.NumQualifiedInBlock}" BackgroundColor="#6897BB" Style="{StaticResource statusCodeUnit}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="NumberUnit_Tapped" CommandParameter="11"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Row="2" Grid.Column="3" Text="{Binding Block.NumDaBanInBlock}" BackgroundColor="#BF3A2B" Style="{StaticResource statusCodeUnit}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="NumberUnit_Tapped" CommandParameter="12"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+
+                <ScrollView Grid.Row="2" Scrolled="ScrollView_Scrolled">
+                    <StackLayout BindableLayout.ItemsSource="{Binding Block.Floors}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <telerikPrimitives:RadBorder CornerRadius="10" BorderColor="Transparent" BorderThickness="0" BackgroundColor="#f1f1f1" Margin="10,5">
+                                    <StackLayout>
+                                        <Grid RowDefinitions="Auto,Auto,Auto,*" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*" Padding="10,15,10,0">
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ItemFloor_Tapped" CommandParameter="{Binding .}"/>
+                                            </Grid.GestureRecognizers>
+                                            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="11" FontSize="16" FontAttributes="Bold" TextColor="#333333">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0} {1} ({2})">
+                                                        <Binding Source="{x:Static lang:Language.tang}" />
+                                                        <Binding Path="bsd_name" />
+                                                        <Binding Path="TotalUnitInFloor" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+
+                                            <Label Grid.Column="11" Grid.Row="0" Text="{Binding Source={x:Reference flexContentUnits},Path=IsVisible,Converter={StaticResource customIndicatorConverter}}" FontSize="15" FontFamily="FontAwesomeSolid" HorizontalTextAlignment="End"  TextColor="#333333" />
+
+                                            <Label Grid.Column="0" Grid.Row="1" Text="{Binding NumChuanBiInFloor}" BackgroundColor="#F1C50D" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="1" Grid.Row="1" Text="{Binding NumSanSangInFloor}" BackgroundColor="#2FCC71" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="2" Grid.Row="1" Text="{Binding NumBookingInFloor}" BackgroundColor="#00CED1" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="3" Grid.Row="1" Text="{Binding NumGiuChoInFloor}" BackgroundColor="#04A8F4" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="4" Grid.Row="1" Text="{Binding NumDatCocInFloor}" BackgroundColor="#14A184" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="5" Grid.Row="1" Text="{Binding NumDongYChuyenCoInFloor}" BackgroundColor="#8F44AD" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="6" Grid.Row="1" Text="{Binding NumDaDuTienCocInFloor}" BackgroundColor="#e67e22" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="7" Grid.Row="1" Text="{Binding NumOptionInFloor}" BackgroundColor="#808080" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="8" Grid.Row="1" Text="{Binding NumThanhToanDot1InFloor}" BackgroundColor="#808080" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="9" Grid.Row="1" Text="{Binding NumSignedDAInFloor}" BackgroundColor="#A0DB8E" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="10" Grid.Row="1" Text="{Binding NumQualifiedInFloor}" BackgroundColor="#6897BB" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="11" Grid.Row="1" Text="{Binding NumDaBanInFloor}" BackgroundColor="#BF3A2B" Style="{StaticResource lblNumStatusInFloor}"/>
+                                        </Grid>
+                                        <FlexLayout x:Name="flexContentUnits" IsVisible="{Binding iShow}" Wrap="Wrap" JustifyContent="Start" AlignItems="Start" BindableLayout.ItemsSource="{Binding Units}">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <telerikPrimitives:RadBorder CornerRadius="10" BackgroundColor="{Binding statuscode, Converter={StaticResource BackgroundUnitConverter}}" Padding="0,20" Margin="4" WidthRequest = "{Binding Source={Reference flexContentUnits},Path=Padding, Converter={StaticResource UnitItemWidthConverter}}">
+                                                        <telerikPrimitives:RadBorder.GestureRecognizers>
+                                                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UnitItem_Tapped" CommandParameter="{Binding productid}"/>
+                                                        </telerikPrimitives:RadBorder.GestureRecognizers>
+                                                        <StackLayout>
+                                                            <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center">
+                                                                <Label Grid.Column="0" Text="{Binding name}" TextColor="White" FontSize="23" FontFamily="FontRobotoBold" HorizontalTextAlignment="Center"/>
+                                                                <Label Grid.Column="1" Text="*" TextColor="White" FontSize="23" FontFamily="FontRobotoBold" IsVisible="{Binding has_event}" HorizontalTextAlignment="Center"/>
+                                                            </Grid>
+                                                            <Label FontFamily="FontRobotoMedium" TextColor="White" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center">
+                                                                <Label.Text>
+                                                                    <MultiBinding StringFormat="{}{0}: {1}">
+                                                                        <Binding Source="{x:Static lang:Language.danh_sach_giu_cho}" />
+                                                                        <Binding Path="NumQueses" />
+                                                                    </MultiBinding>
+                                                                </Label.Text>
+                                                            </Label>
+                                                            <Label Text="{Binding price_format,StringFormat='{0} đ'}" IsVisible="{Binding _bsd_phaseslaunchid_value, Converter={StaticResource HidePriceOnDirectSaleConverter}}" TextColor="White" FontFamily="FontRobotoBold" FontSize="20" HorizontalTextAlignment="Center" />
+                                                        </StackLayout>
+                                                    </telerikPrimitives:RadBorder>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
+                                    </StackLayout>
+                                </telerikPrimitives:RadBorder>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
+                <!--<ListView x:Name="listFloor" Grid.Row="2" ItemsSource="{Binding Block.Floors}" BackgroundColor="White" ItemAppearing="ListView_ItemAppearing" HasUnevenRows="True" SelectionMode="None" SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <telerikPrimitives:RadBorder CornerRadius="10" BorderColor="Transparent" BorderThickness="0" BackgroundColor="#f1f1f1" Margin="10,5">
+                                    <StackLayout>
+                                        <Grid RowDefinitions="Auto,Auto,Auto,*" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*" Padding="10,15,10,0">
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ItemFloor_Tapped" CommandParameter="{Binding .}"/>
+                                            </Grid.GestureRecognizers>
+                                            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="11" FontSize="16" FontAttributes="Bold" TextColor="#333333">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0} {1} ({2})">
+                                                        <Binding Source="{x:Static lang:Language.tang}" />
+                                                        <Binding Path="bsd_name" />
+                                                        <Binding Path="TotalUnitInFloor" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+
+                                            <Label Grid.Column="11" Grid.Row="0" Text="{Binding Source={x:Reference flexContentUnits},Path=IsVisible,Converter={StaticResource customIndicatorConverter}}" FontSize="15" FontFamily="FontAwesomeSolid" HorizontalTextAlignment="End"  TextColor="#333333" />
+
+                                            <Label Grid.Column="0" Grid.Row="1" Text="{Binding NumChuanBiInFloor}" BackgroundColor="#F1C50D" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="1" Grid.Row="1" Text="{Binding NumSanSangInFloor}" BackgroundColor="#2FCC71" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="2" Grid.Row="1" Text="{Binding NumBookingInFloor}" BackgroundColor="#00CED1" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="3" Grid.Row="1" Text="{Binding NumGiuChoInFloor}" BackgroundColor="#04A8F4" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="4" Grid.Row="1" Text="{Binding NumDatCocInFloor}" BackgroundColor="#14A184" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="5" Grid.Row="1" Text="{Binding NumDongYChuyenCoInFloor}" BackgroundColor="#8F44AD" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="6" Grid.Row="1" Text="{Binding NumDaDuTienCocInFloor}" BackgroundColor="#e67e22" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="7" Grid.Row="1" Text="{Binding NumOptionInFloor}" BackgroundColor="#808080" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="8" Grid.Row="1" Text="{Binding NumThanhToanDot1InFloor}" BackgroundColor="#808080" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="9" Grid.Row="1" Text="{Binding NumSignedDAInFloor}" BackgroundColor="#A0DB8E" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="10" Grid.Row="1" Text="{Binding NumQualifiedInFloor}" BackgroundColor="#6897BB" Style="{StaticResource lblNumStatusInFloor}"/>
+                                            <Label Grid.Column="11" Grid.Row="1" Text="{Binding NumDaBanInFloor}" BackgroundColor="#BF3A2B" Style="{StaticResource lblNumStatusInFloor}"/>
+                                        </Grid>
+                                        <FlexLayout x:Name="flexContentUnits" IsVisible="{Binding iShow}" Wrap="Wrap" JustifyContent="Start" AlignItems="Start" BindableLayout.ItemsSource="{Binding Units}">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <telerikPrimitives:RadBorder CornerRadius="10" BackgroundColor="{Binding statuscode, Converter={StaticResource BackgroundUnitConverter}}" Padding="0,20" Margin="4" WidthRequest = "{Binding Source={Reference flexContentUnits},Path=Padding, Converter={StaticResource UnitItemWidthConverter}}">
+                                                        <telerikPrimitives:RadBorder.GestureRecognizers>
+                                                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UnitItem_Tapped" CommandParameter="{Binding productid}"/>
+                                                        </telerikPrimitives:RadBorder.GestureRecognizers>
+                                                        <StackLayout>
+                                                            <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center">
+                                                                <Label Grid.Column="0" Text="{Binding name}" TextColor="White" FontSize="23" FontFamily="FontRobotoBold" HorizontalTextAlignment="Center"/>
+                                                                <Label Grid.Column="1" Text="*" TextColor="White" FontSize="23" FontFamily="FontRobotoBold" IsVisible="{Binding has_event}" HorizontalTextAlignment="Center"/>
+                                                            </Grid>
+                                                            <Label FontFamily="FontRobotoMedium" TextColor="White" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center">
+                                                                <Label.Text>
+                                                                    <MultiBinding StringFormat="{}{0}: {1}">
+                                                                        <Binding Source="{x:Static lang:Language.danh_sach_giu_cho}" />
+                                                                        <Binding Path="NumQueses" />
+                                                                    </MultiBinding>
+                                                                </Label.Text>
+                                                            </Label>
+                                                            <Label Text="{Binding price_format,StringFormat='{0} đ'}" IsVisible="{Binding _bsd_phaseslaunchid_value, Converter={StaticResource HidePriceOnDirectSaleConverter}}" TextColor="White" FontFamily="FontRobotoBold" FontSize="20" HorizontalTextAlignment="Center" />
+                                                        </StackLayout>
+                                                    </telerikPrimitives:RadBorder>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
+                                    </StackLayout>
+                                </telerikPrimitives:RadBorder>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>-->
+            </Grid>
+            <controls:CenterPopup x:Name="PopupUnit" Title="{x:Static lang:Language.thong_tin_san_pham_title}"/>
+            <controls:PopupHover x:Name="PopupHover" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

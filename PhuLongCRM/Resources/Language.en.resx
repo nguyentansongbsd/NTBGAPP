@@ -1,0 +1,3465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="dang_nhap" xml:space="preserve">
+    <value>Login</value>
+  </data>
+	<data name="ten_dang_nhap" xml:space="preserve">
+    <value>User name</value>
+  </data>
+	<data name="mat_khau" xml:space="preserve">
+    <value>Password</value>
+  </data>
+	<data name="ghi_nho_dang_nhap" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+	<data name="trang_chu" xml:space="preserve">
+    <value>Home</value>
+  </data>
+	<data name="hoa_hong" xml:space="preserve">
+    <value>COMMISSION</value>
+  </data>
+	<data name="tong_tien" xml:space="preserve">
+    <value>Total amount</value>
+  </data>
+	<data name="da_nhan" xml:space="preserve">
+    <value>Received</value>
+  </data>
+	<data name="giao_dich" xml:space="preserve">
+		<value>TRANSACTION</value>
+	</data>
+	<data name="giu_cho" xml:space="preserve">
+    <value>Queuing</value>
+  </data>
+	<data name="dat_coc" xml:space="preserve">
+    <value>Reservation</value>
+  </data>
+	<data name="hop_dong" xml:space="preserve">
+    <value>Contract</value>
+  </data>
+	<data name="da_ban" xml:space="preserve">
+    <value>Sold</value>
+  </data>
+	<data name="khach_hang_tiem_nang" xml:space="preserve">
+    <value>LEADS</value>
+  </data>
+	<data name="khach_hang_moi" xml:space="preserve">
+    <value>New customer</value>
+  </data>
+	<data name="da_chuyen_doi" xml:space="preserve">
+    <value>Qualified</value>
+  </data>
+	<data name="khong_chuyen_doi" xml:space="preserve">
+    <value>Disqualify</value>
+  </data>
+	<data name="cong_viec_hom_nay" xml:space="preserve">
+    <value>TODAY'S WORK</value>
+  </data>
+	<data name="xem_them" xml:space="preserve">
+    <value>Show more</value>
+  </data>
+	<data name="hom_nay_khong_co_cong_vec" xml:space="preserve">
+    <value>No work today</value>
+  </data>
+	<data name="khach_hang" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+	<data name="thoi_gian" xml:space="preserve">
+    <value>Time</value>
+  </data>
+	<data name="khong_tim_thay_thong_tin_vui_long_thu_lai" xml:space="preserve">
+    <value>Not found. Please try again.</value>
+  </data>
+	<data name="ten_dang_nhap_khong_duoc_de_trong" xml:space="preserve">
+    <value>Please enter user name.</value>
+  </data>
+	<data name="mat_khau_khong_duong_de_trong" xml:space="preserve">
+    <value>Please enter password.</value>
+  </data>
+	<data name="ten_dang_nhap_khong_dung" xml:space="preserve">
+    <value>Username is incorrect.</value>
+  </data>
+	<data name="mat_khau_khong_dung" xml:space="preserve">
+    <value>Password is incorrect.</value>
+  </data>
+	<data name="tai_khoan_khong_the_dang_nhap_tren_thiet_bi_nay" xml:space="preserve">
+    <value>Account cannot login on this device.</value>
+  </data>
+	<data name="khong_tim_thay_user" xml:space="preserve">
+    <value>User not found</value>
+  </data>
+	<data name="loi_ket_noi_dern_server" xml:space="preserve">
+    <value>Error connecting to Server.</value>
+  </data>
+	<data name="thong_bao" xml:space="preserve">
+    <value>Notify</value>
+  </data>
+	<data name="dong" xml:space="preserve">
+    <value>Close</value>
+  </data>
+	<data name="khong_cap_nhat_duoc_thong_tin_imei" xml:space="preserve">
+    <value>Unable to edit information Imei</value>
+  </data>
+	<data name="chua_co_contact_khong_the_chinh_sua_thong_tin" xml:space="preserve">
+    <value>No contact, can't edit info.</value>
+  </data>
+	<data name="nhan_de_chinh_sua" xml:space="preserve">
+    <value>Click to edit</value>
+  </data>
+	<data name="dong_bo_danh_ba" xml:space="preserve">
+    <value>Sync Contacts</value>
+  </data>
+	<data name="gio_hang" xml:space="preserve">
+    <value>Direct Sale</value>
+  </data>
+	<data name="danh_sach_giu_cho" xml:space="preserve">
+    <value>Queues</value>
+  </data>
+	<data name="danh_sach_bang_tinh_gia" xml:space="preserve">
+    <value>Quotation</value>
+  </data>
+	<data name="danh_sach_dat_coc" xml:space="preserve">
+    <value>Reservation</value>
+  </data>
+	<data name="danh_sach_hop_dong" xml:space="preserve">
+    <value>Contracts</value>
+  </data>
+	<data name="tai_lieu_kinh_doanh" xml:space="preserve">
+    <value>Sales Literature</value>
+  </data>
+	<data name="danh_sach_theo_doi" xml:space="preserve">
+    <value>Follow Up List</value>
+  </data>
+	<data name="phan_hoi" xml:space="preserve">
+    <value>Cases</value>
+  </data>
+	<data name="lich_lam_viec" xml:space="preserve">
+    <value>Work Schedule</value>
+  </data>
+	<data name="hoat_dong" xml:space="preserve">
+    <value>Activities</value>
+  </data>
+	<data name="dang_xuat" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+	<data name="nhap" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+	<data name="chuan_bi" xml:space="preserve">
+    <value>Preparing</value>
+  </data>
+	<data name="san_sang" xml:space="preserve">
+    <value>Available</value>
+  </data>
+	<data name="dat_cho" xml:space="preserve">
+    <value>Booking</value>
+  </data>
+	<data name="dong_y_chuyen_coc" xml:space="preserve">
+    <value>Collected</value>
+  </data>
+	<data name="da_du_tien_coc" xml:space="preserve">
+    <value>Deposited</value>
+  </data>
+	<data name="hoan_tat_dat_coc" xml:space="preserve">
+    <value>Option</value>
+  </data>
+	<data name="thanh_toan_dot_1" xml:space="preserve">
+    <value>1st Installment</value>
+  </data>
+	<data name="da_ky_ttdc_hddc" xml:space="preserve">
+    <value>Signed D.A</value>
+  </data>
+	<data name="du_dieu_dien" xml:space="preserve">
+    <value>Qualified</value>
+  </data>
+	<data name="tiem_nang" xml:space="preserve">
+    <value>Lead</value>
+  </data>
+	<data name="ca_nhan" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+	<data name="doanh_nghiep" xml:space="preserve">
+    <value>Account</value>
+  </data>
+	<data name="tim_kiem" xml:space="preserve">
+    <value>Search</value>
+  </data>
+	<data name="co" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+	<data name="khong" xml:space="preserve">
+    <value>No</value>
+  </data>
+	<data name="doi_tac" xml:space="preserve">
+    <value>Partner</value>
+  </data>
+	<data name="dai_ly" xml:space="preserve">
+    <value>Sales agent</value>
+  </data>
+	<data name="chu_dau_tu" xml:space="preserve">
+    <value>Developer</value>
+  </data>
+	<data name="dang_xu_ly" xml:space="preserve">
+    <value>In Progress</value>
+  </data>
+	<data name="dang_cho" xml:space="preserve">
+    <value>On hold</value>
+  </data>
+	<data name="dang_cho_thong_tin_chi_tiet" xml:space="preserve">
+    <value>Waiting for Details</value>
+  </data>
+	<data name="nghien_cuu" xml:space="preserve">
+    <value>Researching</value>
+  </data>
+	<data name="van_de_da_duoc_giai_quyet" xml:space="preserve">
+    <value>Problem solved</value>
+  </data>
+	<data name="cung_cap_thong_tin" xml:space="preserve">
+    <value>Information Provided</value>
+  </data>
+	<data name="da_huy" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+	<data name="hop_nhat" xml:space="preserve">
+    <value>Merged</value>
+  </data>
+	<data name="cau_hoi" xml:space="preserve">
+    <value>Question</value>
+  </data>
+	<data name="van_de" xml:space="preserve">
+    <value>Problem</value>
+  </data>
+	<data name="yeu_cau" xml:space="preserve">
+    <value>Request</value>
+  </data>
+	<data name="nam" xml:space="preserve">
+    <value>Male</value>
+  </data>
+	<data name="nu" xml:space="preserve">
+    <value>Female</value>
+  </data>
+	<data name="khac" xml:space="preserve">
+    <value>Other</value>
+  </data>
+	<data name="cong_tac_vien" xml:space="preserve">
+    <value>Collaborator</value>
+  </data>
+	<data name="nguoi_uy_quyen" xml:space="preserve">
+    <value>Mandatory Secondary</value>
+  </data>
+	<data name="nguoi_dai_dien_phap_ly" xml:space="preserve">
+    <value>Legal Representative</value>
+  </data>
+	<data name="nha_o_can_ho" xml:space="preserve">
+    <value>Houes/ Apartment</value>
+  </data>
+	<data name="nghi_duong" xml:space="preserve">
+    <value>Resort</value>
+  </data>
+	<data name="chua_xac_dinh" xml:space="preserve">
+    <value>Undefined</value>
+  </data>
+	<data name="chinh_thuc" xml:space="preserve">
+    <value>Official</value>
+  </data>
+	<data name="tiem_nang_sts" xml:space="preserve">
+    <value>Potential</value>
+  </data>
+	<data name="huong_dong" xml:space="preserve">
+    <value>East</value>
+  </data>
+	<data name="huong_tay" xml:space="preserve">
+    <value>West</value>
+  </data>
+	<data name="huong_nam" xml:space="preserve">
+    <value>South</value>
+  </data>
+	<data name="huong_bac" xml:space="preserve">
+    <value>North</value>
+  </data>
+	<data name="huong_tay_bac" xml:space="preserve">
+    <value>North west</value>
+  </data>
+	<data name="huong_dong_bac" xml:space="preserve">
+    <value>North east</value>
+  </data>
+	<data name="huong_tay_nam" xml:space="preserve">
+    <value>South west</value>
+  </data>
+	<data name="huong_dong_nam" xml:space="preserve">
+    <value>South east</value>
+  </data>
+	<data name="ful_nhap" xml:space="preserve">
+    <value>Active</value>
+  </data>
+	<data name="hoan_thanh" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+	<data name="vo_hieu_luc" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+	<data name="giao_dich_tt_du_dot_1" xml:space="preserve">
+    <value>Option Entry - 1st installment</value>
+  </data>
+	<data name="giao_dich_da_ky_hdmb" xml:space="preserve">
+    <value>Option Entry - Contract</value>
+  </data>
+	<data name="giao_dich_installments" xml:space="preserve">
+    <value>Option Entry - Installments</value>
+  </data>
+	<data name="giao_dich_da_thanh_ly" xml:space="preserve">
+    <value>Option Entry - Terminate</value>
+  </data>
+	<data name="dat_coc_tt_du_tien_coc" xml:space="preserve">
+    <value>Reservation - Deposited</value>
+  </data>
+	<data name="dat_coc_sign_off_rf" xml:space="preserve">
+    <value>Reservation - Sign off RF</value>
+  </data>
+	<data name="dat_coc_da_thanh_ly" xml:space="preserve">
+    <value>Reservation - Terminate</value>
+  </data>
+	<data name="units" xml:space="preserve">
+    <value>Units</value>
+  </data>
+	<data name="chua_thanh_toan" xml:space="preserve">
+    <value>Not Paid</value>
+  </data>
+	<data name="da_thanh_toan" xml:space="preserve">
+    <value>Amount was paid</value>
+  </data>
+	<data name="bao" xml:space="preserve">
+    <value>Newspapers</value>
+  </data>
+	<data name="staff_phu_long" xml:space="preserve">
+    <value>Staff Phu Long</value>
+  </data>
+	<data name="thuong_hieu" xml:space="preserve">
+    <value>Trademark</value>
+  </data>
+	<data name="hot_line" xml:space="preserve">
+    <value>Hotline</value>
+  </data>
+	<data name="vi_tri_hien_tai" xml:space="preserve">
+    <value>The current of the position</value>
+  </data>
+	<data name="khach_hang_cu_da_mua_gioi_thieu" xml:space="preserve">
+    <value>Old customers have bought referrals.</value>
+  </data>
+	<data name="quang_cao" xml:space="preserve">
+    <value>Advertisement</value>
+  </data>
+	<data name="nhan_vien_gioi_thieu" xml:space="preserve">
+    <value>Employee referral</value>
+  </data>
+	<data name="gioi_thieu_ben_ngoai" xml:space="preserve">
+    <value>External referral</value>
+  </data>
+	<data name="quan_he_cong_chung" xml:space="preserve">
+    <value>Public relations</value>
+  </data>
+	<data name="hoi_thao" xml:space="preserve">
+    <value>Seminar</value>
+  </data>
+	<data name="trien_lam_thuong_mai" xml:space="preserve">
+    <value>Trade show</value>
+  </data>
+	<data name="trang_web" xml:space="preserve">
+    <value>Website</value>
+  </data>
+	<data name="truyen_mieng" xml:space="preserve">
+    <value>Word of mouth</value>
+  </data>
+	<data name="giu_nguyen" xml:space="preserve">
+    <value>Unchanged</value>
+  </data>
+	<data name="gop_dau" xml:space="preserve">
+    <value>Merge at the beginning</value>
+  </data>
+	<data name="gop_cuoi" xml:space="preserve">
+    <value>Merge at the end</value>
+  </data>
+	<data name="nha_o" xml:space="preserve">
+    <value>Residential</value>
+  </data>
+	<data name="thuong_mai" xml:space="preserve">
+    <value>Land projects</value>
+  </data>
+	<data name="can_ho_chung_cu" xml:space="preserve">
+    <value>Apartment</value>
+  </data>
+	<data name="nha_pho" xml:space="preserve">
+    <value>Nhà phố</value>
+  </data>
+	<data name="dat_nen" xml:space="preserve">
+    <value>Ground</value>
+  </data>
+	<data name="shophouse_va_officetel" xml:space="preserve">
+    <value>Shophouse and Officetel</value>
+  </data>
+	<data name="xuong_kho" xml:space="preserve">
+    <value>Workshop/ Warehouse</value>
+  </data>
+	<data name="thanh_cong" xml:space="preserve">
+    <value>Won</value>
+  </data>
+	<data name="het_hang" xml:space="preserve">
+    <value>Out-Sold</value>
+  </data>
+	<data name="dang_doi" xml:space="preserve">
+    <value>Waiting</value>
+  </data>
+	<data name="het_han" xml:space="preserve">
+    <value>Expired</value>
+  </data>
+	<data name="xac_nhan_huy" xml:space="preserve">
+    <value>Confirm Cancel</value>
+  </data>
+	<data name="huy_gg_chua_hoan_tien" xml:space="preserve">
+    <value>Cancelled - Not Refund</value>
+  </data>
+	<data name="huy_gg_da_hoan_tien" xml:space="preserve">
+    <value>Cancelled - Refunded</value>
+  </data>
+	<data name="da_thanh_ly" xml:space="preserve">
+    <value>Terminated</value>
+  </data>
+	<data name="dang_cho_huy_bo_tien_gui" xml:space="preserve">
+    <value>Pending Cancel Deposit</value>
+  </data>
+	<data name="tu_choi" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+	<data name="da_ky_rf" xml:space="preserve">
+    <value>Signed RF</value>
+  </data>
+	<data name="da_het_han_ky_rf" xml:space="preserve">
+    <value>Expired of signing RF</value>
+  </data>
+	<data name="chuyen_coc" xml:space="preserve">
+    <value>Collected</value>
+  </data>
+	<data name="bao_gia" xml:space="preserve">
+    <value>Quotation</value>
+  </data>
+	<data name="bao_gia_het_han" xml:space="preserve">
+    <value>Expired quotation</value>
+  </data>
+	<data name="da_ky_phieu_coc" xml:space="preserve">
+    <value>Reservation form has been signed.</value>
+  </data>
+	<data name="tt_du_tien_coc" xml:space="preserve">
+    <value>Deposited</value>
+  </data>
+	<data name="mat_khach_hang" xml:space="preserve">
+    <value>Lost</value>
+  </data>
+	<data name="da_sua_doi" xml:space="preserve">
+    <value>Revised</value>
+  </data>
+	<data name="da_trinh" xml:space="preserve">
+    <value>Submitted</value>
+  </data>
+	<data name="da_duyet" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+	<data name="thay_doi_thong_tin" xml:space="preserve">
+    <value>Change information</value>
+  </data>
+	<data name="vo_chong" xml:space="preserve">
+    <value>Spouse</value>
+  </data>
+	<data name="con" xml:space="preserve">
+    <value>Child</value>
+  </data>
+	<data name="cha_me" xml:space="preserve">
+    <value>Parent</value>
+  </data>
+	<data name="ban" xml:space="preserve">
+    <value>Friend</value>
+  </data>
+	<data name="cmnd" xml:space="preserve">
+    <value>Identity card number (ID)</value>
+  </data>
+	<data name="cccd" xml:space="preserve">
+    <value>Identity card</value>
+  </data>
+	<data name="ho_chieu" xml:space="preserve">
+    <value>Passport</value>
+  </data>
+	<data name="thanh_pho" xml:space="preserve">
+    <value>City</value>
+  </data>
+	<data name="be_boi" xml:space="preserve">
+    <value>Swimming poll</value>
+  </data>
+	<data name="cong_vien" xml:space="preserve">
+    <value>Park</value>
+  </data>
+	<data name="mat_tien" xml:space="preserve">
+    <value>Facade</value>
+  </data>
+	<data name="san_vuon" xml:space="preserve">
+    <value>Garden</value>
+  </data>
+	<data name="xa_lo" xml:space="preserve">
+    <value>High Way</value>
+  </data>
+	<data name="ho" xml:space="preserve">
+    <value>Lake</value>
+  </data>
+	<data name="song" xml:space="preserve">
+    <value>River</value>
+  </data>
+	<data name="bien" xml:space="preserve">
+    <value>Sea</value>
+  </data>
+	<data name="mot_mat_thoang" xml:space="preserve">
+    <value>01 Side Open</value>
+  </data>
+	<data name="hai_mat_thoang" xml:space="preserve">
+    <value>02 Side Open</value>
+  </data>
+	<data name="ho_boi" xml:space="preserve">
+    <value>Pool</value>
+  </data>
+	<data name="thong_tin_khach_hang" xml:space="preserve">
+    <value>Customer Information</value>
+  </data>
+	<data name="ma_khach_hang" xml:space="preserve">
+    <value>Customer code</value>
+  </data>
+	<data name="loai" xml:space="preserve">
+    <value>Type</value>
+  </data>
+	<data name="nhom" xml:space="preserve">
+    <value>Business type</value>
+  </data>
+	<data name="dai_dien" xml:space="preserve">
+    <value>Representative</value>
+  </data>
+	<data name="giay_phep_kinh_doanh" xml:space="preserve">
+    <value>Registration code</value>
+  </data>
+	<data name="dien_thoai" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+	<data name="nhan_tin" xml:space="preserve">
+    <value>Message</value>
+  </data>
+	<data name="goi_dien" xml:space="preserve">
+    <value>Call</value>
+  </data>
+	<data name="thong_tin" xml:space="preserve">
+    <value>Information</value>
+  </data>
+	<data name="ten_cong_ty_khac" xml:space="preserve">
+    <value>Account name (Other)</value>
+  </data>
+	<data name="ten_viet_tat" xml:space="preserve">
+    <value>Company code</value>
+  </data>
+	<data name="email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+	<data name="noi_cap" xml:space="preserve">
+    <value>Place of issue</value>
+  </data>
+	<data name="nhap_so_giay_phep_kinh_doanh" xml:space="preserve">
+    <value>Enter registration code</value>
+  </data>
+	<data name="ngay_cap" xml:space="preserve">
+    <value>Issued on</value>
+  </data>
+	<data name="ma_so_thue" xml:space="preserve">
+    <value>VAT Registration Number</value>
+  </data>
+	<data name="dia_chi_lien_lac" xml:space="preserve">
+    <value>Contact address</value>
+  </data>
+	<data name="dia_chi_tru_so_chinh" xml:space="preserve">
+    <value>Permanent address</value>
+  </data>
+	<data name="nguoi_dai_dien" xml:space="preserve">
+    <value>Mandatory primary</value>
+  </data>
+	<data name="so_dien_thoai" xml:space="preserve">
+    <value>Mobile phone</value>
+  </data>
+	<data name="dia_chi_thuong_tru" xml:space="preserve">
+    <value>Permanent address</value>
+  </data>
+	<data name="khong_co_du_lieu" xml:space="preserve">
+    <value>No data</value>
+  </data>
+	<data name="du_an" xml:space="preserve">
+    <value>Project</value>
+  </data>
+	<data name="thoi_gian_het_han" xml:space="preserve">
+    <value>Queuing expired</value>
+  </data>
+	<data name="san_pham" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+	<data name="cham_soc_khach_hang" xml:space="preserve">
+    <value>Customer Care</value>
+  </data>
+	<data name="thoi_gian_bat_dau" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+	<data name="thoi_gian_ket_thuc" xml:space="preserve">
+    <value>Due date</value>
+  </data>
+	<data name="tinh_trang" xml:space="preserve">
+    <value>Status</value>
+  </data>
+	<data name="dia_chi" xml:space="preserve">
+    <value>Address</value>
+  </data>
+	<data name="ten_cong_ty" xml:space="preserve">
+    <value>Account name</value>
+  </data>
+	<data name="ngay_bat_dau_hieu_luc" xml:space="preserve">
+    <value>Effective date to</value>
+  </data>
+	<data name="ngay_het_hieu_luc" xml:space="preserve">
+    <value>Effective date from</value>
+  </data>
+	<data name="chuc_vu_vn" xml:space="preserve">
+    <value>Job title (VN)</value>
+  </data>
+	<data name="chuc_vu_en" xml:space="preserve">
+    <value>Job title (EN)</value>
+  </data>
+	<data name="mo_ta_vn" xml:space="preserve">
+    <value>Descriptions (VN)</value>
+  </data>
+	<data name="mo_ta_en" xml:space="preserve">
+    <value>Descriptions (EN)</value>
+  </data>
+	<data name="tao_cuoc_hop" xml:space="preserve">
+    <value>Create Meeting</value>
+  </data>
+	<data name="tao_cuoc_goi" xml:space="preserve">
+    <value>Create Phone Call</value>
+  </data>
+	<data name="tao_cong_viec" xml:space="preserve">
+    <value>Create Task</value>
+  </data>
+	<data name="them_nguoi_uy_quyen" xml:space="preserve">
+    <value>Create Mandatory Secondary</value>
+  </data>
+	<data name="chinh_sua" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+	<data name="xac_nhan" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+	<data name="ban_co_muon_xoa_nguoi_uye_quyen_khong" xml:space="preserve">
+    <value>Do you want to delete this mandatory secondary?</value>
+  </data>
+	<data name="dong_y" xml:space="preserve">
+    <value>Agree</value>
+  </data>
+	<data name="huy" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+	<data name="da_xoa_nguoi_uy_quyen_duoc_chon" xml:space="preserve">
+    <value>Mandatory secondary has been deleted.</value>
+  </data>
+	<data name="xao_nguoi_uy_quyen_that_bai" xml:space="preserve">
+    <value>Failed to delete mandatory secondary.</value>
+  </data>
+	<data name="so_dien_thoai_sai_dinh_dang_vui_long_kiem_tra_lai" xml:space="preserve">
+    <value>Invalid phone number. Please check again.</value>
+  </data>
+	<data name="khach_hang_khong_co_so_dien_thoai_vui_long_kiem_tra_lai" xml:space="preserve">
+    <value>The customer does not have a phone number. Please check again.</value>
+  </data>
+	<data name="thong_tin_cong_ty" xml:space="preserve">
+    <value>Account Information</value>
+  </data>
+	<data name="dai_dien_phap_luat" xml:space="preserve">
+    <value>Legal Representative</value>
+  </data>
+	<data name="loai_khach_hang" xml:space="preserve">
+    <value>Localization</value>
+  </data>
+	<data name="nhom_khach_hang" xml:space="preserve">
+    <value>Business type</value>
+  </data>
+	<data name="chon_loai_khach_hang" xml:space="preserve">
+    <value>Choose business type</value>
+  </data>
+	<data name="chon_tinh_trang" xml:space="preserve">
+    <value>Choose status</value>
+  </data>
+	<data name="nhap_ten_cong_ty" xml:space="preserve">
+    <value>Enter account name</value>
+  </data>
+	<data name="nhap_ten_cong_ty_khac" xml:space="preserve">
+    <value>Enter account name (Other)</value>
+  </data>
+	<data name="nhap_ten_viet_tat" xml:space="preserve">
+    <value>Enter company code</value>
+  </data>
+	<data name="pham_vi_hoat_dong" xml:space="preserve">
+    <value>Operation scope</value>
+  </data>
+	<data name="chon_pham_vi_hoat_dong" xml:space="preserve">
+    <value>Choose operation scope</value>
+  </data>
+	<data name="chon_nguoi_dai_dien" xml:space="preserve">
+    <value>Choose representative</value>
+  </data>
+	<data name="so_dien_thoai_cong_ty" xml:space="preserve">
+    <value>Company phone</value>
+  </data>
+	<data name="nhap_so_dien_thoai_cong_ty" xml:space="preserve">
+    <value>Enter phone</value>
+  </data>
+	<data name="nhap_email" xml:space="preserve">
+    <value>Enter email</value>
+  </data>
+	<data name="nhap_fax_cua_cong_ty" xml:space="preserve">
+    <value>Enter fax</value>
+  </data>
+	<data name="nhap_website_cua_cong_ty" xml:space="preserve">
+    <value>Enter website</value>
+  </data>
+	<data name="chon_ngay_cap" xml:space="preserve">
+    <value>Choose issued on</value>
+  </data>
+	<data name="nhap_noi_cap" xml:space="preserve">
+    <value>Enter place of issue</value>
+  </data>
+	<data name="nhap_ma_so_thue" xml:space="preserve">
+    <value>Enter VAT registration number</value>
+  </data>
+	<data name="chon_dia_chi_lien_lac" xml:space="preserve">
+    <value>Choose address</value>
+  </data>
+	<data name="chon_dia_chi_tru_so_chinh" xml:space="preserve">
+    <value>Choose permanent address</value>
+  </data>
+	<data name="tao_moi_khach_hang_doanh_nghiep" xml:space="preserve">
+    <value>Create Account</value>
+  </data>
+	<data name="tao_moi" xml:space="preserve">
+    <value>Create</value>
+  </data>
+	<data name="cap_nhat" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+	<data name="cap_nhat_khach_hang_doanh_nghiep" xml:space="preserve">
+    <value>Edit Account</value>
+  </data>
+	<data name="vui_long_chon_loai_khach_hang" xml:space="preserve">
+    <value>Please choose localization.</value>
+  </data>
+	<data name="vui_long_nhap_ten_cong_ty" xml:space="preserve">
+    <value>Please enter account name.</value>
+  </data>
+	<data name="vui_long_chon_pham_vi_hoat_dong" xml:space="preserve">
+    <value>Please choose operation scope.</value>
+  </data>
+	<data name="vui_long_chon_nguoi_dai_dien" xml:space="preserve">
+    <value>Please choose representative.</value>
+  </data>
+	<data name="vui_long_nhap_so_dien_thoai_cong_ty" xml:space="preserve">
+    <value>Please enter phone.</value>
+  </data>
+	<data name="email_sai_dinh_dang_vui_long_thu_lai" xml:space="preserve">
+    <value>Invalid email format. Please try again.</value>
+  </data>
+	<data name="email_2_sai_dinh_dang_vui_long_thu_lai" xml:space="preserve">
+    <value>Invalid email 2 format. Please try again.</value>
+  </data>
+	<data name="vui_long_nhap_so_giay_phep_kinh_doanh" xml:space="preserve">
+    <value>Please enter registration code.</value>
+  </data>
+	<data name="so_giay_phep_kinh_doanh_da_tao_trong_du_lieu_doanh_nghiep" xml:space="preserve">
+    <value>Registration code has been used.</value>
+  </data>
+	<data name="ma_so_thue_da_tao_trong_du_lieu_doanh_nghiep" xml:space="preserve">
+    <value>Registration code not allow duplicate.</value>
+  </data>
+	<data name="vui_long_chon_dia_chi_lien_lac" xml:space="preserve">
+    <value>Please choose address.</value>
+  </data>
+	<data name="vui_long_chon_dia_chi_tru_so_chinh" xml:space="preserve">
+    <value>Please choose permanent address.</value>
+  </data>
+	<data name="tao_khach_hang_doanh_nghiep_thanh_cong" xml:space="preserve">
+    <value>Create account successed.</value>
+  </data>
+	<data name="tao_khach_hang_doanh_nghiep_that_bai" xml:space="preserve">
+    <value>Create account failed.</value>
+  </data>
+	<data name="cap_nhat_khach_hang_doanh_nghiep_thanh_cong" xml:space="preserve">
+    <value>Edit account successed.</value>
+  </data>
+	<data name="cap_nhat_khach_hang_doanh_nghiep_that_bai" xml:space="preserve">
+    <value>Edit account failed.</value>
+  </data>
+	<data name="cong_viec" xml:space="preserve">
+    <value>Task</value>
+  </data>
+	<data name="cuoc_hop" xml:space="preserve">
+    <value>Meeting</value>
+  </data>
+	<data name="cuoc_goi" xml:space="preserve">
+    <value>Phone Call</value>
+  </data>
+	<data name="tuy_chon" xml:space="preserve">
+    <value>Options</value>
+  </data>
+	<data name="goi_tu" xml:space="preserve">
+    <value>Call from</value>
+  </data>
+	<data name="goi_den" xml:space="preserve">
+    <value>Call to</value>
+  </data>
+	<data name="mo_ta" xml:space="preserve">
+    <value>Description</value>
+  </data>
+	<data name="nguoi_tham_du_bat_buoc" xml:space="preserve">
+    <value>Required</value>
+  </data>
+	<data name="nguoi_tham_khong_du_bat_buoc" xml:space="preserve">
+    <value>Optional</value>
+  </data>
+	<data name="nguoi_lien_quan" xml:space="preserve">
+    <value>Regarding</value>
+  </data>
+	<data name="dia_diem" xml:space="preserve">
+    <value>Location</value>
+  </data>
+	<data name="su_kien_ca_ngay" xml:space="preserve">
+    <value>Event all day</value>
+  </data>
+	<data name="cuoc_goi_da_hoan_thanh" xml:space="preserve">
+    <value>Phone call completed.</value>
+  </data>
+	<data name="loi_khi_hoan_thanh_cuoc_goi_vui_long_thu_lai" xml:space="preserve">
+    <value>Error. Please try again.</value>
+  </data>
+	<data name="cong_viec_da_hoan_thanh" xml:space="preserve">
+    <value>Task completed.</value>
+  </data>
+	<data name="loi_khi_hoan_thanh_cong_viec_vui_long_thu_lai" xml:space="preserve">
+    <value>Error. Please try again.</value>
+  </data>
+	<data name="cuoc_hop_da_hoan_thanh" xml:space="preserve">
+    <value>Meeting completed.</value>
+  </data>
+	<data name="loi_khi_hoan_thanh_cuoc_hop_vui_long_thu_lai" xml:space="preserve">
+    <value>Error. Please try again.</value>
+  </data>
+	<data name="cuoc_goi_da_duoc_huy" xml:space="preserve">
+    <value>Phone call canceled.</value>
+  </data>
+	<data name="loi_khi_huy_cuoc_goi_vui_long_thu_lai" xml:space="preserve">
+    <value>Error. Please try again.</value>
+  </data>
+	<data name="cong_viec_da_duoc_huy" xml:space="preserve">
+    <value>Task canceled.</value>
+  </data>
+	<data name="loi_khi_huy_cong_viec_vui_long_thu_lai" xml:space="preserve">
+    <value>Error. Please try again.</value>
+  </data>
+	<data name="cuoc_hop_da_duoc_huy" xml:space="preserve">
+    <value>Meeting canceled.</value>
+  </data>
+	<data name="loi_khi_huy_cuoc_hop_vui_long_thu_lai" xml:space="preserve">
+    <value>Error. Please try again.</value>
+  </data>
+	<data name="phi_dat_coc" xml:space="preserve">
+    <value>Deposit fee</value>
+  </data>
+	<data name="chinh_sach" xml:space="preserve">
+    <value>Policy</value>
+  </data>
+	<data name="tong_hop" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+	<data name="chi_tiet" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+	<data name="lich" xml:space="preserve">
+    <value>Installment</value>
+  </data>
+	<data name="dieu_kien_ban_giao" xml:space="preserve">
+    <value>Handover condition</value>
+  </data>
+	<data name="chiet_khau_theo_pttt" xml:space="preserve">
+    <value>Payment scheme discount</value>
+  </data>
+	<data name="chiet_khau_chung" xml:space="preserve">
+    <value>General discount</value>
+  </data>
+	<data name="chiet_khau_noi_bo" xml:space="preserve">
+    <value>Internal discount</value>
+  </data>
+	<data name="khuyen_mai" xml:space="preserve">
+    <value>Promotions</value>
+  </data>
+	<data name="chiet_khau_quy_doi" xml:space="preserve">
+    <value>Exchange discount</value>
+  </data>
+	<data name="nguoi_dong_so_huu" xml:space="preserve">
+    <value>Co-owner</value>
+  </data>
+	<data name="thong_tin_ban_hang" xml:space="preserve">
+    <value>Sales Information</value>
+  </data>
+	<data name="thong_tin_san_pham" xml:space="preserve">
+    <value>Unit Information</value>
+  </data>
+	<data name="tinh_trang_san_pham" xml:space="preserve">
+    <value>Unit status</value>
+  </data>
+	<data name="dien_tich_xay_dung" xml:space="preserve">
+    <value>Construction area (sqm)</value>
+  </data>
+	<data name="dien_tich_su_dung" xml:space="preserve">
+    <value>Net usable area (sqm)</value>
+  </data>
+	<data name="dien_tich_thuc_te" xml:space="preserve">
+    <value>Actual area (sqm)</value>
+  </data>
+	<data name="thong_tin_chi_tiet" xml:space="preserve">
+    <value>Detail Information</value>
+  </data>
+	<data name="dot_mo_ban" xml:space="preserve">
+    <value>Phases launch</value>
+  </data>
+	<data name="bang_gia_goc" xml:space="preserve">
+    <value>Price list</value>
+  </data>
+	<data name="phi_giu_cho" xml:space="preserve">
+    <value>Queuing fee</value>
+  </data>
+	<data name="tong_tien_thanh_toan" xml:space="preserve">
+    <value>Total amount paid</value>
+  </data>
+	<data name="thong_tin_san_dai_ly" xml:space="preserve">
+    <value>Sale Agent Company Information</value>
+  </data>
+	<data name="dai_ly_san_giao_dich" xml:space="preserve">
+    <value>Sales agent company</value>
+  </data>
+	<data name="nhan_vien_dai_ly_san" xml:space="preserve">
+    <value>Name of staff-agent</value>
+  </data>
+	<data name="khach_hang_gioi_thieu" xml:space="preserve">
+    <value>Customer referral</value>
+  </data>
+	<data name="thong_tin_bang_tinh_gia" xml:space="preserve">
+    <value>Quotation Information</value>
+  </data>
+	<data name="ngay_in" xml:space="preserve">
+    <value>Quotation printed date</value>
+  </data>
+	<data name="het_han_ky" xml:space="preserve">
+    <value>Expired date of signing QF</value>
+  </data>
+	<data name="thong_tin_gia" xml:space="preserve">
+    <value>Price Information</value>
+  </data>
+	<data name="gia_goc" xml:space="preserve">
+    <value>Listed price</value>
+  </data>
+	<data name="chiet_khau" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+	<data name="dkbg" xml:space="preserve">
+    <value>Handover condition</value>
+  </data>
+	<data name="gia_ban_truoc_thue" xml:space="preserve">
+    <value>Net selling price</value>
+  </data>
+	<data name="gia_tri_qsdd" xml:space="preserve">
+    <value>Land value deduction</value>
+  </data>
+	<data name="thue" xml:space="preserve">
+    <value>VAT</value>
+  </data>
+	<data name="phi_bao_tri" xml:space="preserve">
+    <value>Maintenance fee</value>
+  </data>
+	<data name="phi_quan_ly" xml:space="preserve">
+    <value>Management fee</value>
+  </data>
+	<data name="so_thang_dong_phi" xml:space="preserve">
+    <value>Number of months paid M.F</value>
+  </data>
+	<data name="dot_thanh_toan" xml:space="preserve">
+    <value>Installment</value>
+  </data>
+	<data name="ngay_den_han" xml:space="preserve">
+    <value>Due date</value>
+  </data>
+	<data name="tien_dot" xml:space="preserve">
+    <value>Amount of this phase</value>
+  </data>
+	<data name="tien_dat_coc" xml:space="preserve">
+    <value>Deposit amount</value>
+  </data>
+	<data name="ngay_ky" xml:space="preserve">
+    <value>Quotation signed date</value>
+  </data>
+	<data name="cap_nhat_bang_tinh_gia" xml:space="preserve">
+    <value>Edit Quotation</value>
+  </data>
+	<data name="huy_bang_tinh_gia" xml:space="preserve">
+    <value>Cancel Quotation</value>
+  </data>
+	<data name="xoa_lich_thanh_toan" xml:space="preserve">
+    <value>Clear Installment</value>
+  </data>
+	<data name="tao_lich_thanh_toan" xml:space="preserve">
+    <value>PS Generate</value>
+  </data>
+	<data name="ky_bang_tinh_gia" xml:space="preserve">
+    <value>Sign Quotation</value>
+  </data>
+	<data name="xac_nhan_in" xml:space="preserve">
+    <value>Print Quotation final</value>
+  </data>
+	<data name="xac_nhan_tai_pdc" xml:space="preserve">
+    <value>Confirm upload Quotation</value>
+  </data>
+	<data name="ky_phieu_dat_coc" xml:space="preserve">
+    <value>Sign Reservation form</value>
+  </data>
+	<data name="da_xoa_lich_thanh_toan" xml:space="preserve">
+    <value>Cleared installment.</value>
+  </data>
+	<data name="xoa_lich_thanh_toan_that_bai_vui_long_thu_lai" xml:space="preserve">
+    <value>Error. Please try again.</value>
+  </data>
+	<data name="da_xac_nhan_in" xml:space="preserve">
+    <value>Print quotation final</value>
+  </data>
+	<data name="vui_long_tao_lich_thanh_toan" xml:space="preserve">
+    <value>Please create installment.</value>
+  </data>
+	<data name="xac_nhan_in_thanh_cong" xml:space="preserve">
+    <value>Print quotation final successed.</value>
+  </data>
+	<data name="xac_nhan_in_that_bai" xml:space="preserve">
+    <value>Print quotation final failed.</value>
+  </data>
+	<data name="da_xac_nhan_tai_phieu_dat_coc" xml:space="preserve">
+    <value>Reservation form upload confirmed.</value>
+  </data>
+	<data name="xac_nhan_tao_phieu_dat_coc_tat_bai_vui_long_thu_lai" xml:space="preserve">
+    <value>Reservation Form upload confirmation failed. Please try again.</value>
+  </data>
+	<data name="san_pham_dang_o_trang_thai_reserve_khong_the_tao_bang_tinh_gia" xml:space="preserve">
+    <value>The Units is in the "Reserve" stage. Failed to create a Quotation.</value>
+  </data>
+	<data name="khong_co_thong_tin_bang_tinh_gia" xml:space="preserve">
+    <value>No quotation information</value>
+  </data>
+	<data name="tao_lich_thanh_toan_thanh_cong" xml:space="preserve">
+    <value>Create installment successed.</value>
+  </data>
+	<data name="phieu_dat_coc_da_duoc_ky" xml:space="preserve">
+    <value>Reservation form has been signed.</value>
+  </data>
+	<data name="ky_phieu_dat_coc_that_bai_vui_long_thu_lai" xml:space="preserve">
+    <value>Error. Please try again.</value>
+  </data>
+	<data name="bang_tinh_gia_da_duoc_ky" xml:space="preserve">
+    <value>Quotation signed</value>
+  </data>
+	<data name="ky_bang_tinh_gia_that_bai_vui_long_thu_lai" xml:space="preserve">
+    <value>Error. Please try again.</value>
+  </data>
+	<data name="da_huy_bang_tinh_gia" xml:space="preserve">
+    <value>Canceled quotation.</value>
+  </data>
+	<data name="huy_bang_tinh_gia_that_bai_vui_long_thu_lai" xml:space="preserve">
+    <value>Error. Please try again.</value>
+  </data>
+	<data name="da_huy_dat_coc" xml:space="preserve">
+    <value>Canceled reserve.</value>
+  </data>
+	<data name="huy_dat_coc_that_bai_vui_long_thu_lai" xml:space="preserve">
+    <value>Error. Please try again.</value>
+  </data>
+	<data name="gioi_tinh" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+	<data name="quoc_tich" xml:space="preserve">
+    <value>Localization</value>
+  </data>
+	<data name="ngay_sinh" xml:space="preserve">
+    <value>Birth date</value>
+  </data>
+	<data name="chuc_vu" xml:space="preserve">
+    <value>Job title (VN)</value>
+  </data>
+	<data name="sdt_kinh_doanh" xml:space="preserve">
+    <value>Business phone</value>
+  </data>
+	<data name="thong_tin_cmnd_ho_chieu" xml:space="preserve">
+    <value>Identity Card Number/ Passport Information</value>
+  </data>
+	<data name="hinh_chup_cmnd" xml:space="preserve">
+    <value>Photo Identity card number</value>
+  </data>
+	<data name="so_cmnd" xml:space="preserve">
+    <value>Identity card number (ID)</value>
+  </data>
+	<data name="so_ho_chieu" xml:space="preserve">
+    <value>Passport</value>
+  </data>
+	<data name="ngay_cap_ho_chieu" xml:space="preserve">
+    <value>Issued on (Passport)</value>
+  </data>
+	<data name="noi_cap_ho_chieu" xml:space="preserve">
+    <value>Place of Issue (Passport)</value>
+  </data>
+	<data name="so_the_can_cuoc" xml:space="preserve">
+    <value>ID card</value>
+  </data>
+	<data name="thong_tin_co_ban" xml:space="preserve">
+    <value>Basic Information</value>
+  </data>
+	<data name="phong_thuy" xml:space="preserve">
+    <value>Feng Shui</value>
+  </data>
+	<data name="ho_ten" xml:space="preserve">
+    <value>Full name</value>
+  </data>
+	<data name="nhap_ho_ten_khach_hang" xml:space="preserve">
+    <value>Please enter user name</value>
+  </data>
+	<data name="nhom_khach_hang_contact" xml:space="preserve">
+    <value>Type</value>
+  </data>
+	<data name="nhap_so_dien_thoai" xml:space="preserve">
+    <value>Enter phone number</value>
+  </data>
+	<data name="chon_gioi_tinh" xml:space="preserve">
+    <value>Choose gender</value>
+  </data>
+	<data name="chon_quoc_tich" xml:space="preserve">
+    <value>Choose localization</value>
+  </data>
+	<data name="chon_ngay_sinh" xml:space="preserve">
+    <value>Choose birth date</value>
+  </data>
+	<data name="cong_ty" xml:space="preserve">
+    <value>Company</value>
+  </data>
+	<data name="chon_cong_ty" xml:space="preserve">
+    <value>Choose company</value>
+  </data>
+	<data name="nhap_chuc_vu" xml:space="preserve">
+    <value>Enter job title</value>
+  </data>
+	<data name="so_dien_thoai_kinh_doanh" xml:space="preserve">
+    <value>Business Phone</value>
+  </data>
+	<data name="nhap_so_dien_thoai_kinh_doanh" xml:space="preserve">
+    <value>Enter business phone</value>
+  </data>
+	<data name="mat_truoc_cmnd" xml:space="preserve">
+    <value>Front of ID card</value>
+  </data>
+	<data name="mat_sau_cmnd" xml:space="preserve">
+    <value>Back of ID card</value>
+  </data>
+	<data name="nhap_so_cmnd" xml:space="preserve">
+    <value>Enter identity card number</value>
+  </data>
+	<data name="nhap_so_ho_chieu" xml:space="preserve">
+    <value>Enter passport</value>
+  </data>
+	<data name="chon_ngay_cap_ho_chieu" xml:space="preserve">
+    <value>Choose issued on passport</value>
+  </data>
+	<data name="nhap_noi_cap_ho_chieu" xml:space="preserve">
+    <value>Enter place of issue passport</value>
+  </data>
+	<data name="nhap_so_the_can_cuoc" xml:space="preserve">
+    <value>Enter id card</value>
+  </data>
+	<data name="chon_ngay_cap_the_can_cuoc" xml:space="preserve">
+    <value>Choose issued on id card</value>
+  </data>
+	<data name="nhap_noi_cap_the_can_cuoc" xml:space="preserve">
+    <value>Enter place of issue id card</value>
+  </data>
+	<data name="ngay_cap_the_can_cuoc" xml:space="preserve">
+    <value>Issued on Id card</value>
+  </data>
+	<data name="noi_cap_the_can_cuoc" xml:space="preserve">
+    <value>Place of issue Id card</value>
+  </data>
+	<data name="chon_dia_chi_thuong_tru" xml:space="preserve">
+    <value>Choose permanent address</value>
+  </data>
+	<data name="tao_moi_khach_hang_ca_nhan" xml:space="preserve">
+    <value>Create Contact</value>
+  </data>
+	<data name="cap_nhat_khach_hang_ca_nhan" xml:space="preserve">
+    <value>Edit Contact</value>
+  </data>
+	<data name="vui_long_nhap_ho_ten" xml:space="preserve">
+    <value>Please enter user name.</value>
+  </data>
+	<data name="vui_long_nhap_so_dien_thoai" xml:space="preserve">
+    <value>Please enter phone number.</value>
+  </data>
+	<data name="vui_long_chon_gioi_tinh" xml:space="preserve">
+    <value>Please choose gender.</value>
+  </data>
+	<data name="vui_long_chon_quoc_tich" xml:space="preserve">
+    <value>Please choose localization.</value>
+  </data>
+	<data name="vui_long_chon_ngay_sinh" xml:space="preserve">
+    <value>Please choose birth date.</value>
+  </data>
+	<data name="khach_hang_phai_tu_18_tuoi" xml:space="preserve">
+    <value>Customer must be older than 18 years old.</value>
+  </data>
+	<data name="email_sai_dinh_dang" xml:space="preserve">
+    <value>Email is wrong format.</value>
+  </data>
+	<data name="email_da_duoc_su_dung" xml:space="preserve">
+    <value>Email already in use.</value>
+  </data>
+	<data name="vui_long_chon_dia_chi_thuong_tru" xml:space="preserve">
+    <value>Please choose permanent address.</value>
+  </data>
+	<data name="vui_long_nhap_so_cmnd" xml:space="preserve">
+    <value>Please enter Identity Card Number.</value>
+  </data>
+	<data name="so_cmnd_da_duoc_su_dung" xml:space="preserve">
+    <value>The Identity Card Number already in use.</value>
+  </data>
+	<data name="so_ho_chieu_da_duoc_su_sung" xml:space="preserve">
+    <value>Passport already in use.</value>
+  </data>
+	<data name="so_cmnd_khong_hop_le_gioi_han_9_ky_tu" xml:space="preserve">
+    <value>Invalid identify card (Identify Card must be 9 characters long).</value>
+  </data>
+	<data name="so_cccd_khong_hop_le_gioi_han_12_ky_tu" xml:space="preserve">
+    <value>Invalid id card (id card must be 12 characters long).</value>
+  </data>
+	<data name="so_ho_chieu_khong_hop_le_gioi_han_8_ky_tu" xml:space="preserve">
+    <value>Invalid passport card (Passport card must be 8 characters long).</value>
+  </data>
+	<data name="tao_khach_hang_ca_nhan_thanh_cong" xml:space="preserve">
+    <value>Create contact successed.</value>
+  </data>
+	<data name="tao_khach_hang_ca_nhan_that_bai" xml:space="preserve">
+    <value>Create conatact failed.</value>
+  </data>
+	<data name="cap_nhat_thanh_cong" xml:space="preserve">
+    <value>Edit successed.</value>
+  </data>
+	<data name="cap_nhat_that_bai" xml:space="preserve">
+    <value>Edit failed.</value>
+  </data>
+	<data name="xem_anh_mat_truoc_cmnd" xml:space="preserve">
+    <value>View photo</value>
+  </data>
+	<data name="chup_anh" xml:space="preserve">
+    <value>Take a photo</value>
+  </data>
+	<data name="chon_anh_ty_thu_vien" xml:space="preserve">
+    <value>Select photo from gallery</value>
+  </data>
+	<data name="xem_anh_mat_sau_cmnd" xml:space="preserve">
+    <value>View photo</value>
+  </data>
+	<data name="bang_gia_goc_dmb" xml:space="preserve">
+    <value>Price list (Phase launch)</value>
+  </data>
+	<data name="thay_doi_ddktsp" xml:space="preserve">
+    <value>Allow Change Units Spec</value>
+  </data>
+	<data name="ddktsp" xml:space="preserve">
+    <value>Units Specification</value>
+  </data>
+	<data name="ty_gia" xml:space="preserve">
+    <value>Applying exchange rate</value>
+  </data>
+	<data name="ban_giao_du_kien_hd" xml:space="preserve">
+    <value>Estimate handover date</value>
+  </data>
+	<data name="thu_thanh_ly" xml:space="preserve">
+    <value>Termination letter</value>
+  </data>
+	<data name="dong_so_huu" xml:space="preserve">
+    <value>Co-Owner</value>
+  </data>
+	<data name="ttdc_vbtt" xml:space="preserve">
+    <value>Deposit Agreement</value>
+  </data>
+	<data name="ngay_ttdc_vbtt" xml:space="preserve">
+    <value>DA date</value>
+  </data>
+	<data name="thong_tin_hop_dong" xml:space="preserve">
+    <value>Contract Information</value>
+  </data>
+	<data name="so_hop_dong" xml:space="preserve">
+    <value>Contract number</value>
+  </data>
+	<data name="loai_hop_dong" xml:space="preserve">
+    <value>Contract type descripton</value>
+  </data>
+	<data name="mo_ta_loai_hd" xml:space="preserve">
+    <value>Contract type description</value>
+  </data>
+	<data name="cap_nhat_hop_dong" xml:space="preserve">
+    <value>Edit Contract</value>
+  </data>
+	<data name="ngay_spa" xml:space="preserve">
+    <value>SPA date</value>
+  </data>
+	<data name="ngay_in_hd" xml:space="preserve">
+    <value>Contract printed date</value>
+  </data>
+	<data name="ngay_het_han" xml:space="preserve">
+    <value>Due date</value>
+  </data>
+	<data name="ngay_tai_len_hd" xml:space="preserve">
+    <value>Contract uploaded date</value>
+  </data>
+	<data name="mien_giam_thang" xml:space="preserve">
+    <value>Waiver mana fee (month)</value>
+  </data>
+	<data name="phuong_thuc_thanh_toan" xml:space="preserve">
+    <value>Payment scheme</value>
+  </data>
+	<data name="chiet_khau_dac_biet" xml:space="preserve">
+    <value>Special discount</value>
+  </data>
+	<data name="khach_hang_tiem_nang_option" xml:space="preserve">
+    <value>Lead</value>
+  </data>
+	<data name="khach_hang_ca_nhan_option" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+	<data name="khach_hang_doanh_nghiep_option" xml:space="preserve">
+    <value>Account</value>
+  </data>
+	<data name="danh_ba" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+	<data name="da_chuyen" xml:space="preserve">
+    <value>Converted</value>
+  </data>
+	<data name="vui_long_chon_contact_de_chuyen_sang_khach_hang_tiem_nang" xml:space="preserve">
+    <value>Please choose contact to convert.</value>
+  </data>
+	<data name="chuyen_lien_he_thanh_khach_hang_tiem_nang" xml:space="preserve">
+    <value>Do you want to convert selected contacts into leads?</value>
+  </data>
+	<data name="chuyen" xml:space="preserve">
+    <value>Transfer</value>
+  </data>
+	<data name="khach_hang_tiem_nang_tu_danh_ba" xml:space="preserve">
+    <value>The Lead is transferred from the contacts sync feature.</value>
+  </data>
+	<data name="da_co_loi_xay_ra_vui_long_thu_lai_sau" xml:space="preserve">
+    <value>Error. Please try again.</value>
+  </data>
+	<data name="chuyen_thanh_cong" xml:space="preserve">
+    <value>Successfully transferred.</value>
+  </data>
+	<data name="chon_du_an" xml:space="preserve">
+    <value>Choose project</value>
+  </data>
+	<data name="chon_dot_mo_ban" xml:space="preserve">
+    <value>Choose phases launch</value>
+  </data>
+	<data name="su_kien" xml:space="preserve">
+    <value>Event</value>
+  </data>
+	<data name="ma_san_pham" xml:space="preserve">
+    <value>Unit code</value>
+  </data>
+	<data name="huong" xml:space="preserve">
+    <value>Direction</value>
+  </data>
+	<data name="chon_huong" xml:space="preserve">
+    <value>Choose direction</value>
+  </data>
+	<data name="huong_nhin" xml:space="preserve">
+    <value>View</value>
+  </data>
+	<data name="chon_huong_nhin" xml:space="preserve">
+    <value>Choose view</value>
+  </data>
+	<data name="chon_tinh_trang_san_pham" xml:space="preserve">
+    <value>Choose unit status</value>
+  </data>
+	<data name="chon_dien_tich_su_dung" xml:space="preserve">
+    <value>Choose net usable area</value>
+  </data>
+	<data name="gia_ban_vnd" xml:space="preserve">
+    <value>Price</value>
+  </data>
+	<data name="chon_gia_ban" xml:space="preserve">
+    <value>Choose price</value>
+  </data>
+	<data name="thong_tin_du_an" xml:space="preserve">
+    <value>Project Information</value>
+  </data>
+	<data name="vui_long_chon_du_an" xml:space="preserve">
+    <value>Please choose project.</value>
+  </data>
+	<data name="khong_co_san_pham" xml:space="preserve">
+    <value>Not found Unit</value>
+  </data>
+	<data name="tang" xml:space="preserve">
+    <value>Floor</value>
+  </data>
+	<data name="xem_thong_tin" xml:space="preserve">
+    <value>Information</value>
+  </data>
+	<data name="giu_cho_btn" xml:space="preserve">
+    <value>Queue</value>
+  </data>
+	<data name="bang_tinh_gia_btn" xml:space="preserve">
+    <value>Quotation Final</value>
+  </data>
+	<data name="khong_tim_thay_san_pham" xml:space="preserve">
+    <value>Unit not found.</value>
+  </data>
+	<data name="san_pham_khong_the_tao_bang_tinh_gia" xml:space="preserve">
+    <value>Unit can't create quatation final.</value>
+  </data>
+	<data name="ma" xml:space="preserve">
+    <value>Code</value>
+  </data>
+	<data name="loai_thanh_ly" xml:space="preserve">
+    <value>Termination letter</value>
+  </data>
+	<data name="gia_tri_thanh_ly" xml:space="preserve">
+    <value>Values</value>
+  </data>
+	<data name="phuong_thuc_phat_tl" xml:space="preserve">
+    <value>Take out money</value>
+  </data>
+	<data name="hoan_tien" xml:space="preserve">
+    <value>Refund amount</value>
+  </data>
+	<data name="hoan_tien_percent" xml:space="preserve">
+    <value>Forfeiture</value>
+  </data>
+	<data name="tong_tien_phat" xml:space="preserve">
+    <value>Total forfeiture amount</value>
+  </data>
+	<data name="thanh_ly" xml:space="preserve">
+    <value>Termination</value>
+  </data>
+	<data name="ban_lai" xml:space="preserve">
+    <value>Resell</value>
+  </data>
+	<data name="binh_luan_quyet_dinh" xml:space="preserve">
+    <value>Comment and decision</value>
+  </data>
+	<data name="hop_dinh_ky" xml:space="preserve">
+    <value>Collection Meeting</value>
+  </data>
+	<data name="noi_dung" xml:space="preserve">
+    <value>Comment and Decision</value>
+  </data>
+	<data name="gia_ban" xml:space="preserve">
+    <value>Selling price</value>
+  </data>
+	<data name="tieu_de" xml:space="preserve">
+    <value>Title</value>
+  </data>
+	<data name="phan_nhom" xml:space="preserve">
+    <value>Customer group</value>
+  </data>
+	<data name="khu_vuc" xml:space="preserve">
+    <value>Area</value>
+  </data>
+	<data name="so_id" xml:space="preserve">
+    <value>Number ID</value>
+  </data>
+	<data name="nguon_khach_hang" xml:space="preserve">
+    <value>Lead source</value>
+  </data>
+	<data name="so_gpkd" xml:space="preserve">
+    <value>Registration code</value>
+  </data>
+	<data name="linh_vuc" xml:space="preserve">
+    <value>Industry</value>
+  </data>
+	<data name="doanh_thu_moi_nam" xml:space="preserve">
+    <value>Revenue</value>
+  </data>
+	<data name="so_luong_nhan_vien" xml:space="preserve">
+    <value>No. of Employees</value>
+  </data>
+	<data name="ma_sic" xml:space="preserve">
+    <value>SIC code</value>
+  </data>
+	<data name="chien_dich" xml:space="preserve">
+    <value>Campaign</value>
+  </data>
+	<data name="gui_tai_lieu_tiep_thi" xml:space="preserve">
+    <value>Marketing Materials</value>
+  </data>
+	<data name="kich_hoat_lai_kh" xml:space="preserve">
+    <value>Reactivate lead</value>
+  </data>
+	<data name="chuyen_doi_khach_hang" xml:space="preserve">
+    <value>Lead qualify</value>
+  </data>
+	<data name="thong_bao_thanh_cong" xml:space="preserve">
+    <value>Successed.</value>
+  </data>
+	<data name="khong_lien_lac_duoc" xml:space="preserve">
+    <value>Cannot Contact</value>
+  </data>
+	<data name="khong_quan_tam" xml:space="preserve">
+    <value>No Longer Interested</value>
+  </data>
+	<data name="thong_bao_that_bai" xml:space="preserve">
+    <value>Failed.</value>
+  </data>
+	<data name="chon_tieu_de" xml:space="preserve">
+    <value>Choose title</value>
+  </data>
+	<data name="danh_gia" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+	<data name="chon_danh_gia" xml:space="preserve">
+    <value>Choose rating</value>
+  </data>
+	<data name="nhap_ho_ten" xml:space="preserve">
+    <value>Enter user name</value>
+  </data>
+	<data name="loai_the_id" xml:space="preserve">
+    <value>Type id card</value>
+  </data>
+	<data name="chon_khu_vuc" xml:space="preserve">
+    <value>Choose area</value>
+  </data>
+	<data name="chon_nguon_khach_hang" xml:space="preserve">
+    <value>Choose lead source</value>
+  </data>
+	<data name="nhap_so_gpkd" xml:space="preserve">
+    <value>Enter registration code</value>
+  </data>
+	<data name="nhap_website_cong_ty" xml:space="preserve">
+    <value>Enter website</value>
+  </data>
+	<data name="nhap_mo_ta" xml:space="preserve">
+    <value>Enter description</value>
+  </data>
+	<data name="chon_linh_vuc" xml:space="preserve">
+    <value>Choose industry</value>
+  </data>
+	<data name="nhap_doanh_thu_moi_nam" xml:space="preserve">
+    <value>Enter revenue</value>
+  </data>
+	<data name="nhap_so_luong_nhan_vien" xml:space="preserve">
+    <value>Enter No. of Employees</value>
+  </data>
+	<data name="nhap_ma_sic" xml:space="preserve">
+    <value>Enter sic code</value>
+  </data>
+	<data name="chon_chien_dich" xml:space="preserve">
+    <value>Choose campaign</value>
+  </data>
+	<data name="tai_lieu_tiep_thi" xml:space="preserve">
+    <value>Marketing materials</value>
+  </data>
+	<data name="tao_khach_hang" xml:space="preserve">
+    <value>Create customer</value>
+  </data>
+	<data name="dia_chi_cong_ty" xml:space="preserve">
+    <value>Company address</value>
+  </data>
+	<data name="chon_dia_chi_cong_ty" xml:space="preserve">
+    <value>Choose company address</value>
+  </data>
+	<data name="nhap_so_id" xml:space="preserve">
+    <value>Enter number id</value>
+  </data>
+	<data name="chon_loai_the_id" xml:space="preserve">
+    <value>Choose type id card</value>
+  </data>
+	<data name="chon_phan_nhom" xml:space="preserve">
+    <value>Choose customer group</value>
+  </data>
+	<data name="tao_moi_kh_tiem_nang" xml:space="preserve">
+    <value>Create Lead</value>
+  </data>
+	<data name="cap_nhat_kh_tiem_nang" xml:space="preserve">
+    <value>Edit Lead</value>
+  </data>
+	<data name="so_dien_thoai_khong_hop_le_gom_10_ky_tu" xml:space="preserve">
+    <value>Invalid phone (phone must be 10 characters long).</value>
+  </data>
+	<data name="vui_long_chon_tieu_de" xml:space="preserve">
+    <value>Please choose title.</value>
+  </data>
+	<data name="vui_long_chon_phan_nhom" xml:space="preserve">
+    <value>please choose gustomer group.</value>
+  </data>
+	<data name="vui_long_chon_khu_vuc" xml:space="preserve">
+    <value>Please choose area.</value>
+  </data>
+	<data name="vui_long_chon_nguon_khach_hang" xml:space="preserve">
+    <value>Please choose lead source.</value>
+  </data>
+	<data name="lich_lam_viec_theo_thang" xml:space="preserve">
+    <value>Working schedule by month</value>
+  </data>
+	<data name="lich_lam_viec_theo_tuan" xml:space="preserve">
+    <value>Working schedule by week</value>
+  </data>
+	<data name="lich_lam_viec_theo_ngay" xml:space="preserve">
+    <value>Working schedule by day</value>
+  </data>
+	<data name="khong_tim_thay_lich_lam_viec" xml:space="preserve">
+    <value>Couldn't find Work schedule.</value>
+  </data>
+	<data name="nguon" xml:space="preserve">
+    <value>Origin</value>
+  </data>
+	<data name="thoi_gian_hieu_luc" xml:space="preserve">
+    <value>Effective date</value>
+  </data>
+	<data name="nhap_cong_ty" xml:space="preserve">
+    <value>Enter company</value>
+  </data>
+	<data name="chon_nguoi_uy_quyen" xml:space="preserve">
+    <value>Choose mandatory secondary</value>
+  </data>
+	<data name="tu" xml:space="preserve">
+    <value>To</value>
+  </data>
+	<data name="den" xml:space="preserve">
+    <value>From</value>
+  </data>
+	<data name="nhap_chuc_vu_vn" xml:space="preserve">
+    <value>Enter job title (VN)</value>
+  </data>
+	<data name="nhap_chuc_vu_en" xml:space="preserve">
+    <value>Enter job title (EN)</value>
+  </data>
+	<data name="nhap_mo_ta_vn" xml:space="preserve">
+    <value>Enter description (VN)</value>
+  </data>
+	<data name="nhap_mo_ta_en" xml:space="preserve">
+    <value>Enter description (EN)</value>
+  </data>
+	<data name="luu" xml:space="preserve">
+    <value>Save</value>
+  </data>
+	<data name="nhap_tieu_de" xml:space="preserve">
+    <value>Enter title</value>
+  </data>
+	<data name="vui_long_nhap_tieu_de" xml:space="preserve">
+    <value>Please enter title.</value>
+  </data>
+	<data name="vui_long_chon_nguoi_uy_quyen" xml:space="preserve">
+    <value>Please choose mandatory secondary.</value>
+  </data>
+	<data name="vui_long_chon_thoi_gian_hieu_luc" xml:space="preserve">
+    <value>Please choose effective date.</value>
+  </data>
+	<data name="vui_long_nhap_mo_ta_vn" xml:space="preserve">
+    <value>Please enter description (VN).</value>
+  </data>
+	<data name="vui_long_nhap_mo_ta_en" xml:space="preserve">
+    <value>Please enter description (EN).</value>
+  </data>
+	<data name="ngay_het_hieu_luc_phai_lon_hon_ngay_bat_dau" xml:space="preserve">
+    <value>The end date must be greater than the start date.</value>
+  </data>
+	<data name="chu_de" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+	<data name="nhap_chu_de_cuoc_hop" xml:space="preserve">
+    <value>Please enter subject</value>
+  </data>
+	<data name="chon_nguoi_tham_du_bat_buoc" xml:space="preserve">
+    <value>Choose required</value>
+  </data>
+	<data name="chon_nguoi_tham_du_khong_bat_buoc" xml:space="preserve">
+    <value>Choose optional</value>
+  </data>
+	<data name="chon_nguoi_lien_quan" xml:space="preserve">
+    <value>Choose regarding</value>
+  </data>
+	<data name="nhap_dia_diem" xml:space="preserve">
+    <value>Enter location</value>
+  </data>
+	<data name="chon_thoi_gian_bat_dau" xml:space="preserve">
+    <value>Choose start time</value>
+  </data>
+	<data name="chon_thoi_gian_ket_thuc" xml:space="preserve">
+    <value>Choose end time</value>
+  </data>
+	<data name="tao_moi_cuoc_hop" xml:space="preserve">
+    <value>Create Meeting</value>
+  </data>
+	<data name="cap_nhat_cuoc_hop" xml:space="preserve">
+    <value>Edit Meeting</value>
+  </data>
+	<data name="vui_long_nhap_chu_de_cuoc_hop" xml:space="preserve">
+    <value>Please enter subject.</value>
+  </data>
+	<data name="vui_long_chon_nguoi_tham_du_bat_buoc" xml:space="preserve">
+    <value>Please choose required.</value>
+  </data>
+	<data name="vui_long_chon_thoi_gian_ket_thuc_va_thoi_gian_bat_dau" xml:space="preserve">
+    <value>Please choose start time and end time.</value>
+  </data>
+	<data name="vui_long_chon_thoi_gian_ket_thuc_lon_hon_thoi_gian_bat_dau" xml:space="preserve">
+    <value>The end time must be greater than the start time.</value>
+  </data>
+	<data name="vui_long_chon_thoi_gian_bat_dau" xml:space="preserve">
+    <value>Please choose start date.</value>
+  </data>
+	<data name="chi_tiet_phan_hoi" xml:space="preserve">
+    <value>Case detail</value>
+  </data>
+	<data name="doi_tuong" xml:space="preserve">
+    <value>Product</value>
+  </data>
+	<data name="phan_hoi_lien_quan" xml:space="preserve">
+    <value>Parent case</value>
+  </data>
+	<data name="phan_hoi_chinh" xml:space="preserve">
+    <value>Parent case</value>
+  </data>
+	<data name="mo_lai_phan_hoi" xml:space="preserve">
+    <value>Reactivate case</value>
+  </data>
+	<data name="cap_nhat_phan_hoi" xml:space="preserve">
+    <value>Edit Case</value>
+  </data>
+	<data name="huong_giai_quyet" xml:space="preserve">
+    <value>Resolution</value>
+  </data>
+	<data name="chon_huong_giai_quyet" xml:space="preserve">
+    <value>Choose resolution</value>
+  </data>
+	<data name="phuong_an" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+	<data name="nhap_phuong_an" xml:space="preserve">
+    <value>Enter subject</value>
+  </data>
+	<data name="tong_thoi_gian" xml:space="preserve">
+    <value>Total time</value>
+  </data>
+	<data name="thoi_gian_co_the_thanh_toan" xml:space="preserve">
+    <value>Billable time</value>
+  </data>
+	<data name="chon_thoi_gian_co_the_thanh_toan" xml:space="preserve">
+    <value>Choose billable time</value>
+  </data>
+	<data name="nhan_xet" xml:space="preserve">
+    <value>Description</value>
+  </data>
+	<data name="nhap_nhan_xet" xml:space="preserve">
+    <value>Enter description</value>
+  </data>
+	<data name="huy_phan_hoi" xml:space="preserve">
+    <value>Cancel case</value>
+  </data>
+	<data name="giai_quyet_phan_hoi" xml:space="preserve">
+    <value>Resolve case</value>
+  </data>
+	<data name="xac_nhan_huy_phan_hoi" xml:space="preserve">
+    <value>Confirm Cancel Case</value>
+  </data>
+	<data name="chua_chon_huong_giai_quyet" xml:space="preserve">
+    <value>Please choose resolution.</value>
+  </data>
+	<data name="chua_nhap_phuong_an" xml:space="preserve">
+    <value>Please enter subject.</value>
+  </data>
+	<data name="chua_chon_thoi_gian_co_the_thanh_toan" xml:space="preserve">
+    <value>Please choose billable time.</value>
+  </data>
+	<data name="phan_hoi_da_duoc_giai_quyet" xml:space="preserve">
+    <value>Resolved case.</value>
+  </data>
+	<data name="da_mo_lai_phan_hoi" xml:space="preserve">
+    <value>Reopened feedback</value>
+  </data>
+	<data name="tao_phan_hoi" xml:space="preserve">
+    <value>Create Case</value>
+  </data>
+	<data name="chon_loai" xml:space="preserve">
+    <value>Choose type</value>
+  </data>
+	<data name="chon_khach_hang" xml:space="preserve">
+    <value>Choose customer</value>
+  </data>
+	<data name="chon_san_pham" xml:space="preserve">
+    <value>Choose unit</value>
+  </data>
+	<data name="chon_chu_de" xml:space="preserve">
+    <value>Choose subject</value>
+  </data>
+	<data name="chon_phan_hoi_lien_quan" xml:space="preserve">
+    <value>Choose parent case</value>
+  </data>
+	<data name="chon_nguon" xml:space="preserve">
+    <value>Choose origin</value>
+  </data>
+	<data name="nhap_noi_dung" xml:space="preserve">
+    <value>Enter description</value>
+  </data>
+	<data name="vui_long_chon_loai_phan_hoi" xml:space="preserve">
+    <value>Please choose case type.</value>
+  </data>
+	<data name="vui_long_chon_khach_hang" xml:space="preserve">
+    <value>Please choose customer.</value>
+  </data>
+	<data name="nhap_chu_de_cuoc_goi" xml:space="preserve">
+    <value>Enter subject</value>
+  </data>
+	<data name="chon_nguoi_nhan_cuoc_goi" xml:space="preserve">
+    <value>Choose call to</value>
+  </data>
+	<data name="tao_moi_cuoc_goi" xml:space="preserve">
+    <value>Create Phone Call</value>
+  </data>
+	<data name="them_cuoc_goi" xml:space="preserve">
+    <value>Create Phone call</value>
+  </data>
+	<data name="cap_nhat_cuoc_goi" xml:space="preserve">
+    <value>Edit Phone Call</value>
+  </data>
+	<data name="vui_long_nhap_chu_de_cuoc_goi" xml:space="preserve">
+    <value>Please enter subject.</value>
+  </data>
+	<data name="vui_long_chon_nguoi_nhan_cuoc_goi" xml:space="preserve">
+    <value>Please choose call to.</value>
+  </data>
+	<data name="da_them_cuoc_goi" xml:space="preserve">
+    <value>Phone call added.</value>
+  </data>
+	<data name="thong_ke" xml:space="preserve">
+    <value>Statistical</value>
+  </data>
+	<data name="phan_tram_coc" xml:space="preserve">
+    <value>Deposit percent (D.A)</value>
+  </data>
+	<data name="ngay_du_kien_ban_giao" xml:space="preserve">
+    <value>Estimate handover date</value>
+  </data>
+	<data name="so_thang_tinh_phu_quan_ly" xml:space="preserve">
+    <value>Number of months paid M.F</value>
+  </data>
+	<data name="don_gia_phi_quan_ly_thang_m2" xml:space="preserve">
+    <value>Management amount (month/spm)</value>
+  </data>
+	<data name="tien_giu_cho" xml:space="preserve">
+    <value>Queuing amount</value>
+  </data>
+	<data name="thong_tin_giu_cho" xml:space="preserve">
+    <value>Queue Information</value>
+  </data>
+	<data name="so_thu_tu" xml:space="preserve">
+    <value>Order number</value>
+  </data>
+	<data name="so_uu_tien" xml:space="preserve">
+    <value>Priority number</value>
+  </data>
+	<data name="do_uu_tien" xml:space="preserve">
+    <value>Priority queue</value>
+  </data>
+	<data name="ngay_thu_tu" xml:space="preserve">
+    <value>Date order</value>
+  </data>
+	<data name="da_het_han" xml:space="preserve">
+    <value>Expired</value>
+  </data>
+	<data name="nhap_tieu_de_cua_giu_cho" xml:space="preserve">
+    <value>Enter title queue</value>
+  </data>
+	<data name="dang_tao_giu_cho" xml:space="preserve">
+    <value>Creating queue</value>
+  </data>
+	<data name="chon_khach_hang_gioi_thieu" xml:space="preserve">
+    <value>Choose customer referral</value>
+  </data>
+	<data name="chon_cong_tac_vien" xml:space="preserve">
+    <value>Choose collaborator</value>
+  </data>
+	<data name="nhap_nhan_vien_dao_ly" xml:space="preserve">
+    <value>Enter name of staff agent</value>
+  </data>
+	<data name="chon_dai_ly" xml:space="preserve">
+    <value>Choose sales agent company</value>
+  </data>
+	<data name="tao_giu_cho" xml:space="preserve">
+    <value>Create Queue</value>
+  </data>
+	<data name="vui_long_nhap_tieu_de_giu_cho" xml:space="preserve">
+    <value>Please enter title queue.</value>
+  </data>
+	<data name="khach_hang_da_tham_gia_giu_cho_cho_du_an_nay" xml:space="preserve">
+    <value>This customer has already queued this project.</value>
+  </data>
+	<data name="khach_hang_phai_khac_dai_ly_ban_hang" xml:space="preserve">
+    <value>Customer and Sales agent company are duplicated. Please check again.</value>
+  </data>
+	<data name="khach_hang_phai_khac_cong_tac_vien" xml:space="preserve">
+    <value>Customer and Collaborator are duplicated. Please check again.</value>
+  </data>
+	<data name="khach_hang_phai_khac_khach_hang_gioi_thieu" xml:space="preserve">
+    <value>Customer and Customer Referral are duplicated. Please check again.</value>
+  </data>
+	<data name="tao_giu_cho_thanh_cong" xml:space="preserve">
+    <value>Create queue successed.</value>
+  </data>
+	<data name="ma_giu_cho" xml:space="preserve">
+    <value>Queue number</value>
+  </data>
+	<data name="giu_cho_du_an" xml:space="preserve">
+    <value>Queue for project</value>
+  </data>
+	<data name="thoi_gian_giu_cho" xml:space="preserve">
+    <value>Created on</value>
+  </data>
+	<data name="huy_giu_cho" xml:space="preserve">
+    <value>Cancel Queue</value>
+  </data>
+	<data name="tao_bang_tinh_gia" xml:space="preserve">
+    <value>Create Quotation</value>
+  </data>
+	<data name="khong_co_so_dien_thoai" xml:space="preserve">
+    <value>No phone number</value>
+  </data>
+	<data name="ban_co_muon_huy_giu_cho_nay_khong" xml:space="preserve">
+    <value>Do you want to cancel this queue?</value>
+  </data>
+	<data name="them_nguoi_dong_so_huu" xml:space="preserve">
+    <value>Create co-owner</value>
+  </data>
+	<data name="chon_dieu_kien_ban_giao" xml:space="preserve">
+    <value>Choose handover condition</value>
+  </data>
+	<data name="chon_phuong_thuc_thanh_toan" xml:space="preserve">
+    <value>Choose payment scheme</value>
+  </data>
+	<data name="loai_gop_dot" xml:space="preserve">
+    <value>Payment schemes type</value>
+  </data>
+	<data name="chon_loai_gop_dot" xml:space="preserve">
+    <value>Choose payment schemes type</value>
+  </data>
+	<data name="ngay_bat_dau_tinh_ltt" xml:space="preserve">
+    <value>Starting date calculate of PS</value>
+  </data>
+	<data name="khong_ap_dung" xml:space="preserve">
+    <value>Do not apply</value>
+  </data>
+	<data name="chon_chiet_khau_chung" xml:space="preserve">
+    <value>Choose discount</value>
+  </data>
+	<data name="chon_chiet_khau_noi_bo" xml:space="preserve">
+    <value>Choose internal discount</value>
+  </data>
+	<data name="them_khuyen_mai" xml:space="preserve">
+    <value>Choose Promotions</value>
+  </data>
+	<data name="chon_chiet_khau_quy_doi" xml:space="preserve">
+    <value>Choose exchange discount</value>
+  </data>
+	<data name="chon_giu_cho" xml:space="preserve">
+    <value>Choose queue</value>
+  </data>
+	<data name="thong_tin_bao_gia" xml:space="preserve">
+    <value>Quotation Information</value>
+  </data>
+	<data name="chon_khuyen_mai" xml:space="preserve">
+    <value>Choose promotions</value>
+  </data>
+	<data name="them_dong_so_huu" xml:space="preserve">
+    <value>Create Co-owner</value>
+  </data>
+	<data name="quan_he" xml:space="preserve">
+    <value>Relationship</value>
+  </data>
+	<data name="chon_quan_he" xml:space="preserve">
+    <value>Choose relationship</value>
+  </data>
+	<data name="thong_tin_phi_quan_ly" xml:space="preserve">
+    <value>M.F Information</value>
+  </data>
+	<data name="gia_ban_sau_thue" xml:space="preserve">
+    <value>Net selling price (After VAT)</value>
+  </data>
+	<data name="tong_tien_thue_vat" xml:space="preserve">
+    <value>Total VAT Tax</value>
+  </data>
+	<data name="tong_gia_tri_qsdd" xml:space="preserve">
+    <value>Land value deduction</value>
+  </data>
+	<data name="tong_tien_dkbg" xml:space="preserve">
+    <value>Handover condition amount</value>
+  </data>
+	<data name="gia_ban_goc" xml:space="preserve">
+    <value>Listed price</value>
+  </data>
+	<data name="chon_dai_ly_san_giao_dich" xml:space="preserve">
+    <value>Choose sale agent company</value>
+  </data>
+	<data name="chon_ngay_bat_dau_tinh_ltt" xml:space="preserve">
+    <value>Choose starting date calculate of PS</value>
+  </data>
+	<data name="da_co_lich_thanh_toan_khong_duoc_chinh_sua" xml:space="preserve">
+    <value>Editing that changes the transaction value is not allowed because the transaction has been created with a Payment Schedule.</value>
+  </data>
+	<data name="khong_co_chiet_khau" xml:space="preserve">
+    <value>No discounts</value>
+  </data>
+	<data name="khong_the_them_dieu_kien_ban_giao" xml:space="preserve">
+    <value>Can't add Handover Condition.</value>
+  </data>
+	<data name="ban_dang_tich_chon_chieu_khau_theo_pttt_ban_co_chac_chan_muon_thay_doi_pttt_nay" xml:space="preserve">
+    <value>Bạn đang tích chọn chiết khấu theo PTTT, bạn có chắc chắn muốn thay đổi PTTT này?</value>
+  </data>
+	<data name="them_khuyen_mai_thanh_cong" xml:space="preserve">
+    <value>Create promotion successed.</value>
+  </data>
+	<data name="ban_co_muon_xoa_khuyen_mai_khong" xml:space="preserve">
+    <value>Do you want to delete this promotions?</value>
+  </data>
+	<data name="xao_khuyen_mai_thanh_cong" xml:space="preserve">
+    <value>Delete promotion successed.</value>
+  </data>
+	<data name="ban_co_muon_xoa_nguoi_dong_so_huu_nay_khong" xml:space="preserve">
+    <value>Do you want to delete this co-owners?</value>
+  </data>
+	<data name="xoa_nguou_dong_so_huu_thanh_cong" xml:space="preserve">
+    <value>Delete co-owner successed.</value>
+  </data>
+	<data name="cap_nhat_dong_so_huu" xml:space="preserve">
+    <value>Edit Co-owner</value>
+  </data>
+	<data name="vui_long_chon_quan_he" xml:space="preserve">
+    <value>Please choose relationship.</value>
+  </data>
+	<data name="khach_hang_khong_duoc_trung_voi_nguoi_mua" xml:space="preserve">
+    <value>Customer and Purchaser are duplicated. Please check again.</value>
+  </data>
+	<data name="khach_hang_da_duoc_chon" xml:space="preserve">
+    <value>Customer has been seleted.</value>
+  </data>
+	<data name="them_dong_so_huu_thanh_cong" xml:space="preserve">
+    <value>Create co-owner successed.</value>
+  </data>
+	<data name="cap_nhat_dong_so_huu_thanh_cong" xml:space="preserve">
+    <value>Edit co-owner successed.</value>
+  </data>
+	<data name="nguoi_mua_khong_duoc_trung_voi_dai_ly_san_giao_dich_vui_long_chon_lai" xml:space="preserve">
+    <value>Purchaser and Sales agent company are duplicated. Please check again.</value>
+  </data>
+	<data name="khach_hang_coower_va_khach_hang_khong_duoc_trung" xml:space="preserve">
+    <value>Co-Owner and Customer are duplicated. Please check again.</value>
+  </data>
+	<data name="dai_ly_san_giao_dich_khong_duoc_trung_voi_nguoi_mua_vui_long_chon_lai" xml:space="preserve">
+    <value>Sales Agent Company and Purchaser are duplicated. Please check again.</value>
+  </data>
+	<data name="cong_tac_vien_khong_duoc_trung_voi_nguoi_mua_vui_long_chon_lai" xml:space="preserve">
+    <value>Collaborator and Purchaser are duplicated. Please check again.</value>
+  </data>
+	<data name="khach_hang_gioi_thieu_khong_duoc_trung_voi_nguoi_mua_vui_long_chon_lai" xml:space="preserve">
+    <value>Customer Referral and Purchaser are duplicated. Please check again.</value>
+  </data>
+	<data name="vui_long_chon_dieu_kien_ban_giao" xml:space="preserve">
+    <value>Please choose handover condition.</value>
+  </data>
+	<data name="vui_long_chon_phuong_thuc_thanh_toan" xml:space="preserve">
+    <value>Please choose payment scheme.</value>
+  </data>
+	<data name="vui_long_chon_ngay_bat_dau_tinh_ltt" xml:space="preserve">
+    <value>Please choose Starting date calculate of PS.</value>
+  </data>
+	<data name="tao_bang_tinh_gia_thanh_cong" xml:space="preserve">
+    <value>Create quataion successed.</value>
+  </data>
+	<data name="nhap_chu_de_cong_viec" xml:space="preserve">
+    <value>Enter subject</value>
+  </data>
+	<data name="cap_nhap_cong_viec" xml:space="preserve">
+    <value>Edit task</value>
+  </data>
+	<data name="thoi_gian_bat_dau_phai_nho_hon_thoi_gian_ket_thuc" xml:space="preserve">
+    <value>The end time must be greater than the start time.</value>
+  </data>
+	<data name="vui_long_chon_thoi_gian_ket_thuc" xml:space="preserve">
+    <value>Please choose due date.</value>
+  </data>
+	<data name="tao_cong_viec_thanh_cong" xml:space="preserve">
+    <value>Create task successed.</value>
+  </data>
+	<data name="thoi_gian_ket_thuc_phai_lon_hon_thoi_gian_bat_dau" xml:space="preserve">
+    <value>The end time must be greater than the start time.</value>
+  </data>
+	<data name="vui_long_nhap_chu_de" xml:space="preserve">
+    <value>Please enter subject.</value>
+  </data>
+	<data name="thon_tin_can_ho" xml:space="preserve">
+    <value>Unit information</value>
+  </data>
+	<data name="so_can_ho" xml:space="preserve">
+    <value>Units number</value>
+  </data>
+	<data name="ma_can_ho" xml:space="preserve">
+    <value>Units code</value>
+  </data>
+	<data name="toa_nha_khu" xml:space="preserve">
+    <value>Block</value>
+  </data>
+	<data name="bien_do_chenh_lech_dien_tich" xml:space="preserve">
+    <value>Area variance</value>
+  </data>
+	<data name="ban_giao" xml:space="preserve">
+    <value>Handover</value>
+  </data>
+	<data name="thong_tin_gia_ban" xml:space="preserve">
+    <value>Price Information</value>
+  </data>
+	<data name="phi_quan_ly_thang_m2" xml:space="preserve">
+    <value>Management amount (Month)</value>
+  </data>
+	<data name="thong_tin_ca_nhan" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+	<data name="tai_khoan" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+	<data name="doi_mat_khau" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+	<data name="mat_khau_cu" xml:space="preserve">
+    <value>Old password</value>
+  </data>
+	<data name="nhap_mat_khau_cu" xml:space="preserve">
+    <value>Enter old password</value>
+  </data>
+	<data name="mat_khau_moi" xml:space="preserve">
+    <value>New password</value>
+  </data>
+	<data name="nhap_mat_khau_moi" xml:space="preserve">
+    <value>Enter new password</value>
+  </data>
+	<data name="xac_nhan_mat_khau_moi" xml:space="preserve">
+    <value>Confirm new password</value>
+  </data>
+	<data name="nhap_xac_nhan_mat_khau_moi" xml:space="preserve">
+    <value>Enter confirm new password</value>
+  </data>
+	<data name="mat_khau_khong_duoc_chua_ky_tu_khoan_trang" xml:space="preserve">
+    <value>Password must not contain spaces.</value>
+  </data>
+	<data name="vui_long_nhap_mat_khau_cu" xml:space="preserve">
+    <value>Please enter old password.</value>
+  </data>
+	<data name="vui_long_nhap_mat_khau_moi" xml:space="preserve">
+    <value>Please enter new password.</value>
+  </data>
+	<data name="mat_khau_it_nhat_6_ky_tu" xml:space="preserve">
+    <value>Password must be at least 6 characters.</value>
+  </data>
+	<data name="vui_long_nhap_xac_nhan_mat_khau_moi" xml:space="preserve">
+    <value>Please enter confirm new password.</value>
+  </data>
+	<data name="mat_khau_cu_khong_dung" xml:space="preserve">
+    <value>Old password is incorrect.</value>
+  </data>
+	<data name="xac_nhan_mat_khai_khong_dung" xml:space="preserve">
+    <value>Confirm password is incorrect.</value>
+  </data>
+	<data name="ban_dang_su_dung_mat_khau_cu_vui_long_nhap_lai" xml:space="preserve">
+    <value>You are using the old password. Please re-enter.</value>
+  </data>
+	<data name="doi_mat_khau_thanh_cong" xml:space="preserve">
+    <value>Change password successed.</value>
+  </data>
+	<data name="doi_mat_khau_that_bai" xml:space="preserve">
+    <value>Change password failed.</value>
+  </data>
+	<data name="thu_vien" xml:space="preserve">
+    <value>Library</value>
+  </data>
+	<data name="chup_hinh" xml:space="preserve">
+    <value>Take a photo</value>
+  </data>
+	<data name="doi_hinh_dai_dien_thanh_cong" xml:space="preserve">
+    <value>Change avatar successed.</value>
+  </data>
+	<data name="doi_hinh_dai_dien_that_bai" xml:space="preserve">
+    <value>Change avatar failed.</value>
+  </data>
+	<data name="ma_su_kien" xml:space="preserve">
+    <value>Event code</value>
+  </data>
+	<data name="ban_co_chan_chan_muon_thay_doi_pttt" xml:space="preserve">
+    <value>Bạn có chắc chắn muốn thay đổi PTTT?</value>
+  </data>
+	<data name="nguoi_nhan_cuoc_goi_phai_khac_nguoi_lien_quan" xml:space="preserve">
+    <value>Call to and Regarding are duplicated. Please check again.</value>
+  </data>
+	<data name="nguoi_tham_du_bat_buoc_phai_khac_nguoi_lien_quan" xml:space="preserve">
+    <value>Required and Regarding are duplicated. Please check again.</value>
+  </data>
+	<data name="nguoi_tham_du_bat_buoc_phai_khac_nguoi_tham_du_khong_bat_buoc" xml:space="preserve">
+    <value>Required and Optional are duplicated. Please check again.</value>
+  </data>
+	<data name="nguoi_tham_du_khong_bat_buoc_phai_khac_nguoi_lien_quan" xml:space="preserve">
+    <value>Optional and Regarding are duplicated. Please check again</value>
+  </data>
+	<data name="phi_giu_cho_da_thanh_toan" xml:space="preserve">
+    <value>Queuing free paid</value>
+  </data>
+	<data name="chon_quan_huyen" xml:space="preserve">
+    <value>Choose district</value>
+  </data>
+	<data name="chon_quoc_gia" xml:space="preserve">
+    <value>Choose country</value>
+  </data>
+	<data name="chon_tinh_thanh" xml:space="preserve">
+    <value>Choose province</value>
+  </data>
+	<data name="nhap_so_nha_duong_phuong" xml:space="preserve">
+    <value>Enter house number/street/ward</value>
+  </data>
+	<data name="quan_huyen" xml:space="preserve">
+    <value>District</value>
+  </data>
+	<data name="quoc_gia" xml:space="preserve">
+    <value>Country</value>
+  </data>
+	<data name="so_nha_duong_phuong" xml:space="preserve">
+    <value>House number/street/ward</value>
+  </data>
+	<data name="tinh_thanh" xml:space="preserve">
+    <value>Province</value>
+  </data>
+	<data name="vui_long_nhap_so_nha_duong_phuong" xml:space="preserve">
+    <value>Please enter house number/street/ward.</value>
+  </data>
+	<data name="account_nuoc_ngoai_sts" xml:space="preserve">
+    <value>Local</value>
+  </data>
+	<data name="account_trong_nuoc_sts" xml:space="preserve">
+    <value>Foreigner</value>
+  </data>
+	<data name="activity_cancelled_sts" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+	<data name="activity_completed_sts" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+	<data name="activity_open_sts" xml:space="preserve">
+    <value>Open</value>
+  </data>
+	<data name="activity_scheduled_sts" xml:space="preserve">
+    <value>Scheduled</value>
+  </data>
+	<data name="case_gio_sts" xml:space="preserve">
+    <value>hour</value>
+  </data>
+	<data name="case_information_provided_sts" xml:space="preserve">
+    <value>Information provided</value>
+  </data>
+	<data name="case_ngay_sts" xml:space="preserve">
+    <value>day</value>
+  </data>
+	<data name="case_phut_sts" xml:space="preserve">
+    <value>minute</value>
+  </data>
+	<data name="case_problem_solved_sts" xml:space="preserve">
+    <value>Problem solved</value>
+  </data>
+	<data name="contract_1st_installment_sts" xml:space="preserve">
+    <value>1st Installment</value>
+  </data>
+	<data name="contract_acceptance_sts" xml:space="preserve">
+    <value>Acceptance</value>
+  </data>
+	<data name="contract_being_payment_sts" xml:space="preserve">
+    <value>Being payment</value>
+  </data>
+	<data name="contract_canceled_sts" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+	<data name="contract_complete_payment_sts" xml:space="preserve">
+    <value>Complete payment</value>
+  </data>
+	<data name="contract_complete_sts" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+	<data name="contract_confirm_document_sts" xml:space="preserve">
+    <value>Confirm document</value>
+  </data>
+	<data name="contract_foreigner_SPA_type" xml:space="preserve">
+    <value>Foreigner SPA</value>
+  </data>
+	<data name="contract_handover_sts" xml:space="preserve">
+    <value>Quanlify - Units handover</value>
+  </data>
+	<data name="contract_invoiced_sts" xml:space="preserve">
+    <value>Invoiced</value>
+  </data>
+	<data name="contract_in_progress_sts" xml:space="preserve">
+    <value>In progress</value>
+  </data>
+	<data name="contract_local_SPA_type" xml:space="preserve">
+    <value>Local SPA</value>
+  </data>
+	<data name="contract_long_term_lease_type" xml:space="preserve">
+    <value>Long term lease</value>
+  </data>
+	<data name="contract_open_sts" xml:space="preserve">
+    <value>Open</value>
+  </data>
+	<data name="contract_option_sts" xml:space="preserve">
+    <value>Option</value>
+  </data>
+	<data name="contract_partial_sts" xml:space="preserve">
+    <value>Partial</value>
+  </data>
+	<data name="contract_pending_sts" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+	<data name="contract_pink_book_handover_sts" xml:space="preserve">
+    <value>Pink-book handover</value>
+  </data>
+	<data name="contract_qualify_sts" xml:space="preserve">
+    <value>Qualify</value>
+  </data>
+	<data name="contract_signed_contract_sts" xml:space="preserve">
+    <value>Signed contract</value>
+  </data>
+	<data name="contract_signed_da_sts" xml:space="preserve">
+    <value>Signed D.A</value>
+  </data>
+	<data name="contract_terminated_sts" xml:space="preserve">
+    <value>Terminated</value>
+  </data>
+	<data name="contract_units_handover_sts" xml:space="preserve">
+    <value>Units handover</value>
+  </data>
+	<data name="currency_billion" xml:space="preserve">
+    <value>billion</value>
+  </data>
+	<data name="dang_tai" xml:space="preserve">
+    <value>Downloading</value>
+  </data>
+	<data name="da_lien_he_sts" xml:space="preserve">
+    <value>Contacted</value>
+  </data>
+	<data name="da_xac_nhan_sts" xml:space="preserve">
+    <value>Qualified</value>
+  </data>
+	<data name="format_dashboard" xml:space="preserve">
+    <value>#,0 m</value>
+  </data>
+	<data name="kh_ca_nhan" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+	<data name="kh_doanh_nghiep" xml:space="preserve">
+    <value>Account</value>
+  </data>
+	<data name="kh_tiem_nang" xml:space="preserve">
+    <value>Lead</value>
+  </data>
+	<data name="new_sts" xml:space="preserve">
+    <value>New</value>
+  </data>
+	<data name="sqm" xml:space="preserve">
+    <value>sqm</value>
+  </data>
+	<data name="string_more_than" xml:space="preserve">
+    <value>More than</value>
+  </data>
+	<data name="string_under" xml:space="preserve">
+    <value>Under</value>
+  </data>
+	<data name="tat_ca" xml:space="preserve">
+    <value>All</value>
+  </data>
+	<data name="them_kh_ca_nhan" xml:space="preserve">
+    <value>Create Contact</value>
+  </data>
+	<data name="them_kh_doanh_nghiep" xml:space="preserve">
+    <value>Create Account</value>
+  </data>
+	<data name="xoa" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+	<data name="nhap_zip_code" xml:space="preserve">
+    <value>Enter ZIP code</value>
+  </data>
+	<data name="zip_code" xml:space="preserve">
+    <value>ZIP code</value>
+  </data>
+	<data name="area_mien_bac" xml:space="preserve">
+    <value>Northern</value>
+  </data>
+	<data name="area_mien_nam" xml:space="preserve">
+    <value>Southern</value>
+  </data>
+	<data name="area_mien_trung" xml:space="preserve">
+    <value>Central</value>
+  </data>
+	<data name="ngay_het_han_reservation" xml:space="preserve">
+    <value>Expired date of signing RF</value>
+  </data>
+	<data name="ngay_in_reservation" xml:space="preserve">
+    <value>Reservation printed date</value>
+  </data>
+	<data name="ngay_ky_reservation" xml:space="preserve">
+    <value>Reservation signed date</value>
+  </data>
+	<data name="ngay_tai_len_reservation" xml:space="preserve">
+    <value>Reservation uploaded date</value>
+  </data>
+	<data name="so_cmnd_so_cccd_so_ho_chieu_da_duoc_su_dung" xml:space="preserve">
+    <value>ID card numbers/ ID card numbers/ Passport numbers has been used.</value>
+  </data>
+	<data name="trinh_trang_reservation" xml:space="preserve">
+    <value>Reservation status</value>
+  </data>
+	<data name="tax_code" xml:space="preserve">
+    <value>Tax code</value>
+  </data>
+	<data name="chon_ngay" xml:space="preserve">
+    <value>Choose date</value>
+  </data>
+	<data name="loai_actitivty" xml:space="preserve">
+    <value>Type</value>
+  </data>
+	<data name="loai_unit" xml:space="preserve">
+    <value>Unit type</value>
+  </data>
+	<data name="di_den_kh_ca_nhan" xml:space="preserve">
+    <value>Go to Contact</value>
+  </data>
+	<data name="di_den_kh_doanh_nghiep" xml:space="preserve">
+    <value>Go to Account</value>
+  </data>
+	<data name="gui" xml:space="preserve">
+    <value>Send</value>
+  </data>
+	<data name="khong_gui" xml:space="preserve">
+    <value>Don't send</value>
+  </data>
+	<data name="gia_tri_qsdd_m" xml:space="preserve">
+    <value>Land value/ sqm</value>
+  </data>
+	<data name="chon_dia_chi" xml:space="preserve">
+    <value>Choose address</value>
+  </data>
+	<data name="inactive_sts" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+	<data name="ms_active_sts" xml:space="preserve">
+    <value>Active</value>
+  </data>
+	<data name="ms_applying_sts" xml:space="preserve">
+    <value>Applying</value>
+  </data>
+	<data name="ms_cancel_sts" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+	<data name="ms_inactive_sts" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+	<data name="da_chon" xml:space="preserve">
+    <value>Selected</value>
+  </data>
+	<data name="dieu_kien_ban_giao_khong_phu_hop_voi_unit_type" xml:space="preserve">
+    <value>Handover Condition is not suitable with Unit type. Please check again or choose another handover condition.</value>
+  </data>
+	<data name="danh_gia_a_z" xml:space="preserve">
+    <value>Rating (↓)</value>
+  </data>
+	<data name="danh_gia_z_a" xml:space="preserve">
+    <value>Rating (↑)</value>
+  </data>
+	<data name="ngay_tao_a_z" xml:space="preserve">
+    <value>Create on (↓)</value>
+  </data>
+	<data name="ngay_tao_z_a" xml:space="preserve">
+    <value>Create on (↑)</value>
+  </data>
+	<data name="tinh_trang_a_z" xml:space="preserve">
+    <value>Status (↓)</value>
+  </data>
+	<data name="tinh_trang_z_a" xml:space="preserve">
+    <value>Status (↑)</value>
+  </data>
+	<data name="queues_unit" xml:space="preserve">
+    <value>Queues/ Unit</value>
+  </data>
+	<data name="queue_unit_saleman_day" xml:space="preserve">
+    <value>Queue/ Unit/ Saleman/ Day</value>
+  </data>
+	<data name="quy_trinh_ban_title" xml:space="preserve">
+    <value>Sales Process</value>
+  </data>
+	<data name="thoi_gian_giu_cho_dai_han" xml:space="preserve">
+    <value>Long queuing time (days)</value>
+  </data>
+	<data name="thoi_gian_giu_cho_ngan_han" xml:space="preserve">
+    <value>Short queuing time (hours)</value>
+  </data>
+	<data name="thong_tin_chung_title" xml:space="preserve">
+    <value>General</value>
+  </data>
+	<data name="units_salesman_day" xml:space="preserve">
+    <value>Units/ Salesman/ Day</value>
+  </data>
+	<data name="chiet_khau_dac_biet_title" xml:space="preserve">
+    <value>Special Discount</value>
+  </data>
+	<data name="dieu_kien_ban_giao_title" xml:space="preserve">
+    <value>Handover Condition</value>
+  </data>
+	<data name="gia_tri" xml:space="preserve">
+    <value>Value</value>
+  </data>
+	<data name="khuyen_mai_title" xml:space="preserve">
+    <value>Promotions</value>
+  </data>
+	<data name="phan_tram_giam" xml:space="preserve">
+    <value>Percent discount</value>
+  </data>
+	<data name="phuong_thuc" xml:space="preserve">
+    <value>Method</value>
+  </data>
+	<data name="theo_loai_unit" xml:space="preserve">
+    <value>By unit type</value>
+  </data>
+	<data name="lead_10_industry" xml:space="preserve">
+    <value>Distributors, dispatchers and processors</value>
+  </data>
+	<data name="lead_11_industry" xml:space="preserve">
+    <value>Doctor's offices and clinics</value>
+  </data>
+	<data name="lead_12_industry" xml:space="preserve">
+    <value>Durable manufacturing</value>
+  </data>
+	<data name="lead_13_industry" xml:space="preserve">
+    <value>Eating and drinking places</value>
+  </data>
+	<data name="lead_14_industry" xml:space="preserve">
+    <value>Entertainment retail</value>
+  </data>
+	<data name="lead_15_industry" xml:space="preserve">
+    <value>Equipment rental and leasing</value>
+  </data>
+	<data name="lead_16_industry" xml:space="preserve">
+    <value>Financial</value>
+  </data>
+	<data name="lead_17_industry" xml:space="preserve">
+    <value>Food and tobacco processing</value>
+  </data>
+	<data name="lead_18_industry" xml:space="preserve">
+    <value>Inbound capital intensive processing</value>
+  </data>
+	<data name="lead_19_industry" xml:space="preserve">
+    <value>Inbound repair and services</value>
+  </data>
+	<data name="lead_1_industry" xml:space="preserve">
+    <value>Accounting</value>
+  </data>
+	<data name="lead_20_industry" xml:space="preserve">
+    <value>Insurance</value>
+  </data>
+	<data name="lead_21_industry" xml:space="preserve">
+    <value>Legal services</value>
+  </data>
+	<data name="lead_22_industry" xml:space="preserve">
+    <value>Non-Durable merchandise retail</value>
+  </data>
+	<data name="lead_23_industry" xml:space="preserve">
+    <value>Outbound consumer service</value>
+  </data>
+	<data name="lead_24_industry" xml:space="preserve">
+    <value>Petrochemical extraction and distribution</value>
+  </data>
+	<data name="lead_25_industry" xml:space="preserve">
+    <value>Service retail</value>
+  </data>
+	<data name="lead_26_industry" xml:space="preserve">
+    <value>SIG affiliations</value>
+  </data>
+	<data name="lead_27_industry" xml:space="preserve">
+    <value>Social services</value>
+  </data>
+	<data name="lead_28_industry" xml:space="preserve">
+    <value>Special outbound trade contractors</value>
+  </data>
+	<data name="lead_29_industry" xml:space="preserve">
+    <value>Specialty realty</value>
+  </data>
+	<data name="lead_2_industry" xml:space="preserve">
+    <value>Agriculture and Non-petrol natural resource extraction</value>
+  </data>
+	<data name="lead_30_industry" xml:space="preserve">
+    <value>Transportation</value>
+  </data>
+	<data name="lead_31_industry" xml:space="preserve">
+    <value>Utility creation and distribution</value>
+  </data>
+	<data name="lead_32_industry" xml:space="preserve">
+    <value>Vehicle retail</value>
+  </data>
+	<data name="lead_33_industry" xml:space="preserve">
+    <value>Wholesale</value>
+  </data>
+	<data name="lead_3_industry" xml:space="preserve">
+    <value>Broadcasting printing and Publishing</value>
+  </data>
+	<data name="lead_4_industry" xml:space="preserve">
+    <value>Brokers</value>
+  </data>
+	<data name="lead_5_industry" xml:space="preserve">
+    <value>Building supply retail</value>
+  </data>
+	<data name="lead_6_industry" xml:space="preserve">
+    <value>Business services</value>
+  </data>
+	<data name="lead_7_industry" xml:space="preserve">
+    <value>Consulting</value>
+  </data>
+	<data name="lead_8_industry" xml:space="preserve">
+    <value>Consumer services</value>
+  </data>
+	<data name="lead_9_industry" xml:space="preserve">
+    <value>Design, direction and creative management</value>
+  </data>
+	<data name="chon_localization" xml:space="preserve">
+    <value>Choose localization</value>
+  </data>
+	<data name="co_vbtt_hddc" xml:space="preserve">
+    <value>Is deposit contract</value>
+  </data>
+	<data name="da_thanh_toan_phi_giu_cho" xml:space="preserve">
+    <value>Collected queuing fee</value>
+  </data>
+	<data name="dac_biet" xml:space="preserve">
+    <value>Special</value>
+  </data>
+	<data name="danh_sach_chiet_khau" xml:space="preserve">
+    <value>Discount Items</value>
+  </data>
+	<data name="dieu_kien_ap_dung" xml:space="preserve">
+    <value>Conditions apply</value>
+  </data>
+	<data name="discount_no" xml:space="preserve">
+    <value>Discount No.</value>
+  </data>
+	<data name="loai_chiet_khau" xml:space="preserve">
+    <value>Discount type</value>
+  </data>
+	<data name="quyen_uu_tien" xml:space="preserve">
+    <value>Priority</value>
+  </data>
+	<data name="user_name_khong_dung" xml:space="preserve">
+    <value>User name incorrect.</value>
+  </data>
+	<data name="xac_nhan_ma_otp">
+		<value>Validate OTP</value>
+	</data>
+	<data name="otp_duoc_gui_ve_so_dien_thoai">
+		<value>OTP has been sent to</value>
+	</data>
+	<data name="vui_long_nhap_otp_de_xac_nhan_tai_khoan">
+		<value>Please enter the OTP to verify your account</value>
+	</data>
+	<data name="ban_chua_nhan_duoc_ma_gui_lai">
+		<value>Didn't receive the code? Resend OTP</value>
+	</data>
+	<data name="ma_xac_thuc_khong_dung">
+		<value>OTP code is incorrect</value>
+	</data>
+	<data name="mat_khau_khong_khop">
+		<value>Password don't match</value>
+	</data>
+	<data name="xac_nhan_mat_khau">
+		<value>Confirm password</value>
+	</data>
+	<data name="vui_long_nhap_mat_khau">
+		<value>Please enter your password</value>
+	</data>
+	<data name="vui_long_nhap_xac_nhan_mat_khau">
+		<value>Please enter confirm your password</value>
+	</data>
+	<data name="ma_qr_khong_dung">
+		<value>QR code is not correct.</value>
+	</data>
+	<data name="quen_mat_khau">
+		<value>Forgot password ?</value>
+	</data>
+	<data name="loi_he_thong">
+		<value>System error.</value>
+	</data>
+	<data name="dang_nhap_voi_user_crm">
+		<value>Login by User CRM</value>
+	</data>
+	<data name="khong_tim_thay_thong_tin_chiet_khau" xml:space="preserve">
+    <value>Discount information not found.</value>
+  </data>
+	<data name="project_active_sts">
+		<value>Active</value>
+	</data>
+	<data name="project_publish_sts">
+		<value>Publish</value>
+	</data>
+	<data name="project_unpublish_sts">
+		<value>Unpublish</value>
+	</data>
+	<data name="project_inactive_sts" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+	<data name="account_real_estate_os">
+		<value>Real estate</value>
+	</data>
+	<data name="account_finance_os">
+		<value>Finance</value>
+	</data>
+	<data name="account_education_os" xml:space="preserve">
+		<value>Education</value>
+	</data>
+	<data name="case_high_priority">
+		<value>High</value>
+	</data>
+	<data name="case_normal_priority">
+		<value>Normal</value>
+	</data>
+	<data name="case_low_priority" xml:space="preserve">
+		<value>Low</value>
+	</data>
+	<data name="handover_price_per_sqm_method">
+		<value>Price per sqm</value>
+	</data>
+	<data name="handover_amount_method">
+		<value>Amount</value>
+	</data>
+	<data name="handover_percent_method" xml:space="preserve">
+		<value>Percent</value>
+	</data>
+	<data name="handover_bare_shell_type">
+		<value>Bare-shell</value>
+	</data>
+	<data name="handover_basic_finished_type" xml:space="preserve">
+		<value>Basic finished</value>
+	</data>
+	<data name="handover_fully_finished_type">
+		<value>Fully finished</value>
+	</data>
+	<data name="handover_fully_finished_and_bare_shell_type">
+		<value>Fully finished the outside and Bare-shell the inside</value>
+	</data>
+	<data name="handover_add_on_option_type" xml:space="preserve">
+		<value>Add on option</value>
+	</data>
+	<data name="takeoutmoney_forfeiture">
+		<value>Forfeiture</value>
+	</data>
+	<data name="takeoutmoney_refund" xml:space="preserve">
+		<value>Refund</value>
+	</data>
+	<data name="discountspecial_active_sts">
+		<value>Active</value>
+	</data>
+	<data name="discountspecial_approved_sts">
+		<value>Approved</value>
+	</data>
+	<data name="discountspecial_reject_sts" xml:space="preserve">
+		<value>Reject</value>
+	</data>
+	<data name="discountspecial_cancelled_sts">
+		<value>Cancelled</value>
+	</data>
+	<data name="discountspecial_inactive_sts" xml:space="preserve">
+		<value>Inactive</value>
+	</data>
+	<data name="contract_purchase_type" xml:space="preserve">
+		<value>Purchase</value>
+	</data>
+	<data name="ca_ngay" xml:space="preserve">
+		<value>All day</value>
+	</data>
+	<data name="document_presentation_type">
+		<value>Presentation</value>
+	</data>
+	<data name="document_product_sheet_type" xml:space="preserve">
+		<value>Product sheet</value>
+	</data>
+	<data name="document_policies_and_procedures_type">
+		<value>Policies and procedures</value>
+	</data>
+	<data name="document_sales_literature_type" xml:space="preserve">
+		<value>Sales literature</value>
+	</data>
+	<data name="document_spreadsheets_type">
+		<value>Spreadsheets</value>
+	</data>
+	<data name="document_news_type">
+		<value>News</value>
+	</data>
+	<data name="document_bulletins_type" xml:space="preserve">
+		<value>Bulletins</value>
+	</data>
+	<data name="document_price_sheets_type">
+		<value>Price sheets</value>
+	</data>
+	<data name="document_manuals_type" xml:space="preserve">
+		<value>Manuals</value>
+	</data>
+	<data name="document_company_background_type" xml:space="preserve">
+		<value>Company background</value>
+	</data>
+	<data name="document_marketing_collateral_type" xml:space="preserve">
+		<value>Marketing collateral</value>
+	</data>
+	<data name="ful_change_contract_type_type" xml:space="preserve">
+		<value>Change contract type</value>
+	</data>
+	<data name="ful_forfeiture_refund_type" xml:space="preserve">
+		<value>Forfeiture refund</value>
+	</data>
+	<data name="ful_key_in_error_type" xml:space="preserve">
+		<value>Key-in error</value>
+	</data>
+	<data name="ful_ccr_group" xml:space="preserve">
+		<value>CCR</value>
+	</data>
+	<data name="ful_fin_group" xml:space="preserve">
+		<value>FIN</value>
+	</data>
+	<data name="ful_sam_group" xml:space="preserve">
+		<value>Sales</value>
+	</data>
+	<data name="ma_hop_dong" xml:space="preserve">
+    <value>Contract number</value>
+  </data>
+  <data name="da_thanh_toan_contract" xml:space="preserve">
+    <value>Paid (amount/ %)</value>
+  </data>
+  <data name="title_hop_dong_mua_ban" xml:space="preserve">
+    <value>Sale - Purchase Agreement (SPA)</value>
+  </data>
+	<data name="nguoi_dung_phai_tu_18_tuoi" xml:space="preserve">
+		<value>User must be older than 18 years old.</value>
+	</data>
+	<data name="case_products_sub" xml:space="preserve">
+		<value>Products</value>
+	</data>
+	<data name="case_query_sub" xml:space="preserve">
+		<value>Query</value>
+	</data>
+	<data name="case_service_sub" xml:space="preserve">
+		<value>Service</value>
+	</data>
+	<data name="case_delivery_sub" xml:space="preserve">
+		<value>Delivery</value>
+	</data>
+	<data name="case_maintenance_sub" xml:space="preserve">
+		<value>Maintenance</value>
+	</data>
+	<data name="case_information_sub" xml:space="preserve">
+		<value>Information</value>
+	</data>
+	<data name="case_default_subject_sub" xml:space="preserve">
+		<value>Default subject</value>
+	</data>
+	<data name="thong_tin_title" xml:space="preserve">
+		<value>Information</value>
+	</data>
+	<data name="giao_dich_title" xml:space="preserve">
+		<value>Transaction</value>
+	</data>
+	<data name="thong_tin_san_pham_title" xml:space="preserve">
+		<value>Unit Information</value>
+	</data>
+	<data name="thong_tin_giu_cho_title" xml:space="preserve">
+		<value>Queue Information</value>
+	</data>
+	<data name="thong_tin_san_dai_ly_title" xml:space="preserve">
+		<value>Sale Agent Company Information</value>
+	</data>
+	<data name="bang_tinh_gia_title" xml:space="preserve">
+		<value>Quotation</value>
+	</data>
+	<data name="dat_coc_title" xml:space="preserve">
+		<value>Reservation</value>
+	</data>
+	<data name="hop_dong_title" xml:space="preserve">
+		<value>Contract</value>
+	</data>
+	<data name="cham_soc_khach_hang_title" xml:space="preserve">
+		<value>Customer Care</value>
+	</data>
+	<data name="ma_dat_coc" xml:space="preserve">
+		<value>Reservation no</value>
+	</data>
+	<data name="ma_bang_tinh_gia" xml:space="preserve">
+		<value>Quotation no</value>
+	</data>
+	<data name="chinh_sach_title" xml:space="preserve">
+		<value>Policy</value>
+	</data>
+	<data name="tong_hop_title" xml:space="preserve">
+		<value>Summary</value>
+	</data>
+	<data name="chi_tiet_title" xml:space="preserve">
+		<value>Detail</value>
+	</data>
+	<data name="lich_title" xml:space="preserve">
+		<value>Installment</value>
+	</data>
+	<data name="nguoi_dong_so_huu_title" xml:space="preserve">
+		<value>Co-Owner</value>
+	</data>
+	<data name="thong_tin_ban_hang_title" xml:space="preserve">
+		<value>Sales Information</value>
+	</data>
+	<data name="thong_tin_chi_tiet_title" xml:space="preserve">
+		<value>Detail Information</value>
+	</data>
+	<data name="thong_tin_bang_tinh_gia_title" xml:space="preserve">
+		<value>Quotation Information</value>
+	</data>
+	<data name="thong_tin_hop_dong_title" xml:space="preserve">
+		<value>Contract Information</value>
+	</data>
+	<data name="thong_tin_phieu_dat_coc_title" xml:space="preserve">
+		<value>Reservation Information</value>
+	</data>
+	<data name="thong_tin_gia_title" xml:space="preserve">
+		<value>Price Information</value>
+	</data>
+	<data name="phi_quan_ly_title" xml:space="preserve">
+		<value>Management</value>
+	</data>
+	<data name="rf_not_print_rf_sts" xml:space="preserve">
+		<value>Not print RF</value>
+	</data>
+	<data name="rf_printed_rf_sts" xml:space="preserve">
+		<value>Printed RF</value>
+	</data>
+	<data name="rf_signed_rf_sts" xml:space="preserve">
+		<value>Signed RF</value>
+	</data>
+	<data name="rf_expired_rf_sts" xml:space="preserve">
+		<value>Expired RF</value>
+	</data>
+	<data name="ma_du_an" xml:space="preserve">
+		<value>Project code</value>
+	</data>
+	<data name="mo_hinh" xml:space="preserve">
+		<value>Business model</value>
+	</data>
+	<data name="thong_tin_du_an_title" xml:space="preserve">
+		<value>Project Information</value>
+	</data>
+	<data name="thong_ke_title" xml:space="preserve">
+		<value>Statistical</value>
+	</data>
+	<data name="giu_cho_title" xml:space="preserve">
+		<value>Queues</value>
+	</data>
+	<data name="de_nghi_thanh_ly" xml:space="preserve">
+		<value>FUL (Terminate)</value>
+	</data>
+	<data name="de_nghi_thanh_ly_that_bai" xml:space="preserve">
+		<value>Failed to FUL (Terminate).</value>
+	</data>
+	<data name="da_tao_danh_sach_theo_doi" xml:space="preserve">
+		<value>Follow up list created successfully.</value>
+	</data>
+	<data name="cap_nhat_thong_tin_title" xml:space="preserve">
+		<value>Edit Information</value>
+	</data>
+	<data name="ful_refund_takeoutmoney" xml:space="preserve">
+		<value>Refund</value>
+	</data>
+	<data name="ful_forfeiture_takeoutmoney" xml:space="preserve">
+		<value>Forfeiture</value>
+	</data>
+	<data name="vui_long_chon_loai" xml:space="preserve">
+		<value>Please choose type.</value>
+	</data>
+	<data name="vui_long_chon_loai_thanh_ly" xml:space="preserve">
+		<value>Please choose termination type.</value>
+	</data>
+	<data name="vui_long_chon_nhom" xml:space="preserve">
+		<value>Please choose group.</value>
+	</data>
+	<data name="vui_long_chon_phuong_thuc_phat" xml:space="preserve">
+		<value>Please choose take out money.</value>
+	</data>
+	<data name="vui_long_nhap_so_tien_hoan_lai" xml:space="preserve">
+		<value>Please enter refund amount.</value>
+	</data>
+	<data name="vui_long_nhap_gia_tri_tu_0_den_100" xml:space="preserve">
+		<value>Please enter take out money between 0 and 100.</value>
+	</data>
+	<data name="vui_long_chon_dot_mo_ban" xml:space="preserve">
+		<value>Please choose phase launch.</value>
+	</data>
+	<data name="cap_nhat_danh_sach_theo_doi_thanh_cong" xml:space="preserve">
+		<value>Follow up list has been edited successfully.</value>
+	</data>
+	<data name="cap_nhat_danh_sach_theo_doi_that_bai" xml:space="preserve">
+		<value>Failed to edit follow up list.</value>
+	</data>
+	<data name="ma_dstd" xml:space="preserve">
+		<value>FUL code</value>
+	</data>
+	<data name="ten" xml:space="preserve">
+		<value>Name</value>
+	</data>
+	<data name="chon_loai_thanh_ly" xml:space="preserve">
+		<value>Choose termination type</value>
+	</data>
+	<data name="chon_nhom" xml:space="preserve">
+		<value>Choose group</value>
+	</data>
+	<data name="gia_tri_thanh_ly_title" xml:space="preserve">
+		<value>Values</value>
+	</data>
+	<data name="nhap_so_tien" xml:space="preserve">
+		<value>Enter amount</value>
+	</data>
+	<data name="thanh_ly_title" xml:space="preserve">
+		<value>Termination</value>
+	</data>
+	<data name="binh_luan_quyet_dinh_title" xml:space="preserve">
+		<value>Comment - Decision</value>
+	</data>
+	<data name="chon_cuoc_hop_dinh_ky" xml:space="preserve">
+		<value>Choose collection meeting</value>
+    </data>
+	<data name="can_ho_phai_o_tinh_trang_san_sang_hoac_giu_cho" xml:space="preserve">
+		<value>Unit must be available or queueing.</value>
+	</data>
+	<data name="sale_marketing_comment" xml:space="preserve">
+		<value>Sales comment</value>
+	</data>
+	<data name="nhap_sale_marketing_comment" xml:space="preserve">
+		<value>Enter Sale and marketing comment</value>
+	</data>
+	<data name="btg_dat_coc_title" xml:space="preserve">
+		<value>Quotation And Reservation</value>
+  </data>
+	<data name="tao_qr_code" xml:space="preserve">
+		<value>Generate QR code</value>
+	</data>
+	<data name="tao_qr_code_thanh_cong" xml:space="preserve">
+		<value>Generate QR code successed</value>
+	</data>
+	<data name="tao_qr_code_that_bai" xml:space="preserve">
+		<value>Generate QR code failed</value>
+	</data>
+	<data name="thong_tin_user_title" xml:space="preserve">
+		<value>User Information</value>
+	</data>
+	<data name="ten_user" xml:space="preserve">
+		<value>User Name</value>
+	</data>
+	<data name="don_vi_kinh_doanh" xml:space="preserve">
+		<value>Business unit</value>
+	</data>
+	<data name="tien_phat_thanh_ly" xml:space="preserve">
+		<value>Forfeiture amount</value>
+	</data>
+	<data name="hoan_tien_phai_nho_hon_tien_da_thanh_toan" xml:space="preserve">
+		<value>Refund amount must be greater than total amount paid.</value>
+	</data>
+	<data name="tao_cuoc_goi_thanh_cong" xml:space="preserve">
+		<value>Create phone call successed.</value>
+	</data>
+	<data name="tao_cuoc_hop_thanh_cong" xml:space="preserve">
+		<value>Create meeting successed.</value>
+	</data>
+	<data name="vui_long_chon_thoi_gian" xml:space="preserve">
+		<value>Pleas select time.</value>
+	</data>
+	<data name="khach_hang_title" xml:space="preserve">
+		<value>Customer</value>
+	</data>
+	<data name="thong_tin_khach_hang_title" xml:space="preserve">
+		<value>Customer Information</value>
+	</data>
+	<data name="tao_moi_khach_hang" xml:space="preserve">
+		<value>Create Customer</value>
+	</data>
+	<data name="cap_nhat_khach_hang" xml:space="preserve">
+		<value>Edit Customer</value>
+	</data>
+	<data name="thon_tin_can_ho_title" xml:space="preserve">
+		<value>Unit information</value>
+	</data>
+	<data name="thong_tin_gia_ban_title" xml:space="preserve">
+		<value>Price Information</value>
+	</data>
+	<data name="ban_giao_title" xml:space="preserve">
+		<value>Handover</value>
+	</data>
+	<data name="danh_sach_theo_doi_title" xml:space="preserve">
+		<value>Follow Up List</value>
+	</data>
+	<data name="phan_hoi_title" xml:space="preserve">
+		<value>Cases</value>
+	</data>
+	<data name="ban_co_muon_huy_phan_hoi_nay_khong" xml:space="preserve">
+		<value>Do you want to cancel this case ?</value>
+	</data>
+	<data name="cap_nhat_cong_viec_title" xml:space="preserve">
+		<value>Edit Task</value>
+	</data>
+	<data name="tao_moi_cong_viec_title" xml:space="preserve">
+		<value>Create Task</value>
+	</data>
+	<data name="cap_nhat_cuoc_goi_title" xml:space="preserve">
+		<value>Edit Phone Call</value>
+	</data>
+	<data name="tao_moi_cuoc_goi_title" xml:space="preserve">
+		<value>Create Phone Call</value>
+	</data>
+	<data name="cap_nhat_cuoc_hop_title" xml:space="preserve">
+		<value>Edit Meeting</value>
+	</data>
+	<data name="tao_moi_cuoc_hop_title" xml:space="preserve">
+		<value>Create Meeting</value>
+	</data>
+	<data name="lich_lam_viec_theo_thang_title" xml:space="preserve">
+		<value>Working Schedule By Month</value>
+	</data>
+	<data name="lich_lam_viec_theo_tuan_title" xml:space="preserve">
+		<value>Working Schedule By Week</value>
+	</data>
+	<data name="lich_lam_viec_theo_ngay_title" xml:space="preserve">
+		<value>Working Schedule By Day</value>
+	</data>
+	<data name="trang_chu_title" xml:space="preserve">
+		<value>Home</value>
+	</data>
+	<data name="tao_bang_tinh_gia_title" xml:space="preserve">
+		<value>Create Quotation</value>
+	</data>
+	<data name="tao_phan_hoi_title" xml:space="preserve">
+		<value>Create Case</value>
+	</data>
+	<data name="phan_hoi_lien_quan_title" xml:space="preserve">
+		<value>Parent Case</value>
+	</data>
+	<data name="thong_tin_giu_cho_title" xml:space="preserve">
+		<value>Queue Information</value>
+	</data>
+	<data name="khong_co_hoat_dong" xml:space="preserve">
+		<value>No Activity</value>
+ </data>
+	<data name="cap_nhat_bang_tinh_gia_title" xml:space="preserve">
+		<value>Edit Quotation</value>
+	</data>
+	<data name="vui_long_nhap_email" xml:space="preserve">
+		<value>Please enter email</value>
+	</data>
+	<data name="thong_tin_lien_he_title" xml:space="preserve">
+		<value>Contact Info</value>
+	</data>
+	<data name="nhap_mandatory_sts" xml:space="preserve">
+		<value>Active</value>
+	</data>
+	<data name="dang_ap_dung_mandatory_sts" xml:space="preserve">
+		<value>Applying</value>
+	</data>
+	<data name="huy_mandatory_sts" xml:space="preserve">
+		<value>Cancel</value>
+	</data>
+	<data name="vo_hieu_luc_mandatory_sts" xml:space="preserve">
+		<value>Inactive</value>
+	</data>
+	<data name="vui_long_chon_loai_the_id" xml:space="preserve">
+		<value>Please choose type id card</value>
+	</data>
+	<data name="tuy_chon_khong_chuyen_doi" xml:space="preserve">
+		<value>Options of disqualify</value>
+	</data>
+	<data name="khach_hang_da_tham_gia_giu_cho_cho_san_pham_nay" xml:space="preserve">
+    <value>This customer has already queued this unit.</value>
+  </data>
+	<data name="khong_tim_thay_du_an" xml:space="preserve">
+    <value>Project not found.</value>
+  </data>
+	<data name="di_den_hop_dong" xml:space="preserve">
+    <value>Go to Contract</value>
+  </data>
+	<data name="huy_dat_coc" xml:space="preserve">
+    <value>Cancel Deposit</value>
+  </data>
+	<data name="tao_moi_danh_sach_theo_doi_title" xml:space="preserve">
+    <value>Create Follow Up List</value>
+  </data>
+	<data name="nhap_ten" xml:space="preserve">
+    <value>Enter name</value>
+  </data>
+	<data name="vui_long_nhap_ten" xml:space="preserve">
+    <value>Please enter name.</value>
+  </data>
+	<data name="tao_moi_danh_sach_theo_doi_that_bai" xml:space="preserve">
+		<value>Failed to create follow up list.</value>
+	</data>
+	<data name="ngay_tao" xml:space="preserve">
+		<value>Date</value>
+	</data>
+	<data name="vui_long_chon_ngay_tao" xml:space="preserve">
+		<value>Please choose date.</value>
+	</data>
+	<data name="chon_ngay_tao" xml:space="preserve">
+		<value>Choose date</value>
+  </data>
+	<data name="phat_cham_tt" xml:space="preserve">
+		<value>INTEREST</value>
+	</data>
+	<data name="tre_han_tt" xml:space="preserve">
+		<value>OVERDUE</value>
+	</data>
+	<data name="phi_lai_xuat_so_tien" xml:space="preserve">
+		<value>Interest Charge (Amount)</value>
+	</data>
+	<data name="tien_lai_da_duoc_tra" xml:space="preserve">
+		<value>Interest Was Paid</value>
+	</data>
+	<data name="phi_lai_suat_con_lai" xml:space="preserve">
+		<value>Interest Charge (Remaining)</value>
+	</data>
+	<data name="ngay_noi_bat" xml:space="preserve">
+		<value>Outstanding Day</value>
+	</data>
+	<data name="tinh_trang_phi_lai_xuat" xml:space="preserve">
+		<value>Interest Charge Status</value>
+	</data>
+	<data name="so_gpkd_khong_hop_le_gom_10_ky_tu" xml:space="preserve">
+		<value>Invalid registration code (registration code must be 10 characters long).</value>
+	</data>
+	<data name="tien_dat_coc_ful" xml:space="preserve">
+		<value>Deposit fee</value>
+	</data>
+	<data name="dat_coc_dashboard" xml:space="preserve">
+		<value>Deposit</value>
+	</data>
+	<data name="ngay_ky_hd" xml:space="preserve">
+    <value>Signed contract date</value>
+  </data>
+  <data name="ngay_ky_vbtt" xml:space="preserve">
+    <value>Signed D.A date</value>
+  </data>
+  <data name="ngay_in_vbtt" xml:space="preserve">
+    <value>DA printed date</value>
+  </data>
+	<data name="ten_dang_nhap_hoac_mat_khau_khong_chinh_xac" xml:space="preserve">
+    <value>Incorrect username or password.</value>
+  </data>
+  <data name="thien_chi" xml:space="preserve">
+    <value>Thiện chí</value>
+  </data>
+  <data name="dang_tai_video_vui_long_doi" xml:space="preserve">
+    <value>Video is loading. Please wait.</value>
+  </data>
+  <data name="khong_tai_duoc_video" xml:space="preserve">
+    <value>Video failed to load.</value>
+  </data>
+  <data name="tai_lieu" xml:space="preserve">
+    <value>Document</value>
+  </data>
+	<data name="vui_long_nhap_so_cccd" xml:space="preserve">
+    <value>Please enter Id Card Number.</value>
+  </data>
+	<data name="thong_tin_tai_lieu_title" xml:space="preserve">
+    <value>Sales Literature</value>
+  </data>
+	<data name="ten_tep" xml:space="preserve">
+    <value>File name</value>
+  </data>
+	<data name="ngay_sua_doi" xml:space="preserve">
+    <value>Modified on</value>
+  </data>
+	<data name="thong_tin_du_an_canh_tranh_title" xml:space="preserve">
+		<value>Competitors Information</value>
+	</data>
+	<data name="diem_manh" xml:space="preserve">
+    <value>Strength</value>
+  </data>
+	<data name="diem_yeu" xml:space="preserve">
+    <value>Weakness</value>
+  </data>
+  <data name="cai_dat" xml:space="preserve">
+    <value>Setting</value>
+  </data>
+  <data name="phulongcrm_can_quyen_quan_ly_tat_ca_cac_tep" xml:space="preserve">
+    <value>PhuLongCRM need permission to manage all files.</value>
+  </data>
+  <data name="vui_long_cap_nhat_ma_khach_hang_de_tao_ma_qr" xml:space="preserve">
+    <value>Please update customer code to generate QR code.</value>
+  </data>
+  <data name="so_dat_coc_da_tao_trong_thang_nay" xml:space="preserve">
+    <value>Deposits made this month.</value>
+  </data>
+  <data name="so_giu_cho_da_tao_trong_thang_nay" xml:space="preserve">
+    <value>Queues created this month.</value>
+  </data>
+  <data name="so_hop_dong_da_tao_trong_thang_nay" xml:space="preserve">
+    <value>Number of contracts created this month.</value>
+  </data>
+  <data name="so_san_pham_da_ban_trong_thang_nay" xml:space="preserve">
+    <value>Number of units sold this month.</value>
+  </data>
+  <data name="tong_tien_co_the_nhan_trong_thang_nay" xml:space="preserve">
+    <value>Total amount can receive this month.</value>
+  </data>
+  <data name="tong_tien_da_nhan_trong_thang_nay" xml:space="preserve">
+    <value>Total amount received this month.</value>
+  </data>
+  <data name="bieu_do_hoa_hong_4_thang_gan_nhat" xml:space="preserve">
+    <value>Rose chart for the last 4 months.</value>
+  </data>
+  <data name="bieu_do_giao_dich_4_thang_gan_nhat" xml:space="preserve">
+    <value>Chart of transactions in the last 4 months.</value>
+  </data>
+  <data name="giu_cho_btg" xml:space="preserve">
+    <value>Queue</value>
+  </data>
+</root>

@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             x:Class="PhuLongCRM.Views.ActivityPopupContentView"
+             AbsoluteLayout.LayoutBounds="0,0,1,1" 
+             AbsoluteLayout.LayoutFlags="All" 
+             BackgroundColor="#90000000">
+    <telerikPrimitives:RadBorder VerticalOptions="FillAndExpand" CornerRadius="10" BackgroundColor="White" Margin="20,80">
+        <telerikPrimitives:RadBorder.GestureRecognizers>
+            <TapGestureRecognizer/>
+        </telerikPrimitives:RadBorder.GestureRecognizers>
+        <Grid Grid.Row="0" Margin="10,10,10,0" RowDefinitions="Auto,*,Auto">
+            <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto" Grid.Row="0" Grid.Column="0">
+                <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding ActivityStatusCode.Background}">
+                    <Label Grid.Column="0" Text="{Binding ActivityStatusCode.Name}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
+                </telerikPrimitives:RadBorder>
+                <Label Grid.Column="1" Text="{Binding ActivityType}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                <Label Grid.Column="2" Text="&#xf057;" FontFamily="FontAwesomeSolid" VerticalOptions="Center" FontSize="20" Padding="5" TextColor="#666666">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="CloseContentActivity_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+            <StackLayout Grid.Row="1">
+                <Grid x:Name="ContentPhoneCall" IsVisible="false" RowSpacing="10" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*" ColumnDefinitions="Auto,*">
+                    <Label Text="{Binding PhoneCall.subject}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource NavigationPrimary}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Padding="0,5"/>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.goi_tu}" Grid.Column="0" FontSize="14" TextColor="#444444" Grid.Row="1"/>
+                    <telerikPrimitives:RadBorder Grid.Column="1" Grid.Row="1" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                        <Label Text="{Binding PhoneCall.call_from}" FontSize="14" TextColor="#444444" HorizontalOptions="Start"/>
+                    </telerikPrimitives:RadBorder>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.goi_den}" Grid.Column="0" FontSize="14" TextColor="#444444" Grid.Row="2"/>
+                    <telerikPrimitives:RadBorder Grid.Column="1" Grid.Row="2" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                        <Label Text="{Binding PhoneCall.call_to}" FontSize="14" TextColor="{StaticResource NavigationPrimary}" HorizontalOptions="Start">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="PhoneCallTo_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </telerikPrimitives:RadBorder>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.so_dien_thoai}" Grid.Column="0" FontSize="14" TextColor="#444444" Grid.Row="3"/>
+                    <telerikPrimitives:RadBorder Grid.Column="1" Grid.Row="3" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                        <Label Text="{Binding PhoneCall.phonenumber}" FontSize="14" TextColor="#444444" HorizontalOptions="Start"/>
+                    </telerikPrimitives:RadBorder>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.nguoi_lien_quan}" Grid.Column="0" FontSize="14" TextColor="#444444" Grid.Row="4"/>
+                    <telerikPrimitives:RadBorder Grid.Column="1" Grid.Row="4" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                        <Label Text="{Binding PhoneCall.Customer.Name}" FontSize="14" TextColor="#444444" HorizontalOptions="Start"/>
+                    </telerikPrimitives:RadBorder>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.thoi_gian_bat_dau}" Grid.Column="0" FontSize="14" TextColor="#444444" Grid.Row="5"/>
+                    <telerikPrimitives:RadBorder Grid.Column="1" Grid.Row="5" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                        <Label Text="{Binding PhoneCall.scheduledstart,StringFormat='{0:dd/MM/yyyy - HH:mm}'}" FontSize="14" TextColor="#444444" HorizontalOptions="Start" />
+                    </telerikPrimitives:RadBorder>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.thoi_gian_ket_thuc}" Grid.Column="0" FontSize="14" TextColor="#444444" Grid.Row="6"/>
+                    <telerikPrimitives:RadBorder Grid.Column="1" Grid.Row="6" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                        <Label Text="{Binding PhoneCall.scheduledend,StringFormat='{0:dd/MM/yyyy - HH:mm}'}" FontSize="14" TextColor="#444444" HorizontalOptions="Start"/>
+                    </telerikPrimitives:RadBorder>
+
+
+                    <controls:FormLabel Text="{x:Static lang:Language.mo_ta}" Grid.Column="0" FontSize="14" TextColor="#444444" Grid.Row="7"/>
+                    <telerikPrimitives:RadBorder Grid.Column="0" Grid.Row="8" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Grid.ColumnSpan="2">
+                        <Label Text="{Binding PhoneCall.description}" Grid.Column="1" FontSize="14" TextColor="#444444"/>
+                    </telerikPrimitives:RadBorder>
+                </Grid>
+
+                <Grid x:Name="ContentTask" IsVisible="false" RowSpacing="10" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*" ColumnDefinitions="Auto,*" >
+                    <Label Text="{Binding Task.subject}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource NavigationPrimary}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Padding="0,5"/>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.nguoi_lien_quan}" Grid.Column="0" FontSize="14" TextColor="#444444" Grid.Row="1"/>
+                    <telerikPrimitives:RadBorder Grid.Column="1" Grid.Row="1" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                        <Label Text="{Binding Task.Customer.Name}" FontSize="14" TextColor="{StaticResource NavigationPrimary}" HorizontalOptions="Start">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TaskCustomer_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </telerikPrimitives:RadBorder>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.thoi_gian_bat_dau}" Grid.Column="0" FontSize="14" TextColor="#444444" Grid.Row="2"/>
+                    <telerikPrimitives:RadBorder Grid.Column="1" Grid.Row="2" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                        <Label Text="{Binding Task.scheduledstart,StringFormat='{0:dd/MM/yyyy - HH:mm}'}" FontSize="14" TextColor="#444444" HorizontalOptions="Start" />
+                    </telerikPrimitives:RadBorder>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.thoi_gian_ket_thuc}" Grid.Column="0" FontSize="14" TextColor="#444444" Grid.Row="3"/>
+                    <telerikPrimitives:RadBorder Grid.Column="1" Grid.Row="3" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                        <Label Text="{Binding Task.scheduledend,StringFormat='{0:dd/MM/yyyy - HH:mm}'}" FontSize="14" TextColor="#444444" HorizontalOptions="Start"/>
+                    </telerikPrimitives:RadBorder>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.mo_ta}" Grid.Column="0" FontSize="14" TextColor="#444444" Grid.Row="4"/>
+                    <telerikPrimitives:RadBorder Grid.Column="0" Grid.Row="5" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Grid.ColumnSpan="2">
+                        <Label Text="{Binding Task.description}" Grid.Column="1" FontSize="14" TextColor="#444444"/>
+                    </telerikPrimitives:RadBorder>
+                </Grid>
+
+                <StackLayout x:Name="ContentMeet" IsVisible="false" Spacing="10" >
+                    <Label Text="{Binding Meet.subject}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource NavigationPrimary}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Padding="0,5"/>
+                    <ScrollView>
+                        <StackLayout>
+                            <Grid ColumnDefinitions="4*,6*">
+                                <controls:FormLabel Text="{x:Static lang:Language.nguoi_tham_du_bat_buoc}" Grid.Column="0" FontSize="14" TextColor="#444444" LineHeight="1.2"/>
+                                <telerikPrimitives:RadBorder Grid.Column="1" BorderColor="#f3f3f3" Padding="0" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                                    <Grid>
+                                        <FlexLayout x:Name="flexRequired" Wrap="Wrap" AlignItems="Start">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Label Text="{Binding Label}" Padding="5" FontSize="14" TextColor="{StaticResource NavigationPrimary}">
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Required_Tapped" CommandParameter="{Binding .}"/>
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
+                                    </Grid>
+                                </telerikPrimitives:RadBorder>
+                            </Grid>
+                            <Grid ColumnDefinitions="4*,6*">
+                                <controls:FormLabel Text="{x:Static lang:Language.nguoi_tham_khong_du_bat_buoc}" Grid.Column="0" FontSize="14" TextColor="#444444" LineHeight="1.2"/>
+                                <telerikPrimitives:RadBorder Grid.Column="1" BorderColor="#f3f3f3" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                                    <Label Text="{Binding Meet.optional}" FontSize="14" TextColor="#444444" Margin="5" LineHeight="1.2" HorizontalTextAlignment="Start"/>
+                                </telerikPrimitives:RadBorder>
+                            </Grid>
+                            <Grid ColumnDefinitions="4*,6*">
+                                <controls:FormLabel Text="{x:Static lang:Language.nguoi_lien_quan}" Grid.Column="0" FontSize="15" TextColor="#444444"/>
+                                <telerikPrimitives:RadBorder Grid.Column="1" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                                    <Label Text="{Binding Meet.Customer.Name}" FontSize="14" TextColor="#444444" HorizontalOptions="Start"/>
+                                </telerikPrimitives:RadBorder>
+                            </Grid>
+                            <Grid ColumnDefinitions="4*,6*">
+                                <controls:FormLabel Text="{x:Static lang:Language.dia_diem}" Grid.Column="0" FontSize="14" TextColor="#444444"/>
+                                <telerikPrimitives:RadBorder Grid.Column="1" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                                    <Label Text="{Binding Meet.location}" FontSize="14" TextColor="#444444" HorizontalOptions="Start"/>
+                                </telerikPrimitives:RadBorder>
+                            </Grid>
+                            <Grid ColumnDefinitions="4*,6*">
+                                <controls:FormLabel Text="{x:Static lang:Language.thoi_gian_bat_dau}" Grid.Column="0" FontSize="14" TextColor="#444444"/>
+                                <telerikPrimitives:RadBorder Grid.Column="1" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                                    <Label Text="{Binding Meet.scheduledstart,StringFormat='{0:dd/MM/yyyy - HH:mm}'}" FontSize="14" TextColor="#444444" HorizontalOptions="Start" />
+                                </telerikPrimitives:RadBorder>
+                            </Grid>
+                            <Grid ColumnDefinitions="4*,6*">
+                                <controls:FormLabel Text="{x:Static lang:Language.thoi_gian_ket_thuc}" Grid.Column="0" FontSize="14" TextColor="#444444"/>
+                                <telerikPrimitives:RadBorder Grid.Column="1" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                                    <Label Text="{Binding Meet.scheduledend,StringFormat='{0:dd/MM/yyyy - HH:mm}'}" FontSize="14" TextColor="#444444" HorizontalOptions="Start"/>
+                                </telerikPrimitives:RadBorder>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,Auto">
+                                <controls:FormLabel Text="{x:Static lang:Language.su_kien_ca_ngay}" Grid.Column="0" FontSize="14" TextColor="#444444"/>
+                                <CheckBox HorizontalOptions="Start" Grid.Column="1" IsChecked="{Binding Meet.isalldayevent}" Margin="10,0,0,0" IsEnabled="False"/>
+                            </Grid>
+                            <controls:FormLabel Text="{x:Static lang:Language.mo_ta}" FontSize="14" TextColor="#444444"/>
+                            <telerikPrimitives:RadBorder BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Grid.ColumnSpan="2">
+                                <Label Text="{Binding Meet.description}" Grid.Column="1" FontSize="14" TextColor="#444444"/>
+                            </telerikPrimitives:RadBorder>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+            </StackLayout>
+            <Grid IsVisible="{Binding ShowGridButton}" Grid.Row="2" ColumnDefinitions="*,*" BackgroundColor="White" Padding="10,0,10,10">
+                <Button Text="{x:Static lang:Language.cap_nhat}" Grid.Column="0" Clicked="Update_Clicked" TextColor="White" FontSize="16" FontAttributes="Bold" HeightRequest="40" BackgroundColor="{StaticResource NavigationPrimary}" CornerRadius="10" VerticalOptions="Center"/>
+                <Button Text="{x:Static lang:Language.hoan_thanh}" Grid.Column="1" Clicked="Completed_Clicked" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" HeightRequest="40" BackgroundColor="White" CornerRadius="10" BorderColor="{StaticResource NavigationPrimary}" BorderWidth="1" VerticalOptions="Center"/>
+            </Grid>
+        </Grid>
+    </telerikPrimitives:RadBorder>
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="CloseContentActivity_Tapped"/>
+    </ContentView.GestureRecognizers>
+</ContentView>

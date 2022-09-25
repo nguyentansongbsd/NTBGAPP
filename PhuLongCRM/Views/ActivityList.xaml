@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns:helper="clr-namespace:PhuLongCRM.Helper"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:views="clr-namespace:PhuLongCRM.Views" xmlns:converters="clr-namespace:PhuLongCRM.Converters"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             x:Class="PhuLongCRM.Views.ActivityList"
+             Title="{x:Static lang:Language.hoat_dong}">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid RowDefinitions="Auto,Auto,*" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <controls:TabControl ListTab="cong_viec,cuoc_hop,cuoc_goi" IndexTab="TabControl_IndexTab"/>
+
+                <controls:SearchBarFrame x:Name="searchBar" Grid.Row="1" Margin="10,10,10,5">
+                    <controls:SearchBar  Text="{Binding Keyword}" SearchButtonPressed="SearchBar_SearchButtonPressed" TextChanged="SearchBar_TextChanged"/>
+                </controls:SearchBarFrame>
+                <controls:BsdListView x:Name="listView" Grid.Row="2" ItemsSource="{Binding Data}" HasUnevenRows="True" ItemTapped="listView_ItemTapped">
+                    <controls:BsdListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout BackgroundColor ="White" Padding="20" Margin="0,1">
+                                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto" Grid.Row="0" Grid.Column="0">
+                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding statecode_color}" VerticalOptions="Start">
+                                            <Label Grid.Column="0" Text="{Binding statecode_format}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
+                                        </telerikPrimitives:RadBorder>
+                                        <Label Grid.Column="1" Text="{Binding subject}" TextColor="#1C78C2" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*">
+                                        <Label Text="{Binding Source={x:Static lang:Language.khach_hang},StringFormat='{0}: '}" TextColor="Gray" FontSize="15" Grid.Column="0"/>
+                                        <Label Text="{Binding customer}" TextColor="Black" FontSize="15" Grid.Column="1"/>
+                                    </Grid>
+                                    <!--<controls:FieldListViewItem Title="{x:Static lang:Language.khach_hang}" Text="{Binding customer}"/>-->
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.thoi_gian_bat_dau}" Text="{Binding scheduledstart_format, StringFormat='{0:dd/MM/yyyy - HH:mm}'}"/>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.thoi_gian_ket_thuc}" Text="{Binding scheduledend_format, StringFormat='{0:dd/MM/yyyy - HH:mm}'}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:BsdListView.ItemTemplate>
+                </controls:BsdListView>
+            </Grid>
+
+            <controls:ExtendedFrame AbsoluteLayout.LayoutBounds="0,1,1,59" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" BackgroundColor="#1399D5" Padding="0" HorizontalOptions="End" Margin="0,0,15,15" HeightRequest="44" WidthRequest="44" CornerRadius="22">
+                <Button Text="&#xf067;" Clicked="NewActivity_Clicked"  TextColor="White" FontSize="18" FontFamily="FontAwesomeSolid" WidthRequest="44" HeightRequest="44" CornerRadius="22" BackgroundColor="#1399D5"/>
+            </controls:ExtendedFrame>
+
+            <views:ActivityPopupContentView x:Name="ActivityPopup" HidePopupActivity="ActivityPopup_HidePopupActivity"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

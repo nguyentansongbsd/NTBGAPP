@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+      xmlns:controls="clr-namespace:PhuLongCRM.Controls" 
+      x:Class="PhuLongCRM.Controls.ListViewMultiTabs"
+      RowDefinitions="Auto,*">
+    <controls:SearchBarFrame x:Name="searchBar" Grid.Row="0" Margin="10,10,10,5">
+        <controls:SearchBar Text="{Binding Key}" SearchButtonPressed="SearchBar_SearchButtonPressed" TextChanged="SearchBar_TextChanged"/>
+    </controls:SearchBarFrame>
+    <controls:BsdListView x:Name="listView" Grid.Row="1" ItemsSource="{Binding Data}" BackgroundColor="White" />
+</Grid>

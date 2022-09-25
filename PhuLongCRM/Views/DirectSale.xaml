@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" BackgroundColor="White"
+             Title="{x:Static lang:Language.gio_hang}"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             x:Name="rootPage"
+             x:Class="PhuLongCRM.Views.DirectSale">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="Clear_Clicked">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="&#xf0e2;" FontFamily="FontAwesomeSolid" Size="18" Color="White"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView  AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="0,0,0,60">
+                <StackLayout Padding="15">
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.du_an}" Margin="0,5,0,0"/>
+                    <Grid>
+                        <controls:MainEntry ShowClearButton="False" Text="{Binding Project.bsd_name}" Placeholder="{x:Static lang:Language.chon_du_an}" FontSize="15" TextColor="#333333"/>
+                        <StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="LoadProject_Tapped"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                    
+                    <controls:FormLabel Text="{x:Static lang:Language.dot_mo_ban}" Margin="0,5,0,0"/>
+                    <controls:LookUp x:Name="lookupPhasesLaunch" Placeholder="{x:Static lang:Language.chon_dot_mo_ban}" Margin="0,0,0,5" BottomModal="{Reference LookupModal}" NameDisplay="Label" SelectedItem="{Binding PhasesLaunch}" ItemsSource="{Binding PhasesLaunchs}" SelectedItemChange="PhaseLaunchItem_SelectedChange" />
+
+                    <StackLayout Orientation="Horizontal" Margin="0,5">
+                        <controls:FormLabel Text="{x:Static lang:Language.su_kien}"/>
+                        <telerikPrimitives:RadCheckBox CheckedColor="{StaticResource NavigationPrimary}" x:Name="checkbox" IsChecked="{Binding IsEvent,Mode=TwoWay}" />
+                    </StackLayout>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.ma_san_pham}" Margin="0,5,0,0"/>
+                    <controls:MainEntry Text="{Binding UnitCode}" Placeholder="{x:Static lang:Language.ma_san_pham}" Margin="0,0,0,5"/>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.huong}" Margin="0,5,0,0"/>
+                    <controls:LookUpMultipleOptions x:Name="lookupMultipleDirection" Placeholder="{x:Static lang:Language.chon_huong}" Margin="0,0,0,5" CenterModal="{Reference CenterModal}" SelectedIds="{Binding SelectedDirections}" ItemsSource="{Binding DirectionOptions}" ShowClearButton="False" ShowCloseButton="False"/>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.huong_nhin}" Margin="0,5,0,0"/>
+                    <controls:LookUpMultipleOptions x:Name="lookupMultipleViews" Placeholder="{x:Static lang:Language.chon_huong_nhin}" Margin="0,0,0,5" CenterModal="{Reference CenterModal}" SelectedIds="{Binding SelectedViews}" ItemsSource="{Binding ViewOptions}" ShowClearButton="False" ShowCloseButton="False"/>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.tinh_trang_san_pham}" Margin="0,5,0,0"/>
+                    <controls:LookUpMultipleOptions x:Name="lookupMultipleUnitStatus" Placeholder="{x:Static lang:Language.chon_tinh_trang_san_pham}" Margin="0,0,0,5" CenterModal="{Reference CenterModal}" SelectedIds="{Binding SelectedUnitStatus}" ItemsSource="{Binding UnitStatusOptions}" ShowClearButton="False" ShowCloseButton="False"/>
+
+                    <controls:FormLabel Text="{x:Static lang:Language.dien_tich_su_dung}" Margin="0,5,0,0"/>
+                    <controls:LookUp x:Name="lookupNetArea" Placeholder="{x:Static lang:Language.chon_dien_tich_su_dung}" Margin="0,0,0,5" BottomModal="{Reference LookupModal}" NameDisplay="Name" SelectedItem="{Binding NetArea}" ItemsSource="{Binding NetAreas}"/>
+                    
+                    <controls:FormLabel Text="{x:Static lang:Language.gia_ban_vnd}" Margin="0,5,0,0"/>
+                    <controls:LookUp x:Name="lookupPrice" Placeholder="{x:Static lang:Language.chon_gia_ban}" Margin="0,0,0,5" BottomModal="{Reference LookupModal}" NameDisplay="Name" SelectedItem="{Binding Price}" ItemsSource="{Binding Prices}"/>
+                </StackLayout>
+            </ScrollView>
+            <Grid AbsoluteLayout.LayoutBounds="0,1,1,60" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" BackgroundColor="White" ColumnDefinitions="*,*" RowDefinitions="Auto" Padding="15,10">
+                <Button Grid.Column="0" Text="{x:Static lang:Language.thong_tin_du_an}" FontAttributes="Bold" BackgroundColor="{StaticResource NavigationPrimary}" TextColor="White"  Clicked="ShowInfo" HeightRequest="40" Padding="10,2" CornerRadius="10"/>
+                <Button Grid.Column="1" Text="{x:Static lang:Language.tim_kiem}" FontAttributes="Bold" BackgroundColor="{StaticResource NavigationPrimary}" HeightRequest="40" Padding="10,2"  CornerRadius="10" TextColor="White" Clicked="SearchClicked"/>
+            </Grid>
+
+            <controls:BottomModal x:Name="bottomModalProject" Title="{x:Static lang:Language.chon_du_an}" >
+                <controls:BottomModal.ModalContent>
+                    <Grid RowDefinitions="Auto,*">
+                        <controls:SearchBarFrame x:Name="searchBar" Grid.Row="0" Margin="10,5">
+                            <controls:SearchBar x:Name="searchProject" SearchButtonPressed="SearchBar_SearchButtonPressed" TextChanged="SearchBar_TextChanged"/>
+                        </controls:SearchBarFrame>
+                        <ListView x:Name="listviewProject" Grid.Row="1" ItemTapped="ProjectItem_Tapped" HasUnevenRows="True" SelectionMode="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout BackgroundColor="White" Padding="15,10" Spacing="4">
+                                            <Label Text="{Binding bsd_name}" FontSize="15" FontAttributes="Bold" TextColor="#333333"/>
+                                            <Label Text="{Binding bsd_projectcode}" FontSize="14" TextColor="Gray"/>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </controls:BottomModal.ModalContent>
+            </controls:BottomModal>
+
+            <controls:BottomModal x:Name="LookupModal"/>
+            <controls:CenterModal x:Name="CenterModal"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

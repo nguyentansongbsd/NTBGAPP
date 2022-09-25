@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PhuLongCRM.Controls.MyButtonPopup">
+    <ContentView.Content>
+        <Frame x:Name="main_frame" CornerRadius="{Binding radiusCorner}" Padding="{Binding ContentPadding}" HasShadow="true" BorderColor="{Binding BorderContentColor}" BackgroundColor="{Binding BackgroundContentColor}">
+            <ImageButton x:Name="main_image" Source="{Binding SourceImage}" BackgroundColor="Transparent"/>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

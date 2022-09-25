@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             HorizontalOptions="End"
+             BackgroundColor="Transparent"
+             AbsoluteLayout.LayoutBounds="0,1,1,64"
+             AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+             x:Class="PhuLongCRM.Controls.FloatingButtonGroup">
+    <StackLayout VerticalOptions="End">
+        <ScrollView x:Name="MainScrollView" IsVisible="false" VerticalOptions="End">
+            <StackLayout x:Name="Options" BindableLayout.ItemsSource="{Binding ItemsSource}" HorizontalOptions="End" Padding="10" Spacing="10">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <controls:ClickableView Orientation="Horizontal" HorizontalOptions="End" Clicked="OnItem_Clicked" CommandParameter="{Binding}">
+                            <controls:ExtendedFrame Padding="15,0" Margin="0" CornerRadius="10" HeightRequest="30" BorderColor="#e0e0e0"  BackgroundColor="White">
+                                <Label Text="{Binding Text}" TextColor="#444444" VerticalTextAlignment="Center" FontFamily="SegoeBold" HeightRequest="30" MaxLines="1" LineBreakMode="MiddleTruncation" Margin="0" FontSize="15" />
+                            </controls:ExtendedFrame>
+                            <controls:ExtendedFrame WidthRequest="44" HeightRequest="44" BorderColor="#e0e0e0" CornerRadius="22" Padding="0" Margin="5" BackgroundColor="White">
+                                <Label Text="{Binding Icon}" FontSize="17" WidthRequest="44" HeightRequest="44" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontFamily="{Binding FontFamily}" TextColor="Black" />
+                            </controls:ExtendedFrame>
+                        </controls:ClickableView>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </ScrollView>
+        <controls:ExtendedFrame Padding="0" Margin="5,5,10,10" WidthRequest="44" CornerRadius="22" HorizontalOptions="End">
+            <Button x:Name="BtnShow" Clicked="BtnShow_CLicked" Text="&#xf129;" FontSize="20" WidthRequest="44" HeightRequest="44" CornerRadius="22" FontFamily="FontAwesomeSolid" BackgroundColor="#2196F3" TextColor="White" />
+        </controls:ExtendedFrame>
+    </StackLayout>
+</ContentView>

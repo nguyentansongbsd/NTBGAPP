@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+    Title="{x:Static lang:Language.dang_nhap}"
+    x:Class="PhuLongCRM.Views.LoginByUserCRMPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <WebView x:Name="loginWeb" Navigating="loginWeb_Navigating"  AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
