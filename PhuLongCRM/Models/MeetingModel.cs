@@ -183,6 +183,8 @@ namespace PhuLongCRM.Models
         public string required { get => _required; set { _required = value; OnPropertyChanged(nameof(required)); } }
 
         private string _optional;
-        public string optional { get => _optional; set { _optional = value; OnPropertyChanged(nameof(optional)); } }    
+        public string optional { get => _optional; set { _optional = value; OnPropertyChanged(nameof(optional)); } }
+
+        public string bsd_collectiontype { get; set; }
     }
 }

@@ -245,7 +245,7 @@ namespace PhuLongCRM.Views
                 {
                     if (CustomerPage.NeedToRefreshContact.HasValue) CustomerPage.NeedToRefreshContact = true;
                     if (ContactDetailPage.NeedToRefreshActivity.HasValue) ContactDetailPage.NeedToRefreshActivity = true;
-                    if (QueueForm.NeedToRefresh.HasValue) QueueForm.NeedToRefresh = true;
+                    //if (QueueForm.NeedToRefresh.HasValue) QueueForm.NeedToRefresh = true;
                     await viewModel.PostCMND();
                     await Navigation.PopAsync();
                     ToastMessageHelper.ShortMessage(Language.tao_khach_hang_ca_nhan_thanh_cong);

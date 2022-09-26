@@ -61,12 +61,12 @@ namespace PhuLongCRM.Views
                     Lookup_NguoiLienQuan.IsVisible = false;
                     ContactMapping.IsVisible = true;
                 }
-                else if (page_before == "QueuesDetialPage" && QueuesDetialPage.FromQueue != null && !string.IsNullOrWhiteSpace(QueuesDetialPage.FromQueue.Val))
-                {
-                    viewModel.Customer = QueuesDetialPage.FromQueue;
-                    Lookup_NguoiLienQuan.IsVisible = false;
-                    ContactMapping.IsVisible = true;
-                }
+                //else if (page_before == "QueuesDetialPage" && QueuesDetialPage.FromQueue != null && !string.IsNullOrWhiteSpace(QueuesDetialPage.FromQueue.Val))
+                //{
+                //    viewModel.Customer = QueuesDetialPage.FromQueue;
+                //    Lookup_NguoiLienQuan.IsVisible = false;
+                //    ContactMapping.IsVisible = true;
+                //}
                 else
                 {
                     Lookup_NguoiLienQuan.IsVisible = true;
@@ -180,7 +180,7 @@ namespace PhuLongCRM.Views
                     if (ContactDetailPage.NeedToRefreshActivity.HasValue) ContactDetailPage.NeedToRefreshActivity = true;
                     if (AccountDetailPage.NeedToRefreshActivity.HasValue) AccountDetailPage.NeedToRefreshActivity = true;
                     if (LeadDetailPage.NeedToRefreshActivity.HasValue) LeadDetailPage.NeedToRefreshActivity = true;
-                    if (QueuesDetialPage.NeedToRefreshActivity.HasValue) QueuesDetialPage.NeedToRefreshActivity = true;
+                    //if (QueuesDetialPage.NeedToRefreshActivity.HasValue) QueuesDetialPage.NeedToRefreshActivity = true;
                     ToastMessageHelper.ShortMessage(Language.tao_cong_viec_thanh_cong);
                     await Navigation.PopAsync();
                     LoadingHelper.Hide();
@@ -204,7 +204,7 @@ namespace PhuLongCRM.Views
                     if (ContactDetailPage.NeedToRefreshActivity.HasValue) ContactDetailPage.NeedToRefreshActivity = true;
                     if (AccountDetailPage.NeedToRefreshActivity.HasValue) AccountDetailPage.NeedToRefreshActivity = true;
                     if (LeadDetailPage.NeedToRefreshActivity.HasValue) LeadDetailPage.NeedToRefreshActivity = true;
-                    if (QueuesDetialPage.NeedToRefreshActivity.HasValue) QueuesDetialPage.NeedToRefreshActivity = true;
+                    //if (QueuesDetialPage.NeedToRefreshActivity.HasValue) QueuesDetialPage.NeedToRefreshActivity = true;
                     ToastMessageHelper.ShortMessage(Language.cap_nhat_thanh_cong);
                     await Navigation.PopAsync();
                     LoadingHelper.Hide();

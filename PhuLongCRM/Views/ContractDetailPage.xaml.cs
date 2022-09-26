@@ -357,20 +357,20 @@ namespace PhuLongCRM.Views
 
         private void GoToDatDoc_Tapped(object sender, EventArgs e)
         {
-            LoadingHelper.Show();
-            BangTinhGiaDetailPage datcoc = new BangTinhGiaDetailPage(viewModel.Contract.queue_id,true);
-            datcoc.OnCompleted = async (isSuccess) => {
-                if (isSuccess)
-                {
-                    await Navigation.PushAsync(datcoc);
-                    LoadingHelper.Hide();
-                }
-                else
-                {
-                    LoadingHelper.Hide();
-                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
-                }
-            };
+            //LoadingHelper.Show();
+            //BangTinhGiaDetailPage datcoc = new BangTinhGiaDetailPage(viewModel.Contract.queue_id,true);
+            //datcoc.OnCompleted = async (isSuccess) => {
+            //    if (isSuccess)
+            //    {
+            //        await Navigation.PushAsync(datcoc);
+            //        LoadingHelper.Hide();
+            //    }
+            //    else
+            //    {
+            //        LoadingHelper.Hide();
+            //        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+            //    }
+            //};
         }
 
         private async void Interest_Tapped(object sender, EventArgs e)

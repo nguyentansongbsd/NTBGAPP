@@ -215,60 +215,60 @@ namespace PhuLongCRM.Views
         }
         private void BangTinhGia_Clicked(object sender, EventArgs e)
         {
-            LoadingHelper.Show();
-            ReservationForm reservationForm = new ReservationForm(viewModel.Unit.productid, null, null, null, null);
-            reservationForm.CheckReservation = async (isSuccess) => {
-                if (isSuccess == 0)
-                {
-                    await Navigation.PushAsync(reservationForm);
-                    LoadingHelper.Hide();
-                }
-                else if (isSuccess == 1)
-                {
-                    LoadingHelper.Hide();
-                    ToastMessageHelper.ShortMessage(Language.san_pham_khong_the_tao_bang_tinh_gia);
-                }
-                else
-                {
-                    LoadingHelper.Hide();
-                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_san_pham);
-                }
-            };
+            //LoadingHelper.Show();
+            //ReservationForm reservationForm = new ReservationForm(viewModel.Unit.productid, null, null, null, null);
+            //reservationForm.CheckReservation = async (isSuccess) => {
+            //    if (isSuccess == 0)
+            //    {
+            //        await Navigation.PushAsync(reservationForm);
+            //        LoadingHelper.Hide();
+            //    }
+            //    else if (isSuccess == 1)
+            //    {
+            //        LoadingHelper.Hide();
+            //        ToastMessageHelper.ShortMessage(Language.san_pham_khong_the_tao_bang_tinh_gia);
+            //    }
+            //    else
+            //    {
+            //        LoadingHelper.Hide();
+            //        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_san_pham);
+            //    }
+            //};
         }
         private void GiuChoItem_Tapped(object sender, EventArgs e)
         {
-            LoadingHelper.Show();
-            var itemId = (Guid)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            QueuesDetialPage queuesDetialPage = new QueuesDetialPage(itemId);
-            queuesDetialPage.OnCompleted = async (IsSuccess) => {
-                if (IsSuccess)
-                {
-                    await Navigation.PushAsync(queuesDetialPage);
-                    LoadingHelper.Hide();
-                }
-                else
-                {
-                    LoadingHelper.Hide();
-                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
-                }
-            };
+            //LoadingHelper.Show();
+            //var itemId = (Guid)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            //QueuesDetialPage queuesDetialPage = new QueuesDetialPage(itemId);
+            //queuesDetialPage.OnCompleted = async (IsSuccess) => {
+            //    if (IsSuccess)
+            //    {
+            //        await Navigation.PushAsync(queuesDetialPage);
+            //        LoadingHelper.Hide();
+            //    }
+            //    else
+            //    {
+            //        LoadingHelper.Hide();
+            //        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+            //    }
+            //};
         }
         private void GiuCho_Clicked(object sender, EventArgs e)
         {
-            LoadingHelper.Show();
-            QueueForm queue = new QueueForm(viewModel.Unit.productid, true);
-            queue.OnCompleted = async (IsSuccess) => {
-                if (IsSuccess)
-                {
-                    await Shell.Current.Navigation.PushAsync(queue);
-                    LoadingHelper.Hide();
-                }
-                else
-                {
-                    LoadingHelper.Hide();
-                    // hiện câu thông báo bên queue form
-                }
-            };
+            //LoadingHelper.Show();
+            //QueueForm queue = new QueueForm(viewModel.Unit.productid, true);
+            //queue.OnCompleted = async (IsSuccess) => {
+            //    if (IsSuccess)
+            //    {
+            //        await Shell.Current.Navigation.PushAsync(queue);
+            //        LoadingHelper.Hide();
+            //    }
+            //    else
+            //    {
+            //        LoadingHelper.Hide();
+            //        // hiện câu thông báo bên queue form
+            //    }
+            //};
         }
         private void CreatePopupUnit(Guid unit_id)
         {
@@ -430,7 +430,7 @@ namespace PhuLongCRM.Views
                 Grid.SetRow(radBorderUnitInf, 5);
                 Grid.SetColumnSpan(radBorderUnitInf, 5);
 
-                Label labelQueue = new Label { Text = Language.giu_cho_title, FontSize = 16, FontAttributes = FontAttributes.Bold, VerticalTextAlignment = TextAlignment.Center, Padding = new Thickness(10, 8), BackgroundColor = Color.FromHex("#f4fafe"), TextColor = Color.FromHex("#145a92"), Margin = new Thickness(-10, 0) };
+                Label labelQueue = new Label { Text = Language.giu_cho_title,IsVisible = false, FontSize = 16, FontAttributes = FontAttributes.Bold, VerticalTextAlignment = TextAlignment.Center, Padding = new Thickness(10, 8), BackgroundColor = Color.FromHex("#f4fafe"), TextColor = Color.FromHex("#145a92"), Margin = new Thickness(-10, 0) };
                 grid.Children.Add(labelQueue);
                 Grid.SetColumn(labelQueue, 0);
                 Grid.SetRow(labelQueue, 6);
@@ -444,7 +444,8 @@ namespace PhuLongCRM.Views
                         new ColumnDefinition(),
                         new ColumnDefinition()
                     },
-                    HorizontalOptions = LayoutOptions.Fill
+                    HorizontalOptions = LayoutOptions.Fill,
+                    IsVisible = false
                 };
                 grid.Children.Add(gridBtn);
                 Grid.SetColumn(gridBtn, 0);
@@ -494,19 +495,22 @@ namespace PhuLongCRM.Views
             }
             else if (btnQueue.IsVisible == true && btnQuote.IsVisible == true)
             {
-                gridBtn.IsVisible = true;
+                gridBtn.IsVisible = false;
+                //gridBtn.IsVisible = true;
                 Grid.SetColumn(btnQueue, 0);
                 Grid.SetColumn(btnQuote, 1);
             }
             else if (btnQueue.IsVisible == true && btnQuote.IsVisible == false)
             {
-                gridBtn.IsVisible = true;
+                gridBtn.IsVisible = false;
+                //gridBtn.IsVisible = true;
                 Grid.SetColumn(btnQueue, 0);
                 Grid.SetColumnSpan(btnQueue, 2);
             }
             else if (btnQueue.IsVisible == false && btnQuote.IsVisible == true)
             {
-                gridBtn.IsVisible = true;
+                gridBtn.IsVisible = false;
+                //gridBtn.IsVisible = true;
                 Grid.SetColumn(btnQuote, 0);
                 Grid.SetColumnSpan(btnQuote, 2);
             }

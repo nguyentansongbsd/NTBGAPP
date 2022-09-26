@@ -14,17 +14,6 @@
              x:Class="PhuLongCRM.Views.UnitInfo">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style x:Key="ExpanderHeaderStyle" TargetType="telerikPrimitives:ExpanderHeader">
-                <Setter Property="IndicatorText" Value="&#xf105;"/>
-                <Setter Property="IndicatorLocation" Value="End"/>
-                <Setter Property="IndicatorFontSize" Value="18"/>
-                <Setter Property="IndicatorColor" Value="Gray"/>
-                <Setter Property="IndicatorMargin" Value="0,0,18,0"/>
-                <Setter Property="BackgroundColor" Value="#F2F2F2"/>
-                <Setter Property="BorderColor" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="IndicatorFontFamily" Value="FontAwesomeSolid"/>
-            </Style>
             <converter:DateFormatConverter x:Key="DateFormatConverter" />
             <converter:DecimalFormatConverter x:Key="DecimalFormatConverter" />
             <converter:DecimalToVndConverter x:Key="DecimalToVndConverter" />
@@ -145,8 +134,8 @@
                         <StackLayout x:Name="stackThongTinCanHo" IsVisible="true">
                             <telerikPrimitives:RadExpander IsExpanded="True" AutomationId="masterCardExpander" BorderColor="Transparent">
                                 <telerikPrimitives:RadExpander.Header>
-                                    <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
-                                        <Label Text="{x:Static lang:Language.thon_tin_can_ho_title}" TextColor="#333333" FontSize="15" FontAttributes="Bold" Padding="10"/>
+                                    <telerikPrimitives:ExpanderHeader Style="{x:StaticResource ExpanderHeaderStyle }">
+                                        <Label Style="{StaticResource ExpanderHeadingText}" Text="{x:Static lang:Language.thon_tin_can_ho_title}"/>
                                     </telerikPrimitives:ExpanderHeader>
                                 </telerikPrimitives:RadExpander.Header>
                                 <telerikPrimitives:RadExpander.Content>
@@ -196,8 +185,8 @@
 
                             <telerikPrimitives:RadExpander IsExpanded="True" AutomationId="masterCardExpander" BorderColor="Transparent">
                                 <telerikPrimitives:RadExpander.Header>
-                                    <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
-                                        <Label Text="{x:Static lang:Language.thong_tin_gia_ban_title}" TextColor="#333333" FontSize="15" FontAttributes="Bold" Padding="10"/>
+                                    <telerikPrimitives:ExpanderHeader Style="{x:StaticResource ExpanderHeaderStyle }">
+                                        <Label Style="{StaticResource ExpanderHeadingText}" Text="{x:Static lang:Language.thong_tin_gia_ban_title}"/>
                                     </telerikPrimitives:ExpanderHeader>
                                 </telerikPrimitives:RadExpander.Header>
                                 <telerikPrimitives:RadExpander.Content>
@@ -224,8 +213,8 @@
 
                             <telerikPrimitives:RadExpander IsExpanded="True" AutomationId="masterCardExpander" BorderColor="Transparent">
                                 <telerikPrimitives:RadExpander.Header>
-                                    <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
-                                        <Label Text="{x:Static lang:Language.ban_giao_title}" FontSize="15" TextColor="#333333" FontAttributes="Bold" Padding="10"/>
+                                    <telerikPrimitives:ExpanderHeader Style="{x:StaticResource ExpanderHeaderStyle}">
+                                        <Label Style="{StaticResource ExpanderHeadingText}" Text="{x:Static lang:Language.ban_giao_title}"/>
                                     </telerikPrimitives:ExpanderHeader>
                                 </telerikPrimitives:RadExpander.Header>
                                 <telerikPrimitives:RadExpander.Content>
@@ -260,9 +249,9 @@
                         </StackLayout>
 
                         <StackLayout x:Name="stackGiaoDich" IsVisible="false">
-                            <telerikPrimitives:RadExpander x:Name="layout_danhsachdatcho" IsExpanded="False" AutomationId="masterCardExpander" BorderColor="Transparent">
+                            <!--<telerikPrimitives:RadExpander x:Name="layout_danhsachdatcho" IsExpanded="False" AutomationId="masterCardExpander" BorderColor="Transparent">
                                 <telerikPrimitives:RadExpander.Header>
-                                    <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
+                                    <telerikPrimitives:ExpanderHeader Style="{x:StaticResource ExpanderHeaderStyle }">
                                         <Label Text="{x:Static lang:Language.giu_cho_title}" FontSize="15" TextColor="#333333" FontAttributes="Bold" Padding="10"/>
                                     </telerikPrimitives:ExpanderHeader>
                                 </telerikPrimitives:RadExpander.Header>
@@ -314,7 +303,7 @@
 
                             <telerikPrimitives:RadExpander IsExpanded="False" BorderColor="Transparent">
                                 <telerikPrimitives:RadExpander.Header>
-                                    <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
+                                    <telerikPrimitives:ExpanderHeader Style="{x:StaticResource ExpanderHeaderStyle }">
                                         <Label Text="{x:Static lang:Language.bang_tinh_gia_title}" FontSize="15" TextColor="#333333" FontAttributes="Bold" Padding="10"/>
                                     </telerikPrimitives:ExpanderHeader>
                                 </telerikPrimitives:RadExpander.Header>
@@ -353,7 +342,7 @@
 
                             <telerikPrimitives:RadExpander x:Name="layout_danhsachdatcoc" IsExpanded="False" AutomationId="masterCardExpander" BorderColor="Transparent">
                                 <telerikPrimitives:RadExpander.Header>
-                                    <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
+                                    <telerikPrimitives:ExpanderHeader Style="{x:StaticResource ExpanderHeaderStyle }">
                                         <Label Text="{x:Static lang:Language.dat_coc_title}" FontSize="15" TextColor="#333333" FontAttributes="Bold" Padding="10"/>
                                     </telerikPrimitives:ExpanderHeader>
                                 </telerikPrimitives:RadExpander.Header>
@@ -388,12 +377,12 @@
                                         <Button Clicked="ShowMoreDanhSachDatCoc_Clicked" IsVisible="{Binding ShowMoreDanhSachDatCoc}" BorderColor="#1399D5" CornerRadius="5" BorderWidth="1" BackgroundColor="Transparent" Text="{x:Static lang:Language.xem_them}" TextTransform="None" TextColor="#1399D5" HeightRequest="30" HorizontalOptions="Center" Margin="0,5,0,10" Padding="30,0,30,0"/>
                                     </StackLayout>
                                 </telerikPrimitives:RadExpander.Content>
-                            </telerikPrimitives:RadExpander>
+                            </telerikPrimitives:RadExpander>-->
 
                             <telerikPrimitives:RadExpander x:Name="layout_danhsachhopdong" IsExpanded="False" AutomationId="masterCardExpander" BorderColor="Transparent">
                                 <telerikPrimitives:RadExpander.Header>
-                                    <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
-                                        <Label Text="{x:Static lang:Language.hop_dong_title}" FontSize="15" TextColor="#333333" FontAttributes="Bold" Padding="10"/>
+                                    <telerikPrimitives:ExpanderHeader Style="{x:StaticResource ExpanderHeaderStyle }">
+                                        <Label Style="{StaticResource ExpanderHeadingText}" Text="{x:Static lang:Language.hop_dong_title}"/>
                                     </telerikPrimitives:ExpanderHeader>
                                 </telerikPrimitives:RadExpander.Header>
                                 <telerikPrimitives:RadExpander.Content>
@@ -432,7 +421,7 @@
                     </Grid>
                 </StackLayout>
             </ScrollView>
-            <Grid x:Name="gridButton" RowDefinitions="Auto" AbsoluteLayout.LayoutBounds="0,1,1,50" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" BackgroundColor="White" Padding="10,5">
+            <Grid x:Name="gridButton" IsVisible="false" RowDefinitions="Auto" AbsoluteLayout.LayoutBounds="0,1,1,50" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" BackgroundColor="White" Padding="10,5">
                 <Button x:Name="btnGiuCho" Text="{x:Static lang:Language.giu_cho_btn}" Clicked="GiuCho_Clicked" TextColor="White" FontAttributes="Bold" FontSize="16" HeightRequest="40" BackgroundColor="{StaticResource NavigationPrimary}" CornerRadius="10" />
                 <Button x:Name="btnBangTinhGia" Text="{x:Static lang:Language.bang_tinh_gia_btn}" Clicked="BangTinhGia_Clicked" IsVisible="{Binding IsShowBtnBangTinhGia}" TextColor="White" FontAttributes="Bold" FontSize="16" HeightRequest="40" BackgroundColor="{StaticResource NavigationPrimary}" CornerRadius="10"/>
             </Grid>

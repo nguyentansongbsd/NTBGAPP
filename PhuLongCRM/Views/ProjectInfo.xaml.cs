@@ -107,21 +107,21 @@ namespace PhuLongCRM.Views
         }
         private void GiuCho_Clicked(object sender, EventArgs e)
         {
-            LoadingHelper.Show();
-            QueueForm queue = new QueueForm(viewModel.ProjectId, false);
-            queue.OnCompleted = async (IsSuccess) =>
-            {
-                if (IsSuccess)
-                {
-                    await Navigation.PushAsync(queue);
-                    LoadingHelper.Hide();
-                }
-                else
-                {
-                    LoadingHelper.Hide();
-                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_san_pham);
-                }
-            };
+            //LoadingHelper.Show();
+            //QueueForm queue = new QueueForm(viewModel.ProjectId, false);
+            //queue.OnCompleted = async (IsSuccess) =>
+            //{
+            //    if (IsSuccess)
+            //    {
+            //        await Navigation.PushAsync(queue);
+            //        LoadingHelper.Hide();
+            //    }
+            //    else
+            //    {
+            //        LoadingHelper.Hide();
+            //        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_san_pham);
+            //    }
+            //};
         }
         private async void ShowMoreListDatCho_Clicked(object sender, EventArgs e)
         {
@@ -151,22 +151,22 @@ namespace PhuLongCRM.Views
         }
         private void GiuChoItem_Tapped(object sender, EventArgs e)
         {
-            LoadingHelper.Show();
-            var itemId = (Guid)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            QueuesDetialPage queuesDetialPage = new QueuesDetialPage(itemId);
-            queuesDetialPage.OnCompleted = async (IsSuccess) =>
-            {
-                if (IsSuccess)
-                {
-                    await Navigation.PushAsync(queuesDetialPage);
-                    LoadingHelper.Hide();
-                }
-                else
-                {
-                    LoadingHelper.Hide();
-                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
-                }
-            };
+            //LoadingHelper.Show();
+            //var itemId = (Guid)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            //QueuesDetialPage queuesDetialPage = new QueuesDetialPage(itemId);
+            //queuesDetialPage.OnCompleted = async (IsSuccess) =>
+            //{
+            //    if (IsSuccess)
+            //    {
+            //        await Navigation.PushAsync(queuesDetialPage);
+            //        LoadingHelper.Hide();
+            //    }
+            //    else
+            //    {
+            //        LoadingHelper.Hide();
+            //        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+            //    }
+            //};
         }
         private void ItemSlider_Tapped(object sender, EventArgs e)
         {
@@ -231,19 +231,19 @@ namespace PhuLongCRM.Views
                 {
                     stackThongKe.IsVisible = true;
                     stackThongTin.IsVisible = false;
-                    stackGiuCho.IsVisible = false;
+                    //stackGiuCho.IsVisible = false;
                 }
                 else if ((int)e.Item == 1)
                 {
                     stackThongKe.IsVisible = false;
                     stackThongTin.IsVisible = true;
-                    stackGiuCho.IsVisible = false;
+                    //stackGiuCho.IsVisible = false;
                 }
                 else if ((int)e.Item == 2)
                 {
                     stackThongKe.IsVisible = false;
                     stackThongTin.IsVisible = false;
-                    stackGiuCho.IsVisible = true;
+                    //stackGiuCho.IsVisible = true;
                     LoadingHelper.Show();
                     if (viewModel.IsLoadedGiuCho == false)
                     {
