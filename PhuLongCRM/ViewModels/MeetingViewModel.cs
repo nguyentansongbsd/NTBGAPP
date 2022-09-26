@@ -46,16 +46,22 @@ namespace PhuLongCRM.ViewModels
         private OptionSet _customer;
         public OptionSet Customer { get => _customer; set { _customer = value; OnPropertyChanged(nameof(Customer)); } }
 
+        private OptionSet _collectionType;
+        public OptionSet CollectionType { get => _collectionType; set { _collectionType = value; OnPropertyChanged(nameof(CollectionType)); } }
+
         private List<OptionSetFilter> _required;
         public List<OptionSetFilter> Required { get => _required; set { _required = value; OnPropertyChanged(nameof(Required)); } }
 
         private List<OptionSetFilter> _optional;
         public List<OptionSetFilter> Optional { get => _optional; set { _optional = value; OnPropertyChanged(nameof(Optional)); } }
 
+        private List<OptionSet> _collectionTypes;
+        public List<OptionSet> CollectionTypes { get => _collectionTypes; set { _collectionTypes = value; OnPropertyChanged(nameof(CollectionTypes)); } }
+
         public string CodeAccount = LookUpMultipleTabs.CodeAccount;
         public string CodeContac = LookUpMultipleTabs.CodeContac;
         public string CodeLead = LookUpMultipleTabs.CodeLead;
-        public string CodeQueue = QueuesDetialPage.CodeQueue;
+        //public string CodeQueue = QueuesDetialPage.CodeQueue;
 
         public bool _showButton;
         public bool ShowButton { get => _showButton; set { _showButton = value; OnPropertyChanged(nameof(ShowButton)); } }
@@ -90,6 +96,7 @@ namespace PhuLongCRM.ViewModels
                       <attribute name='location' />
                       <attribute name='activityid' />
                       <attribute name='description' />
+                      <attribute name='bsd_collectiontype' />
                       <order attribute='createdon' descending='true' />
                       <filter type='and'>
                           <condition attribute='activityid' operator='eq' uitype='appointment' value='" + id + @"' />
@@ -132,6 +139,7 @@ namespace PhuLongCRM.ViewModels
             MeetingModel.location = data.location;
             MeetingModel.isalldayevent = data.isalldayevent;
             MeetingModel.scheduleddurationminutes = data.scheduleddurationminutes;
+            MeetingModel.bsd_collectiontype = data.bsd_collectiontype;
 
             if (data.contact_id != Guid.Empty)
             {
@@ -164,7 +172,7 @@ namespace PhuLongCRM.ViewModels
             {
                 Customer = new OptionSetFilter
                 {
-                    Title = CodeQueue,
+                    //Title = CodeQueue,
                     Val = data.queue_id.ToString(),
                     Label = data.queue_name
                 };
@@ -280,6 +288,7 @@ namespace PhuLongCRM.ViewModels
             data["actualdurationminutes"] = MeetingModel.scheduleddurationminutes;
             data["statecode"] = MeetingModel.statecode;
             data["statuscode"] = MeetingModel.statuscode;
+            data["bsd_collectiontype"] = this.CollectionType.Val;
 
             if (Customer != null && Customer.Selected == false) // selected = flase là customer từ page khác queue
             {
@@ -332,25 +341,25 @@ namespace PhuLongCRM.ViewModels
 
                     data["regardingobjectid_lead_appointment@odata.bind"] = "/leads(" + CustomerMapping.Val + ")";
                 }
-                else if (CustomerMapping.Title == CodeQueue)
-                {
-                    if (Customer != null && Customer.Selected == true) // selected = true là required từ queue
-                    {
-                        if (Customer.Title == CodeContac) // khách hàng từ queue k có lead
-                        {
-                            item_required["partyid_contact@odata.bind"] = "/contacts(" + Customer.Val + ")";
-                            item_required["participationtypemask"] = 5;
-                            arrayMeeting.Add(item_required);
-                        }
-                        else if (Customer.Title == CodeAccount)
-                        {
-                            item_required["partyid_account@odata.bind"] = "/accounts(" + Customer.Val + ")";
-                            item_required["participationtypemask"] = 5;
-                            arrayMeeting.Add(item_required);
-                        }
-                    }
-                    data["regardingobjectid_opportunity_appointment@odata.bind"] = "/opportunities(" + CustomerMapping.Val + ")";
-                }
+                //else if (CustomerMapping.Title == CodeQueue)
+                //{
+                //    if (Customer != null && Customer.Selected == true) // selected = true là required từ queue
+                //    {
+                //        if (Customer.Title == CodeContac) // khách hàng từ queue k có lead
+                //        {
+                //            item_required["partyid_contact@odata.bind"] = "/contacts(" + Customer.Val + ")";
+                //            item_required["participationtypemask"] = 5;
+                //            arrayMeeting.Add(item_required);
+                //        }
+                //        else if (Customer.Title == CodeAccount)
+                //        {
+                //            item_required["partyid_account@odata.bind"] = "/accounts(" + Customer.Val + ")";
+                //            item_required["participationtypemask"] = 5;
+                //            arrayMeeting.Add(item_required);
+                //        }
+                //    }
+                //    data["regardingobjectid_opportunity_appointment@odata.bind"] = "/opportunities(" + CustomerMapping.Val + ")";
+                //}
             }
             if (Required != null)
             {

@@ -138,6 +138,12 @@
                                 </telerikPrimitives:RadBorder>
                             </Grid>
                             <Grid ColumnDefinitions="4*,6*">
+                                <controls:FormLabel Text="{x:Static lang:Language.loai_lich_hen}" Grid.Column="0" FontSize="14" TextColor="#444444"/>
+                                <telerikPrimitives:RadBorder Grid.Column="1" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
+                                    <Label Text="{Binding CollectionType.Label}" FontSize="14" TextColor="#444444" HorizontalOptions="Start"/>
+                                </telerikPrimitives:RadBorder>
+                            </Grid>
+                            <Grid ColumnDefinitions="4*,6*">
                                 <controls:FormLabel Text="{x:Static lang:Language.thoi_gian_bat_dau}" Grid.Column="0" FontSize="14" TextColor="#444444"/>
                                 <telerikPrimitives:RadBorder Grid.Column="1" BorderColor="#f3f3f3" Padding="5" CornerRadius="5" BorderThickness="1" Margin="10,0,0,0">
                                     <Label Text="{Binding Meet.scheduledstart,StringFormat='{0:dd/MM/yyyy - HH:mm}'}" FontSize="14" TextColor="#444444" HorizontalOptions="Start" />

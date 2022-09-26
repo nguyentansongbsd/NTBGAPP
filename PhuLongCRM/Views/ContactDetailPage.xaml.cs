@@ -56,8 +56,8 @@ namespace PhuLongCRM.Views
                 LoadingHelper.Show();
                 viewModel.singleContact = new ContactFormModel();
                 await LoadDataThongTin(this.Id.ToString());
-                viewModel.PhongThuy = null;
-                LoadDataPhongThuy();
+                //viewModel.PhongThuy = null;
+                //LoadDataPhongThuy();
                 NeedToRefresh = false;
                 LoadingHelper.Hide();
             }
@@ -73,9 +73,12 @@ namespace PhuLongCRM.Views
             if (NeedToRefreshActivity == true && viewModel.Cares != null)
             {
                 LoadingHelper.Show();
-                viewModel.PageCase = 1;
-                viewModel.Cares.Clear();
-                await viewModel.LoadCase();
+                //viewModel.PageCase = 1;
+                //viewModel.Cares.Clear();
+                //await viewModel.LoadCase();
+                viewModel.PageMeeting = 1;
+                viewModel.Meetings.Clear();
+                await viewModel.LoadMeetings();
                 ActivityPopup.Refresh();
                 NeedToRefreshActivity = false;
                 LoadingHelper.Hide();
@@ -101,10 +104,10 @@ namespace PhuLongCRM.Views
                 if (viewModel.singleContact.statuscode != "100000000")
                     viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.cap_nhat, "FontAwesomeRegular", "\uf044", null, EditContact));
 
-                if (viewModel.singleContact.statuscode == "2")
-                    floatingButtonGroup.IsVisible = false;
-                else
-                    floatingButtonGroup.IsVisible = true;
+                //if (viewModel.singleContact.statuscode == "2")
+                //    floatingButtonGroup.IsVisible = false;
+                //else
+                //    floatingButtonGroup.IsVisible = true;
             }
         }
 
@@ -278,29 +281,37 @@ namespace PhuLongCRM.Views
             LoadingHelper.Hide();
         }
 
+        private async void ShowMoreMeeting_Clicked(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            viewModel.PageMeeting++;
+            await viewModel.LoadMeetings();
+            LoadingHelper.Hide();
+        }
+
         private void ChiTietDatCoc_Tapped(object sender, EventArgs e)
         {
-            var item = (ReservationListModel)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            if (item == null) return;
+            //var item = (ReservationListModel)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            //if (item == null) return;
 
-            LoadingHelper.Show();
-            bool isReservation = false;
-            if (item.statuscode != 100000007)
-                isReservation = true;
-            BangTinhGiaDetailPage bangTinhGiaDetail = new BangTinhGiaDetailPage(item.quoteid, isReservation);
-            bangTinhGiaDetail.OnCompleted = async (isSuccess) =>
-            {
-                if (isSuccess)
-                {
-                    await Navigation.PushAsync(bangTinhGiaDetail);
-                    LoadingHelper.Hide();
-                }
-                else
-                {
-                    LoadingHelper.Hide();
-                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
-                }
-            };
+            //LoadingHelper.Show();
+            //bool isReservation = false;
+            //if (item.statuscode != 100000007)
+            //    isReservation = true;
+            //BangTinhGiaDetailPage bangTinhGiaDetail = new BangTinhGiaDetailPage(item.quoteid, isReservation);
+            //bangTinhGiaDetail.OnCompleted = async (isSuccess) =>
+            //{
+            //    if (isSuccess)
+            //    {
+            //        await Navigation.PushAsync(bangTinhGiaDetail);
+            //        LoadingHelper.Hide();
+            //    }
+            //    else
+            //    {
+            //        LoadingHelper.Hide();
+            //        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+            //    }
+            //};
         }
 
         private void ItemHopDong_Tapped(object sender, EventArgs e)
@@ -337,37 +348,37 @@ namespace PhuLongCRM.Views
         #region TabPhongThuy
         private void LoadDataPhongThuy()
         {
-            if(viewModel.PhongThuy == null)
-            {
-               viewModel.PhongThuy = new PhongThuyModel();
-               viewModel.LoadPhongThuy();
-                if (viewModel.PhongThuy.gioi_tinh != 0 && viewModel.PhongThuy.gioi_tinh != 100000000 && viewModel.PhongThuy.nam_sinh != 0)//100000000
-                    phongthuy_info.IsVisible = true;
-                else
-                    phongthuy_info.IsVisible = false;
-            }
+            //if(viewModel.PhongThuy == null)
+            //{
+            //   viewModel.PhongThuy = new PhongThuyModel();
+            //   viewModel.LoadPhongThuy();
+            //    if (viewModel.PhongThuy.gioi_tinh != 0 && viewModel.PhongThuy.gioi_tinh != 100000000 && viewModel.PhongThuy.nam_sinh != 0)//100000000
+            //        phongthuy_info.IsVisible = true;
+            //    else
+            //        phongthuy_info.IsVisible = false;
+            //}
         }
 
         private void ShowImage_Tapped(object sender, EventArgs e)
         {
-            LookUpImage.IsVisible = true;
-            ImageDetail.Source = viewModel.PhongThuy.image;
+            //LookUpImage.IsVisible = true;
+            //ImageDetail.Source = viewModel.PhongThuy.image;
         }
 
         protected override bool OnBackButtonPressed()
         {
-            if (LookUpImage.IsVisible)
-            {
-                LookUpImage.IsVisible = false;
-                return true;
-            }
-            FromCustomer = null;
+            //if (LookUpImage.IsVisible)
+            //{
+            //    LookUpImage.IsVisible = false;
+            //    return true;
+            //}
+            //FromCustomer = null;
             return base.OnBackButtonPressed();
         }
 
         private void Close_LookUpImage_Tapped(object sender, EventArgs e)
         {
-            LookUpImage.IsVisible = false;
+            //LookUpImage.IsVisible = false;
         }
 
         #endregion
@@ -446,21 +457,21 @@ namespace PhuLongCRM.Views
 
         private void GiuChoItem_Tapped(object sender, EventArgs e)
         {
-            LoadingHelper.Show();
-            var itemId = (Guid)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            QueuesDetialPage queuesDetialPage = new QueuesDetialPage(itemId);
-            queuesDetialPage.OnCompleted = async (IsSuccess) => {
-                if (IsSuccess)
-                {
-                    await Navigation.PushAsync(queuesDetialPage);
-                    LoadingHelper.Hide();
-                }
-                else
-                {
-                    LoadingHelper.Hide();
-                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
-                }
-            };
+            //LoadingHelper.Show();
+            //var itemId = (Guid)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            //QueuesDetialPage queuesDetialPage = new QueuesDetialPage(itemId);
+            //queuesDetialPage.OnCompleted = async (IsSuccess) => {
+            //    if (IsSuccess)
+            //    {
+            //        await Navigation.PushAsync(queuesDetialPage);
+            //        LoadingHelper.Hide();
+            //    }
+            //    else
+            //    {
+            //        LoadingHelper.Hide();
+            //        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+            //    }
+            //};
         }
 
         private void ActivityPopup_HidePopupActivity(object sender, EventArgs e)
@@ -476,21 +487,26 @@ namespace PhuLongCRM.Views
                 {
                     TabThongTin.IsVisible = true;
                     TabGiaoDich.IsVisible = false;
-                    TabPhongThuy.IsVisible = false;
+                    TabMeeting.IsVisible = false;
                 }
                 else if ((int)e.Item == 1)
                 {
                     await LoadDataGiaoDich(Id.ToString());
                     TabThongTin.IsVisible = false;
                     TabGiaoDich.IsVisible = true;
-                    TabPhongThuy.IsVisible = false;
+                    TabMeeting.IsVisible = false;
                 }
                 else if ((int)e.Item == 2)
                 {
-                    LoadDataPhongThuy();
+                    if (viewModel.Meetings.Count <= 0)
+                    {
+                        LoadingHelper.Show();
+                        await viewModel.LoadMeetings();
+                        LoadingHelper.Hide();
+                    }
                     TabThongTin.IsVisible = false;
                     TabGiaoDich.IsVisible = false;
-                    TabPhongThuy.IsVisible = true;
+                    TabMeeting.IsVisible = true;
                 }
             }
         }
@@ -526,6 +542,11 @@ namespace PhuLongCRM.Views
                 LoadingHelper.Hide();
                 ToastMessageHelper.ShortMessage(Language.tao_qr_code_that_bai);
             }
+        }
+
+        private void NewMeeting_Clicked(object sender, EventArgs e)
+        {
+            NewMeet(sender, e);
         }
     }
 }

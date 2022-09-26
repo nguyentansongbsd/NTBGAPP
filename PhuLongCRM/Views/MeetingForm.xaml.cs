@@ -16,12 +16,13 @@ namespace PhuLongCRM.Views
     {
         public Action<bool> OnCompleted;
         public MeetingViewModel viewModel;
-        private Guid MeetId;
+        private Guid MeetId; 
         private bool IsInit;
         public MeetingForm()
         {
             InitializeComponent();
             Init();
+            SetPreOpen();
             Create();
         }
 
@@ -29,6 +30,7 @@ namespace PhuLongCRM.Views
         {
             InitializeComponent();
             Init();
+            SetPreOpen();
             MeetId = id;
             Update();
         }
@@ -69,18 +71,18 @@ namespace PhuLongCRM.Views
                     RegardingMapping.IsVisible = true;
                     Lookup_Option.ne_customer = Guid.Parse(viewModel.CustomerMapping.Val);
                 }
-                else if (page_before == "QueuesDetialPage" && QueuesDetialPage.FromQueue != null && !string.IsNullOrWhiteSpace(QueuesDetialPage.FromQueue.Val))
-                {
-                    viewModel.CustomerMapping = QueuesDetialPage.FromQueue;
-                    viewModel.Customer = QueuesDetialPage.CustomerFromQueue;
-                    viewModel.Customer.Selected = true; // phân biệt customer là required của queue
-                    lb_requiredMapping.Text = QueuesDetialPage.CustomerFromQueue.Label;
-                    Lookup_Option.ne_customer = Guid.Parse(QueuesDetialPage.CustomerFromQueue.Val);
-                    Lookup_Required.IsVisible = false;
-                    RequiredMapping.IsVisible = true;
-                    Lookup_Customer.IsVisible = false;
-                    RegardingMapping.IsVisible = true;
-                }
+                //else if (page_before == "QueuesDetialPage" && QueuesDetialPage.FromQueue != null && !string.IsNullOrWhiteSpace(QueuesDetialPage.FromQueue.Val))
+                //{
+                //    viewModel.CustomerMapping = QueuesDetialPage.FromQueue;
+                //    viewModel.Customer = QueuesDetialPage.CustomerFromQueue;
+                //    viewModel.Customer.Selected = true; // phân biệt customer là required của queue
+                //    lb_requiredMapping.Text = QueuesDetialPage.CustomerFromQueue.Label;
+                //    Lookup_Option.ne_customer = Guid.Parse(QueuesDetialPage.CustomerFromQueue.Val);
+                //    Lookup_Required.IsVisible = false;
+                //    RequiredMapping.IsVisible = true;
+                //    Lookup_Customer.IsVisible = false;
+                //    RegardingMapping.IsVisible = true;
+                //}
                 else
                 {
                     Lookup_Required.IsVisible = true;
@@ -96,6 +98,13 @@ namespace PhuLongCRM.Views
                 Lookup_Customer.IsVisible = true;
                 RegardingMapping.IsVisible = false;
             }
+        }
+
+        private void SetPreOpen()
+        {
+            lookupCollectionType.PreOpenAsync = async () => {
+                viewModel.CollectionTypes = CollectionTypeData.GetColectionData();
+            };
         }
 
         private void Create()
@@ -118,6 +127,7 @@ namespace PhuLongCRM.Views
 
             if (viewModel.MeetingModel.activityid != Guid.Empty)
             {
+                viewModel.CollectionType = CollectionTypeData.GetCollectionTypeById(viewModel.MeetingModel.bsd_collectiontype);
                 DatePickerStart.ReSetTime();
                 DatePickerEnd.ReSetTime();
                 IsInit = true;
@@ -147,6 +157,13 @@ namespace PhuLongCRM.Views
                     return;
                 }
             }
+
+            if (viewModel.CollectionType == null)
+            {
+                ToastMessageHelper.ShortMessage(Language.vui_long_chon_loai_lich_hen);
+                return;
+            }
+
             if (viewModel.MeetingModel.scheduledstart == null || viewModel.MeetingModel.scheduledend == null)
             {
                 ToastMessageHelper.ShortMessage(Language.vui_long_chon_thoi_gian_ket_thuc_va_thoi_gian_bat_dau);
@@ -210,7 +227,7 @@ namespace PhuLongCRM.Views
                     if (ContactDetailPage.NeedToRefreshActivity.HasValue) ContactDetailPage.NeedToRefreshActivity = true;
                     if (AccountDetailPage.NeedToRefreshActivity.HasValue) AccountDetailPage.NeedToRefreshActivity = true;
                     if (LeadDetailPage.NeedToRefreshActivity.HasValue) LeadDetailPage.NeedToRefreshActivity = true;
-                    if (QueuesDetialPage.NeedToRefreshActivity.HasValue) QueuesDetialPage.NeedToRefreshActivity = true;
+                    //if (QueuesDetialPage.NeedToRefreshActivity.HasValue) QueuesDetialPage.NeedToRefreshActivity = true;
                     ToastMessageHelper.ShortMessage(Language.tao_cuoc_hop_thanh_cong);
                     await Navigation.PopAsync();
                     LoadingHelper.Hide();
@@ -233,7 +250,7 @@ namespace PhuLongCRM.Views
                     if (ContactDetailPage.NeedToRefreshActivity.HasValue) ContactDetailPage.NeedToRefreshActivity = true;
                     if (AccountDetailPage.NeedToRefreshActivity.HasValue) AccountDetailPage.NeedToRefreshActivity = true;
                     if (LeadDetailPage.NeedToRefreshActivity.HasValue) LeadDetailPage.NeedToRefreshActivity = true;
-                    if (QueuesDetialPage.NeedToRefreshActivity.HasValue) QueuesDetialPage.NeedToRefreshActivity = true;
+                    //if (QueuesDetialPage.NeedToRefreshActivity.HasValue) QueuesDetialPage.NeedToRefreshActivity = true;
                     ToastMessageHelper.ShortMessage(Language.cap_nhat_thanh_cong);
                     await Navigation.PopAsync();
                     LoadingHelper.Hide();

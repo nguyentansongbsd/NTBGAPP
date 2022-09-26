@@ -14,9 +14,9 @@
                 <controls:TabControl IndexTab="TabControl_IndexTab" ListTab="tiem_nang,ca_nhan,doanh_nghiep" Grid.Row="0"/>
                 <Grid x:Name="CustomerContentView" Grid.Row="1"/>
             </Grid>
-            <controls:ExtendedFrame AbsoluteLayout.LayoutBounds="0,1,1,59" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" BackgroundColor="#1399D5" Padding="0" HorizontalOptions="End" Margin="0,0,15,15" HeightRequest="44" WidthRequest="44" CornerRadius="22">
+            <!--<controls:ExtendedFrame AbsoluteLayout.LayoutBounds="0,1,1,59" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" BackgroundColor="#1399D5" Padding="0" HorizontalOptions="End" Margin="0,0,15,15" HeightRequest="44" WidthRequest="44" CornerRadius="22">
                 <Button Text="&#xf067;" Clicked="NewCustomer_Clicked"  TextColor="White" FontSize="18" FontFamily="FontAwesomeSolid" WidthRequest="44" HeightRequest="44" CornerRadius="22" BackgroundColor="#1399D5"/>
-            </controls:ExtendedFrame>
+            </controls:ExtendedFrame>-->
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

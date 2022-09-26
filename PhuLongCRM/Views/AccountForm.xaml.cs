@@ -296,7 +296,7 @@ namespace PhuLongCRM.Views
                 var created = await viewModel.createAccount();
                 if (created)
                 {
-                    if (QueueForm.NeedToRefresh.HasValue) QueueForm.NeedToRefresh = true;
+                    //if (QueueForm.NeedToRefresh.HasValue) QueueForm.NeedToRefresh = true;
                     if (CustomerPage.NeedToRefreshAccount.HasValue) CustomerPage.NeedToRefreshAccount = true;
                     ToastMessageHelper.ShortMessage(Language.tao_khach_hang_doanh_nghiep_thanh_cong);
                     await Navigation.PopAsync();

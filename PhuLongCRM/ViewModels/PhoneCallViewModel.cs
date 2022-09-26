@@ -33,7 +33,7 @@ namespace PhuLongCRM.ViewModels
 
         public string CodeLead = LookUpMultipleTabs.CodeLead;
 
-        public string CodeQueue = QueuesDetialPage.CodeQueue;
+        //public string CodeQueue = QueuesDetialPage.CodeQueue;
 
         public bool _showButton;
         public bool ShowButton { get => _showButton; set { _showButton = value; OnPropertyChanged(nameof(ShowButton)); } }
@@ -77,10 +77,10 @@ namespace PhuLongCRM.ViewModels
                 {
                     data["regardingobjectid_account_phonecall@odata.bind"] = "/accounts(" + Customer.Val + ")";
                 }
-                else if (Customer.Title == CodeQueue)
-                {
-                    data["regardingobjectid_opportunity_phonecall@odata.bind"] = "/opportunities(" + Customer.Val + ")";
-                }
+                //else if (Customer.Title == CodeQueue)
+                //{
+                //    data["regardingobjectid_opportunity_phonecall@odata.bind"] = "/opportunities(" + Customer.Val + ")";
+                //}
             }
             else
             {
@@ -263,7 +263,7 @@ namespace PhuLongCRM.ViewModels
             {
                 Customer = new OptionSet
                 {
-                    Title = CodeQueue,
+                    //Title = CodeQueue,
                     Val = data.queue_id.ToString(),
                     Label = data.queue_name
                 };

@@ -317,63 +317,63 @@ namespace PhuLongCRM.Views
 
         private async void GiuCho_Clicked(object sender, EventArgs e)
         {
-            LoadingHelper.Show();
-            QueueForm queue = new QueueForm(viewModel.Unit.productid, true);
-            queue.OnCompleted = async (IsSuccess) => {
-                if (IsSuccess)
-                {
-                    await Shell.Current.Navigation.PushAsync(queue);
-                    LoadingHelper.Hide();
-                }
-                else
-                {
-                    LoadingHelper.Hide();
-                  //  ToastMessageHelper.ShortMessage(Language.khong_tim_thay_san_pham);
-                  // hiện câu thông báo bên queue form
-                }
-            };
+            //LoadingHelper.Show();
+            //QueueForm queue = new QueueForm(viewModel.Unit.productid, true);
+            //queue.OnCompleted = async (IsSuccess) => {
+            //    if (IsSuccess)
+            //    {
+            //        await Shell.Current.Navigation.PushAsync(queue);
+            //        LoadingHelper.Hide();
+            //    }
+            //    else
+            //    {
+            //        LoadingHelper.Hide();
+            //      //  ToastMessageHelper.ShortMessage(Language.khong_tim_thay_san_pham);
+            //      // hiện câu thông báo bên queue form
+            //    }
+            //};
         }
 
         private void BangTinhGia_Clicked(object sender, EventArgs e)
         {
-            LoadingHelper.Show();
-            ReservationForm reservationForm = new ReservationForm(viewModel.Unit.productid,null,null,null,null);
-            reservationForm.CheckReservation = async (isSuccess) => {
-                if (isSuccess == 0)
-                {
-                    await Navigation.PushAsync(reservationForm);
-                    LoadingHelper.Hide();
-                }
-                else if (isSuccess == 1)
-                {
-                    LoadingHelper.Hide();
-                    ToastMessageHelper.ShortMessage(Language.san_pham_khong_the_tao_bang_tinh_gia);
-                }
-                else
-                {
-                    LoadingHelper.Hide();
-                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_san_pham);
-                }
-            };
+            //LoadingHelper.Show();
+            //ReservationForm reservationForm = new ReservationForm(viewModel.Unit.productid,null,null,null,null);
+            //reservationForm.CheckReservation = async (isSuccess) => {
+            //    if (isSuccess == 0)
+            //    {
+            //        await Navigation.PushAsync(reservationForm);
+            //        LoadingHelper.Hide();
+            //    }
+            //    else if (isSuccess == 1)
+            //    {
+            //        LoadingHelper.Hide();
+            //        ToastMessageHelper.ShortMessage(Language.san_pham_khong_the_tao_bang_tinh_gia);
+            //    }
+            //    else
+            //    {
+            //        LoadingHelper.Hide();
+            //        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_san_pham);
+            //    }
+            //};
         }
 
         private void GiuChoItem_Tapped(object sender, EventArgs e)
         {
-            LoadingHelper.Show();
-            var itemId = (Guid)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            QueuesDetialPage queuesDetialPage = new QueuesDetialPage(itemId);
-            queuesDetialPage.OnCompleted = async (IsSuccess) => {
-                if (IsSuccess)
-                {
-                    await Navigation.PushAsync(queuesDetialPage);
-                    LoadingHelper.Hide();
-                }
-                else
-                {
-                    LoadingHelper.Hide();
-                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
-                }
-            };
+            //LoadingHelper.Show();
+            //var itemId = (Guid)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            //QueuesDetialPage queuesDetialPage = new QueuesDetialPage(itemId);
+            //queuesDetialPage.OnCompleted = async (IsSuccess) => {
+            //    if (IsSuccess)
+            //    {
+            //        await Navigation.PushAsync(queuesDetialPage);
+            //        LoadingHelper.Hide();
+            //    }
+            //    else
+            //    {
+            //        LoadingHelper.Hide();
+            //        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+            //    }
+            //};
         }
 
         private void Question_CLicked(object sender, EventArgs e)
