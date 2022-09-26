@@ -12,17 +12,6 @@
              x:Class="PhuLongCRM.Views.MeetingForm">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style x:Key="ExpanderHeaderStyle" TargetType="telerikPrimitives:ExpanderHeader">
-                <Setter Property="IndicatorText" Value="&#xf105;"/>
-                <Setter Property="IndicatorLocation" Value="End"/>
-                <Setter Property="IndicatorFontSize" Value="18"/>
-                <Setter Property="IndicatorColor" Value="#000000"/>
-                <Setter Property="BackgroundColor" Value="#F3F3F3"/>
-                <Setter Property="BorderColor" Value="#666666"/>
-                <Setter Property="BorderThickness" Value="1"/>
-                <Setter Property="Padding" Value="5"/>
-                <Setter Property="IndicatorFontFamily" Value="FontAwesomeSolid"/>
-            </Style>
             <converter:DateFormatConverter x:Key="DateFormatConverter" />
             <converter:DecimalToAreaConverter x:Key="DecimalToAreaConverter" />
             <converter:DecimalToPercentConverter x:Key="DecimalToPercentConverter" />
@@ -44,7 +33,6 @@
                         <Label x:Name="lb_requiredMapping" Text="{Binding CustomerMapping.Label}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
                     </telerikPrimitives:RadBorder>
 
-
                     <controls:FormLabel Text="{x:Static lang:Language.nguoi_tham_khong_du_bat_buoc}" Margin="0,10,0,0"/>
                     <controls:LookUpMultiSelect x:Name="Lookup_Option" Placeholder="{x:Static lang:Language.chon_nguoi_tham_du_khong_bat_buoc}" CenterModal="{x:Reference CenterModal}" SelectedIds="{Binding Optional}" ShowLead="True" ShowContact="True" ShowAccount="True" LoadNewLead="True"/> <!--chỉ tìm lead new-->
 
@@ -56,7 +44,10 @@
 
                     <controls:FormLabel Text="{x:Static lang:Language.dia_diem}" FontSize="15" Margin="0,10,0,0"/>
                     <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_dia_diem}" Text="{Binding MeetingModel.location}" FontSize="15"/>
-                    
+
+                    <controls:FormLabelRequired Text="{x:Static lang:Language.loai_lich_hen}" Margin="0,10,0,0"/>
+                    <controls:LookUp x:Name="lookupCollectionType" Placeholder="{x:Static lang:Language.chon_loai_lich_hen}" BottomModal="{x:Reference BottomModal}" NameDisplay="Label"  SelectedItem="{Binding CollectionType}" ItemsSource="{Binding CollectionTypes}"/>
+
                     <controls:FormLabelRequired Text="{x:Static lang:Language.thoi_gian_bat_dau}" Margin="0,10,0,0"/>
                     <controls:DatePickerBoderControl x:Name="DatePickerStart" Date="{Binding MeetingModel.scheduledstart}" Clear_Clicked="ClearDate_Clicked" ShowTime="True" Placeholder="{x:Static lang:Language.chon_thoi_gian_bat_dau}" Date_Selected="DatePickerStart_DateSelected"/>
                     
@@ -76,6 +67,7 @@
                 <Button x:Name="BtnSave" IsVisible="{Binding ShowButton}" BackgroundColor="#1399D5" TextColor="White" FontAttributes="Bold" HeightRequest="35" Padding="10,5" FontSize="16" CornerRadius="5"/>
             </Grid>
             <controls:CenterModal x:Name="CenterModal"/>
+            <controls:BottomModal x:Name="BottomModal"/>
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

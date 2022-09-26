@@ -17,23 +17,6 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <!--tab thong tin-->
-            <Style x:Key="ExpanderHeaderStyle" TargetType="telerikPrimitives:ExpanderHeader">
-                <Setter Property="IndicatorText" Value="&#xf105;"/>
-                <Setter Property="IndicatorLocation" Value="End"/>
-                <Setter Property="IndicatorFontSize" Value="18"/>
-                <Setter Property="IndicatorColor" Value="#939393"/>
-                <Setter Property="BackgroundColor" Value="#F2F2F2"/>
-                <Setter Property="BorderColor" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="Padding" Value="17,8"/>
-                <Setter Property="IndicatorFontFamily" Value="FontAwesomeSolid"/>
-            </Style>
-            <Style x:Key="ExpanderHeadingText" TargetType="Label">
-                <Setter Property="FontSize" Value="16" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="VerticalTextAlignment" Value="Center" />
-                <Setter Property="TextColor" Value="#444444"/>
-            </Style>
             <Style x:Key="Lb_Title_ThongTin" TargetType="controls:FormLabel">
                 <Setter Property="VerticalOptions" Value="Start"/>
                 <Setter Property="Padding" Value="25,10,0,10"/>
@@ -185,7 +168,7 @@
                             </telerikPrimitives:RadBorder>
                         </Grid>
                     </Grid>
-                    <controls:TabControl IndexTab="TabControl_IndexTab" ListTab="thong_ke_title,thong_tin_title,giu_cho_title"/>
+                    <controls:TabControl IndexTab="TabControl_IndexTab" ListTab="thong_ke_title,thong_tin_title"/>
                     <!--Content-->
                     <Grid>
                         <StackLayout x:Name="stackThongKe">
@@ -450,7 +433,7 @@
                             </telerikPrimitives:RadExpander>
                         </StackLayout>
 
-                        <StackLayout x:Name="stackGiuCho" IsVisible="false">
+                        <!--<StackLayout x:Name="stackGiuCho" IsVisible="false">
                             <StackLayout BindableLayout.ItemsSource="{Binding ListGiuCho}" BackgroundColor="#eeeeee" Spacing="1">
                                 <BindableLayout.EmptyViewTemplate>
                                     <DataTemplate>
@@ -491,11 +474,11 @@
                                 </BindableLayout.ItemTemplate>
                             </StackLayout>
                             <Button Clicked="ShowMoreListDatCho_Clicked" IsVisible="{Binding ShowMoreBtnGiuCho}" BorderColor="{StaticResource NavigationPrimary}" CornerRadius="5" BorderWidth="1" BackgroundColor="Transparent" Text="{x:Static lang:Language.xem_them}" TextTransform="None" TextColor="#1399D5" HeightRequest="30" HorizontalOptions="Center" Margin="0,5,0,10" Padding="30,0,30,0"/>
-                        </StackLayout>
+                        </StackLayout>-->
                     </Grid>
                 </StackLayout>
             </ScrollView>
-            <Button Text="{x:Static lang:Language.giu_cho_btn}" Clicked="GiuCho_Clicked" TextColor="White" FontAttributes="Bold" FontSize="16" HeightRequest="40" BackgroundColor="{StaticResource NavigationPrimary}" CornerRadius="10" Margin="10,5" IsVisible="{Binding IsShowBtnGiuCho}" AbsoluteLayout.LayoutBounds="0,1,1,50" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"/>
+            <!--<Button Text="{x:Static lang:Language.giu_cho_btn}" Clicked="GiuCho_Clicked" TextColor="White" FontAttributes="Bold" FontSize="16" HeightRequest="40" BackgroundColor="{StaticResource NavigationPrimary}" CornerRadius="10" Margin="10,5" IsVisible="{Binding IsShowBtnGiuCho}" AbsoluteLayout.LayoutBounds="0,1,1,50" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"/>-->
             <ContentView x:Name="ContentEvent" IsVisible="false" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#90000000" Padding="20">
                 <ContentView.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="CloseContentEvent_Tapped"/>

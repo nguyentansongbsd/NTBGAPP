@@ -71,18 +71,13 @@
                 <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf0c0;" Size="18"/>
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="{x:Static lang:Language.dong_bo_danh_ba}" ContentTemplate="{DataTemplate views:DanhBa}">
+        <ShellContent Title="{x:Static lang:Language.gio_hang}" ContentTemplate="{DataTemplate views:DirectSale}">
             <ShellContent.Icon>
-                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf2c1;" Size="18"/>
+                <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf07a;" Size="18"/>
             </ShellContent.Icon>
         </ShellContent>
     </FlyoutItem>
 
-    <ShellContent Title="{x:Static lang:Language.gio_hang}" ContentTemplate="{DataTemplate views:DirectSale}">
-        <ShellContent.Icon>
-            <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf07a;" Size="18"/>
-        </ShellContent.Icon>
-    </ShellContent>
     <ShellContent Title="{x:Static lang:Language.unit_spec_title}" ContentTemplate="{DataTemplate views:UnitSpecificationList}">
         <ShellContent.Icon>
             <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf02d;" Size="18"/>
@@ -93,33 +88,15 @@
             <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf46d;" Size="18"/>
         </ShellContent.Icon>
     </ShellContent>
-    <ShellContent Title="{x:Static lang:Language.dat_coc_title}" ContentTemplate="{DataTemplate views:DatCocList}" >
-        <ShellContent.Icon>
-            <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf46d;" Size="18"/>
-        </ShellContent.Icon>
-    </ShellContent>
     <ShellContent Title="{x:Static lang:Language.hop_dong_title}" ContentTemplate="{DataTemplate views:ContractList}">
         <ShellContent.Icon>
             <FontImageSource FontFamily="FontAwesomeSolid" Color="#666666" Glyph="&#xf0ca;" Size="18"/>
         </ShellContent.Icon>
     </ShellContent>
-    <ShellContent Title="{x:Static lang:Language.tai_lieu_kinh_doanh}" ContentTemplate="{DataTemplate views:ListTaiLieuKinhDoanh}">
-        <ShellContent.Icon>
-            <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf07c;" Size="18"/>
-        </ShellContent.Icon>
-    </ShellContent>
-    <ShellContent Title="{x:Static lang:Language.danh_sach_theo_doi_title}" ContentTemplate="{DataTemplate views:FollowUpListPage}">
-        <ShellContent.Icon>
-            <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf0ca;" Size="18"/>
-        </ShellContent.Icon>
-    </ShellContent>
+    
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Title="{x:Static lang:Language.phan_hoi_title}" ContentTemplate="{DataTemplate views:ListPhanHoi}">
-            <ShellContent.Icon>
-                <FontImageSource FontFamily="FontAwesomeRegular" Color="#7D7D7D" Glyph="&#xf086;" Size="18"/>
-            </ShellContent.Icon>
-        </ShellContent>
+        
         <ShellContent Title="{x:Static lang:Language.lich_lam_viec}" ContentTemplate="{DataTemplate views:LichLamViec}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf073;" Size="18"/>

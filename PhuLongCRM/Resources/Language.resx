@@ -754,7 +754,7 @@
     <value>Mô tả (EN)</value>
   </data>
 	<data name="tao_cuoc_hop" xml:space="preserve">
-    <value>Tạo cuộc họp</value>
+    <value>Tạo lịch hẹn</value>
   </data>
 	<data name="tao_cuoc_goi" xml:space="preserve">
     <value>Tạo cuộc gọi</value>
@@ -922,7 +922,7 @@
     <value>Công Việc</value>
   </data>
 	<data name="cuoc_hop" xml:space="preserve">
-    <value>Cuộc Họp</value>
+    <value>Lịch hẹn</value>
   </data>
 	<data name="cuoc_goi" xml:space="preserve">
     <value>Cuộc Gọi</value>
@@ -967,10 +967,10 @@
     <value>Lỗi khi hoàn thành công việc. Vui lòng thử lại.</value>
   </data>
 	<data name="cuoc_hop_da_hoan_thanh" xml:space="preserve">
-    <value>Cuộc họp đã hoàn thành.</value>
+    <value>Lịch hẹn đã hoàn thành.</value>
   </data>
 	<data name="loi_khi_hoan_thanh_cuoc_hop_vui_long_thu_lai" xml:space="preserve">
-    <value>Lỗi khi hoàn thành cuộc họp. Vui lòng thử lại.</value>
+    <value>Lỗi khi hoàn thành lịch hẹn. Vui lòng thử lại.</value>
   </data>
 	<data name="cuoc_goi_da_duoc_huy" xml:space="preserve">
     <value>Cuộc gọi đã được hủy.</value>
@@ -985,10 +985,10 @@
     <value>Lỗi khi hủy công việc. Vui lòng thử lại.</value>
   </data>
 	<data name="cuoc_hop_da_duoc_huy" xml:space="preserve">
-    <value>Cuộc họp đã được hủy.</value>
+    <value>Lịch hẹn đã được hủy.</value>
   </data>
 	<data name="loi_khi_huy_cuoc_hop_vui_long_thu_lai" xml:space="preserve">
-    <value>Lỗi khi hủy cuộc họp. Vui lòng thử lại.</value>
+    <value>Lỗi khi hủy lịch hẹn. Vui lòng thử lại.</value>
   </data>
 	<data name="phi_dat_coc" xml:space="preserve">
     <value>Phí đặt cọc</value>
@@ -1804,7 +1804,7 @@
     <value>Chủ đề</value>
   </data>
 	<data name="nhap_chu_de_cuoc_hop" xml:space="preserve">
-    <value>Nhập chủ đề cuộc họp</value>
+    <value>Nhập chủ đề lịch hẹn</value>
   </data>
 	<data name="chon_nguoi_tham_du_bat_buoc" xml:space="preserve">
     <value>Chọn người tham dự bắt buộc</value>
@@ -1825,13 +1825,13 @@
     <value>Chọn thời gian kết thúc</value>
   </data>
 	<data name="tao_moi_cuoc_hop" xml:space="preserve">
-    <value>Tạo Cuộc họp</value>
+    <value>Tạo Lịch hẹn</value>
   </data>
 	<data name="cap_nhat_cuoc_hop" xml:space="preserve">
-    <value>Chỉnh Sửa Cuộc Họp</value>
+    <value>Chỉnh Sửa Lịch Hẹn</value>
   </data>
 	<data name="vui_long_nhap_chu_de_cuoc_hop" xml:space="preserve">
-    <value>Vui lòng nhập chủ đề cuộc họp.</value>
+    <value>Vui lòng nhập chủ đề lịch hẹn.</value>
   </data>
 	<data name="vui_long_chon_nguoi_tham_du_bat_buoc" xml:space="preserve">
     <value>Vui lòng chọn người tham dự bắt buộc.</value>
@@ -3169,7 +3169,7 @@
 		<value>Bình Luận - Quyết Định</value>
 	</data>
 	<data name="chon_cuoc_hop_dinh_ky" xml:space="preserve">
-		<value>Chọn cuộc họp định kỳ</value>
+		<value>Chọn lịch hẹn định kỳ</value>
     </data>
 	<data name="can_ho_phai_o_tinh_trang_san_sang_hoac_giu_cho" xml:space="preserve">
 		<value>Căn hộ phải ở tình trạng sẵn sàng hoặc giữ chỗ.</value>
@@ -3211,7 +3211,7 @@
 		<value>Tạo cuộc gọi thành công.</value>
 	</data>
 	<data name="tao_cuoc_hop_thanh_cong" xml:space="preserve">
-		<value>Tạo cuộc họp thành công.</value>
+		<value>Tạo lịch hẹn thành công.</value>
 	</data>
 	<data name="vui_long_chon_thoi_gian" xml:space="preserve">
 		<value>Vui lòng chọn thời gian.</value>
@@ -3259,10 +3259,10 @@
 		<value>Tạo Mới Cuộc Gọi</value>
 	</data>
 	<data name="cap_nhat_cuoc_hop_title" xml:space="preserve">
-		<value>Chỉnh Sửa Cuộc Họp</value>
+		<value>Chỉnh Sửa Lịch Hẹn</value>
 	</data>
 	<data name="tao_moi_cuoc_hop_title" xml:space="preserve">
-		<value>Tạo Mới Cuộc Họp</value>
+		<value>Tạo Mới Lịch Hẹn</value>
 	</data>
 	<data name="lich_lam_viec_theo_thang_title" xml:space="preserve">
 		<value>Lịch Làm Việc Theo Tháng</value>
@@ -3501,4 +3501,13 @@
 	<data name="acceptance_title" xml:space="preserve">
 		<value>Nghiệm Thu</value>
 	</data>
+  <data name="loai_lich_hen" xml:space="preserve">
+    <value>Loại lịch hẹn</value>
+  </data>
+  <data name="chon_loai_lich_hen" xml:space="preserve">
+    <value>Chọn loại lịch hẹn</value>
+  </data>
+  <data name="vui_long_chon_loai_lich_hen" xml:space="preserve">
+    <value>Vui lòng chọn loại lịch hẹn</value>
+  </data>
 </root>

@@ -20,6 +20,9 @@ namespace PhuLongCRM.ViewModels
         public MeetingModel _meet;
         public MeetingModel Meet { get => _meet; set { _meet = value; OnPropertyChanged(nameof(Meet)); } }
 
+        public OptionSet _collectionType;
+        public OptionSet CollectionType { get => _collectionType; set { _collectionType = value; OnPropertyChanged(nameof(CollectionType)); } }
+
         private StatusCodeModel _activityStatusCode;
         public StatusCodeModel ActivityStatusCode { get => _activityStatusCode; set { _activityStatusCode = value; OnPropertyChanged(nameof(ActivityStatusCode)); } }
 
@@ -356,6 +359,7 @@ namespace PhuLongCRM.ViewModels
                                 <attribute name='location' />
                                 <attribute name='activityid' />
                                 <attribute name='description' />
+                                <attribute name='bsd_collectiontype' />
                                 <order attribute='createdon' descending='true' />
                                 <filter type='and'>
                                     <condition attribute='activityid' operator='eq' uitype='appointment' value='" + id + @"' />
@@ -385,6 +389,7 @@ namespace PhuLongCRM.ViewModels
             var data = result.value.FirstOrDefault();
             Meet = data;
 
+            this.CollectionType = CollectionTypeData.GetCollectionTypeById(data.bsd_collectiontype);
             if (data.scheduledend != null && data.scheduledstart != null)
             {
                 Meet.scheduledend = data.scheduledend.Value.ToLocalTime();

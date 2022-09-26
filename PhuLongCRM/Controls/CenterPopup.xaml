@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
              x:Class="PhuLongCRM.Controls.CenterPopup"
-             IsVisible="false"
+             IsVisible="false" 
              AbsoluteLayout.LayoutBounds="0,0,1,1" 
              AbsoluteLayout.LayoutFlags="All"
              BackgroundColor="#90000000">
@@ -14,7 +14,7 @@
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="CloseContent_Tapped"/>
                 </BoxView.GestureRecognizers>
             </BoxView>
-            <Grid VerticalOptions="CenterAndExpand" Margin="20">
+            <Grid VerticalOptions="CenterAndExpand" Margin="20,60">
                 <telerikPrimitives:RadBorder CornerRadius="10" BackgroundColor="White" Padding="10">
                     <Grid x:Name="grid_body" RowDefinitions="Auto,*">
                         <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto" Grid.Row="0" Grid.Column="0">

@@ -3501,4 +3501,13 @@
 	<data name="acceptance_title" xml:space="preserve">
 		<value>Acceptance</value>
 	</data>
+  <data name="loai_lich_hen" xml:space="preserve">
+    <value>Collection type</value>
+  </data>
+  <data name="chon_loai_lich_hen" xml:space="preserve">
+    <value>Choose collection type</value>
+  </data>
+  <data name="vui_long_chon_loai_lich_hen" xml:space="preserve">
+    <value>Please choose collection type</value>
+  </data>
 </root>

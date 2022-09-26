@@ -90,7 +90,7 @@
                             </Grid>
                         </Grid>
                     </telerikPrimitives:RadBorder>
-                    <controls:TabControl ListTab="thong_tin_title,giao_dich_title,nguoi_uy_quyen" IndexTab="TabControl_IndexTab"/>
+                    <controls:TabControl ListTab="thong_tin_title,giao_dich_title,cuoc_hop" IndexTab="TabControl_IndexTab"/>
                     <Grid>
                         <!--tab thông tin-->
                         <StackLayout x:Name="TabThongTin" IsVisible="true" Margin="0,10,0,0">
@@ -209,9 +209,10 @@
                                 </telerikPrimitives:RadExpander.Content>
                             </telerikPrimitives:RadExpander>
                         </StackLayout>
+
                         <!--tab giao dich-->
                         <StackLayout x:Name="TabGiaoDich" IsVisible="false" Margin="0,10,0,0">
-                            <telerikPrimitives:RadExpander IsExpanded="False" BorderColor="Transparent">
+                            <!--<telerikPrimitives:RadExpander IsExpanded="False" BorderColor="Transparent">
                                 <telerikPrimitives:RadExpander.Header>
                                     <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
                                         <Label Style="{StaticResource ExpanderHeadingText}" Text="{x:Static lang:Language.giu_cho_title}"/>
@@ -299,7 +300,7 @@
                                         <Button Clicked="ShowMoreQuotation_Clicked" IsVisible="{Binding ShowMoreQuotation}" BorderColor="{StaticResource NavigationPrimary}" CornerRadius="5" BorderWidth="1" BackgroundColor="Transparent" Text="Xem Thêm" TextTransform="None" TextColor="#1399D5" HeightRequest="30" HorizontalOptions="Center" Margin="0,5,0,10" Padding="30,0,30,0"/>
                                     </StackLayout>
                                 </telerikPrimitives:RadExpander.Content>
-                            </telerikPrimitives:RadExpander>
+                            </telerikPrimitives:RadExpander>-->
                             <telerikPrimitives:RadExpander IsExpanded="False" BorderColor="Transparent">
                                 <telerikPrimitives:RadExpander.Header>
                                     <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
@@ -375,8 +376,49 @@
                                 </telerikPrimitives:RadExpander.Content>
                             </telerikPrimitives:RadExpander>
                         </StackLayout>
+
+                        <!--Tab Meeting-->
+                        <StackLayout x:Name="TabMeeting" IsVisible="false" Margin="0,10,0,0">
+                            <telerikPrimitives:RadExpander IsExpanded="True" BorderColor="Transparent">
+                                <telerikPrimitives:RadExpander.Header>
+                                    <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
+                                        <Label Style="{StaticResource ExpanderHeadingText}" Text="{x:Static lang:Language.cuoc_hop}"/>
+                                    </telerikPrimitives:ExpanderHeader>
+                                </telerikPrimitives:RadExpander.Header>
+                                <telerikPrimitives:RadExpander.Content>
+                                    <StackLayout>
+                                        <StackLayout BindableLayout.ItemsSource="{Binding Meetings}" BackgroundColor="#eeeeee" Spacing="1">
+                                            <BindableLayout.EmptyViewTemplate>
+                                                <DataTemplate>
+                                                    <Label Text="{x:Static lang:Language.khong_co_du_lieu}" TextColor="Black" HorizontalTextAlignment="Center" BackgroundColor="White" Padding="0,15"/>
+                                                </DataTemplate>
+                                            </BindableLayout.EmptyViewTemplate>
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor ="White" Padding="15,10" Margin="0,1" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+                                                        <Grid.GestureRecognizers>
+                                                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="CaseItem_Tapped" CommandParameter="{Binding .}"/>
+                                                        </Grid.GestureRecognizers>
+                                                        <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding statecode_color}" VerticalOptions="Start">
+                                                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding statecode_format}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
+                                                        </telerikPrimitives:RadBorder>
+                                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding subject}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                                                        <controls:FieldListViewItem Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Title="{x:Static lang:Language.loai_actitivty}" Text="{Binding activitytypecode_format}"/>
+                                                        <controls:FieldListViewItem Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Title="{x:Static lang:Language.khach_hang}" Text="{Binding customer}"/>
+                                                        <controls:FieldListViewItem Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Title="{x:Static lang:Language.thoi_gian_bat_dau}" Text="{Binding scheduledstart_format, StringFormat='{0:dd/MM/yyyy - HH:mm}'}"/>
+                                                        <controls:FieldListViewItem Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Title="{x:Static lang:Language.thoi_gian_ket_thuc}" Text="{Binding scheduledend_format, StringFormat='{0:dd/MM/yyyy - HH:mm}'}"/>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
+                                        <Button Clicked="ShowMoreMeeting_Clicked" IsVisible="{Binding ShowMoreMeeting}" BorderColor="{StaticResource NavigationPrimary}" CornerRadius="5" BorderWidth="1" BackgroundColor="Transparent" Text="Xem Thêm" TextTransform="None" TextColor="#1399D5" HeightRequest="30" HorizontalOptions="Center" Margin="0,5,0,10" Padding="30,0,30,0"/>
+                                    </StackLayout>
+                                </telerikPrimitives:RadExpander.Content>
+                            </telerikPrimitives:RadExpander>
+                        </StackLayout>
+
                         <!--tab nguoi uy quyen-->
-                        <StackLayout x:Name="TabNguoiUyQuyen" IsVisible="false" Margin="0,10,0,0">
+                        <!--<StackLayout x:Name="TabNguoiUyQuyen" IsVisible="false" Margin="0,10,0,0">
                             <Label x:Name="lb_ListMandatory" Text="{x:Static lang:Language.khong_co_du_lieu}" HorizontalOptions="CenterAndExpand" FontSize="15" TextColor="#333333" IsVisible="false"/>
                             <ListView x:Name="ListMandatory" ItemsSource="{Binding list_MandatorySecondary}" HasUnevenRows="True" ItemAppearing="ListMoreMandatory_ItemAppearing">
                                 <ListView.ItemTemplate>
@@ -412,13 +454,16 @@
                                     </StackLayout>
                                 </ListView.Footer>
                             </ListView>
-                        </StackLayout>
+                        </StackLayout>-->
                     </Grid>
                 </StackLayout>
             </ScrollView>
-            <controls:FloatingButtonGroup x:Name="floatingButtonGroup" ItemsSource="{Binding BindingContext.ButtonCommandList,Source={x:Reference this}}"/>
+            <controls:ExtendedFrame IsVisible="{Binding Source={x:Reference TabMeeting}, Path=IsVisible}" AbsoluteLayout.LayoutBounds="0,1,1,59" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" BackgroundColor="#1399D5" Padding="0" HorizontalOptions="End" Margin="0,0,15,15" HeightRequest="44" WidthRequest="44" CornerRadius="22">
+                <Button Text="&#xf067;" Clicked="NewMeeting_Clicked" TextColor="White" FontSize="18" FontFamily="FontAwesomeSolid" WidthRequest="44" HeightRequest="44" CornerRadius="22" BackgroundColor="#1399D5"/>
+            </controls:ExtendedFrame>
+            <!--<controls:FloatingButtonGroup x:Name="floatingButtonGroup" ItemsSource="{Binding BindingContext.ButtonCommandList,Source={x:Reference this}}"/>-->
 
-            <ContentView x:Name="ContentMandatorySecondary" IsVisible="false" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#90000000">
+            <!--<ContentView x:Name="ContentMandatorySecondary" IsVisible="false" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#90000000">
                 <ContentView.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="CloseContentMandatorySecondary_Tapped"/>
                 </ContentView.GestureRecognizers>
@@ -474,7 +519,7 @@
                         </StackLayout>
                     </ScrollView>
                 </telerikPrimitives:RadBorder>
-            </ContentView>
+            </ContentView>-->
 
             <views:ActivityPopupContentView x:Name="ActivityPopup" HidePopupActivity="ActivityPopup_HidePopupActivity"/>
         </AbsoluteLayout>

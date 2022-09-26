@@ -69,6 +69,11 @@ namespace PhuLongCRM.ViewModels
         public ObservableCollection<PhotoCMND> CollectionCMNDs { get; set; } = new ObservableCollection<PhotoCMND>();
         public ObservableCollection<FloatButtonItem> ButtonCommandList { get; set; } = new ObservableCollection<FloatButtonItem>();
 
+        public ObservableCollection<ActivityListModel> Meetings { get; set; } = new ObservableCollection<ActivityListModel>();
+        private bool _showMoreMeeting;
+        public bool ShowMoreMeeting { get => _showMoreMeeting; set { _showMoreMeeting = value; OnPropertyChanged(nameof(ShowMoreMeeting)); } }
+        public int PageMeeting { get; set; } = 1;
+
         public string CodeContac = LookUpMultipleTabs.CodeContac;
         public List<Photo> Photos { get; set; }
 
@@ -274,6 +279,7 @@ namespace PhuLongCRM.ViewModels
                 list_danhsachdatcho.Add(queue);
             }
         }
+
         // DANH SACH DAT COC
         public async Task LoadReservationForContactForm(string customerId)
         {
@@ -413,10 +419,8 @@ namespace PhuLongCRM.ViewModels
                                         <condition attribute='activitytypecode' operator='in'>
                                             <value>4212</value>
                                             <value>4210</value>
-                                            <value>4201</value>
                                         </condition>
 	                                    <filter type='or'>
-                                            <condition entityname='meet' attribute='{UserLogged.UserAttribute}' operator='eq' value='{UserLogged.Id}' />
                                             <condition entityname='task' attribute='{UserLogged.UserAttribute}' operator='eq' value='{UserLogged.Id}' />
                                             <condition entityname='phonecall' attribute='{UserLogged.UserAttribute}' operator='eq' value='{UserLogged.Id}' />
                                         </filter>
@@ -460,9 +464,7 @@ namespace PhuLongCRM.ViewModels
             {
                 foreach (var item in result.value)
                 {
-                    if (item.activitytypecode == "appointment")
-                        item.customer = await MeetCustomerHelper.MeetCustomer(item.activityid);
-                    else if (item.activitytypecode == "task")
+                    if (item.activitytypecode == "task")
                         item.customer = item.task__customer;
                     else if (item.activitytypecode == "phonecall")
                         item.customer = item.phonecall_customer;
@@ -471,6 +473,46 @@ namespace PhuLongCRM.ViewModels
             }
             ShowMoreCase = Cares.Count < (5 * PageCase) ? false : true;
         }
+
+        public async Task LoadMeetings()
+        {
+            if (singleContact == null || singleContact.contactid == Guid.Empty) return;
+            string fetch = $@"<fetch version='1.0' count='5' page='{PageMeeting}' output-format='xml-platform' mapping='logical' distinct='false'>
+                                <entity name='activitypointer'>
+                                    <attribute name='subject' />
+                                    <attribute name='statecode' />
+                                    <attribute name='activityid' />
+                                    <attribute name='scheduledstart' />
+                                    <attribute name='scheduledend' /> 
+                                    <attribute name='activitytypecode' />
+                                    <filter type='and'>
+                                        <condition attribute='activitytypecode' operator='in'>
+                                            <value>4201</value>
+                                        </condition>
+	                                    <filter type='or'>
+                                            <condition entityname='meet' attribute='{UserLogged.UserAttribute}' operator='eq' value='{UserLogged.Id}' />
+                                        </filter>
+                                        <condition attribute='regardingobjectid' operator='eq' value='{singleContact.contactid}' />
+                                    </filter>
+                                    <link-entity name='appointment' from='activityid' to='activityid' alias='meet' link-type='outer'>
+                                        <attribute name='requiredattendees' />
+                                    </link-entity>
+                                </entity>
+                            </fetch>";
+
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<ActivityListModel>>("activitypointers", fetch);
+            if (result != null && result.value.Count > 0)
+            {
+                foreach (var item in result.value)
+                {
+                    if (item.activitytypecode == "appointment")
+                        item.customer = await MeetCustomerHelper.MeetCustomer(item.activityid);
+                    this.Meetings.Add(item);
+                }
+            }
+            ShowMoreMeeting = this.Meetings.Count < (5 * PageMeeting) ? false : true;
+        }
+
         // phon thuy
         public void LoadPhongThuy()
         {

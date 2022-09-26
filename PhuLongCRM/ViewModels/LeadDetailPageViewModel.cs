@@ -53,9 +53,15 @@ namespace PhuLongCRM.ViewModels
         private ObservableCollection<ActivityListModel> cares;
         public ObservableCollection<ActivityListModel> Cares { get => cares; set { cares = value; OnPropertyChanged(nameof(Cares)); } }
 
+        public ObservableCollection<ActivityListModel> Meetings { get; set; } = new ObservableCollection<ActivityListModel>();
+
         private bool _showMoreCase;
         public bool ShowMoreCase { get => _showMoreCase; set { _showMoreCase = value; OnPropertyChanged(nameof(ShowMoreCase)); } }
         public int PageCase { get; set; } = 1;
+
+        private bool _showMoreMeetings;
+        public bool ShowMoreMeetings { get => _showMoreMeetings; set { _showMoreMeetings = value; OnPropertyChanged(nameof(ShowMoreMeetings)); } }
+        public int PageMeetings { get; set; } = 1;
 
         public bool IsFromQRCode { get; set; }
 
@@ -184,6 +190,7 @@ namespace PhuLongCRM.ViewModels
                 return false;
             }
         }
+
         private async Task<object> GetContentUpdateStatusCode()
         {
             Dictionary<string, string> data = new Dictionary<string, string>();
@@ -191,6 +198,7 @@ namespace PhuLongCRM.ViewModels
             data["statecode"] = this.LeadStateCode.ToString();
             return data;
         }
+
         public void LoadPhongThuy()
         {
             PhongThuy = new PhongThuyModel();
@@ -235,12 +243,14 @@ namespace PhuLongCRM.ViewModels
                 }
             }
         }
+
         private async Task<object> getContent()
         {
             IDictionary<string, object> data = new Dictionary<string, object>();
             data["statecode"] = "1";
             return data;
         }
+
         // check id
         public async Task<bool> CheckID(string identitycardnumber)
         {
@@ -278,6 +288,7 @@ namespace PhuLongCRM.ViewModels
             else
                 return false;
         }
+
         public async Task<LeadFormModel> LoadStatusLead()
         {
             if (singleLead == null || singleLead.leadid == Guid.Empty) return null;
@@ -304,6 +315,7 @@ namespace PhuLongCRM.ViewModels
                 return null;
             return result.value.FirstOrDefault();
         }
+
         public async Task LoadCase()
         {
             if (Cares == null)
@@ -321,7 +333,6 @@ namespace PhuLongCRM.ViewModels
                                         <condition attribute='activitytypecode' operator='in'>
                                             <value>4212</value>
                                             <value>4210</value>
-                                            <value>4201</value>
                                         </condition>
 	                                    <filter type='or'>
                                             <condition entityname='meet' attribute='{UserLogged.UserAttribute}' operator='eq' value='{UserLogged.Id}' />
@@ -368,9 +379,7 @@ namespace PhuLongCRM.ViewModels
             {
                 foreach (var item in result.value)
                 {
-                    if (item.activitytypecode == "appointment")
-                        item.customer = await MeetCustomerHelper.MeetCustomer(item.activityid);
-                    else if (item.activitytypecode == "task")
+                    if (item.activitytypecode == "task")
                         item.customer = item.task__customer;
                     else if (item.activitytypecode == "phonecall")
                         item.customer = item.phonecall_customer;
@@ -378,6 +387,46 @@ namespace PhuLongCRM.ViewModels
                 }
             }
             ShowMoreCase = Cares.Count < (5 * PageCase) ? false : true;
+        }
+
+        public async Task LoadMeetings()
+        {
+            if (singleLead == null || singleLead.leadid == Guid.Empty) return;
+            string fetch = $@"<fetch version='1.0' count='5' page='{PageMeetings}' output-format='xml-platform' mapping='logical' distinct='false'>
+                                <entity name='activitypointer'>
+                                    <attribute name='subject' />
+                                    <attribute name='statecode' />
+                                    <attribute name='activityid' />
+                                    <attribute name='scheduledstart' />
+                                    <attribute name='scheduledend' /> 
+                                    <attribute name='activitytypecode' />
+                                    <filter type='and'>
+                                        <condition attribute='activitytypecode' operator='in'>
+                                            <value>4201</value>
+                                        </condition>
+	                                    <filter type='or'>
+                                            <condition entityname='meet' attribute='{UserLogged.UserAttribute}' operator='eq' value='{UserLogged.Id}' />
+                                        </filter>
+                                        <condition attribute='regardingobjectid' operator='eq' value='{singleLead.leadid}' />
+                                    </filter>
+                                    <link-entity name='appointment' from='activityid' to='activityid' alias='meet' link-type='outer'>
+                                        <attribute name='requiredattendees' />
+                                    </link-entity>
+                                    
+                                </entity>
+                            </fetch>";
+
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<ActivityListModel>>("activitypointers", fetch);
+            if (result != null && result.value.Count > 0)
+            {
+                foreach (var item in result.value)
+                {
+                    if (item.activitytypecode == "appointment")
+                        item.customer = await MeetCustomerHelper.MeetCustomer(item.activityid);
+                    Meetings.Add(item);
+                }
+            }
+            ShowMoreMeetings = Meetings.Count < (5 * PageMeetings) ? false : true;
         }
     }
 }
