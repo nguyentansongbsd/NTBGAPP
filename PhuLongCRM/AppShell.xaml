@@ -83,12 +83,12 @@
             <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf07a;" Size="18"/>
         </ShellContent.Icon>
     </ShellContent>
-    <ShellContent Title="{x:Static lang:Language.giu_cho_title}" ContentTemplate="{DataTemplate views:QueueList}">
+    <ShellContent Title="{x:Static lang:Language.unit_spec_title}" ContentTemplate="{DataTemplate views:UnitSpecificationList}">
         <ShellContent.Icon>
             <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf02d;" Size="18"/>
         </ShellContent.Icon>
     </ShellContent>
-    <ShellContent Title="{x:Static lang:Language.bang_tinh_gia_title}" ContentTemplate="{DataTemplate views:ReservationList}" >
+    <ShellContent Title="{x:Static lang:Language.acceptance_title}" ContentTemplate="{DataTemplate views:AcceptanceList}" >
         <ShellContent.Icon>
             <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf46d;" Size="18"/>
         </ShellContent.Icon>

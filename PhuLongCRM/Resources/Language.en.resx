@@ -3462,4 +3462,43 @@
   <data name="giu_cho_btg" xml:space="preserve">
     <value>Queue</value>
   </data>
+	<data name="unit_spec_title" xml:space="preserve">
+    <value>Unit Specification</value>
+  </data>
+	<data name="unit_type" xml:space="preserve">
+    <value>Unit type</value>
+  </data>
+	<data name="mo_ta_khac" xml:space="preserve">
+    <value>Descriptions (Other)</value>
+  </data>
+	<data name="unit_spec_detail_title" xml:space="preserve">
+    <value>Unit Specification Detail</value>
+  </data>
+	<data name="type_of_room_vn" xml:space="preserve">
+    <value>Type of room (VN)</value>
+  </data>
+	<data name="type_of_room_other" xml:space="preserve">
+    <value>Type of room (Other)</value>
+  </data>
+	<data name="acceptance_active_sts" xml:space="preserve">
+		<value>Active</value>
+	</data>
+	<data name="acceptance_cancelled_sts" xml:space="preserve">
+		<value>Cancelled</value>
+	</data>
+	<data name="acceptance_closed_sts" xml:space="preserve">
+		<value>Closed</value>
+	</data>
+	<data name="acceptance_confirmed_acceptance_sts" xml:space="preserve">
+		<value>Confirmed Acceptance</value>
+	</data>
+	<data name="acceptance_confirmed_information_sts" xml:space="preserve">
+		<value>Confirmed Information</value>
+	</data>
+	<data name="acceptance_inactive_sts" xml:space="preserve">
+		<value>Inactive</value>
+	</data>
+	<data name="acceptance_title" xml:space="preserve">
+		<value>Acceptance</value>
+	</data>
 </root>
