@@ -78,6 +78,16 @@
         </ShellContent>
     </FlyoutItem>
 
+    <ShellContent Title="{x:Static lang:Language.unit_spec_title}" ContentTemplate="{DataTemplate views:UnitSpecificationList}">
+        <ShellContent.Icon>
+            <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf02d;" Size="18"/>
+        </ShellContent.Icon>
+    </ShellContent>
+    <ShellContent Title="{x:Static lang:Language.acceptance_title}" ContentTemplate="{DataTemplate views:AcceptanceList}" >
+        <ShellContent.Icon>
+            <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf46d;" Size="18"/>
+        </ShellContent.Icon>
+    </ShellContent>
     <ShellContent Title="{x:Static lang:Language.hop_dong_title}" ContentTemplate="{DataTemplate views:ContractList}">
         <ShellContent.Icon>
             <FontImageSource FontFamily="FontAwesomeSolid" Color="#666666" Glyph="&#xf0ca;" Size="18"/>

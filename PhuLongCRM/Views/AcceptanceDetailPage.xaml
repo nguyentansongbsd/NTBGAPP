@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             Title="{x:Static lang:Language.acceptance_title}"
+             x:Class="PhuLongCRM.Views.AcceptanceDetailPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Padding="0,0,0,60">
+                <StackLayout>
+                    <telerikPrimitives:RadBorder BorderThickness="1" CornerRadius="10" BorderColor="Gray" Margin="10,20,10,0">
+                        <StackLayout Padding="15,10" Spacing="10">
+                            <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto" Grid.Row="0" Grid.Column="0">
+                                <telerikPrimitives:RadBorder CornerRadius="5" BackgroundColor="{Binding Acceptance.statuscode_color}" VerticalOptions="Start">
+                                    <Label Grid.Column="0" Text="{Binding Acceptance.statuscode_format}" FontSize="14" TextColor="White" FontAttributes="Bold" Margin="5"/>
+                                </telerikPrimitives:RadBorder>
+                                <Label Grid.Column="1" Text="{Binding Acceptance.bsd_name}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <Label Grid.Column="0" Text="{Binding Source={x:Static lang:Language.hop_dong},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
+                                <Label Grid.Column="1" Text="{Binding Acceptance.contract_name}" TextColor="{StaticResource NavigationPrimary}" FontSize="15" FontAttributes="Bold">
+
+                                </Label>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <Label Grid.Column="0" Text="{Binding Source={x:Static lang:Language.du_an},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
+                                <Label Grid.Column="1" Text="{Binding Acceptance.project_name}" TextColor="{StaticResource NavigationPrimary}" FontSize="15" FontAttributes="Bold">
+
+                                </Label>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <Label Grid.Column="0" Text="{Binding Source={x:Static lang:Language.san_pham},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
+                                <Label Grid.Column="1" Text="{Binding Acceptance.unit_name}" TextColor="{StaticResource NavigationPrimary}" FontSize="15" FontAttributes="Bold">
+
+                                </Label>
+                            </Grid>
+                        </StackLayout>
+                    </telerikPrimitives:RadBorder>
+                </StackLayout>
+            </ScrollView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

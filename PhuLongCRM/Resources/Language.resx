@@ -3462,6 +3462,45 @@
   <data name="giu_cho_btg" xml:space="preserve">
     <value>Giữ chỗ</value>
   </data>
+	<data name="unit_spec_title" xml:space="preserve">
+    <value>Đặc Điểm Sản Phẩm</value>
+  </data>
+	<data name="unit_type" xml:space="preserve">
+    <value>Loại sản phẩm</value>
+  </data>
+	<data name="mo_ta_khac" xml:space="preserve">
+    <value>Mô tả (Khác)</value>
+  </data>
+	<data name="unit_spec_detail_title" xml:space="preserve">
+    <value>Chi Tiết Đặc Điểm Sản Phẩm</value>
+  </data>
+	<data name="type_of_room_vn" xml:space="preserve">
+    <value>Loại phòng (VN)</value>
+  </data>
+	<data name="type_of_room_other" xml:space="preserve">
+    <value>Loại phòng (Khác)</value>
+  </data>
+	<data name="acceptance_active_sts" xml:space="preserve">
+		<value>Nháp</value>
+	</data>
+	<data name="acceptance_cancelled_sts" xml:space="preserve">
+		<value>Đã hủy</value>
+	</data>
+	<data name="acceptance_closed_sts" xml:space="preserve">
+		<value>Đã đóng</value>
+	</data>
+	<data name="acceptance_confirmed_acceptance_sts" xml:space="preserve">
+		<value>Xác nhận nghiệm thu</value>
+	</data>
+	<data name="acceptance_confirmed_information_sts" xml:space="preserve">
+		<value>Xác nhận thông tin</value>
+	</data>
+	<data name="acceptance_inactive_sts" xml:space="preserve">
+		<value>Vô hiệu lực</value>
+	</data>
+	<data name="acceptance_title" xml:space="preserve">
+		<value>Nghiệm Thu</value>
+	</data>
   <data name="loai_lich_hen" xml:space="preserve">
     <value>Loại lịch hẹn</value>
   </data>
