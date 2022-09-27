@@ -88,15 +88,23 @@
             <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf46d;" Size="18"/>
         </ShellContent.Icon>
     </ShellContent>
+    <ShellContent Title="Bàn giao sản phẩm" ContentTemplate="{DataTemplate views:UnitHandovers}">
+        <ShellContent.Icon>
+            <FontImageSource FontFamily="FontAwesomeSolid" Color="#666666" Glyph="&#xf0f2;" Size="18"/>
+        </ShellContent.Icon>
+    </ShellContent>
+    <ShellContent Title="Bàn giao GCN" ContentTemplate="{DataTemplate views:PinkBookHandovers}">
+        <ShellContent.Icon>
+            <FontImageSource FontFamily="FontAwesomeSolid" Color="#666666" Glyph="&#xf02d;" Size="18"/>
+        </ShellContent.Icon>
+    </ShellContent>
     <ShellContent Title="{x:Static lang:Language.hop_dong_title}" ContentTemplate="{DataTemplate views:ContractList}">
         <ShellContent.Icon>
             <FontImageSource FontFamily="FontAwesomeSolid" Color="#666666" Glyph="&#xf0ca;" Size="18"/>
         </ShellContent.Icon>
     </ShellContent>
     
-
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        
         <ShellContent Title="{x:Static lang:Language.lich_lam_viec}" ContentTemplate="{DataTemplate views:LichLamViec}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf073;" Size="18"/>
