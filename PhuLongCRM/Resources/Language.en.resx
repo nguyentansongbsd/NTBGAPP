@@ -3510,4 +3510,94 @@
   <data name="vui_long_chon_loai_lich_hen" xml:space="preserve">
     <value>Please choose collection type</value>
   </data>
+	<data name="so_nghiem_thu" xml:space="preserve">
+		<value>Acceptance no</value>
+	</data>
+	<data name="acceptance_internal_type" xml:space="preserve">
+		<value>Internal</value>
+	</data>
+	<data name="acceptance_external_type" xml:space="preserve">
+		<value>External</value>
+	</data>
+	<data name="acceptance_pass_typeresult" xml:space="preserve">
+		<value>Pass</value>
+	</data>
+	<data name="acceptance_error_typeresult" xml:space="preserve">
+		<value>Error</value>
+	</data>
+	<data name="acceptance_pass_agree_to_request_typeresult" xml:space="preserve">
+		<value>Pass - Agree to request</value>
+	</data>
+	<data name="acceptance_pass_reject_request_typeresult" xml:space="preserve">
+		<value>Pass - Reject request</value>
+	</data>
+	<data name="loai_ket_qua" xml:space="preserve">
+		<value>Type result</value>
+	</data>
+	<data name="thong_bao_nghiem_thu" xml:space="preserve">
+		<value>Acceptance notices</value>
+	</data>
+	<data name="ngay_nghiem_thu" xml:space="preserve">
+		<value>Actual acceptance date</value>
+	</data>
+	<data name="chi_phi" xml:space="preserve">
+		<value>Expense</value>
+	</data>
+	<data name="ngay_nghiem_thu_lai" xml:space="preserve">
+		<value>Re-acceptance date</value>
+	</data>
+	<data name="thoi_gian_sua_chua" xml:space="preserve">
+		<value>Repair time (Day)</value>
+	</data>
+	<data name="ghi_chu" xml:space="preserve">
+		<value>Remark</value>
+	</data>
+	<data name="nguoi_in" xml:space="preserve">
+		<value>Printer</value>
+	</data>
+	<data name="nguoi_xac_nhan" xml:space="preserve">
+		<value>Confirmer</value>
+	</data>
+	<data name="ngay_xac_nhan" xml:space="preserve">
+		<value>Confirm date</value>
+	</data>
+	<data name="nguoi_huy" xml:space="preserve">
+		<value>Canceller</value>
+	</data>
+	<data name="ngay_huy" xml:space="preserve">
+		<value>Cancelled date</value>
+	</data>
+	<data name="ly_do_huy" xml:space="preserve">
+		<value>Cancelled reason</value>
+	</data>
+	<data name="ly_do_dung" xml:space="preserve">
+		<value>Deactive reason</value>
+	</data>
+	<data name="chon_loai_ket_qua" xml:space="preserve">
+		<value>Choose type result</value>
+	</data>
+	<data name="chon_ngay_nghiem_thu" xml:space="preserve">
+		<value>Choose actual acceptance date</value>
+	</data>
+	<data name="nhap_chi_phi" xml:space="preserve">
+		<value>Enter expense</value>
+	</data>
+	<data name="chon_lich" xml:space="preserve">
+		<value>Choose installment</value>
+	</data>
+	<data name="chon_ngay_nghiem_thu_lai" xml:space="preserve">
+		<value>Choose re-acceptance date</value>
+	</data>
+	<data name="nhap_thoi_gian_sua_chua" xml:space="preserve">
+		<value>Enter repair time (Day)</value>
+	</data>
+	<data name="nhap_ghi_chu" xml:space="preserve">
+		<value>Enter remark</value>
+	</data>
+	<data name="vui_long_chon_loai_ket_qua" xml:space="preserve">
+		<value>Please choose type result.</value>
+	</data>
+	<data name="xac_nhan_thong_tin" xml:space="preserve">
+		<value>Confirm information</value>
+	</data>
 </root>
