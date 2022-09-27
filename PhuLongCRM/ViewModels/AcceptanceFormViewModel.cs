@@ -115,30 +115,23 @@ namespace PhuLongCRM.ViewModels
             if (result == null || result.value.Count == 0) return;
             Installments = result.value;
         }
-        public async Task<bool> Update()
+        public async Task<CrmApiResponse> Update()
         {
             string path = "/bsd_acceptances(" + Acceptance.bsd_acceptanceid + ")";
-            var content = await this.getContent();
+            var content = await getContent();
             CrmApiResponse result = await CrmHelper.PatchData(path, content);
+            return result;
 
-            if (result.IsSuccess)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
         public async Task<Boolean> DeletLookup(string fieldName, Guid id)
         {
             var result = await CrmHelper.SetNullLookupField("bsd_acceptances", id, fieldName);
             return result.IsSuccess;
         }
-        private async Task<object> getContent()
+        public async Task<object> getContent()
         {
             IDictionary<string, object> data = new Dictionary<string, object>();
-            if(TypeResult != null)
+            if (TypeResult != null)
                 data["bsd_typeresult"] = TypeResult.Val;
 
             data["bsd_actualacceptancedate"] = Acceptance.bsd_actualacceptancedate.Value.ToUniversalTime(); ;

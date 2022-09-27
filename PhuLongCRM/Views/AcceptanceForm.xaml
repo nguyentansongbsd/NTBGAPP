@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
              xmlns:controls="clr-namespace:PhuLongCRM.Controls"
-             xmlns:lang="clr-namespace:PhuLongCRM.Resources" 
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources"
+             Title="{x:Static lang:Language.cap_nhat}"
              x:Class="PhuLongCRM.Views.AcceptanceForm">
     <ContentPage.Content>
         <AbsoluteLayout>
@@ -64,7 +65,7 @@
                                 <controls:DatePickerBoderControl Date="{Binding Acceptance.bsd_actualacceptancedate}" ShowTime="False" Placeholder="{x:Static lang:Language.chon_ngay_nghiem_thu}" />
 
                                 <controls:FormLabel Text="{x:Static lang:Language.chi_phi}" Margin="0,10,0,0"/>
-                                <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_chi_phi}" Text="{Binding Acceptance.bsd_expense}" FontSize="15"/>
+                                <controls:DecimalEntry Placeholder="{x:Static lang:Language.nhap_chi_phi}" Price="{Binding Acceptance.bsd_expense}" />
 
                                 <controls:FormLabel Text="{x:Static lang:Language.lich}" Margin="0,10,0,0"/>
                                 <controls:LookUp x:Name="lookUpLich" Placeholder="{x:Static lang:Language.chon_lich}" NameDisplay="Label" BottomModal="{Reference LookUpModal}" SelectedItem="{Binding Installment}" ItemsSource="{Binding Installments}"/>

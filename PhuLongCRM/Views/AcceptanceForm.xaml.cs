@@ -18,12 +18,14 @@ namespace PhuLongCRM.Views
     {
         private AcceptanceFormViewModel viewModel;
         public Action<bool> OnCompleted;
+
         public AcceptanceForm(Guid id)
         {
             InitializeComponent();
             BindingContext = viewModel = new AcceptanceFormViewModel();
             Init(id);
         }
+
         public async void Init(Guid id)
         {
             await viewModel.LoadAcceptance(id);
@@ -35,6 +37,7 @@ namespace PhuLongCRM.Views
             else
                 OnCompleted?.Invoke(false);
         }
+
         public void SetPreOpen()
         {
             lookUpLoaiKQ.PreOpenAsync = async () => {
@@ -56,8 +59,9 @@ namespace PhuLongCRM.Views
                 ToastMessageHelper.ShortMessage(Language.vui_long_chon_loai_ket_qua);
                 return;
             }
-            bool IsSuccess = await viewModel.Update();
-            if (IsSuccess)
+            LoadingHelper.Show();
+            var result = await viewModel.Update();
+            if (result.IsSuccess)
             {
                 if (AcceptanceDetailPage.NeedToRefresh.HasValue) AcceptanceDetailPage.NeedToRefresh = true;
                 await Navigation.PopAsync();
@@ -67,7 +71,7 @@ namespace PhuLongCRM.Views
             else
             {
                 LoadingHelper.Hide();
-                ToastMessageHelper.ShortMessage(Language.thong_bao_that_bai);
+                ToastMessageHelper.LongMessage(result.ErrorResponse.error.message);
             }
         }
     }
