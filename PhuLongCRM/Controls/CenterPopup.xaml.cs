@@ -54,7 +54,7 @@ namespace PhuLongCRM.Controls
             this.IsVisible = true;
         }
 
-        private void CloseContent_Tapped(object sender, EventArgs e)
+        public void CloseContent_Tapped(object sender, EventArgs e)
         {
             EventHandler eventHandler = Close;
             eventHandler?.Invoke((object)this, EventArgs.Empty);
