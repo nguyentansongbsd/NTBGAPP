@@ -6731,6 +6731,84 @@ namespace PhuLongCRM.Resources {
             }
         }
         
+        internal static string unit_spec_title {
+            get {
+                return ResourceManager.GetString("unit_spec_title", resourceCulture);
+            }
+        }
+        
+        internal static string unit_type {
+            get {
+                return ResourceManager.GetString("unit_type", resourceCulture);
+            }
+        }
+        
+        internal static string mo_ta_khac {
+            get {
+                return ResourceManager.GetString("mo_ta_khac", resourceCulture);
+            }
+        }
+        
+        internal static string unit_spec_detail_title {
+            get {
+                return ResourceManager.GetString("unit_spec_detail_title", resourceCulture);
+            }
+        }
+        
+        internal static string type_of_room_vn {
+            get {
+                return ResourceManager.GetString("type_of_room_vn", resourceCulture);
+            }
+        }
+        
+        internal static string type_of_room_other {
+            get {
+                return ResourceManager.GetString("type_of_room_other", resourceCulture);
+            }
+        }
+        
+        internal static string acceptance_active_sts {
+            get {
+                return ResourceManager.GetString("acceptance_active_sts", resourceCulture);
+            }
+        }
+        
+        internal static string acceptance_cancelled_sts {
+            get {
+                return ResourceManager.GetString("acceptance_cancelled_sts", resourceCulture);
+            }
+        }
+        
+        internal static string acceptance_closed_sts {
+            get {
+                return ResourceManager.GetString("acceptance_closed_sts", resourceCulture);
+            }
+        }
+        
+        internal static string acceptance_confirmed_acceptance_sts {
+            get {
+                return ResourceManager.GetString("acceptance_confirmed_acceptance_sts", resourceCulture);
+            }
+        }
+        
+        internal static string acceptance_confirmed_information_sts {
+            get {
+                return ResourceManager.GetString("acceptance_confirmed_information_sts", resourceCulture);
+            }
+        }
+        
+        internal static string acceptance_inactive_sts {
+            get {
+                return ResourceManager.GetString("acceptance_inactive_sts", resourceCulture);
+            }
+        }
+        
+        internal static string acceptance_title {
+            get {
+                return ResourceManager.GetString("acceptance_title", resourceCulture);
+            }
+        }
+        
         internal static string loai_lich_hen {
             get {
                 return ResourceManager.GetString("loai_lich_hen", resourceCulture);
