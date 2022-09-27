@@ -1,4 +1,7 @@
-﻿using PhuLongCRM.ViewModels;
+﻿using PhuLongCRM.Helper;
+using PhuLongCRM.Models;
+using PhuLongCRM.Resources;
+using PhuLongCRM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +18,13 @@ namespace PhuLongCRM.Views
     {
         private AcceptanceDetailPageViewModel viewModel;
         public Action<bool> OnCompleted;
+        public static bool? NeedToRefresh = null;
+
         public AcceptanceDetailPage(Guid id)
         {
             InitializeComponent();
             BindingContext = viewModel = new AcceptanceDetailPageViewModel();
+            NeedToRefresh = false;
             Init(id);
         }
         public async void Init(Guid id)
@@ -26,10 +32,82 @@ namespace PhuLongCRM.Views
             await viewModel.LoadAcceptance(id);
             if (viewModel.Acceptance != null && viewModel.Acceptance.bsd_acceptanceid != Guid.Empty)
             {
+                SetButtonFloatingButton();
                 OnCompleted?.Invoke(true);
             }
             else
                 OnCompleted?.Invoke(false);
+        }
+        protected async override void OnAppearing()
+        {
+            if (NeedToRefresh == true)
+            {
+                LoadingHelper.Show();
+                await viewModel.LoadAcceptance(viewModel.Acceptance.bsd_acceptanceid);
+                NeedToRefresh = false;
+                LoadingHelper.Hide();
+            }
+            base.OnAppearing();
+        }
+        private void SetButtonFloatingButton()
+        {
+            if (viewModel.Acceptance.bsd_acceptanceid != Guid.Empty)
+            {
+                if (viewModel.ButtonCommandList.Count > 0)
+                    viewModel.ButtonCommandList.Clear();
+
+                if(viewModel.Acceptance.statuscode == "1")
+                    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.xac_nhan_thong_tin, "FontAwesomeSolid", "\uf46c", null, ConfirmInformation));
+
+                if (viewModel.Acceptance.statuscode == "1" || viewModel.Acceptance.statuscode == "100000001" || viewModel.Acceptance.statuscode == "100000000")
+                    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.huy, "FontAwesomeSolid", "\uf05e", null, Cancel));
+
+                if (viewModel.Acceptance.statuscode == "100000001")
+                    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.dong, "FontAwesomeSolid", "\uf011", null, Close));
+
+                if (viewModel.Acceptance.statuscode != "100000003")
+                    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.chinh_sua, "FontAwesomeRegular", "\uf044", null, Update));
+
+                if (viewModel.ButtonCommandList.Count == 0)
+                    floatingButtonGroup.IsVisible = false;
+                else
+                    floatingButtonGroup.IsVisible = true;
+
+            }
+        }
+
+        private void Close(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Cancel(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ConfirmInformation(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Update(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            AcceptanceForm newPage = new AcceptanceForm(viewModel.Acceptance.bsd_acceptanceid);
+            newPage.OnCompleted = async (OnCompleted) =>
+            {
+                if (OnCompleted == true)
+                {
+                    await Navigation.PushAsync(newPage);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+                }
+            };
         }
     }
 }

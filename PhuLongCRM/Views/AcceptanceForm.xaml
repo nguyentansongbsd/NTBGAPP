@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
+             xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+             xmlns:lang="clr-namespace:PhuLongCRM.Resources" 
+             x:Class="PhuLongCRM.Views.AcceptanceForm">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="0,0,0,60">
+                <StackLayout >
+                    <telerikPrimitives:RadExpander IsExpanded="True" AutomationId="masterCardExpander" BorderColor="Transparent">
+                        <telerikPrimitives:RadExpander.Header>
+                            <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
+                                <Label Text="{x:Static lang:Language.thong_tin_title}" Style="{StaticResource ExpanderHeadingText}"/>
+                            </telerikPrimitives:ExpanderHeader>
+                        </telerikPrimitives:RadExpander.Header>
+                        <telerikPrimitives:RadExpander.Content>
+                            <StackLayout BackgroundColor="White" Padding="10">
+                                <controls:FormLabel Text="{x:Static lang:Language.ten}"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding Acceptance.bsd_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.so_nghiem_thu}" Margin="0,10,0,0"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding Acceptance.bsd_acceptancenumber}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.loai}" Margin="0,10,0,0"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding Acceptance.acceptancetype_format}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.du_an}" Margin="0,10,0,0"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding Acceptance.project_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.san_pham}" Margin="0,10,0,0"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding Acceptance.unit_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.hop_dong}" Margin="0,10,0,0"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding Acceptance.contract_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.khach_hang}" Margin="0,10,0,0"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding Acceptance.customer_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabelRequired Text="{x:Static lang:Language.loai_ket_qua}" Margin="0,10,0,0"/>
+                                <controls:LookUp x:Name="lookUpLoaiKQ" Placeholder="{x:Static lang:Language.chon_loai_ket_qua}" NameDisplay="Label" BottomModal="{Reference LookUpModal}" SelectedItem="{Binding TypeResult}" ItemsSource="{Binding TypeResults}"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.thong_bao_nghiem_thu}" Margin="0,10,0,0"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding Acceptance.acceptance_noti_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.ngay_nghiem_thu}" Margin="0,10,0,0"/>
+                                <controls:DatePickerBoderControl Date="{Binding Acceptance.bsd_actualacceptancedate}" ShowTime="False" Placeholder="{x:Static lang:Language.chon_ngay_nghiem_thu}" />
+
+                                <controls:FormLabel Text="{x:Static lang:Language.chi_phi}" Margin="0,10,0,0"/>
+                                <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_chi_phi}" Text="{Binding Acceptance.bsd_expense}" FontSize="15"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.lich}" Margin="0,10,0,0"/>
+                                <controls:LookUp x:Name="lookUpLich" Placeholder="{x:Static lang:Language.chon_lich}" NameDisplay="Label" BottomModal="{Reference LookUpModal}" SelectedItem="{Binding Installment}" ItemsSource="{Binding Installments}"/>
+                                
+                                <controls:FormLabel Text="{x:Static lang:Language.ngay_nghiem_thu_lai}" Margin="0,10,0,0"/>
+                                <controls:DatePickerBoderControl Date="{Binding Acceptance.bsd_reacceptancedate}" ShowTime="False" Placeholder="{x:Static lang:Language.chon_ngay_nghiem_thu_lai}" />
+
+                                <controls:FormLabel Text="{x:Static lang:Language.thoi_gian_sua_chua}" Margin="0,10,0,0"/>
+                                <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_thoi_gian_sua_chua}" Text="{Binding Acceptance.bsd_repairtimeday}" FontSize="15"/>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.ghi_chu}" Margin="0,10,0,0"/>
+                                <controls:MainEntry Placeholder="{x:Static lang:Language.nhap_ghi_chu}" Text="{Binding Acceptance.bsd_remark}" FontSize="15"/>
+                            </StackLayout>
+                        </telerikPrimitives:RadExpander.Content>
+                    </telerikPrimitives:RadExpander>
+
+                    <telerikPrimitives:RadExpander IsExpanded="False" AutomationId="masterCardExpander" BorderColor="Transparent" Margin="0,10,0,0">
+                        <telerikPrimitives:RadExpander.Header>
+                            <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
+                                <Label Text="{x:Static lang:Language.thong_tin_chi_tiet_title}" Style="{StaticResource ExpanderHeadingText}"/>
+                            </telerikPrimitives:ExpanderHeader>
+                        </telerikPrimitives:RadExpander.Header>
+                        <telerikPrimitives:RadExpander.Content>
+                            <StackLayout BackgroundColor="White" Padding="10">
+                                
+                                <controls:FormLabel Text="{x:Static lang:Language.nguoi_in}"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding Acceptance.printer_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.ngay_in}" Margin="0,10,0,0"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding Acceptance.bsd_printedate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.nguoi_xac_nhan}"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding Acceptance.confirmer_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.ngay_xac_nhan}" Margin="0,10,0,0"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding Acceptance.bsd_confirmdate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.nguoi_huy}"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding Acceptance.canceller_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.ngay_huy}" Margin="0,10,0,0"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding Acceptance.bsd_cancelleddate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.ly_do_huy}"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding Acceptance.bsd_cancelledreason}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                                </telerikPrimitives:RadBorder>
+
+                                <controls:FormLabel Text="{x:Static lang:Language.ly_do_dung}" Margin="0,10,0,0"/>
+                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                    <Label Text="{Binding Acceptance.bsd_deactivereason}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0" LineBreakMode="TailTruncation"/>
+                                </telerikPrimitives:RadBorder>
+                            </StackLayout>
+                        </telerikPrimitives:RadExpander.Content>
+                    </telerikPrimitives:RadExpander>
+                </StackLayout>
+            </ScrollView>
+            <Button Text="{x:Static lang:Language.cap_nhat}" FontAttributes="Bold" Clicked="Update_Clicked" Margin="10" Padding="10,5" HeightRequest="40" CornerRadius="10" BackgroundColor="{StaticResource NavigationPrimary}" TextColor="White" AbsoluteLayout.LayoutBounds="0,1,1,60" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"/>
+            <controls:BottomModal x:Name="LookUpModal"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
