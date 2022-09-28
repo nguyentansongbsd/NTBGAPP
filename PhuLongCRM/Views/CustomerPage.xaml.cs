@@ -104,7 +104,7 @@ namespace PhuLongCRM.Views
                         ContactsContentview.IsVisible = false;
                     }
                 }
-                else if ((int)e.Item == 1)
+                else if((int)e.Item == 1)
                 {
                     if (ContactsContentview == null)
                     {

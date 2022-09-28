@@ -395,7 +395,7 @@
             <controls:ExtendedFrame x:Name="frameBtnNewMeeting" IsVisible="{Binding Source={x:Reference TabMeeting}, Path=IsVisible}" AbsoluteLayout.LayoutBounds="0,1,1,59" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" BackgroundColor="#1399D5" Padding="0" HorizontalOptions="End" Margin="0,0,15,15" HeightRequest="44" WidthRequest="44" CornerRadius="22">
                 <Button Text="&#xf067;" Clicked="NewMeeting_Clicked"  TextColor="White" FontSize="18" FontFamily="FontAwesomeSolid" WidthRequest="44" HeightRequest="44" CornerRadius="22" BackgroundColor="#1399D5"/>
             </controls:ExtendedFrame>
-            <!--<controls:FloatingButtonGroup x:Name="floatingButtonGroup" ItemsSource="{Binding BindingContext.ButtonCommandList,Source={x:Reference this}}" ClickedEvent="floatingButtonGroup_ClickedEvent"/>-->
+            <controls:FloatingButtonGroup x:Name="floatingButtonGroup" IsVisible="{Binding Source={x:Reference TabCustomerCare}, Path=IsVisible}" ItemsSource="{Binding BindingContext.ButtonCommandList,Source={x:Reference this}}" />
             <!--<Grid x:Name="LookUpImagePhongThuy" IsVisible="false" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
                 <controls:PinchToZoomContainer>
                     <controls:PinchToZoomContainer.Content>

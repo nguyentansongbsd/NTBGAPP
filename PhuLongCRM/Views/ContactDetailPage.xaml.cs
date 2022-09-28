@@ -73,9 +73,9 @@ namespace PhuLongCRM.Views
             if (NeedToRefreshActivity == true && viewModel.Cares != null)
             {
                 LoadingHelper.Show();
-                //viewModel.PageCase = 1;
-                //viewModel.Cares.Clear();
-                //await viewModel.LoadCase();
+                viewModel.PageCase = 1;
+                viewModel.Cares.Clear();
+                await viewModel.LoadCase();
                 viewModel.PageMeeting = 1;
                 viewModel.Meetings.Clear();
                 await viewModel.LoadMeetings();
@@ -89,20 +89,22 @@ namespace PhuLongCRM.Views
         {
             if (viewModel.singleContact.contactid != Guid.Empty)
             {
-                if(viewModel.ButtonCommandList.Count > 0)
-                    viewModel.ButtonCommandList.Clear();
-
-                if (string.IsNullOrWhiteSpace(viewModel.singleContact.bsd_qrcode))
-                {
-                    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_qr_code, "FontAwesomeSolid", "\uf029", null, GenerateQRCode));
-                }
-
-                viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_cuoc_hop, "FontAwesomeRegular", "\uf274", null, NewMeet));
                 viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_cuoc_goi, "FontAwesomeSolid", "\uf095", null, NewPhoneCall));
                 viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_cong_viec, "FontAwesomeSolid", "\uf073", null, NewTask));
+                //if(viewModel.ButtonCommandList.Count > 0)
+                //    viewModel.ButtonCommandList.Clear();
 
-                if (viewModel.singleContact.statuscode != "100000000")
-                    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.cap_nhat, "FontAwesomeRegular", "\uf044", null, EditContact));
+                //if (string.IsNullOrWhiteSpace(viewModel.singleContact.bsd_qrcode))
+                //{
+                //    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_qr_code, "FontAwesomeSolid", "\uf029", null, GenerateQRCode));
+                //}
+
+                //viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_cuoc_hop, "FontAwesomeRegular", "\uf274", null, NewMeet));
+                //viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_cuoc_goi, "FontAwesomeSolid", "\uf095", null, NewPhoneCall));
+                //viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_cong_viec, "FontAwesomeSolid", "\uf073", null, NewTask));
+
+                //if (viewModel.singleContact.statuscode != "100000000")
+                //    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.cap_nhat, "FontAwesomeRegular", "\uf044", null, EditContact));
 
                 //if (viewModel.singleContact.statuscode == "2")
                 //    floatingButtonGroup.IsVisible = false;

@@ -25,7 +25,7 @@
                                         <Label Grid.Column="1" Text="{Binding bsd_name}" FontSize="15" TextColor="{StaticResource NavigationPrimary}" FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
                                     </Grid>
                                     <controls:FieldListViewItem Title="{x:Static lang:Language.du_an}" Text="{Binding project_name}"/>
-                                    <controls:FieldListViewItem Title="{x:Static lang:Language.loai_unit}" Text="{Binding unittype_name}"/>
+                                    <controls:FieldListViewItem Title="{x:Static lang:Language.unit_type}" Text="{Binding unittype_name}"/>
                                     <controls:FieldListViewItem Title="{x:Static lang:Language.loai}" Text="{Binding bsd_typeofunitspec_format}"/>
                                 </StackLayout>
                             </ViewCell>
