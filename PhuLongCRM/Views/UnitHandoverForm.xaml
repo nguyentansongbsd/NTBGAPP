@@ -16,26 +16,26 @@
                     <telerikPrimitives:RadExpander IsExpanded="True" BorderColor="Transparent">
                         <telerikPrimitives:RadExpander.Header>
                             <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
-                                <Label Style="{StaticResource ExpanderHeadingText}" Text="Handover"/>
+                                <Label Style="{StaticResource ExpanderHeadingText}" Text="{x:Static lang:Language.thong_tin_ban_giao}"/>
                             </telerikPrimitives:ExpanderHeader>
                         </telerikPrimitives:RadExpander.Header>
                         <telerikPrimitives:RadExpander.Content>
                             <StackLayout BackgroundColor="White" Padding="10">
-                                <controls:FormLabel Text="Estimate Handover Date" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.ngay_du_kien_ban_giao}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.bsd_estimatehandoverdate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>
 
-                                <controls:FormLabel Text="Actual Handover Date (Unit)" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.ngay_ban_giao_thuc_te_sp}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.bsd_handoverdate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>
 
-                                <controls:FormLabel Text="Actual Netsaleable area" FontSize="15"/>
-                                <controls:DecimalEntry Price="{Binding UnitHandover.bsd_actualnsa}" Placeholder="Actual Netsaleable area"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.dien_tich_thuc_te_ban_giao_sp}" FontSize="15"/>
+                                <controls:DecimalEntry Price="{Binding UnitHandover.bsd_actualnsa}" Placeholder="{x:Static lang:Language.dien_tich_thuc_te_ban_giao_sp}"/>
 
-                                <controls:FormLabel Text="Product Error" FontSize="15"/>
-                                <controls:MainEditor Text="{Binding UnitHandover.bsd_producterror}" Placeholder="Product Error" HeightRequest="100" />
+                                <controls:FormLabel Text="{x:Static lang:Language.loi_san_pham}" FontSize="15"/>
+                                <controls:MainEditor Text="{Binding UnitHandover.bsd_producterror}" Placeholder="{x:Static lang:Language.loi_san_pham}" HeightRequest="100" />
                                 
                             </StackLayout>
                         </telerikPrimitives:RadExpander.Content>
@@ -49,77 +49,77 @@
                         <telerikPrimitives:RadExpander.Content>
                             <StackLayout BackgroundColor="White" Padding="10">
 
-                                <controls:FormLabel Text="Handover Number" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.ma_ban_giao}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.bsd_handovernumber}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>
 
-                                <controls:FormLabel Text="Name" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.ten}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.bsd_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>
 
-                                <controls:FormLabel Text="Project" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.du_an}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.project_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>
 
-                                <controls:FormLabel Text="Description" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.mo_ta}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.bsd_description}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>
 
-                                <controls:FormLabel Text="Option Entry" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.hop_dong}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.optionentry_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>
 
-                                <controls:FormLabel Text="Units" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.san_pham}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.unit_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>
 
-                                <controls:FormLabel Text="Handover Notices" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.thong_bao_ban_giao}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.handovernotice_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>
 
-                                <controls:FormLabel Text="Total Paid Amount" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.tong_tien_pink_book_handover}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.totalpaidamount_format}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>
 
-                                <controls:FormLabel Text="Printer" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.nguoi_in}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.pinter_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>
 
-                                <controls:FormLabel Text="Print Date" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.ngay_in}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.bsd_handoverformprintdate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>
 
-                                <controls:FormLabel Text="Confirmer" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.nguoi_xac_nhan}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.confirmer_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>
 
-                                <controls:FormLabel Text="Confirm Date" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.ngay_xac_nhan}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.bsd_confirmdate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>
 
-                                <controls:FormLabel Text="Canceller" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.nguoi_huy}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.canceller_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>
 
-                                <controls:FormLabel Text="Cancelled Date" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.ngay_huy}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.bsd_cancelleddate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>
 
-                                <controls:FormLabel Text="Cancelled Reason" FontSize="15"/>
+                                <controls:FormLabel Text="{x:Static lang:Language.ly_do_huy}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
                                     <Label Text="{Binding UnitHandover.bsd_cancelledreason}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
                                 </telerikPrimitives:RadBorder>

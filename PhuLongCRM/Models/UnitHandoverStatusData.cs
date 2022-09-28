@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using PhuLongCRM.Resources;
 
 namespace PhuLongCRM.Models
 {
@@ -10,12 +11,12 @@ namespace PhuLongCRM.Models
         {
             return new List<StatusCodeModel>()
             {
-                new StatusCodeModel("1","Active","#A0DB8E"),
-                new StatusCodeModel("100000003","Cancel","#808080"),
-                new StatusCodeModel("100000000","Not Handover","#14A184"),
-                new StatusCodeModel("100000001","Handover","#2FCC71"),
-                new StatusCodeModel("100000002","PinkBook Handover","#04A8F4"),
-                new StatusCodeModel("2","Inactive","#6897BB"),
+                new StatusCodeModel("1",Language.hieu_luc_ban_giao_gcn_sts,"#A0DB8E"),
+                new StatusCodeModel("100000003",Language.huy,"#808080"),
+                new StatusCodeModel("100000000",Language.khong_ban_giao,"#14A184"),
+                new StatusCodeModel("100000001",Language.ban_giao_sts,"#2FCC71"),
+                new StatusCodeModel("100000002",Language.ban_giao_so_hong,"#04A8F4"),
+                new StatusCodeModel("2",Language.vo_hieu_luc,"#6897BB"),
             };
         }
 

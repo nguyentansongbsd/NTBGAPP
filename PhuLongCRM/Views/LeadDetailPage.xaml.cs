@@ -24,7 +24,7 @@ namespace PhuLongCRM.Views
         private Guid Id;
         public static OptionSet FromCustomer = null;
         public static bool? NeedToRefreshActivity = null;
-        public LeadDetailPage(Guid id,bool isFromQRCode = false)
+        public LeadDetailPage(Guid id, bool isFromQRCode = false)
         {
             InitializeComponent();
             this.Title = Language.thong_tin_khach_hang_title;
@@ -60,9 +60,9 @@ namespace PhuLongCRM.Views
             if (NeedToRefreshActivity == true)
             {
                 LoadingHelper.Show();
-                //viewModel.PageCase = 1;
-                //viewModel.Cares?.Clear();
-                //await viewModel.LoadCase();
+                viewModel.PageCase = 1;
+                viewModel.Cares?.Clear();
+                await viewModel.LoadCase();
                 viewModel.PageMeetings = 1;
                 viewModel.Meetings.Clear();
                 await viewModel.LoadMeetings();
@@ -75,50 +75,52 @@ namespace PhuLongCRM.Views
 
         private void SetButtonFloatingButton(LeadFormModel lead)
         {
-            //if (lead != null)
-            //{
-            //    viewModel.ButtonCommandList.Clear();
-            //    if (string.IsNullOrWhiteSpace(lead.bsd_qrcode) && lead.statuscode != "3" && lead.statuscode != "4" && lead.statuscode != "5" && lead.statuscode != "6" && lead.statuscode != "7")
-            //    {
-            //        viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_qr_code, "FontAwesomeSolid", "\uf029", null, GenerateQRCode));
-            //    }
+            if (lead != null)
+            {
+                viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_cuoc_goi, "FontAwesomeSolid", "\uf095", null, NewPhoneCall));
+                viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_cong_viec, "FontAwesomeSolid", "\uf073", null, NewTask));
+                //viewModel.ButtonCommandList.Clear();
+                //if (string.IsNullOrWhiteSpace(lead.bsd_qrcode) && lead.statuscode != "3" && lead.statuscode != "4" && lead.statuscode != "5" && lead.statuscode != "6" && lead.statuscode != "7")
+                //{
+                //    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_qr_code, "FontAwesomeSolid", "\uf029", null, GenerateQRCode));
+                //}
 
-            //    if (lead.statuscode == "3") // qualified
-            //    {
-            //        if (lead.account_id != Guid.Empty)
-            //        {
-            //            viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.di_den_kh_doanh_nghiep, "FontAwesomeRegular", "\uf1ad", null, GoToAccount));
-            //            floatingButtonGroup.IsVisible = true;
-            //        }
-            //        if (lead.contact_id != Guid.Empty)
-            //        {
-            //            viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.di_den_kh_ca_nhan, "FontAwesomeRegular", "\uf2c1", null, GoToContact));
-            //            floatingButtonGroup.IsVisible = true;
-            //        }
-            //    }
-            //    else if (lead.statuscode == "4" || lead.statuscode == "5" || lead.statuscode == "6" || lead.statuscode == "7")
-            //    {
-            //        viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.kich_hoat_lai_kh, "FontAwesomeSolid", "\uf1b8", null, ReactivateLead));
-            //    }
-            //    else
-            //    {
-            //        // hỏi lại sts
-            //        viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_cuoc_hop, "FontAwesomeRegular", "\uf274", null, NewMeet));
-            //        viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_cuoc_goi, "FontAwesomeSolid", "\uf095", null, NewPhoneCall));
-            //        viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_cong_viec, "FontAwesomeSolid", "\uf073", null, NewTask));
-            //        if (lead.leadqualitycode == 3)
-            //        {
-            //            viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.khong_chuyen_doi, "FontAwesomeSolid", "\uf05e", null, LeadDisQualify));
-            //            viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.cap_nhat, "FontAwesomeRegular", "\uf044", null, Update));
-            //        }
-            //        else
-            //        {
-            //            viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.chuyen_doi_khach_hang, "FontAwesomeSolid", "\uf542", null, LeadQualify));
-            //            viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.khong_chuyen_doi, "FontAwesomeSolid", "\uf05e", null, LeadDisQualify));
-            //            viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.cap_nhat, "FontAwesomeRegular", "\uf044", null, Update));
-            //        }
-            //    }
-            //}
+                //if (lead.statuscode == "3") // qualified
+                //{
+                //    if (lead.account_id != Guid.Empty)
+                //    {
+                //        viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.di_den_kh_doanh_nghiep, "FontAwesomeRegular", "\uf1ad", null, GoToAccount));
+                //        floatingButtonGroup.IsVisible = true;
+                //    }
+                //    if (lead.contact_id != Guid.Empty)
+                //    {
+                //        viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.di_den_kh_ca_nhan, "FontAwesomeRegular", "\uf2c1", null, GoToContact));
+                //        floatingButtonGroup.IsVisible = true;
+                //    }
+                //}
+                //else if (lead.statuscode == "4" || lead.statuscode == "5" || lead.statuscode == "6" || lead.statuscode == "7")
+                //{
+                //    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.kich_hoat_lai_kh, "FontAwesomeSolid", "\uf1b8", null, ReactivateLead));
+                //}
+                //else
+                //{
+                //    // hỏi lại sts
+                //    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_cuoc_hop, "FontAwesomeRegular", "\uf274", null, NewMeet));
+                //    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_cuoc_goi, "FontAwesomeSolid", "\uf095", null, NewPhoneCall));
+                //    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_cong_viec, "FontAwesomeSolid", "\uf073", null, NewTask));
+                //    if (lead.leadqualitycode == 3)
+                //    {
+                //        viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.khong_chuyen_doi, "FontAwesomeSolid", "\uf05e", null, LeadDisQualify));
+                //        viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.cap_nhat, "FontAwesomeRegular", "\uf044", null, Update));
+                //    }
+                //    else
+                //    {
+                //        viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.chuyen_doi_khach_hang, "FontAwesomeSolid", "\uf542", null, LeadQualify));
+                //        viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.khong_chuyen_doi, "FontAwesomeSolid", "\uf05e", null, LeadDisQualify));
+                //        viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.cap_nhat, "FontAwesomeRegular", "\uf044", null, Update));
+                //    }
+                //}
+            }
             //else
             //    floatingButtonGroup.IsVisible = false;
         }
@@ -156,7 +158,7 @@ namespace PhuLongCRM.Views
                     if (CustomerPage.NeedToRefreshContact.HasValue) CustomerPage.NeedToRefreshContact = true;
                     if (CustomerPage.NeedToRefreshLead.HasValue) CustomerPage.NeedToRefreshLead = true;
                     await viewModel.LoadOneLead(Id.ToString());
-                    ToastMessageHelper.ShortMessage(Language.thong_bao_thanh_cong); 
+                    ToastMessageHelper.ShortMessage(Language.thong_bao_thanh_cong);
                 }
                 else
                     ToastMessageHelper.ShortMessage(Language.so_cmnd_so_cccd_so_ho_chieu_da_duoc_su_dung);
@@ -173,7 +175,7 @@ namespace PhuLongCRM.Views
         {
             LoadingHelper.Show();
             string[] options = new string[] { Language.mat_khach_hang, Language.khong_lien_lac_duoc, Language.khong_quan_tam, Language.da_huy };
-            
+
             string aws = await DisplayActionSheet(Language.tuy_chon_khong_chuyen_doi, Language.huy, null, options);
 
             if (aws == Language.mat_khach_hang)
@@ -209,7 +211,7 @@ namespace PhuLongCRM.Views
                     ToastMessageHelper.ShortMessage(Language.thong_bao_that_bai);
                 }
             }
-            
+
             LoadingHelper.Hide();
         }
 
@@ -235,7 +237,7 @@ namespace PhuLongCRM.Views
 
         private async void NhanTin_Tapped(object sender, EventArgs e)
         {
-            string phone = viewModel.singleLead.mobilephone.Replace(" ", "").Replace("+84-", "").Replace("84",""); // thêm sdt ở đây
+            string phone = viewModel.singleLead.mobilephone.Replace(" ", "").Replace("+84-", "").Replace("84", ""); // thêm sdt ở đây
             if (phone != string.Empty)
             {
                 SmsMessage sms = new SmsMessage(null, phone);
@@ -249,7 +251,7 @@ namespace PhuLongCRM.Views
 
         private async void GoiDien_Tapped(object sender, EventArgs e)
         {
-            string phone = viewModel.singleLead.mobilephone.Replace(" ","").Replace("+84-","").Replace("84", ""); // thêm sdt ở đây
+            string phone = viewModel.singleLead.mobilephone.Replace(" ", "").Replace("+84-", "").Replace("84", ""); // thêm sdt ở đây
             if (phone != string.Empty)
             {
                 await Launcher.OpenAsync($"tel:{phone}");
@@ -423,7 +425,7 @@ namespace PhuLongCRM.Views
             info.Add(viewModel.singleLead.bsd_customercode);
             info.Add("lead");
             info.Add(viewModel.singleLead.leadid.ToString());
-            string uriQrCode = $"https://api.qrserver.com/v1/create-qr-code/?size=150%C3%97150&data={string.Join(",",info)}";
+            string uriQrCode = $"https://api.qrserver.com/v1/create-qr-code/?size=150%C3%97150&data={string.Join(",", info)}";
 
             var bytearr = await DowloadImageToByteArrHelper.Download(uriQrCode);
             string base64 = System.Convert.ToBase64String(bytearr);
@@ -472,7 +474,7 @@ namespace PhuLongCRM.Views
                         await viewModel.LoadMeetings();
                         LoadingHelper.Hide();
                     }
-                    
+
                     TabThongTin.IsVisible = false;
                     TabCustomerCare.IsVisible = false;
                     TabMeeting.IsVisible = true;

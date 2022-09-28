@@ -56,7 +56,7 @@ namespace PhuLongCRM.Droid.Services
                 {
                     if (!Android.OS.Environment.IsExternalStorageManager)
                     {
-                        bool accept = await Xamarin.Forms.Shell.Current.DisplayAlert("", Language.ResourceManager.GetString("phulongcrm_can_quyen_quan_ly_tat_ca_cac_tep",Language.Culture), Language.ResourceManager.GetString("cai_dat", Language.Culture), Language.ResourceManager.GetString("huy",Language.Culture));
+                        bool accept = await Xamarin.Forms.Shell.Current.DisplayAlert("","App can quyen truy cap" ,"Cai dat" , "Huy" );//Language.ResourceManager.GetString("phulongcrm_can_quyen_quan_ly_tat_ca_cac_tep",Language.Culture)//Language.ResourceManager.GetString("cai_dat", Language.Culture)//Language.ResourceManager.GetString("huy",Language.Culture)
 
                         if (accept)
                         {

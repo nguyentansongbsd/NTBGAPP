@@ -71,7 +71,7 @@ namespace PhuLongCRM.Views
         {
             if (string.IsNullOrWhiteSpace(viewModel.UnitHandover.bsd_cancelledreason))
             {
-                ToastMessageHelper.ShortMessage("Vui lòng nhập lý do hủy.");
+                ToastMessageHelper.ShortMessage(Language.vui_long_nhap_ly_do_huy);
                 return;
             }
 

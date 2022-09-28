@@ -3675,4 +3675,49 @@
 	<data name="dong_nghiem_thu" xml:space="preserve">
 		<value>Close acceptance</value>
 	</data>
+	<data name="hieu_luc_ban_giao_gcn_sts" xml:space="preserve">
+		<value>Active</value>
+	</data>
+	<data name="da_ban_giao_gcn_sts" xml:space="preserve">
+		<value>Handed over certificate</value>
+	</data>
+	<data name="vo_hieu_luc_ban_giao_gcn_sts" xml:space="preserve">
+		<value>Inactive</value>
+	</data>
+	<data name="ban_giao_sts" xml:space="preserve">
+		<value>Handover</value>
+	</data>
+	<data name="khong_ban_giao" xml:space="preserve">
+		<value>Not Handover</value>
+	</data>
+	<data name="ban_giao_so_hong" xml:space="preserve">
+		<value>PinkBook Handover</value>
+	</data>
+	<data name="thong_bao_ban_giao" xml:space="preserve">
+		<value>Handover notices</value>
+	</data>
+	<data name="thong_tin_ban_giao" xml:space="preserve">
+		<value>Handover</value>
+	</data>
+	<data name="ngay_du_kien_ban_giao" xml:space="preserve">
+		<value>Estimate handover date</value>
+	</data>
+	<data name="ngay_ban_giao_thuc_te_sp" xml:space="preserve">
+		<value>Actual handover date (Unit)</value>
+	</data>
+	<data name="dien_tich_thuc_te_ban_giao_sp" xml:space="preserve">
+		<value>Actual netsaleable area</value>
+	</data>
+	<data name="loi_san_pham" xml:space="preserve">
+		<value>Product error</value>
+	</data>
+	<data name="vui_long_nhap_ly_do_huy" xml:space="preserve">
+		<value>Please enter cancel reason.</value>
+	</data>
+	<data name="moi" xml:space="preserve">
+		<value>New</value>
+	</data>
+	<data name="cu" xml:space="preserve">
+		<value>Old</value>
+	</data>
 </root>

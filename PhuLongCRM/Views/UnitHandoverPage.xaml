@@ -25,7 +25,7 @@
                                 <Label Grid.Column="1" Text="{Binding UnitHandover.bsd_name}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*" IsVisible="{Binding UnitHandover.bsd_handovernumber,Converter={StaticResource NullToHideConverter}}">
-                                <Label Grid.Column="0" Text="Handover Number: " FontSize="15" TextColor="#444444"/>
+                                <Label Grid.Column="0" Text="{Binding Source={x:Static lang:Language.ma_ban_giao},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
                                 <Label Grid.Column="1" Text="{Binding UnitHandover.bsd_handovernumber}" TextColor="#333333" FontSize="15" FontAttributes="Bold"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
@@ -64,53 +64,18 @@
                         <telerikPrimitives:RadExpander.Content>
                             <StackLayout Spacing="1" BackgroundColor="#F1F1F1">
                                 <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
-                                    <Label Grid.Column="0" Text="Total Paid Amount" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
+                                    <Label Grid.Column="0" Text="{x:Static lang:Language.tong_tien_pink_book_handover}" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
                                     <Label Grid.Column="1" Text="{Binding UnitHandover.totalpaidamount_format}" TextColor="Red" FontAttributes="Bold" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
                                 </Grid>
 
                                 <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
-                                    <Label Grid.Column="0" Text="Handover Notices" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
+                                    <Label Grid.Column="0" Text="{x:Static lang:Language.thong_bao_ban_giao}" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
                                     <Label Grid.Column="1" Text="{Binding UnitHandover.handovernotice_name}" TextColor="{StaticResource NavigationPrimary}" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
                                 </Grid>
 
                                 <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
-                                    <Label Grid.Column="0" Text="Description" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
+                                    <Label Grid.Column="0" Text="{x:Static lang:Language.mo_ta}" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
                                     <Label Grid.Column="1" Text="{Binding UnitHandover.bsd_description}" TextColor="#333333" HorizontalTextAlignment="End" FontSize="15" Padding="0,10,25,10"/>
-                                </Grid>
-
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
-                                    <Label Grid.Column="0" Text="Printer" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
-                                    <Label Grid.Column="1" Text="{Binding UnitHandover.pinter_name}" TextColor="{StaticResource NavigationPrimary}" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
-                                </Grid>
-
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
-                                    <Label Grid.Column="0" Text="Print Date" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
-                                    <Label Grid.Column="1" Text="{Binding UnitHandover.bsd_handoverformprintdate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#333333" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
-                                </Grid>
-
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
-                                    <Label Grid.Column="0" Text="Confirmer" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
-                                    <Label Grid.Column="1" Text="{Binding UnitHandover.confirmer_name}" TextColor="{StaticResource NavigationPrimary}" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
-                                </Grid>
-
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
-                                    <Label Grid.Column="0" Text="Confirm Date" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
-                                    <Label Grid.Column="1" Text="{Binding UnitHandover.bsd_confirmdate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#333333" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
-                                </Grid>
-
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
-                                    <Label Grid.Column="0" Text="Canceller" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
-                                    <Label Grid.Column="1" Text="{Binding UnitHandover.canceller_name}" TextColor="{StaticResource NavigationPrimary}" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
-                                </Grid>
-
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
-                                    <Label Grid.Column="0" Text="Cancelled Date" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
-                                    <Label Grid.Column="1" Text="{Binding UnitHandover.bsd_cancelleddate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#333333" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
-                                </Grid>
-
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
-                                    <Label Grid.Column="0" Text="Cancelled Reason" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
-                                    <Label Grid.Column="1" Text="{Binding UnitHandover.bsd_cancelledreason}" TextColor="#333333" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
                                 </Grid>
                             </StackLayout>
                         </telerikPrimitives:RadExpander.Content>
@@ -119,43 +84,77 @@
                     <telerikPrimitives:RadExpander IsExpanded="False" BorderColor="Transparent">
                         <telerikPrimitives:RadExpander.Header>
                             <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
-                                <Label Style="{StaticResource ExpanderHeadingText}" Text="Handover"/>
+                                <Label Style="{StaticResource ExpanderHeadingText}" Text="{x:Static lang:Language.thong_tin_ban_giao}"/>
                             </telerikPrimitives:ExpanderHeader>
                         </telerikPrimitives:RadExpander.Header>
                         <telerikPrimitives:RadExpander.Content>
                             <StackLayout Spacing="1" BackgroundColor="#F1F1F1">
 
                                 <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
-                                    <Label Grid.Column="0" Text="Estimate Handover Date" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
+                                    <Label Grid.Column="0" Text="{x:Static lang:Language.ngay_du_kien_ban_giao}" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
                                     <Label Grid.Column="1" Text="{Binding UnitHandover.bsd_estimatehandoverdate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#333333" HorizontalTextAlignment="End" FontSize="15" Padding="0,10,25,10"/>
                                 </Grid>
 
                                 <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
-                                    <Label Grid.Column="0" Text="Actual Handover Date (Unit)" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
+                                    <Label Grid.Column="0" Text="{x:Static lang:Language.ngay_ban_giao_thuc_te_sp}" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
                                     <Label Grid.Column="1" Text="{Binding UnitHandover.bsd_handoverdate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#333333" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
                                 </Grid>
 
                                 <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
-                                    <Label Grid.Column="0" Text="Actual Netsaleable area" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
+                                    <Label Grid.Column="0" Text="{x:Static lang:Language.dien_tich_thuc_te_ban_giao_sp}" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
                                     <Label Grid.Column="1" Text="{Binding UnitHandover.bsd_actualnsa,StringFormat='{0:#,0.00}'}" TextColor="#333333" FontAttributes="Bold" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
                                 </Grid>
 
                                 <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
-                                    <Label Grid.Column="0" Text="Product Error" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
+                                    <Label Grid.Column="0" Text="{x:Static lang:Language.loi_san_pham}" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
                                     <Label Grid.Column="1" Text="{Binding UnitHandover.bsd_producterror}" TextColor="#333333" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
                                 </Grid>
 
+                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                    <Label Grid.Column="0" Text="{x:Static lang:Language.nguoi_in}" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
+                                    <Label Grid.Column="1" Text="{Binding UnitHandover.pinter_name}" TextColor="{StaticResource NavigationPrimary}" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                    <Label Grid.Column="0" Text="{x:Static lang:Language.ngay_in}" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
+                                    <Label Grid.Column="1" Text="{Binding UnitHandover.bsd_handoverformprintdate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#333333" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                    <Label Grid.Column="0" Text="{x:Static lang:Language.nguoi_xac_nhan}" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
+                                    <Label Grid.Column="1" Text="{Binding UnitHandover.confirmer_name}" TextColor="{StaticResource NavigationPrimary}" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                    <Label Grid.Column="0" Text="{x:Static lang:Language.ngay_xac_nhan}" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
+                                    <Label Grid.Column="1" Text="{Binding UnitHandover.bsd_confirmdate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#333333" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                    <Label Grid.Column="0" Text="{x:Static lang:Language.nguoi_huy}" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
+                                    <Label Grid.Column="1" Text="{Binding UnitHandover.canceller_name}" TextColor="{StaticResource NavigationPrimary}" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                    <Label Grid.Column="0" Text="{x:Static lang:Language.ngay_huy}" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
+                                    <Label Grid.Column="1" Text="{Binding UnitHandover.bsd_cancelleddate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#333333" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                    <Label Grid.Column="0" Text="{x:Static lang:Language.ly_do_huy}" FontSize="15" TextColor="#333333"  VerticalOptions="Center" Padding="25,10,0,10"/>
+                                    <Label Grid.Column="1" Text="{Binding UnitHandover.bsd_cancelledreason}" TextColor="#333333" HorizontalTextAlignment="End" VerticalOptions="Center" FontSize="15" Padding="0,10,25,10"/>
+                                </Grid>
                             </StackLayout>
                         </telerikPrimitives:RadExpander.Content>
                     </telerikPrimitives:RadExpander>
                 </StackLayout>
             </ScrollView>
             <controls:FloatingButtonGroup x:Name="floatingButtonGroup" ItemsSource="{Binding BindingContext.ButtonCommandList,Source={x:Reference this}}"/>
-            <controls:CenterPopup x:Name="centerCancel" Title="Cancelled Reason">
+            <controls:CenterPopup x:Name="centerCancel" Title="{x:Static lang:Language.ly_do_huy}">
                 <controls:CenterPopup.Body>
                     <StackLayout>
-                        <controls:FormLabelRequired Text="Enter reason"/>
-                        <controls:MainEditor Text="{Binding UnitHandover.bsd_cancelledreason}" HeightRequest="100" Placeholder="Enter reason" />
+                        <controls:FormLabelRequired Text="{x:Static lang:Language.nhap_ly_do_huy}"/>
+                        <controls:MainEditor Text="{Binding UnitHandover.bsd_cancelledreason}" HeightRequest="100" Placeholder="{x:Static lang:Language.nhap_ly_do_huy}" />
 
                         <Button Text="{x:Static lang:Language.xac_nhan_huy}" Clicked="ConfirmCancel_Clicked" BackgroundColor="{x:StaticResource NavigationPrimary}" CornerRadius="5"  TextColor="White" FontAttributes="Bold" HeightRequest="40" HorizontalOptions="End"/>
                     </StackLayout>
