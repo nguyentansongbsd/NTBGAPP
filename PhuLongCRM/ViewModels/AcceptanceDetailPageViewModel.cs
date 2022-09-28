@@ -106,5 +106,19 @@ namespace PhuLongCRM.ViewModels
             return result;
 
         }
+        public async Task<CrmApiResponse> ConfirmInformation()
+        {
+            string path = "/bsd_acceptances(" + Acceptance.bsd_acceptanceid + ")";
+
+            IDictionary<string, object> content = new Dictionary<string, object>();
+            if(Acceptance.bsd_expense > 0)
+                content["statuscode"] = "100000000";
+            else
+                content["statuscode"] = "100000001";
+
+            CrmApiResponse result = await CrmHelper.PatchData(path, content);
+            return result;
+
+        }
     }
 }

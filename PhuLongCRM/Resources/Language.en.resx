@@ -3669,4 +3669,10 @@
 	<data name="huy_nghiem_thu_title" xml:space="preserve">
 		<value>Cancel Acceptance</value>
 	</data>
+	<data name="huy_nghiem_thu" xml:space="preserve">
+		<value>Cancel acceptance</value>
+	</data>
+	<data name="dong_nghiem_thu" xml:space="preserve">
+		<value>Close acceptance</value>
+	</data>
 </root>
