@@ -25,6 +25,8 @@ namespace PhuLongCRM.ViewModels
         private OptionSet _installment;
         public OptionSet Installment { get => _installment; set { _installment = value; OnPropertyChanged(nameof(Installment)); } }
 
+        private bool _isUpdate;
+        public bool IsUpdate { get => _isUpdate; set { _isUpdate = value; OnPropertyChanged(nameof(IsUpdate)); } }
         public AcceptanceFormViewModel()
         {
         }
@@ -77,6 +79,12 @@ namespace PhuLongCRM.ViewModels
                                         <attribute name='bsd_paymentschemedetailid' alias='installment_id' />
                                         <attribute name='bsd_name' alias='installment_name' />
                                     </link-entity>
+                                    <link-entity name='contact' from='contactid' to='bsd_customer' visible='false' link-type='outer' alias='contacts'>                
+                                        <attribute name='fullname' alias='contact_name'/>
+                                    </link-entity>
+                                    <link-entity name='account' from='accountid' to='bsd_customer' visible='false' link-type='outer' alias='accounts'>              
+                                        <attribute name='bsd_name' alias='account_name'/>
+                                    </link-entity>
                                 </entity>
                             </fetch>";
 
@@ -92,6 +100,10 @@ namespace PhuLongCRM.ViewModels
             if (Acceptance.bsd_reacceptancedate.HasValue)
                 Acceptance.bsd_reacceptancedate = Acceptance.bsd_reacceptancedate.Value.ToLocalTime();
 
+            if (Acceptance.bsd_typeresult == "100000000" || Acceptance.bsd_typeresult == "100000003")
+                IsUpdate = true;
+            else
+                IsUpdate = false;
         }
         public async Task LoadInstallment()
         {
@@ -134,7 +146,8 @@ namespace PhuLongCRM.ViewModels
             if (TypeResult != null)
                 data["bsd_typeresult"] = TypeResult.Val;
 
-            data["bsd_actualacceptancedate"] = Acceptance.bsd_actualacceptancedate.Value.ToUniversalTime(); ;
+            if (Acceptance.bsd_actualacceptancedate.HasValue)
+                data["bsd_actualacceptancedate"] =  Acceptance.bsd_actualacceptancedate.Value.ToUniversalTime();
             data["bsd_expense"] = Acceptance.bsd_expense;
 
             if (Installment != null)
@@ -144,7 +157,8 @@ namespace PhuLongCRM.ViewModels
             else
                 await DeletLookup("bsd_installment", Acceptance.bsd_acceptanceid);
 
-            data["bsd_reacceptancedate"] = Acceptance.bsd_reacceptancedate.Value.ToUniversalTime(); ;
+            if (Acceptance.bsd_reacceptancedate.HasValue)
+                data["bsd_reacceptancedate"] = Acceptance.bsd_reacceptancedate.Value.ToUniversalTime(); ;
             data["bsd_repairtimeday"] = Acceptance.bsd_repairtimeday;
             data["bsd_remark"] = Acceptance.bsd_remark;
             return data;
