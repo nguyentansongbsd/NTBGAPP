@@ -77,8 +77,23 @@ namespace PhuLongCRM.Views
             }
         }
 
-        private void Close(object sender, EventArgs e)
+        private async void Close(object sender, EventArgs e)
         {
+            LoadingHelper.Show();
+            var result = await viewModel.CloseInformation();
+            if (result)
+            {
+                ToastMessageHelper.ShortMessage(Language.thong_bao_thanh_cong);
+                NeedToRefresh = true;
+                OnAppearing();
+                if (AcceptanceList.NeedToRefresh.HasValue) AcceptanceList.NeedToRefresh = true;
+                LoadingHelper.Hide();
+            }
+            else
+            {
+                LoadingHelper.Hide();
+                ToastMessageHelper.LongMessage(Language.thong_bao_that_bai);
+            }
         }
 
         private void Cancel(object sender, EventArgs e)
