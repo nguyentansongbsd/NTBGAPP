@@ -6826,5 +6826,281 @@ namespace PhuLongCRM.Resources {
                 return ResourceManager.GetString("vui_long_chon_loai_lich_hen", resourceCulture);
             }
         }
+        
+        internal static string so_nghiem_thu {
+            get {
+                return ResourceManager.GetString("so_nghiem_thu", resourceCulture);
+            }
+        }
+        
+        internal static string acceptance_internal_type {
+            get {
+                return ResourceManager.GetString("acceptance_internal_type", resourceCulture);
+            }
+        }
+        
+        internal static string acceptance_external_type {
+            get {
+                return ResourceManager.GetString("acceptance_external_type", resourceCulture);
+            }
+        }
+        
+        internal static string acceptance_pass_typeresult {
+            get {
+                return ResourceManager.GetString("acceptance_pass_typeresult", resourceCulture);
+            }
+        }
+        
+        internal static string acceptance_error_typeresult {
+            get {
+                return ResourceManager.GetString("acceptance_error_typeresult", resourceCulture);
+            }
+        }
+        
+        internal static string acceptance_pass_agree_to_request_typeresult {
+            get {
+                return ResourceManager.GetString("acceptance_pass_agree_to_request_typeresult", resourceCulture);
+            }
+        }
+        
+        internal static string acceptance_pass_reject_request_typeresult {
+            get {
+                return ResourceManager.GetString("acceptance_pass_reject_request_typeresult", resourceCulture);
+            }
+        }
+        
+        internal static string loai_ket_qua {
+            get {
+                return ResourceManager.GetString("loai_ket_qua", resourceCulture);
+            }
+        }
+        
+        internal static string thong_bao_nghiem_thu {
+            get {
+                return ResourceManager.GetString("thong_bao_nghiem_thu", resourceCulture);
+            }
+        }
+        
+        internal static string ngay_nghiem_thu {
+            get {
+                return ResourceManager.GetString("ngay_nghiem_thu", resourceCulture);
+            }
+        }
+        
+        internal static string chi_phi {
+            get {
+                return ResourceManager.GetString("chi_phi", resourceCulture);
+            }
+        }
+        
+        internal static string ngay_nghiem_thu_lai {
+            get {
+                return ResourceManager.GetString("ngay_nghiem_thu_lai", resourceCulture);
+            }
+        }
+        
+        internal static string thoi_gian_sua_chua {
+            get {
+                return ResourceManager.GetString("thoi_gian_sua_chua", resourceCulture);
+            }
+        }
+        
+        internal static string ghi_chu {
+            get {
+                return ResourceManager.GetString("ghi_chu", resourceCulture);
+            }
+        }
+        
+        internal static string nguoi_in {
+            get {
+                return ResourceManager.GetString("nguoi_in", resourceCulture);
+            }
+        }
+        
+        internal static string nguoi_xac_nhan {
+            get {
+                return ResourceManager.GetString("nguoi_xac_nhan", resourceCulture);
+            }
+        }
+        
+        internal static string ngay_xac_nhan {
+            get {
+                return ResourceManager.GetString("ngay_xac_nhan", resourceCulture);
+            }
+        }
+        
+        internal static string nguoi_huy {
+            get {
+                return ResourceManager.GetString("nguoi_huy", resourceCulture);
+            }
+        }
+        
+        internal static string ngay_huy {
+            get {
+                return ResourceManager.GetString("ngay_huy", resourceCulture);
+            }
+        }
+        
+        internal static string ly_do_huy {
+            get {
+                return ResourceManager.GetString("ly_do_huy", resourceCulture);
+            }
+        }
+        
+        internal static string ly_do_dung {
+            get {
+                return ResourceManager.GetString("ly_do_dung", resourceCulture);
+            }
+        }
+        
+        internal static string chon_loai_ket_qua {
+            get {
+                return ResourceManager.GetString("chon_loai_ket_qua", resourceCulture);
+            }
+        }
+        
+        internal static string chon_ngay_nghiem_thu {
+            get {
+                return ResourceManager.GetString("chon_ngay_nghiem_thu", resourceCulture);
+            }
+        }
+        
+        internal static string nhap_chi_phi {
+            get {
+                return ResourceManager.GetString("nhap_chi_phi", resourceCulture);
+            }
+        }
+        
+        internal static string chon_lich {
+            get {
+                return ResourceManager.GetString("chon_lich", resourceCulture);
+            }
+        }
+        
+        internal static string chon_ngay_nghiem_thu_lai {
+            get {
+                return ResourceManager.GetString("chon_ngay_nghiem_thu_lai", resourceCulture);
+            }
+        }
+        
+        internal static string nhap_thoi_gian_sua_chua {
+            get {
+                return ResourceManager.GetString("nhap_thoi_gian_sua_chua", resourceCulture);
+            }
+        }
+        
+        internal static string nhap_ghi_chu {
+            get {
+                return ResourceManager.GetString("nhap_ghi_chu", resourceCulture);
+            }
+        }
+        
+        internal static string vui_long_chon_loai_ket_qua {
+            get {
+                return ResourceManager.GetString("vui_long_chon_loai_ket_qua", resourceCulture);
+            }
+        }
+        
+        internal static string xac_nhan_thong_tin {
+            get {
+                return ResourceManager.GetString("xac_nhan_thong_tin", resourceCulture);
+            }
+        }
+        
+        internal static string ban_giao_san_pham {
+            get {
+                return ResourceManager.GetString("ban_giao_san_pham", resourceCulture);
+            }
+        }
+        
+        internal static string ban_giao_gcn {
+            get {
+                return ResourceManager.GetString("ban_giao_gcn", resourceCulture);
+            }
+        }
+        
+        internal static string ma_ban_giao {
+            get {
+                return ResourceManager.GetString("ma_ban_giao", resourceCulture);
+            }
+        }
+        
+        internal static string tong_tien_pink_book_handover {
+            get {
+                return ResourceManager.GetString("tong_tien_pink_book_handover", resourceCulture);
+            }
+        }
+        
+        internal static string so_chung_chi {
+            get {
+                return ResourceManager.GetString("so_chung_chi", resourceCulture);
+            }
+        }
+        
+        internal static string ky_hieu {
+            get {
+                return ResourceManager.GetString("ky_hieu", resourceCulture);
+            }
+        }
+        
+        internal static string ngay_ban_giao {
+            get {
+                return ResourceManager.GetString("ngay_ban_giao", resourceCulture);
+            }
+        }
+        
+        internal static string noi_ban_giao {
+            get {
+                return ResourceManager.GetString("noi_ban_giao", resourceCulture);
+            }
+        }
+        
+        internal static string handover_date_pb {
+            get {
+                return ResourceManager.GetString("handover_date_pb", resourceCulture);
+            }
+        }
+        
+        internal static string pink_book_area_spm {
+            get {
+                return ResourceManager.GetString("pink_book_area_spm", resourceCulture);
+            }
+        }
+        
+        internal static string pink_book_receipt_date {
+            get {
+                return ResourceManager.GetString("pink_book_receipt_date", resourceCulture);
+            }
+        }
+        
+        internal static string registration_tax {
+            get {
+                return ResourceManager.GetString("registration_tax", resourceCulture);
+            }
+        }
+        
+        internal static string inspection_fee {
+            get {
+                return ResourceManager.GetString("inspection_fee", resourceCulture);
+            }
+        }
+        
+        internal static string issuance_fee {
+            get {
+                return ResourceManager.GetString("issuance_fee", resourceCulture);
+            }
+        }
+        
+        internal static string other_handover_document {
+            get {
+                return ResourceManager.GetString("other_handover_document", resourceCulture);
+            }
+        }
+        
+        internal static string thong_tin_ban_giao_gcn {
+            get {
+                return ResourceManager.GetString("thong_tin_ban_giao_gcn", resourceCulture);
+            }
+        }
     }
 }

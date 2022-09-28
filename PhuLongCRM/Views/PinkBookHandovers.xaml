@@ -5,7 +5,7 @@
     xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
     xmlns:lang="clr-namespace:PhuLongCRM.Resources"
     xmlns:controls="clr-namespace:PhuLongCRM.Controls"
-    Title="Bàn giao GCN"
+    Title="{x:Static lang:Language.ban_giao_gcn}"
     x:Class="PhuLongCRM.Views.PinkBookHandovers">
     <ContentPage.Content>
         <AbsoluteLayout>
