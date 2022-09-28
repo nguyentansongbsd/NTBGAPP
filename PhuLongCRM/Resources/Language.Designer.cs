@@ -3499,6 +3499,15 @@ namespace PhuLongCRM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Đóng nghiệm thu.
+        /// </summary>
+        internal static string dong_nghiem_thu {
+            get {
+                return ResourceManager.GetString("dong_nghiem_thu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Đồng sở hữu.
         /// </summary>
         internal static string dong_so_huu {
@@ -4485,6 +4494,15 @@ namespace PhuLongCRM.Resources {
         internal static string huy_mandatory_sts {
             get {
                 return ResourceManager.GetString("huy_mandatory_sts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hủy nghiệm thu.
+        /// </summary>
+        internal static string huy_nghiem_thu {
+            get {
+                return ResourceManager.GetString("huy_nghiem_thu", resourceCulture);
             }
         }
         

@@ -44,6 +44,7 @@ namespace PhuLongCRM.Views
             {
                 LoadingHelper.Show();
                 await viewModel.LoadAcceptance(viewModel.Acceptance.bsd_acceptanceid);
+                SetButtonFloatingButton();
                 NeedToRefresh = false;
                 LoadingHelper.Hide();
             }
@@ -60,10 +61,10 @@ namespace PhuLongCRM.Views
                     viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.xac_nhan_thong_tin, "FontAwesomeSolid", "\uf46c", null, ConfirmInformation));
 
                 if (viewModel.Acceptance.statuscode == "1" || viewModel.Acceptance.statuscode == "100000001" || viewModel.Acceptance.statuscode == "100000000")
-                    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.huy, "FontAwesomeSolid", "\uf05e", null, Cancel));
+                    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.huy_nghiem_thu, "FontAwesomeSolid", "\uf05e", null, Cancel));
 
                 if (viewModel.Acceptance.statuscode == "100000001")
-                    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.dong, "FontAwesomeSolid", "\uf011", null, Close));
+                    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.dong_nghiem_thu, "FontAwesomeSolid", "\uf011", null, Close));
 
                 if (viewModel.Acceptance.statuscode == "1")
                     viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.chinh_sua, "FontAwesomeRegular", "\uf044", null, Update));
@@ -85,9 +86,23 @@ namespace PhuLongCRM.Views
             PopupCancel.ShowCenterPopup();
         }
 
-        private void ConfirmInformation(object sender, EventArgs e)
+        private async void ConfirmInformation(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            LoadingHelper.Show();
+            var result = await viewModel.ConfirmInformation();
+            if (result.IsSuccess)
+            {
+                ToastMessageHelper.ShortMessage(Language.thong_bao_thanh_cong);
+                NeedToRefresh = true;
+                OnAppearing();
+                if (AcceptanceList.NeedToRefresh.HasValue) AcceptanceList.NeedToRefresh = true;
+                LoadingHelper.Hide();
+            }
+            else
+            {
+                LoadingHelper.Hide();
+                ToastMessageHelper.LongMessage(result.ErrorResponse.error.message);
+            }
         }
 
         private void Update(object sender, EventArgs e)

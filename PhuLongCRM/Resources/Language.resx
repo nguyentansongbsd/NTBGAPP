@@ -3609,4 +3609,10 @@
 	<data name="huy_nghiem_thu_title" xml:space="preserve">
 		<value>Hủy Nghiệm Thu</value>
 	</data>
+	<data name="huy_nghiem_thu" xml:space="preserve">
+		<value>Hủy nghiệm thu</value>
+	</data>
+	<data name="dong_nghiem_thu" xml:space="preserve">
+		<value>Đóng nghiệm thu</value>
+	</data>
 </root>
