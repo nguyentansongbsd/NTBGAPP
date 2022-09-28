@@ -65,7 +65,7 @@ namespace PhuLongCRM.Views
                 if (viewModel.Acceptance.statuscode == "100000001")
                     viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.dong, "FontAwesomeSolid", "\uf011", null, Close));
 
-                if (viewModel.Acceptance.statuscode != "100000003")
+                if (viewModel.Acceptance.statuscode == "1")
                     viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.chinh_sua, "FontAwesomeRegular", "\uf044", null, Update));
 
                 if (viewModel.ButtonCommandList.Count == 0)
@@ -78,12 +78,11 @@ namespace PhuLongCRM.Views
 
         private void Close(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         private void Cancel(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            PopupCancel.ShowCenterPopup();
         }
 
         private void ConfirmInformation(object sender, EventArgs e)
@@ -108,6 +107,36 @@ namespace PhuLongCRM.Views
                     ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
                 }
             };
+        }
+
+        private void ClosePopupCancel_Clicked(object sender, EventArgs e)
+        {
+            PopupCancel.CloseContent();
+        }
+
+        private async void ConfirmCancel_Clicked(object sender, EventArgs e)
+        {
+            if(string.IsNullOrWhiteSpace(viewModel.Acceptance.bsd_cancelledreason))
+            {
+                ToastMessageHelper.ShortMessage(Language.vui_long_nhap_ly_do_huy);
+                return;
+            }
+            LoadingHelper.Show();
+            var result = await viewModel.CancelAcceptance();
+            if (result.IsSuccess)
+            {
+                ToastMessageHelper.ShortMessage(Language.thong_bao_thanh_cong);
+                PopupCancel.CloseContent();
+                NeedToRefresh = true;
+                OnAppearing();
+                if (AcceptanceList.NeedToRefresh.HasValue) AcceptanceList.NeedToRefresh = true;
+                LoadingHelper.Hide();
+            }
+            else
+            {
+                LoadingHelper.Hide();
+                ToastMessageHelper.LongMessage(result.ErrorResponse.error.message);
+            }
         }
     }
 }

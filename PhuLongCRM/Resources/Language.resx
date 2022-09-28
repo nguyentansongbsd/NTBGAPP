@@ -3659,5 +3659,14 @@
 	</data>
 	<data name="thong_tin_ban_giao_gcn" xml:space="preserve">
 		<value>Thông Tin Bàn Giao GCN</value>
+  </data>
+	<data name="nhap_ly_do_huy" xml:space="preserve">
+		<value>Nhập lý do hủy</value>
+	</data>
+	<data name="vui_long_nhap_ly_do_huy" xml:space="preserve">
+		<value>Vui lòng nhập lý do hủy.</value>
+	</data>
+	<data name="huy_nghiem_thu_title" xml:space="preserve">
+		<value>Hủy Nghiệm Thu</value>
 	</data>
 </root>

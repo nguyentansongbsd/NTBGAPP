@@ -60,5 +60,12 @@ namespace PhuLongCRM.Controls
             eventHandler?.Invoke((object)this, EventArgs.Empty);
             this.IsVisible = false;
         }
+
+        public void CloseContent()
+        {
+            EventHandler eventHandler = Close;
+            eventHandler?.Invoke((object)this, EventArgs.Empty);
+            this.IsVisible = false;
+        }
     }
 }
