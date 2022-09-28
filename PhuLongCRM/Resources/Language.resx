@@ -3600,4 +3600,13 @@
 	<data name="xac_nhan_thong_tin" xml:space="preserve">
 		<value>Xác nhận thông tin</value>
 	</data>
+	<data name="nhap_ly_do_huy" xml:space="preserve">
+		<value>Nhập lý do hủy</value>
+	</data>
+	<data name="vui_long_nhap_ly_do_huy" xml:space="preserve">
+		<value>Vui lòng nhập lý do hủy.</value>
+	</data>
+	<data name="huy_nghiem_thu_title" xml:space="preserve">
+		<value>Hủy Nghiệm Thu</value>
+	</data>
 </root>

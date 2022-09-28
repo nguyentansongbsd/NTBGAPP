@@ -23,12 +23,25 @@ namespace PhuLongCRM.Models
         public string bsd_acceptancetype { get; set; }
         public string acceptancetype_format { get { return !string.IsNullOrWhiteSpace(bsd_acceptancetype) ? AcceptanceType.GetAcceptanceTypeById(bsd_acceptancetype)?.Label : null; } }
         public Guid customer_id { get; set; }
-        public string customer_name { get; set; }
+        public string contact_name { get; set; }
+        public string account_name { get; set; }
+        public string customer_name {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(contact_name))
+                    return contact_name;
+                else if (!string.IsNullOrWhiteSpace(account_name))
+                    return account_name;
+                else
+                    return null;
+
+            }
+        }
         public string bsd_typeresult { get; set; }
         public string typeresult_format { get { return !string.IsNullOrWhiteSpace(bsd_typeresult) ? AcceptanceTypeResult.GetAcceptanceTypeResultById(bsd_typeresult)?.Label : null; } }
         public Guid acceptance_noti_id { get; set; }
         public string acceptance_noti_name { get; set; }
-        
+
         public DateTime? _bsd_actualacceptancedate;
         public DateTime? bsd_actualacceptancedate { get => _bsd_actualacceptancedate; set { if (value.HasValue) { _bsd_actualacceptancedate = value; OnPropertyChanged(nameof(bsd_actualacceptancedate)); } } }
         public decimal bsd_expense { get; set; }

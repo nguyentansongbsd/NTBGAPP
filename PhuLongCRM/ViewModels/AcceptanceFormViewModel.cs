@@ -25,6 +25,8 @@ namespace PhuLongCRM.ViewModels
         private OptionSet _installment;
         public OptionSet Installment { get => _installment; set { _installment = value; OnPropertyChanged(nameof(Installment)); } }
 
+        private bool _isUpdate;
+        public bool IsUpdate { get => _isUpdate; set { _isUpdate = value; OnPropertyChanged(nameof(IsUpdate)); } }
         public AcceptanceFormViewModel()
         {
         }
@@ -77,6 +79,12 @@ namespace PhuLongCRM.ViewModels
                                         <attribute name='bsd_paymentschemedetailid' alias='installment_id' />
                                         <attribute name='bsd_name' alias='installment_name' />
                                     </link-entity>
+                                    <link-entity name='contact' from='contactid' to='bsd_customer' visible='false' link-type='outer' alias='contacts'>                
+                                        <attribute name='fullname' alias='contact_name'/>
+                                    </link-entity>
+                                    <link-entity name='account' from='accountid' to='bsd_customer' visible='false' link-type='outer' alias='accounts'>              
+                                        <attribute name='bsd_name' alias='account_name'/>
+                                    </link-entity>
                                 </entity>
                             </fetch>";
 
@@ -92,6 +100,10 @@ namespace PhuLongCRM.ViewModels
             if (Acceptance.bsd_reacceptancedate.HasValue)
                 Acceptance.bsd_reacceptancedate = Acceptance.bsd_reacceptancedate.Value.ToLocalTime();
 
+            if (Acceptance.bsd_typeresult == "100000000" || Acceptance.bsd_typeresult == "100000003")
+                IsUpdate = true;
+            else
+                IsUpdate = false;
         }
         public async Task LoadInstallment()
         {
@@ -115,30 +127,23 @@ namespace PhuLongCRM.ViewModels
             if (result == null || result.value.Count == 0) return;
             Installments = result.value;
         }
-        public async Task<bool> Update()
+        public async Task<CrmApiResponse> Update()
         {
             string path = "/bsd_acceptances(" + Acceptance.bsd_acceptanceid + ")";
-            var content = await this.getContent();
+            var content = await getContent();
             CrmApiResponse result = await CrmHelper.PatchData(path, content);
+            return result;
 
-            if (result.IsSuccess)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
         public async Task<Boolean> DeletLookup(string fieldName, Guid id)
         {
             var result = await CrmHelper.SetNullLookupField("bsd_acceptances", id, fieldName);
             return result.IsSuccess;
         }
-        private async Task<object> getContent()
+        public async Task<object> getContent()
         {
             IDictionary<string, object> data = new Dictionary<string, object>();
-            if(TypeResult != null)
+            if (TypeResult != null)
                 data["bsd_typeresult"] = TypeResult.Val;
 
             if (Acceptance.bsd_actualacceptancedate.HasValue)

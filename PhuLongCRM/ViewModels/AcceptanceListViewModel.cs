@@ -20,11 +20,14 @@ namespace PhuLongCRM.ViewModels
                                     <attribute name='bsd_name' />
                                     <attribute name='statuscode' />
                                     <order attribute='bsd_name' descending='false' />
-                                    <filter type='or'>
-                                        <condition attribute='bsd_name' operator='like' value='%25{Keyword}%25' />
-                                        <condition entityname='project' attribute='bsd_name' operator='like' value='%25{Keyword}%25' />
-                                        <condition entityname='product' attribute='name' operator='like' value='%25{Keyword}%25' />
-                                        <condition entityname='contract' attribute='name' operator='like' value='%25{Keyword}%25' />
+                                    <filter type='and'>
+                                      <condition attribute='statuscode' operator='ne' value='2' />
+                                        <filter type='or'>
+                                            <condition attribute='bsd_name' operator='like' value='%25{Keyword}%25' />
+                                            <condition entityname='project' attribute='bsd_name' operator='like' value='%25{Keyword}%25' />
+                                            <condition entityname='product' attribute='name' operator='like' value='%25{Keyword}%25' />
+                                            <condition entityname='contract' attribute='name' operator='like' value='%25{Keyword}%25' />
+                                        </filter>
                                     </filter>
                                     <link-entity name='bsd_project' from='bsd_projectid' to='bsd_project' link-type='outer' alias='project'>
                                         <attribute name='bsd_name' alias='project_name'/>
