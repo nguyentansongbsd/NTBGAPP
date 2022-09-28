@@ -19,11 +19,14 @@ namespace PhuLongCRM.Models
         public string project_name { get; set; }
         public Guid unit_id { get; set; }
         public string unit_name { get; set; }
+        public string unit_code { get; set; }
         public string bsd_acceptancenumber { get; set; }
         public string bsd_acceptancetype { get; set; }
         public string acceptancetype_format { get { return !string.IsNullOrWhiteSpace(bsd_acceptancetype) ? AcceptanceType.GetAcceptanceTypeById(bsd_acceptancetype)?.Label : null; } }
         public Guid customer_id { get; set; }
+        public Guid contact_id { get; set; }
         public string contact_name { get; set; }
+        public Guid account_id { get; set; }
         public string account_name { get; set; }
         public string customer_name {
             get
@@ -47,7 +50,8 @@ namespace PhuLongCRM.Models
         public decimal bsd_expense { get; set; }
         public string expense_format { get => StringFormatHelper.FormatCurrency(bsd_expense); }
         public Guid installment_id { get; set; }
-        public string installment_name { get; set; }
+        public string installment_name { get; set; } //bsd_ordernumber
+        public string installment_number { get; set; } //bsd_ordernumber
 
         public DateTime? _bsd_reacceptancedate;
         public DateTime? bsd_reacceptancedate { get => _bsd_reacceptancedate; set { if (value.HasValue) { _bsd_reacceptancedate = value; OnPropertyChanged(nameof(bsd_reacceptancedate)); } } }
