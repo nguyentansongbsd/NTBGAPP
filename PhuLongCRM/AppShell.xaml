@@ -8,7 +8,6 @@
        xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
        xmlns:ffimageTranformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
        xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-       xmlns:blankpage ="clr-namespace:PhuLongCRM"
        ios:Page.UseSafeArea="true"
        Shell.BackgroundColor="{StaticResource NavigationPrimary}"
        Shell.TabBarIsVisible="False"
@@ -88,12 +87,12 @@
             <FontImageSource FontFamily="FontAwesomeSolid" Color="#7D7D7D" Glyph="&#xf46d;" Size="18"/>
         </ShellContent.Icon>
     </ShellContent>
-    <ShellContent Title="Bàn giao sản phẩm" ContentTemplate="{DataTemplate views:UnitHandovers}">
+    <ShellContent Title="{x:Static lang:Language.ban_giao_san_pham}" ContentTemplate="{DataTemplate views:UnitHandovers}">
         <ShellContent.Icon>
             <FontImageSource FontFamily="FontAwesomeSolid" Color="#666666" Glyph="&#xf0f2;" Size="18"/>
         </ShellContent.Icon>
     </ShellContent>
-    <ShellContent Title="Bàn giao GCN" ContentTemplate="{DataTemplate views:PinkBookHandovers}">
+    <ShellContent Title="{x:Static lang:Language.ban_giao_gcn}" ContentTemplate="{DataTemplate views:PinkBookHandovers}">
         <ShellContent.Icon>
             <FontImageSource FontFamily="FontAwesomeSolid" Color="#666666" Glyph="&#xf02d;" Size="18"/>
         </ShellContent.Icon>

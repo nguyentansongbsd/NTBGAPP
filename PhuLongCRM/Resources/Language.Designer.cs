@@ -22,7 +22,7 @@ namespace PhuLongCRM.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Language {
+    public class Language {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace PhuLongCRM.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PhuLongCRM.Resources.Language", typeof(Language).Assembly);
@@ -51,7 +51,7 @@ namespace PhuLongCRM.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -10524,6 +10524,102 @@ namespace PhuLongCRM.Resources {
         internal static string zip_code {
             get {
                 return ResourceManager.GetString("zip_code", resourceCulture);
+            }
+        }
+        
+        internal static string ban_giao_san_pham {
+            get {
+                return ResourceManager.GetString("ban_giao_san_pham", resourceCulture);
+            }
+        }
+        
+        internal static string ban_giao_gcn {
+            get {
+                return ResourceManager.GetString("ban_giao_gcn", resourceCulture);
+            }
+        }
+        
+        internal static string ma_ban_giao {
+            get {
+                return ResourceManager.GetString("ma_ban_giao", resourceCulture);
+            }
+        }
+        
+        internal static string tong_tien_pink_book_handover {
+            get {
+                return ResourceManager.GetString("tong_tien_pink_book_handover", resourceCulture);
+            }
+        }
+        
+        internal static string so_chung_chi {
+            get {
+                return ResourceManager.GetString("so_chung_chi", resourceCulture);
+            }
+        }
+        
+        internal static string ky_hieu {
+            get {
+                return ResourceManager.GetString("ky_hieu", resourceCulture);
+            }
+        }
+        
+        internal static string ngay_ban_giao {
+            get {
+                return ResourceManager.GetString("ngay_ban_giao", resourceCulture);
+            }
+        }
+        
+        internal static string noi_ban_giao {
+            get {
+                return ResourceManager.GetString("noi_ban_giao", resourceCulture);
+            }
+        }
+        
+        internal static string handover_date_pb {
+            get {
+                return ResourceManager.GetString("handover_date_pb", resourceCulture);
+            }
+        }
+        
+        internal static string pink_book_area_spm {
+            get {
+                return ResourceManager.GetString("pink_book_area_spm", resourceCulture);
+            }
+        }
+        
+        internal static string pink_book_receipt_date {
+            get {
+                return ResourceManager.GetString("pink_book_receipt_date", resourceCulture);
+            }
+        }
+        
+        internal static string registration_tax {
+            get {
+                return ResourceManager.GetString("registration_tax", resourceCulture);
+            }
+        }
+        
+        internal static string inspection_fee {
+            get {
+                return ResourceManager.GetString("inspection_fee", resourceCulture);
+            }
+        }
+        
+        internal static string issuance_fee {
+            get {
+                return ResourceManager.GetString("issuance_fee", resourceCulture);
+            }
+        }
+        
+        internal static string other_handover_document {
+            get {
+                return ResourceManager.GetString("other_handover_document", resourceCulture);
+            }
+        }
+        
+        internal static string thong_tin_ban_giao_gcn {
+            get {
+                return ResourceManager.GetString("thong_tin_ban_giao_gcn", resourceCulture);
             }
         }
     }
