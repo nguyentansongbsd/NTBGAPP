@@ -6,27 +6,6 @@
              xmlns:lang="clr-namespace:PhuLongCRM.Resources"
              Title="{x:Static lang:Language.unit_spec_title}"
              x:Class="PhuLongCRM.Views.UnitSpecificationDetailPage">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="ExpanderHeaderStyle" TargetType="telerikPrimitives:ExpanderHeader">
-                <Setter Property="IndicatorText" Value="&#xf105;"/>
-                <Setter Property="IndicatorLocation" Value="End"/>
-                <Setter Property="IndicatorFontSize" Value="18"/>
-                <Setter Property="IndicatorColor" Value="#939393"/>
-                <Setter Property="BackgroundColor" Value="#F2F2F2"/>
-                <Setter Property="BorderColor" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="Padding" Value="17,8"/>
-                <Setter Property="IndicatorFontFamily" Value="FontAwesomeSolid"/>
-            </Style>
-            <Style x:Key="ExpanderHeadingText" TargetType="Label">
-                <Setter Property="FontSize" Value="15" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="VerticalTextAlignment" Value="Center" />
-                <Setter Property="TextColor" Value="#444444"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.Content>
         <AbsoluteLayout>
             <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Padding="0,0,0,60">
@@ -42,7 +21,7 @@
                             <Grid ColumnDefinitions="Auto,*">
                                 <Label Grid.Column="0" Text="{Binding Source={x:Static lang:Language.du_an},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
                                 <Label Grid.Column="1" Text="{Binding UnitSpec.project_name}" TextColor="{StaticResource NavigationPrimary}" FontSize="15" FontAttributes="Bold">
-                                    
+
                                 </Label>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
@@ -82,14 +61,29 @@
                                     </BindableLayout.EmptyViewTemplate>
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
-                                            <Grid ColumnDefinitions="*,Auto" BackgroundColor ="White" Padding="15,10" Margin="0,1" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+                                            <Grid BackgroundColor ="White" Padding="15,10" Margin="0,1" RowDefinitions="Auto,Auto,Auto">
                                                 <Grid.GestureRecognizers>
                                                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UnitSpecificationDetail_Tapped" CommandParameter="{Binding .}"/>
                                                 </Grid.GestureRecognizers>
-                                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding unit_spec_name}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
-                                                <Label Text="{Binding createdon,StringFormat='{0:dd/MM/yyyy}'}" Grid.Row="0" Grid.Column="1" FontSize="14" TextColor="Gray" VerticalOptions="Center"/>
-                                                <controls:FieldListViewItem Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Title="{x:Static lang:Language.type_of_room_vn}" Text="{Binding bsd_typeofroomvn}"/>
-                                                <controls:FieldListViewItem Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Title="{x:Static lang:Language.type_of_room_other}" Text="{Binding bsd_typeofroomother}"/>
+                                                <Label Grid.Row="0" Text="{Binding bsd_itemvn}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                                                <Label Grid.Row="1" FontSize="15">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding Source={x:Static lang:Language.type_of_room_vn},StringFormat='{0}:  '}" TextColor="#666666"/>
+                                                            <Span Text=" "/>
+                                                            <Span Text="{Binding bsd_typeofroomvn}" TextColor="#444444"/>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Label Grid.Row="2" FontSize="15">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding Source={x:Static lang:Language.mo_ta},StringFormat='{0}:  '}" TextColor="#666666"/>
+                                                            <Span Text=" "/>
+                                                            <Span Text="{Binding bsd_details}" TextColor="#444444"/>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
                                             </Grid>
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
