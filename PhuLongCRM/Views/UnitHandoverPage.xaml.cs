@@ -25,16 +25,24 @@ namespace PhuLongCRM.Views
 
         public async void Init()
         {
-            await viewModel.LoadUnitHandover();
-            if (viewModel.UnitHandover != null)
+            try
             {
-                SetButtonFloatingButton();
-                OnCompleted?.Invoke(true);
+                await viewModel.LoadUnitHandover();
+                if (viewModel.UnitHandover != null)
+                {
+                    SetButtonFloatingButton();
+                    OnCompleted?.Invoke(true);
+                }
+                else
+                {
+                    OnCompleted?.Invoke(false);
+                }
             }
-            else
+            catch(Exception ex)
             {
                 OnCompleted?.Invoke(false);
             }
+            
         }
 
         protected async override void OnAppearing()
