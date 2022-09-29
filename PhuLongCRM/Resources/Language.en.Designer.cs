@@ -7210,5 +7210,53 @@ namespace PhuLongCRM.Resources {
                 return ResourceManager.GetString("cu", resourceCulture);
             }
         }
+        
+        internal static string phi_quan_ly_thuc {
+            get {
+                return ResourceManager.GetString("phi_quan_ly_thuc", resourceCulture);
+            }
+        }
+        
+        internal static string nghiem_thu {
+            get {
+                return ResourceManager.GetString("nghiem_thu", resourceCulture);
+            }
+        }
+        
+        internal static string ngay_ban_giao_thuc_te {
+            get {
+                return ResourceManager.GetString("ngay_ban_giao_thuc_te", resourceCulture);
+            }
+        }
+        
+        internal static string ngay_op {
+            get {
+                return ResourceManager.GetString("ngay_op", resourceCulture);
+            }
+        }
+        
+        internal static string ngay_nop_so_hong {
+            get {
+                return ResourceManager.GetString("ngay_nop_so_hong", resourceCulture);
+            }
+        }
+        
+        internal static string xac_nhan_tai_lieu {
+            get {
+                return ResourceManager.GetString("xac_nhan_tai_lieu", resourceCulture);
+            }
+        }
+        
+        internal static string so_so_hong {
+            get {
+                return ResourceManager.GetString("so_so_hong", resourceCulture);
+            }
+        }
+        
+        internal static string ngay_nhan_so_hong {
+            get {
+                return ResourceManager.GetString("ngay_nhan_so_hong", resourceCulture);
+            }
+        }
     }
 }
