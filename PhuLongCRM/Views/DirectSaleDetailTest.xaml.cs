@@ -28,6 +28,8 @@ namespace PhuLongCRM.Views
         private Button btnQueue;
         private Button btnQuote;
         private Label labelName;
+        private StackLayout stack_listview;
+        private Grid gridTab;
         public DirectSaleDetailTest(DirectSaleSearchModel filter)
         {
             InitializeComponent();
@@ -284,7 +286,7 @@ namespace PhuLongCRM.Views
                         new RowDefinition{Height = GridLength.Auto },
                         new RowDefinition{Height = GridLength.Auto },
                         new RowDefinition{Height = GridLength.Auto },
-                        new RowDefinition{Height = GridLength.Auto },
+                        new RowDefinition{ Height = new GridLength(1,GridUnitType.Star)},
                         new RowDefinition{Height = GridLength.Auto },
                     }
                     ,
@@ -459,12 +461,15 @@ namespace PhuLongCRM.Views
                 btnQuote.Clicked += BangTinhGia_Clicked;
                 gridBtn.Children.Add(btnQuote);
             }
-            QueuesControl queuesControl = new QueuesControl(unit_id);
-            queuesControl.HeightRequest = 400;
-            grid.Children.Add(queuesControl);
-            Grid.SetColumn(queuesControl, 0);
-            Grid.SetRow(queuesControl, 7);
-            Grid.SetColumnSpan(queuesControl, 5);
+
+            //QueuesControl queuesControl = new QueuesControl(unit_id);
+            //queuesControl.HeightRequest = 400;
+            CreateListView(unit_id);
+            stack_listview.HeightRequest = 800;
+            grid.Children.Add(stack_listview);
+            Grid.SetColumn(stack_listview, 0);
+            Grid.SetRow(stack_listview, 7);
+            Grid.SetColumnSpan(stack_listview, 5);
 
             // hiện btn giữ chỗ availabe, queuing, preparing, booking
             if (viewModel.Unit.statuscode == 1 || viewModel.Unit.statuscode == 100000000
@@ -524,6 +529,366 @@ namespace PhuLongCRM.Views
                 Grid.SetColumn(labelName, 1);
                 Grid.SetColumnSpan(labelName, 3);
             }
+        }
+
+        private void CreateListView(Guid unit_id)
+        {
+            if (stack_listview != null)
+                stack_listview.Children.Clear();
+            stack_listview = new StackLayout();
+
+            //Acceptance
+            DataTemplate template_acceptance = new DataTemplate(() =>
+            {
+                Grid grid = new Grid
+                {
+                    RowDefinitions = {
+                        new RowDefinition{Height = GridLength.Auto },
+                        new RowDefinition{Height = GridLength.Auto },
+                        new RowDefinition{Height = GridLength.Auto },
+                        new RowDefinition{Height = GridLength.Auto },
+                    }
+                ,
+                    ColumnDefinitions =
+                    {
+                        new ColumnDefinition{ Width = GridLength.Auto},
+                        new ColumnDefinition{ Width = new GridLength(1,GridUnitType.Star)},
+                    },
+                    Margin = new Thickness(0, 1, 0, 0),
+                    Padding = 10,
+                    BackgroundColor = Color.White
+                };
+
+                //status
+                RadBorder radBorder = new RadBorder { CornerRadius = 5, VerticalOptions = LayoutOptions.Start };
+                radBorder.SetBinding(RadBorder.BackgroundColorProperty, "statuscode_color");
+                Label label = new Label();
+                label.SetBinding(Label.TextProperty, "statuscode_format");
+                label.FontSize = 14;
+                label.FontAttributes = FontAttributes.Bold;
+                label.TextColor = Color.White;
+                label.Margin = 5;
+                radBorder.Content = label;
+                grid.Children.Add(radBorder);
+                Grid.SetColumn(radBorder, 0);
+                Grid.SetRow(radBorder, 0);
+
+                //ten
+                Label labelName = new Label { FontSize = 15, TextColor = (Color)Application.Current.Resources["NavigationPrimary"], FontAttributes = FontAttributes.Bold, VerticalOptions = LayoutOptions.Center };
+                labelName.SetBinding(Label.TextProperty, "bsd_name");
+
+                grid.Children.Add(labelName);
+                Grid.SetColumn(labelName, 1);
+                Grid.SetRow(labelName, 0);
+
+                //contract
+                FieldListViewItem fieldContract = new FieldListViewItem { TitleTextColor = Color.FromHex("#444444"), Title = Language.hop_dong, TextColor = Color.FromHex("#444444") };
+                fieldContract.SetBinding(FieldListViewItem.TextProperty, "contract_name");
+                grid.Children.Add(fieldContract);
+                Grid.SetColumn(fieldContract, 0);
+                Grid.SetRow(fieldContract, 1);
+                Grid.SetColumnSpan(fieldContract, 2);
+
+                //project
+                FieldListViewItem fieldProject = new FieldListViewItem { TitleTextColor = Color.FromHex("#444444"), Title = Language.du_an, TextColor = Color.FromHex("#444444") };
+                fieldProject.SetBinding(FieldListViewItem.TextProperty, "project_name");
+                grid.Children.Add(fieldProject);
+                Grid.SetColumn(fieldProject, 0);
+                Grid.SetRow(fieldProject, 2);
+                Grid.SetColumnSpan(fieldProject, 2);
+
+                //fieldUnit
+                FieldListViewItem fieldUnit = new FieldListViewItem { TitleTextColor = Color.FromHex("#444444"), Title = Language.san_pham, TextColor = Color.FromHex("#444444") };
+                fieldUnit.SetBinding(FieldListViewItem.TextProperty, "unit_name");
+                grid.Children.Add(fieldUnit);
+                Grid.SetColumn(fieldUnit, 0);
+                Grid.SetRow(fieldUnit, 3);
+                Grid.SetColumnSpan(fieldUnit, 2);
+
+                return new ViewCell { View = grid };
+            });
+            string fetch_acceptance = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                                            <entity name='bsd_acceptance'>
+                                                <attribute name='bsd_acceptanceid' />
+                                                <attribute name='bsd_name' />
+                                                <attribute name='statuscode' />
+                                                <order attribute='bsd_name' descending='false' />
+                                                <filter type='and'>
+                                                    <condition attribute='statuscode' operator='ne' value='2' />
+                                                    <condition attribute='bsd_units' operator='eq' value='{unit_id}' />
+                                                </filter>
+                                                <link-entity name='bsd_project' from='bsd_projectid' to='bsd_project' link-type='outer' alias='project'>
+                                                    <attribute name='bsd_name' alias='project_name'/>
+                                                </link-entity>
+                                                <link-entity name='product' from='productid' to='bsd_units' link-type='outer' alias='product'>
+                                                    <attribute name='name' alias='unit_name'/>
+                                                </link-entity>
+                                                <link-entity name='salesorder' from='salesorderid' to='bsd_contract' link-type='outer' alias='contract'>
+                                                    <attribute name='name' alias='contract_name'/>
+                                                </link-entity>
+                                            </entity>
+                                        </fetch>";
+            ListViewLoadMore<AcceptanceListModel> listView_acceptance = new ListViewLoadMore<AcceptanceListModel>(fetch_acceptance, "bsd_acceptances", template_acceptance);
+
+            //UnitHandover 
+            DataTemplate template_unitHandover = new DataTemplate(() =>
+            {
+                Grid grid = new Grid
+                {
+                    RowDefinitions = {
+                        new RowDefinition{Height = GridLength.Auto },
+                        new RowDefinition{Height = GridLength.Auto },
+                        new RowDefinition{Height = GridLength.Auto },
+                    }
+                ,
+                    ColumnDefinitions =
+                    {
+                        new ColumnDefinition{ Width = GridLength.Auto},
+                        new ColumnDefinition{ Width = new GridLength(1,GridUnitType.Star)},
+                    },
+                    Margin = new Thickness(0, 1, 0, 0),
+                    Padding = 10,
+                    BackgroundColor = Color.White
+                };
+
+                //status
+                RadBorder radBorder = new RadBorder { CornerRadius = 5, VerticalOptions = LayoutOptions.Start };
+                radBorder.SetBinding(RadBorder.BackgroundColorProperty, "status_format.Background");
+                Label label = new Label();
+                label.SetBinding(Label.TextProperty, "status_format.Name");
+                label.FontSize = 14;
+                label.FontAttributes = FontAttributes.Bold;
+                label.TextColor = Color.White;
+                label.Margin = 5;
+                radBorder.Content = label;
+                grid.Children.Add(radBorder);
+                Grid.SetColumn(radBorder, 0);
+                Grid.SetRow(radBorder, 0);
+
+                //ten
+                Label labelName = new Label { FontSize = 15, TextColor = (Color)Application.Current.Resources["NavigationPrimary"], FontAttributes = FontAttributes.Bold, VerticalOptions = LayoutOptions.Center };
+                labelName.SetBinding(Label.TextProperty, "bsd_name");
+
+                grid.Children.Add(labelName);
+                Grid.SetColumn(labelName, 1);
+                Grid.SetRow(labelName, 0);
+
+                //project
+                FieldListViewItem fieldProject = new FieldListViewItem { TitleTextColor = Color.FromHex("#444444"), Title = Language.du_an, TextColor = Color.FromHex("#444444") };
+                fieldProject.SetBinding(FieldListViewItem.TextProperty, "project_name");
+                grid.Children.Add(fieldProject);
+                Grid.SetColumn(fieldProject, 0);
+                Grid.SetRow(fieldProject, 1);
+                Grid.SetColumnSpan(fieldProject, 2);
+
+                //fieldUnit
+                FieldListViewItem fieldUnit = new FieldListViewItem { TitleTextColor = Color.FromHex("#444444"), Title = Language.san_pham, TextColor = Color.FromHex("#444444") };
+                fieldUnit.SetBinding(FieldListViewItem.TextProperty, "unit_name");
+                grid.Children.Add(fieldUnit);
+                Grid.SetColumn(fieldUnit, 0);
+                Grid.SetRow(fieldUnit, 2);
+                Grid.SetColumnSpan(fieldUnit, 2);
+
+                return new ViewCell { View = grid };
+            });
+            string fetch_unitHandover = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                                              <entity name='bsd_handover'>
+                                                <attribute name='bsd_handoverid' />
+                                                <attribute name='bsd_name' />
+                                                <attribute name='statuscode' />
+                                                <order attribute='bsd_name' descending='false' />
+                                                <filter type='and'>
+                                                    <condition attribute='statuscode' operator='ne' value='2' />
+                                                    <condition attribute='bsd_units' operator='eq' value='{unit_id}' />
+                                                </filter>
+                                                <link-entity name='bsd_project' from='bsd_projectid' to='bsd_projectid' visible='false' link-type='outer' alias='a_3743f43dba81e911a83b000d3a07be23'>
+                                                  <attribute name='bsd_name' alias='project_name'/>
+                                                </link-entity>
+                                                <link-entity name='product' from='productid' to='bsd_units' visible='false' link-type='outer' alias='a_96e2d45bba81e911a83b000d3a07be23'>
+                                                  <attribute name='name' alias='unit_name'/>
+                                                </link-entity>
+                                              </entity>
+                                            </fetch>";
+            ListViewLoadMore<UnitHandoversModel> listView_unitHandover = new ListViewLoadMore<UnitHandoversModel>(fetch_unitHandover, "bsd_handovers", template_unitHandover);
+
+            //PinkBookHandover
+            DataTemplate template_pinkBookHandover = new DataTemplate(() =>
+            {
+                Grid grid = new Grid
+                {
+                    RowDefinitions = {
+                        new RowDefinition{Height = GridLength.Auto },
+                        new RowDefinition{Height = GridLength.Auto },
+                        new RowDefinition{Height = GridLength.Auto },
+                        new RowDefinition{Height = GridLength.Auto },
+                    }
+                ,
+                    ColumnDefinitions =
+                    {
+                        new ColumnDefinition{ Width = GridLength.Auto},
+                        new ColumnDefinition{ Width = new GridLength(1,GridUnitType.Star)},
+                    },
+                    Margin = new Thickness(0, 1, 0, 0),
+                    Padding = 10,
+                    BackgroundColor = Color.White
+                };
+
+                //status
+                RadBorder radBorder = new RadBorder { CornerRadius = 5, VerticalOptions = LayoutOptions.Start };
+                radBorder.SetBinding(RadBorder.BackgroundColorProperty, "status_format.Background");
+                Label label = new Label();
+                label.SetBinding(Label.TextProperty, "status_format.Name");
+                label.FontSize = 14;
+                label.FontAttributes = FontAttributes.Bold;
+                label.TextColor = Color.White;
+                label.Margin = 5;
+                radBorder.Content = label;
+                grid.Children.Add(radBorder);
+                Grid.SetColumn(radBorder, 0);
+                Grid.SetRow(radBorder, 0);
+
+                //ten
+                Label labelName = new Label { FontSize = 15, TextColor = (Color)Application.Current.Resources["NavigationPrimary"], FontAttributes = FontAttributes.Bold, VerticalOptions = LayoutOptions.Center };
+                labelName.SetBinding(Label.TextProperty, "bsd_name");
+
+                grid.Children.Add(labelName);
+                Grid.SetColumn(labelName, 1);
+                Grid.SetRow(labelName, 0);
+
+                //contract
+                FieldListViewItem fieldContract = new FieldListViewItem { TitleTextColor = Color.FromHex("#444444"), Title = Language.hop_dong, TextColor = Color.FromHex("#444444") };
+                fieldContract.SetBinding(FieldListViewItem.TextProperty, "optionentry_name");
+                grid.Children.Add(fieldContract);
+                Grid.SetColumn(fieldContract, 0);
+                Grid.SetRow(fieldContract, 1);
+                Grid.SetColumnSpan(fieldContract, 2);
+
+                //project
+                FieldListViewItem fieldProject = new FieldListViewItem { TitleTextColor = Color.FromHex("#444444"), Title = Language.du_an, TextColor = Color.FromHex("#444444") };
+                fieldProject.SetBinding(FieldListViewItem.TextProperty, "project_name");
+                grid.Children.Add(fieldProject);
+                Grid.SetColumn(fieldProject, 0);
+                Grid.SetRow(fieldProject, 2);
+                Grid.SetColumnSpan(fieldProject, 2);
+
+                //fieldUnit
+                FieldListViewItem fieldUnit = new FieldListViewItem { TitleTextColor = Color.FromHex("#444444"), Title = Language.san_pham, TextColor = Color.FromHex("#444444") };
+                fieldUnit.SetBinding(FieldListViewItem.TextProperty, "unit_name");
+                grid.Children.Add(fieldUnit);
+                Grid.SetColumn(fieldUnit, 0);
+                Grid.SetRow(fieldUnit, 3);
+                Grid.SetColumnSpan(fieldUnit, 2);
+
+                return new ViewCell { View = grid };
+            });
+            string fetch_pinkBookHandover = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                                              <entity name='bsd_pinkbookhandover'>
+                                                <attribute name='bsd_name' />
+                                                <attribute name='statuscode' />
+                                                <attribute name='bsd_pinkbookhandoverid' />
+                                                <order attribute='bsd_name' descending='false' />
+                                                <filter type='and'>
+                                                    <condition attribute='statuscode' operator='ne' value='2' />
+                                                    <condition attribute='bsd_units' operator='eq' value='{unit_id}' />
+                                                </filter>
+                                                <link-entity name='bsd_project' from='bsd_projectid' to='bsd_project' visible='false' link-type='outer' alias='a_26f8767ec690ec11b400000d3aa1f0ac'>
+                                                  <attribute name='bsd_contactfullname' alias='project_name'/>
+                                                </link-entity>
+                                                <link-entity name='product' from='productid' to='bsd_units' visible='false' link-type='outer' alias='a_91124d44c790ec11b400000d3aa1f0ac'>
+                                                  <attribute name='name' alias='unit_name'/>
+                                                </link-entity>
+                                                <link-entity name='salesorder' from='salesorderid' to='bsd_optionentry' visible='false' link-type='outer' alias='a_fd36f62dc790ec11b400000d3aa1f0ac'>
+                                                  <attribute name='name' alias='optionentry_name'/>
+                                                </link-entity>
+                                              </entity>
+                                            </fetch>";
+            ListViewLoadMore<PinkBookHandoversModel> listView_pinkBookHandover = new ListViewLoadMore<PinkBookHandoversModel>(fetch_pinkBookHandover, "bsd_pinkbookhandovers", template_pinkBookHandover);
+
+            if (gridTab != null)
+                gridTab.Children.Clear();
+            gridTab = new Grid();
+
+            var tab = CreateTabs(Language.acceptance_title);
+            gridTab.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            gridTab.Children.Add(tab);
+            Grid.SetColumn(tab, 0);
+            Grid.SetRow(tab, 0);
+            TapGestureRecognizer tapped = new TapGestureRecognizer();
+            tapped.Tapped += Tapped_Tapped;
+            tab.GestureRecognizers.Add(tapped);
+
+            var tab2 = CreateTabs(Language.ban_giao_san_pham);
+            gridTab.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            gridTab.Children.Add(tab2);
+            Grid.SetColumn(tab2, 1);
+            Grid.SetRow(tab2, 0);
+            tab2.GestureRecognizers.Add(tapped);
+
+            var tab3 = CreateTabs(Language.ban_giao_gcn);
+            gridTab.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            gridTab.Children.Add(tab3);
+            Grid.SetColumn(tab3, 2);
+            Grid.SetRow(tab3, 0);
+            tab3.GestureRecognizers.Add(tapped);
+
+            BoxView boxView = new BoxView();
+            boxView.HeightRequest = 1;
+            boxView.BackgroundColor = Color.FromHex("939393");
+            boxView.VerticalOptions = LayoutOptions.EndAndExpand;
+            gridTab.Children.Add(boxView);
+            Grid.SetColumn(boxView, 0);
+            Grid.SetRow(boxView, 0);
+            Grid.SetColumnSpan(boxView, 3);
+
+            stack_listview.Children.Add(gridTab);
+            stack_listview.Children.Add(listView_acceptance);
+            stack_listview.Children.Add(listView_unitHandover);
+            stack_listview.Children.Add(listView_pinkBookHandover);
+
+            Tab_Tapped(gridTab.Children[0] as RadBorder); 
+        }
+
+        private void Tapped_Tapped(object sender, EventArgs e)
+        {
+            Tab_Tapped(sender as RadBorder);
+        }
+
+        private void Tab_Tapped(RadBorder radBorder)
+        {
+            if (radBorder != null)
+            {
+                for (int i = 0; i < gridTab.Children.Count - 1; i++) //-1 do có boxview ở cuối
+                {
+                    if (gridTab.Children[i] == radBorder)
+                    {
+                        var rd = gridTab.Children[i] as RadBorder;
+                        var lb = rd.Content as Label;
+                        VisualStateManager.GoToState(rd, "Selected");// UI trong app.xaml
+                        VisualStateManager.GoToState(lb, "Selected");// UI trong app.xaml
+                        stack_listview.Children[i+1].IsVisible = true;
+                    }
+                    else
+                    {
+                        var rd = gridTab.Children[i] as RadBorder;
+                        var lb = rd.Content as Label;
+                        VisualStateManager.GoToState(rd, "Normal");// UI trong app.xaml
+                        VisualStateManager.GoToState(lb, "Normal");// UI trong app.xaml
+                        stack_listview.Children[i + 1].IsVisible = false;
+                    }
+                }
+            }
+        }
+
+        public RadBorder CreateTabs(string NameTab)
+        {
+            RadBorder rd = new RadBorder();
+            rd.Style = (Style)Application.Current.Resources["rabBorder_Tab"]; // UI trong app.xaml
+
+            Label lb = new Label();
+            lb.Style = (Style)Application.Current.Resources["Lb_Tab"];// UI trong app.xaml
+            lb.LineBreakMode = LineBreakMode.TailTruncation;
+            rd.Content = lb;
+            return rd;
         }
     }
     public class QueuesControl : BsdListView
@@ -694,6 +1059,34 @@ namespace PhuLongCRM.Views
                       </entity>
                     </fetch>";
             });
+        }
+    }
+    public class ListViewLoadMoreViewModel<T> : ListViewBaseViewModel2<T> where T : class
+    {
+        public ListViewLoadMoreViewModel(string fetch, string entityName)
+        {
+            PreLoadData = new Command(() =>
+            {
+                EntityName = entityName;
+                FetchXml = fetch.Replace("fetch version='1.0'", $"fetch version='1.0' count='5' page='{Page}'"); 
+            });
+        }
+    }    
+    public class ListViewLoadMore<T> : BsdListView where T : class
+    {
+        private ListViewLoadMoreViewModel<T> viewModel;
+        public ListViewLoadMore(string fetch, string entityName, DataTemplate dataTemplate)
+        {
+            this.BindingContext = viewModel = new ListViewLoadMoreViewModel<T>(fetch,entityName);
+            this.SetBinding(BsdListView.ItemsSourceProperty, "Data");
+            this.Margin = new Thickness(-10, 0);
+            this.BackgroundColor = Color.White;
+            ItemTemplate = dataTemplate;
+            Init();
+        }
+        private async void Init()
+        {
+            await viewModel.LoadData();
         }
     }
 }

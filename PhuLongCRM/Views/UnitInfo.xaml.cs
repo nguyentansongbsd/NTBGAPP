@@ -85,28 +85,28 @@ namespace PhuLongCRM.Views
             if(NeedToRefreshQueue == true)
             {
                 LoadingHelper.Show();
-                viewModel.PageDanhSachDatCho = 1;
-                viewModel.list_danhsachdatcho.Clear();
-                await viewModel.LoadQueues();
+                viewModel.PageAcceptance = 1;
+                viewModel.Acceptances.Clear();
+                await viewModel.LoadAcceptances();
                 NeedToRefreshQueue = false;
                 LoadingHelper.Hide();
             }
             if (NeedToRefreshQuotation == true)
             {
                 LoadingHelper.Show();
-                viewModel.PageBangTinhGia = 1;
-                if (viewModel.BangTinhGiaList != null)
-                    viewModel.BangTinhGiaList.Clear();
-                await viewModel.LoadDanhSachBangTinhGia();
+                viewModel.PageUnitHandover = 1;
+                if (viewModel.UnitHandovers != null)
+                    viewModel.UnitHandovers.Clear();
+                await viewModel.LoadUnitHandovers();
                 NeedToRefreshQuotation = false;
                 LoadingHelper.Hide();
             }
             if (NeedToRefreshReservation == true)
             {
                 LoadingHelper.Show();
-                viewModel.PageDanhSachDatCoc = 1;
-                viewModel.list_danhsachdatcoc.Clear();
-                await viewModel.LoadDanhSachDatCoc();
+                viewModel.PagePinkBooHandover = 1;
+                viewModel.PinkBooHandovers.Clear();
+                await viewModel.LoadPinkBooHandovers();
                 NeedToRefreshReservation = false;
                 LoadingHelper.Hide();
             }
@@ -139,19 +139,19 @@ namespace PhuLongCRM.Views
             }
         }
 
-        private async void ShowMoreDanhSachDatCho_Clicked(object sender, EventArgs e)
+        private async void ShowMoreAcceptances_Clicked(object sender, EventArgs e)
         {
             LoadingHelper.Show();
-            viewModel.PageDanhSachDatCho++;
-            await viewModel.LoadQueues();
+            viewModel.PageAcceptance++;
+            await viewModel.LoadAcceptances();
             LoadingHelper.Hide();
         }
 
-        private async void ShowMoreDanhSachDatCoc_Clicked(object sender, EventArgs e)
+        private async void ShowMorePinkBooHandovers_Clicked(object sender, EventArgs e)
         {
             LoadingHelper.Show();
-            viewModel.PageDanhSachDatCoc++;
-            await viewModel.LoadDanhSachDatCoc();
+            viewModel.PagePinkBooHandover++;
+            await viewModel.LoadPinkBooHandovers();
             LoadingHelper.Hide();
         }
 
@@ -204,50 +204,52 @@ namespace PhuLongCRM.Views
             //};
         }
 
-        private void GiuChoItem_Tapped(object sender, EventArgs e)
-        {
-            //LoadingHelper.Show();
-            //var itemId = (Guid)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            //QueuesDetialPage queuesDetialPage = new QueuesDetialPage(itemId);
-            //queuesDetialPage.OnCompleted = async (IsSuccess) => {
-            //    if (IsSuccess)
-            //    {
-            //        await Navigation.PushAsync(queuesDetialPage);
-            //        LoadingHelper.Hide();
-            //    }
-            //    else
-            //    {
-            //        LoadingHelper.Hide();
-            //        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
-            //    }
-            //};
-        }
-
-        private void ChiTietDatCoc_Tapped(object sender, EventArgs e)
-        {
-            //LoadingHelper.Show();
-            //var itemId = (Guid)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            //BangTinhGiaDetailPage bangTinhGiaDetail = new BangTinhGiaDetailPage(itemId, true);
-            //bangTinhGiaDetail.OnCompleted = async (isSuccess) =>
-            //{
-            //    if (isSuccess)
-            //    {
-            //        await Navigation.PushAsync(bangTinhGiaDetail);
-            //        LoadingHelper.Hide();
-            //    }
-            //    else
-            //    {
-            //        LoadingHelper.Hide();
-            //        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
-            //    }
-            //};
-        }
-
-        private async void ShowMoreBangTinhGia_Clicked(object sender, EventArgs e)
+        private void AcceptanceItem_Tapped(object sender, EventArgs e)
         {
             LoadingHelper.Show();
-            viewModel.PageBangTinhGia++;
-            await viewModel.LoadDanhSachBangTinhGia();
+            var item = (AcceptanceListModel)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            AcceptanceDetailPage page = new AcceptanceDetailPage(item.bsd_acceptanceid);
+            page.OnCompleted = async (OnCompleted) =>
+            {
+                if (OnCompleted == true)
+                {
+                    await Navigation.PushAsync(page);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+                }
+
+            };
+        }
+
+        private void PinkBooHandoverItem_Tapped(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            var item = (PinkBookHandoversModel)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            PinkBookHandoverPage pinkBookHandover = new PinkBookHandoverPage(item.bsd_pinkbookhandoverid);
+            pinkBookHandover.OnCompleted = async (isSuccessed) =>
+            {
+                if (isSuccessed)
+                {
+                    await Navigation.PushAsync(pinkBookHandover);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+                }
+            };
+        }
+
+        private async void ShowMoreUnitHandovers_Clicked(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            viewModel.PageUnitHandover++;
+            await viewModel.LoadUnitHandovers();
             LoadingHelper.Hide();
         }
 
@@ -289,20 +291,29 @@ namespace PhuLongCRM.Views
                 {
                     stackThongTinCanHo.IsVisible = true;
                     stackGiaoDich.IsVisible = false;
+                    stackBanGiao.IsVisible = false;
                 }
                 else if ((int)e.Item == 1)
                 {
                     LoadingHelper.Show();
                     stackThongTinCanHo.IsVisible = false;
+                    stackGiaoDich.IsVisible = false;
+                    stackBanGiao.IsVisible = true;
+                    LoadingHelper.Hide();
+                }
+                else if ((int)e.Item == 2)
+                {
+                    LoadingHelper.Show();
+                    stackThongTinCanHo.IsVisible = false;
                     stackGiaoDich.IsVisible = true;
+                    stackBanGiao.IsVisible = false;
 
                     if (viewModel.IsLoaded == false)
                     {
-                        viewModel.BangTinhGiaList = new ObservableCollection<ReservationListModel>();
                         await Task.WhenAll(
-                            viewModel.LoadQueues(),
-                            viewModel.LoadDanhSachDatCoc(),
-                            viewModel.LoadDanhSachBangTinhGia(),
+                            viewModel.LoadAcceptances(),
+                            viewModel.LoadPinkBooHandovers(),
+                            viewModel.LoadUnitHandovers(),
                             viewModel.LoadOptoinEntry()
                         );
                     }
@@ -311,24 +322,23 @@ namespace PhuLongCRM.Views
             }
         }
 
-        private void ChiTietBTG_Tapped(object sender, EventArgs e)
+        private void UnitHandoverItem_Tapped(object sender, EventArgs e)
         {
-            //LoadingHelper.Show();
-            //var itemId = (Guid)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            //BangTinhGiaDetailPage bangTinhGiaDetail = new BangTinhGiaDetailPage(itemId);
-            //bangTinhGiaDetail.OnCompleted = async (isSuccess) =>
-            //{
-            //    if (isSuccess)
-            //    {
-            //        await Navigation.PushAsync(bangTinhGiaDetail);
-            //        LoadingHelper.Hide();
-            //    }
-            //    else
-            //    {
-            //        LoadingHelper.Hide();
-            //        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
-            //    }
-            //};
+            LoadingHelper.Show();
+            var item = (UnitHandoversModel)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            UnitHandoverPage unitHandover = new UnitHandoverPage(item.bsd_handoverid);
+            unitHandover.OnCompleted = async (isSuccessed) => {
+                if (isSuccessed)
+                {
+                    await Navigation.PushAsync(unitHandover);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+                }
+            };
         }
         private void ItemSlider_Tapped(object sender, EventArgs e)
         {

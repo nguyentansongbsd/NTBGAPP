@@ -30,12 +30,12 @@ namespace PhuLongCRM.ViewModels
         public bool ShowCollections { get => _showCollections; set { _showCollections = value; OnPropertyChanged(nameof(ShowCollections)); } }
         public Guid UnitId { get; set; }
 
-        private ObservableCollection<ReservationListModel> _bangTinhGiaList;
-        public ObservableCollection<ReservationListModel> BangTinhGiaList { get => _bangTinhGiaList; set { _bangTinhGiaList = value; OnPropertyChanged(nameof(BangTinhGiaList)); } }
+        private ObservableCollection<UnitHandoversModel> _unitHandovers;
+        public ObservableCollection<UnitHandoversModel> UnitHandovers { get => _unitHandovers; set { _unitHandovers = value; OnPropertyChanged(nameof(UnitHandovers)); } }
 
-        public ObservableCollection<QueuesModel> _list_danhsachdatcho;
-        public ObservableCollection<QueuesModel> list_danhsachdatcho { get => _list_danhsachdatcho; set { _list_danhsachdatcho = value; OnPropertyChanged(nameof(list_danhsachdatcho)); } }
-        public ObservableCollection<ReservationListModel> list_danhsachdatcoc { get; set; } = new ObservableCollection<ReservationListModel>();
+        public ObservableCollection<AcceptanceListModel> _acceptances;
+        public ObservableCollection<AcceptanceListModel> Acceptances { get => _acceptances; set { _acceptances = value; OnPropertyChanged(nameof(Acceptances)); } }
+        public ObservableCollection<PinkBookHandoversModel> PinkBooHandovers { get; set; } = new ObservableCollection<PinkBookHandoversModel>();
         public ObservableCollection<ContractModel> list_danhsachhopdong { get; set; } = new ObservableCollection<ContractModel>();
 
         private UnitInfoModel _unitInfo;
@@ -50,11 +50,11 @@ namespace PhuLongCRM.ViewModels
         private StatusCodeModel _statusCode;
         public StatusCodeModel StatusCode { get => _statusCode; set { _statusCode = value; OnPropertyChanged(nameof(StatusCode)); } }
 
-        private bool _showMoreDanhSachDatCho;
-        public bool ShowMoreDanhSachDatCho { get => _showMoreDanhSachDatCho; set { _showMoreDanhSachDatCho = value; OnPropertyChanged(nameof(ShowMoreDanhSachDatCho)); } }
+        private bool _showMoreAcceptances;
+        public bool ShowMoreAcceptances { get => _showMoreAcceptances; set { _showMoreAcceptances = value; OnPropertyChanged(nameof(ShowMoreAcceptances)); } }
 
-        private bool _showMoreDanhSachDatCoc;
-        public bool ShowMoreDanhSachDatCoc { get => _showMoreDanhSachDatCoc; set { _showMoreDanhSachDatCoc = value; OnPropertyChanged(nameof(ShowMoreDanhSachDatCoc)); } }
+        private bool _showMorePinkBooHandover;
+        public bool ShowMorePinkBooHandover { get => _showMorePinkBooHandover; set { _showMorePinkBooHandover = value; OnPropertyChanged(nameof(ShowMorePinkBooHandover)); } }
 
         private bool _showMoreDanhSachHopDong;
         public bool ShowMoreDanhSachHopDong { get => _showMoreDanhSachHopDong; set { _showMoreDanhSachHopDong = value; OnPropertyChanged(nameof(ShowMoreDanhSachHopDong)); } }
@@ -62,13 +62,13 @@ namespace PhuLongCRM.ViewModels
         private bool _isShowBtnBangTinhGia;
         public bool IsShowBtnBangTinhGia { get => _isShowBtnBangTinhGia; set { _isShowBtnBangTinhGia = value; OnPropertyChanged(nameof(IsShowBtnBangTinhGia)); } }
 
-        private bool _showMoreBangTinhGia;
-        public bool ShowMoreBangTinhGia { get => _showMoreBangTinhGia; set { _showMoreBangTinhGia = value; OnPropertyChanged(nameof(ShowMoreBangTinhGia)); } }
+        private bool _showMoreUnitHandovers;
+        public bool ShowMoreUnitHandovers { get => _showMoreUnitHandovers; set { _showMoreUnitHandovers = value; OnPropertyChanged(nameof(ShowMoreUnitHandovers)); } }
 
         public int PageDanhSachHopDong { get; set; } = 1;
-        public int PageDanhSachDatCoc { get; set; } = 1;
-        public int PageDanhSachDatCho { get; set; } = 1;
-        public int PageBangTinhGia { get; set; } = 1;
+        public int PagePinkBooHandover { get; set; } = 1;
+        public int PageAcceptance { get; set; } = 1;
+        public int PageUnitHandover { get; set; } = 1;
 
         public bool IsLoaded { get; set; } = false;
 
@@ -79,7 +79,8 @@ namespace PhuLongCRM.ViewModels
 
         public UnitInfoViewModel()
         {
-            list_danhsachdatcho = new ObservableCollection<QueuesModel>();
+            Acceptances = new ObservableCollection<AcceptanceListModel>();
+            UnitHandovers = new ObservableCollection<UnitHandoversModel>();
             Photos = new List<Photo>();
             Collections = new List<CollectionData>();
         }
@@ -112,6 +113,15 @@ namespace PhuLongCRM.ViewModels
                 <attribute name='bsd_direction' />
                 <attribute name='bsd_vippriority' />
                 <attribute name='bsd_viewphulong' />
+                <attribute name='bsd_authenticationmanagementfee'/>
+                <attribute name='bsd_acceptance' />
+                <attribute name='bsd_handoverdate' />
+                <attribute name='bsd_opdate' />
+                <attribute name='bsd_submitpinkbookdate' />
+                <attribute name='bsd_confirmdocument' />
+                <attribute name='bsd_pinkbooknumber' />
+                <attribute name='bsd_pinkbookreceiptdate' />
+                <attribute name='bsd_complete' />
                 <attribute name='bsd_phaseslaunchid' alias='bsd_phaseslaunch_id' />
                 <filter type='and'>
                   <condition attribute='productid' operator='eq' uitype='product' value='" + UnitId.ToString() + @"' />
@@ -146,169 +156,107 @@ namespace PhuLongCRM.ViewModels
             await LoadAllCollection();
         }
 
-        public async Task LoadQueues()
+        public async Task LoadAcceptances()
         {
-            string fetch = $@"<fetch version='1.0' count='5' page='{PageDanhSachDatCho}' output-format='xml-platform' mapping='logical' distinct='false'>
-                      <entity name='opportunity'>
-                        <attribute name='name' />
-                        <attribute name='customerid' />
-                        <attribute name='bsd_bookingtime' />
-                        <attribute name='createdon' />
-                        <attribute name='statuscode' />
-                        <attribute name='bsd_queuingexpired' />
-                        <attribute name='opportunityid' />
-                        <attribute name='bsd_queuenumber' />
-                        <attribute name='bsd_queueforproject' />
-                        <order attribute='statecode' descending='false' />
-                        <order attribute='statuscode' descending='true' />
-                        <filter type='and'>
-                          <condition attribute='{UserLogged.UserAttribute}' operator='eq' value='{UserLogged.Id}' />
-                          <condition attribute='bsd_units' operator='eq' value='{UnitInfo.productid}' />
-                        </filter>
-                        <link-entity name='bsd_project' from='bsd_projectid' to='bsd_project' visible='false' link-type='outer' alias='a_edc3f143ba81e911a83b000d3a07be23'>
-                           <attribute name='bsd_name' alias='project_name'/>
-                        </link-entity>
-                        <link-entity name='account' from='accountid' to='parentaccountid' visible='false' link-type='outer' alias='a_87ea9a00777ee911a83b000d3a07fbb4'>
-                           <attribute name='name' alias='account_name'/>
-                        </link-entity>
-                        <link-entity name='contact' from='contactid' to='parentcontactid' visible='false' link-type='outer' alias='a_8eea9a00777ee911a83b000d3a07fbb4'>
-                           <attribute name='bsd_fullname' alias='contact_name'/>
-                        </link-entity>
-                        <link-entity name='product' from='productid' to='bsd_units' visible='false' link-type='outer' alias='a_5025d361ba81e911a83b000d3a07be23'>
-                           <attribute name='name' alias='bsd_units_name'/>
-                        </link-entity>
-                      </entity>
-                    </fetch>";
+            string fetch = $@"<fetch version='1.0' count='5' page='{PageAcceptance}' output-format='xml-platform' mapping='logical' distinct='false'>
+                                <entity name='bsd_acceptance'>
+                                    <attribute name='bsd_acceptanceid' />
+                                    <attribute name='bsd_name' />
+                                    <attribute name='statuscode' />
+                                    <order attribute='bsd_name' descending='false' />
+                                    <filter type='and'>
+                                        <condition attribute='statuscode' operator='ne' value='2' />
+                                        <condition attribute='bsd_units' operator='eq' value='{UnitInfo.productid}' />
+                                    </filter>
+                                    <link-entity name='bsd_project' from='bsd_projectid' to='bsd_project' link-type='outer' alias='project'>
+                                        <attribute name='bsd_name' alias='project_name'/>
+                                    </link-entity>
+                                    <link-entity name='product' from='productid' to='bsd_units' link-type='outer' alias='product'>
+                                        <attribute name='name' alias='unit_name'/>
+                                    </link-entity>
+                                    <link-entity name='salesorder' from='salesorderid' to='bsd_contract' link-type='outer' alias='contract'>
+                                        <attribute name='name' alias='contract_name'/>
+                                    </link-entity>
+                                </entity>
+                            </fetch>";
 
-            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<QueuesModel>>("opportunities", fetch);
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<AcceptanceListModel>>("bsd_acceptances", fetch);
             if (result == null || result.value.Count == 0) return;
 
             IsLoaded = true;
             var data = result.value;
-            ShowMoreDanhSachDatCho = data.Count < 5 ? false : true;
+            ShowMoreAcceptances = data.Count < 5 ? false : true;
 
             foreach (var item in data)
             {
-                list_danhsachdatcho.Add(item);
-            }
-            List<QueuesModel> list_sort = new List<QueuesModel>();
-            list_sort = list_danhsachdatcho.OrderByDescending(num => num, new QueuesModel()).ToList();
-            list_danhsachdatcho.Clear();
-            foreach (var item in list_sort)
-            {
-                list_danhsachdatcho.Add(item);
+                Acceptances.Add(item);
             }
         }
 
-        public async Task LoadDanhSachBangTinhGia()
+        public async Task LoadUnitHandovers()
         {
-            string fetchXml = $@"<fetch version='1.0' count='5' page='{PageBangTinhGia}' output-format='xml-platform' mapping='logical' distinct='false'>
-                      <entity name='quote'>
-                        <attribute name='name' />
-                        <attribute name='totalamount' />
-                        <attribute name='bsd_unitno' alias='bsd_unitno_id' />
-                        <attribute name='statuscode' />
-                        <attribute name='bsd_projectid' alias='bsd_project_id' />
-                        <attribute name='quoteid' />
-                        <order attribute='createdon' descending='true' />
-                        <filter type='and'>
-                            <condition attribute='bsd_unitno' operator='eq' value='{UnitInfo.productid}'/>
-                            <condition attribute='{UserLogged.UserAttribute}' operator='eq' value='{UserLogged.Id}'/>
-                            <filter type='or'>
-                              <condition attribute='statuscode' operator='in'>
-                                <value>100000007</value>
-                              </condition>
-                              <filter type='and'>
-                                 <condition attribute='statuscode' operator='in'>
-                                    <value>100000009</value>
-                                    <value>6</value>
-                                  </condition>
-                                  <condition attribute='bsd_quotationsigneddate' operator='null' />
-                              </filter>
-                            </filter>
-                        </filter>
-                        <link-entity name='bsd_project' from='bsd_projectid' to='bsd_projectid' visible='false' link-type='outer' alias='a'>
-                            <attribute name='bsd_name' alias='bsd_project_name' />
-                        </link-entity>
-                        <link-entity name='product' from='productid' to='bsd_unitno' visible='false' link-type='outer' alias='b'>
-                          <attribute name='name' alias='bsd_unitno_name' />
-                        </link-entity>
-                        <link-entity name='account' from='accountid' to='customerid' visible='false' link-type='outer' alias='c'>
-                          <attribute name='bsd_name' alias='purchaser_accountname' />
-                        </link-entity>
-                        <link-entity name='contact' from='contactid' to='customerid' visible='false' link-type='outer' alias='d'>
-                          <attribute name='bsd_fullname' alias='purchaser_contactname' />
-                        </link-entity>
-                      </entity>
-                    </fetch>";
-            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<ReservationListModel>>("quotes", fetchXml);
+            string fetchXml = $@"<fetch version='1.0' count='5' page='{PageUnitHandover}' output-format='xml-platform' mapping='logical' distinct='false'>
+                                  <entity name='bsd_handover'>
+                                    <attribute name='bsd_handoverid' />
+                                    <attribute name='bsd_name' />
+                                    <attribute name='statuscode' />
+                                    <order attribute='bsd_name' descending='false' />
+                                    <filter type='and'>
+                                        <condition attribute='statuscode' operator='ne' value='2' />
+                                        <condition attribute='bsd_units' operator='eq' value='{UnitInfo.productid}' />
+                                    </filter>
+                                    <link-entity name='bsd_project' from='bsd_projectid' to='bsd_projectid' visible='false' link-type='outer' alias='a_3743f43dba81e911a83b000d3a07be23'>
+                                      <attribute name='bsd_name' alias='project_name'/>
+                                    </link-entity>
+                                    <link-entity name='product' from='productid' to='bsd_units' visible='false' link-type='outer' alias='a_96e2d45bba81e911a83b000d3a07be23'>
+                                      <attribute name='name' alias='unit_name'/>
+                                    </link-entity>
+                                  </entity>
+                                </fetch>";
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<UnitHandoversModel>>("bsd_handovers", fetchXml);
             if (result == null || result.value.Any() == false) return;
 
-            this.ShowMoreBangTinhGia = result.value.Count > 4 ? true : false;
+            this.ShowMoreUnitHandovers = result.value.Count > 4 ? true : false;
 
             foreach (var item in result.value)
             {
-                this.BangTinhGiaList.Add(item);
+                this.UnitHandovers.Add(item);
             }
         }
 
-        public async Task LoadDanhSachDatCoc()
+        public async Task LoadPinkBooHandovers()
         {
-            string fetch = $@"<fetch version='1.0' count='5' page='{PageDanhSachDatCoc}' output-format='xml-platform' mapping='logical' distinct='false'>
-                              <entity name='quote'>
-                                <attribute name='name' />
-                                <attribute name='totalamount' />
-                                <attribute name='bsd_unitno' alias='bsd_unitno_id' />
-                                <attribute name='statuscode' />
-                                <attribute name='bsd_projectid' alias='bsd_project_id' />
-                                <attribute name='quoteid' />
-                                <order attribute='createdon' descending='true' />
-                                <filter type='and'>
-                                    <condition attribute='bsd_unitno' operator='eq' value='{UnitInfo.productid}'/>
-                                    <condition attribute='{UserLogged.UserAttribute}' operator='eq' value='{UserLogged.Id}'/>
-                                    <filter type='or'>
-                                       <condition attribute='statuscode' operator='in'>
-                                            <value>100000000</value>
-                                            <value>100000001</value>
-                                            <value>100000006</value>
-                                            <value>861450001</value>
-                                            <value>861450002</value>
-                                            <value>4</value>                
-                                            <value>3</value>
-                                       </condition>
-                                       <filter type='and'>
-                                           <condition attribute='statuscode' operator='in'>
-                                               <value>100000009</value>
-                                               <value>6</value>
-                                           </condition>
-                                           <condition attribute='bsd_quotationsigneddate' operator='not-null' />
-                                       </filter>
-                                     </filter>
-                                </filter>
-                                <link-entity name='bsd_project' from='bsd_projectid' to='bsd_projectid' visible='false' link-type='outer' alias='a'>
-                                    <attribute name='bsd_name' alias='bsd_project_name' />
-                                </link-entity>
-                                <link-entity name='product' from='productid' to='bsd_unitno' visible='false' link-type='outer' alias='b'>
-                                  <attribute name='name' alias='bsd_unitno_name' />
-                                </link-entity>
-                                <link-entity name='account' from='accountid' to='customerid' visible='false' link-type='outer' alias='c'>
-                                  <attribute name='bsd_name' alias='purchaser_accountname' />
-                                </link-entity>
-                                <link-entity name='contact' from='contactid' to='customerid' visible='false' link-type='outer' alias='d'>
-                                  <attribute name='bsd_fullname' alias='purchaser_contactname' />
-                                </link-entity>
-                              </entity>
-                        </fetch>";
+            string fetch = $@"<fetch version='1.0' count='5' page='{PagePinkBooHandover}' output-format='xml-platform' mapping='logical' distinct='false'>
+                                  <entity name='bsd_pinkbookhandover'>
+                                    <attribute name='bsd_name' />
+                                    <attribute name='statuscode' />
+                                    <attribute name='bsd_pinkbookhandoverid' />
+                                    <order attribute='bsd_name' descending='false' />
+                                    <filter type='and'>
+                                        <condition attribute='statuscode' operator='ne' value='2' />
+                                        <condition attribute='bsd_units' operator='eq' value='{UnitInfo.productid}' />
+                                    </filter>
+                                    <link-entity name='bsd_project' from='bsd_projectid' to='bsd_project' visible='false' link-type='outer' alias='a_26f8767ec690ec11b400000d3aa1f0ac'>
+                                      <attribute name='bsd_contactfullname' alias='project_name'/>
+                                    </link-entity>
+                                    <link-entity name='product' from='productid' to='bsd_units' visible='false' link-type='outer' alias='a_91124d44c790ec11b400000d3aa1f0ac'>
+                                      <attribute name='name' alias='unit_name'/>
+                                    </link-entity>
+                                    <link-entity name='salesorder' from='salesorderid' to='bsd_optionentry' visible='false' link-type='outer' alias='a_fd36f62dc790ec11b400000d3aa1f0ac'>
+                                      <attribute name='name' alias='optionentry_name'/>
+                                    </link-entity>
+                                  </entity>
+                                </fetch>";
 
-            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<ReservationListModel>>("quotes", fetch);
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<PinkBookHandoversModel>>("bsd_pinkbookhandovers", fetch);
             if (result == null) return;
             IsLoaded = true;
             var data = result.value;
-            ShowMoreDanhSachDatCoc = data.Count < 5 ? false : true;
+            ShowMorePinkBooHandover = data.Count < 5 ? false : true;
 
             foreach (var x in data)
             {
-                list_danhsachdatcoc.Add(x);
+                PinkBooHandovers.Add(x);
             }
         }
 

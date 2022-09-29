@@ -55,7 +55,9 @@
                             <Grid ColumnDefinitions="Auto,*">
                                 <Label Grid.Column="0" Text="{Binding Source={x:Static lang:Language.san_pham},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
                                 <Label Grid.Column="1" Text="{Binding Acceptance.unit_name}" TextColor="{StaticResource NavigationPrimary}" FontSize="15" FontAttributes="Bold">
-
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Unit_Tapped"/>
+                                    </Label.GestureRecognizers>
                                 </Label>
                             </Grid>
                         </StackLayout>
