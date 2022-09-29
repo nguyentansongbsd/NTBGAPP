@@ -168,5 +168,23 @@ namespace PhuLongCRM.Views
                 ToastMessageHelper.LongMessage(result.ErrorResponse.error.message);
             }
         }
+
+        private void Unit_Tapped(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            UnitInfo unitInfo = new UnitInfo(viewModel.Acceptance.unit_id);
+            unitInfo.OnCompleted = async (IsSuccess) => {
+                if (IsSuccess)
+                {
+                    await Navigation.PushAsync(unitInfo);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_san_pham);
+                }
+            };
+        }
     }
 }

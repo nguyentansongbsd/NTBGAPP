@@ -80,6 +80,20 @@ namespace PhuLongCRM.Models
         public string bsd_managementamountmonth_format { get => StringFormatHelper.FormatCurrency(bsd_managementamountmonth); }
         public decimal bsd_handovercondition { get; set; } // Điều kiện bàn giao %
         public string bsd_handovercondition_format { get => StringFormatHelper.FormatPercent(bsd_handovercondition); }
+        public bool bsd_authenticationmanagementfee { get; set; } //Phí quản lý xác thực
+        public string bsd_authenticationmanagementfee_format { get => BoolToStringData.GetStringByBool(bsd_authenticationmanagementfee); }
+        public bool bsd_acceptance { get; set; } //nghiệm thu
+        public string bsd_acceptance_format { get => BoolToStringData.GetStringByBool(bsd_acceptance); }
+        public DateTime? bsd_handoverdate { get; set; } // Ngày bàn giao (Thực tế).
+        public DateTime? bsd_opdate { get; set; } // OP Date
+        public DateTime? bsd_submitpinkbookdate { get; set; } // Ngày nộp sổ hồng
+        public bool bsd_confirmdocument { get; set; } //Xác nhận tài liệu
+        public string bsd_confirmdocument_format { get => BoolToStringData.GetStringByBool(bsd_confirmdocument); }
+        public string bsd_pinkbooknumber { get; set; } //Số sổ hồng
+        public DateTime? bsd_pinkbookreceiptdate { get; set; } // Ngày nhận sổ hồng
+        public string bsd_complete { get; set; } //Hoàn thành
+
+        // sự kiện
         public Guid event_id { get; set; }
         public bool is_event { get { if (event_id != Guid.Empty) return true; else return false; } }
     }

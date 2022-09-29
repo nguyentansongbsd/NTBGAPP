@@ -3720,4 +3720,28 @@
 	<data name="cu" xml:space="preserve">
 		<value>Old</value>
 	</data>
+	<data name="phi_quan_ly_thuc" xml:space="preserve">
+		<value>Authentication management fee</value>
+	</data>
+	<data name="nghiem_thu" xml:space="preserve">
+		<value>Acceptance</value>
+	</data>
+	<data name="ngay_ban_giao_thuc_te" xml:space="preserve">
+		<value>Handover date (Actual)</value>
+	</data>
+	<data name="ngay_op" xml:space="preserve">
+		<value>OP date</value>
+	</data>
+	<data name="ngay_nop_so_hong" xml:space="preserve">
+		<value>Submit pink book date</value>
+	</data>
+	<data name="xac_nhan_tai_lieu" xml:space="preserve">
+		<value>Confirm document</value>
+	</data>
+	<data name="so_so_hong" xml:space="preserve">
+		<value>Pink book number</value>
+	</data>
+	<data name="ngay_nhan_so_hong" xml:space="preserve">
+		<value>Pink book receipt date</value>
+	</data>
 </root>
