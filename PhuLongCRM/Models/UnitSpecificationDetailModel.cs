@@ -7,9 +7,9 @@ namespace PhuLongCRM.Models
     public class UnitSpecificationDetailModel
     {
         public Guid bsd_unitsspecificationdetailsid { get; set; }
-        public string unit_spec_name { get; set; }
+        public string bsd_itemvn { get; set; }
         public string bsd_typeofroomvn { get; set; }
-        public string bsd_typeofroomother { get; set; }
-        public DateTime createdon { get; set; }
+        public string bsd_details { get; set; }
+        public string bsd_typeno { get; set; }
     }
 }
