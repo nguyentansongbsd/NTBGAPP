@@ -3475,7 +3475,7 @@
     <value>Unit Specification Detail</value>
   </data>
 	<data name="type_of_room_vn" xml:space="preserve">
-    <value>Type of room</value>
+    <value>Type of room (VN)</value>
   </data>
 	<data name="type_of_room_other" xml:space="preserve">
     <value>Type of room (Other)</value>

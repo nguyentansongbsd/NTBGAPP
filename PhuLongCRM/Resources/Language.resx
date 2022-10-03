@@ -3475,7 +3475,7 @@
     <value>Chi Tiết Đặc Điểm Sản Phẩm</value>
   </data>
 	<data name="type_of_room_vn" xml:space="preserve">
-    <value>Loại phòng</value>
+    <value>Loại phòng (VN)</value>
   </data>
 	<data name="type_of_room_other" xml:space="preserve">
     <value>Loại phòng (Khác)</value>
