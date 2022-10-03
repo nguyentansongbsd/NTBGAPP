@@ -6370,7 +6370,7 @@ namespace PhuLongCRM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ngày nhận sổ hồng.
+        ///   Looks up a localized string similar to Ngày nhận giấy chứng nhận.
         /// </summary>
         internal static string ngay_nhan_so_hong {
             get {
@@ -6388,7 +6388,7 @@ namespace PhuLongCRM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ngày nộp sổ hồng.
+        ///   Looks up a localized string similar to Ngày nộp giấy chứng nhận.
         /// </summary>
         internal static string ngay_nop_so_hong {
             get {
@@ -8143,7 +8143,7 @@ namespace PhuLongCRM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Số sổ hồng.
+        ///   Looks up a localized string similar to Số giấy chứng nhận.
         /// </summary>
         internal static string so_so_hong {
             get {

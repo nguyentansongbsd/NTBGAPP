@@ -186,5 +186,82 @@ namespace PhuLongCRM.Views
                 }
             };
         }
+
+        private void Project_Tapped(object sender, EventArgs e)
+        {
+            ProjectInfo projectInfo = new ProjectInfo(viewModel.Acceptance.project_id);
+            projectInfo.OnCompleted = async (IsSuccess) =>
+            {
+                if (IsSuccess == true)
+                {
+                    await Navigation.PushAsync(projectInfo);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+                    LoadingHelper.Hide();
+                }
+            };
+        }
+
+        private void Contract_Tapped(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            ContactDetailPage newPage = new ContactDetailPage(viewModel.Acceptance.contract_id);
+            newPage.OnCompleted = async (OnCompleted) =>
+            {
+                if (OnCompleted == true)
+                {
+                    await Navigation.PushAsync(newPage);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+                }
+            };
+        }
+
+        private void Customer_Tapped(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            if (viewModel.Acceptance.contact_id != Guid.Empty)
+            {
+                ContactDetailPage newPage = new ContactDetailPage(viewModel.Acceptance.contact_id);
+                newPage.OnCompleted = async (OnCompleted) =>
+                {
+                    if (OnCompleted == true)
+                    {
+                        await Navigation.PushAsync(newPage);
+                        LoadingHelper.Hide();
+                    }
+                    else
+                    {
+                        LoadingHelper.Hide();
+                        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+                    }
+                };
+
+            }
+            else if (viewModel.Acceptance.account_id != Guid.Empty)
+            {
+                AccountDetailPage newPage = new AccountDetailPage(viewModel.Acceptance.account_id);
+                newPage.OnCompleted = async (OnCompleted) =>
+                {
+                    if (OnCompleted == true)
+                    {
+                        await Navigation.PushAsync(newPage);
+                        LoadingHelper.Hide();
+                    }
+                    else
+                    {
+                        LoadingHelper.Hide();
+                        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+                    }
+                };
+            }
+        }
     }
 }
