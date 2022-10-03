@@ -43,13 +43,17 @@
                             <Grid ColumnDefinitions="Auto,*">
                                 <Label Grid.Column="0" Text="{Binding Source={x:Static lang:Language.hop_dong},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
                                 <Label Grid.Column="1" Text="{Binding Acceptance.contract_name}" TextColor="{StaticResource NavigationPrimary}" FontSize="15" FontAttributes="Bold">
-
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Contract_Tapped"/>
+                                    </Label.GestureRecognizers>
                                 </Label>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <Label Grid.Column="0" Text="{Binding Source={x:Static lang:Language.du_an},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
                                 <Label Grid.Column="1" Text="{Binding Acceptance.project_name}" TextColor="{StaticResource NavigationPrimary}" FontSize="15" FontAttributes="Bold">
-
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Project_Tapped"/>
+                                    </Label.GestureRecognizers>
                                 </Label>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
@@ -82,7 +86,7 @@
                                     <controls:FormLabel Text="{x:Static lang:Language.khach_hang}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
                                     <Label Text="{Binding Acceptance.customer_name}" Grid.Column="1" FontSize="15" TextColor="#2196F3" HorizontalTextAlignment="End" Padding="0,10,25,10" FontAttributes="Bold">
                                         <Label.GestureRecognizers>
-                                            <TapGestureRecognizer NumberOfTapsRequired="1" />
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Customer_Tapped" />
                                         </Label.GestureRecognizers>
                                     </Label>
                                 </Grid>

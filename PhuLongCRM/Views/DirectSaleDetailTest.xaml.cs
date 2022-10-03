@@ -807,6 +807,7 @@ namespace PhuLongCRM.Views
             if (gridTab != null)
                 gridTab.Children.Clear();
             gridTab = new Grid();
+            gridTab.HeightRequest = 80;
 
             var tab = CreateTabs(Language.acceptance_title);
             gridTab.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
@@ -862,33 +863,51 @@ namespace PhuLongCRM.Views
                     if (gridTab.Children[i] == radBorder)
                     {
                         var rd = gridTab.Children[i] as RadBorder;
-                        var lb = rd.Content as Label;
-                        VisualStateManager.GoToState(rd, "Selected");// UI trong app.xaml
-                        VisualStateManager.GoToState(lb, "Selected");// UI trong app.xaml
+                        Setstate(rd, true);
                         stack_listview.Children[i+1].IsVisible = true;
                     }
                     else
                     {
                         var rd = gridTab.Children[i] as RadBorder;
-                        var lb = rd.Content as Label;
-                        VisualStateManager.GoToState(rd, "Normal");// UI trong app.xaml
-                        VisualStateManager.GoToState(lb, "Normal");// UI trong app.xaml
+                        Setstate(rd, false);
                         stack_listview.Children[i + 1].IsVisible = false;
                     }
                 }
             }
         }
-
         public RadBorder CreateTabs(string NameTab)
         {
             RadBorder rd = new RadBorder();
-            rd.Style = (Style)Application.Current.Resources["rabBorder_Tab"]; // UI trong app.xaml
+            //rd.Style = (Style)Application.Current.Resources["rabBorder_Tab"]; // UI trong app.xaml
 
             Label lb = new Label();
-            lb.Style = (Style)Application.Current.Resources["Lb_Tab"];// UI trong app.xaml
+            //lb.Style = (Style)Application.Current.Resources["Lb_Tab"];// UI trong app.xaml
+            lb.FontSize = 15;
+            lb.Text = NameTab;
+            //lb.Padding = new Thickness(0, 10);
+            lb.VerticalTextAlignment = TextAlignment.Center;
+            lb.HorizontalTextAlignment = TextAlignment.Center;
             lb.LineBreakMode = LineBreakMode.TailTruncation;
             rd.Content = lb;
             return rd;
+        }
+        public void Setstate(RadBorder radBorder, bool state)
+        {
+            var lb = radBorder.Content as Label;
+            if(state)
+            {
+                lb.TextColor = Color.FromHex("2196F3");
+                lb.FontAttributes = FontAttributes.Bold;
+                radBorder.BorderColor = Color.FromHex("2196F3");
+                radBorder.BorderThickness = new Thickness(0,0,0,2);
+            }   
+            else
+            {
+                lb.TextColor = Color.FromHex("939393");
+                lb.FontAttributes = FontAttributes.None;
+                radBorder.BorderColor = Color.FromHex("939393");
+                radBorder.BorderThickness = new Thickness(0);
+            }    
         }
     }
     public class QueuesControl : BsdListView

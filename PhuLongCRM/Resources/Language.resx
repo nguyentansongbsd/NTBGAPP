@@ -3475,7 +3475,7 @@
     <value>Chi Tiết Đặc Điểm Sản Phẩm</value>
   </data>
 	<data name="type_of_room_vn" xml:space="preserve">
-    <value>Loại phòng</value>
+    <value>Loại phòng (VN)</value>
   </data>
 	<data name="type_of_room_other" xml:space="preserve">
     <value>Loại phòng (Khác)</value>
@@ -3733,15 +3733,15 @@
 		<value>OP date</value>
 	</data>
 	<data name="ngay_nop_so_hong" xml:space="preserve">
-		<value>Ngày nộp sổ hồng</value>
+		<value>Ngày nộp giấy chứng nhận</value>
 	</data>
 	<data name="xac_nhan_tai_lieu" xml:space="preserve">
 		<value>Xác nhận tài liệu</value>
 	</data>
 	<data name="so_so_hong" xml:space="preserve">
-		<value>Số sổ hồng</value>
+		<value>Số giấy chứng nhận</value>
 	</data>
 	<data name="ngay_nhan_so_hong" xml:space="preserve">
-		<value>Ngày nhận sổ hồng</value>
+		<value>Ngày nhận giấy chứng nhận</value>
 	</data>
 </root>
