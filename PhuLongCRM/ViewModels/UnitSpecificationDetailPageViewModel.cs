@@ -58,22 +58,18 @@ namespace PhuLongCRM.ViewModels
             if (UnitSpec == null || UnitSpec.bsd_unitsspecificationid == Guid.Empty) return;
             string fetch = $@"<fetch count='5' page='{Page}' version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
                                 <entity name='bsd_unitsspecificationdetails'>
-                                    <attribute name='bsd_name' />
-                                    <attribute name='createdon' />
                                     <attribute name='bsd_typeofroomvn' />
-                                    <attribute name='bsd_typeofroomother' />
+                                    <attribute name='bsd_itemvn' />
+                                    <attribute name='bsd_details' />
+                                    <attribute name='bsd_typeno' />
                                     <attribute name='bsd_unitsspecificationdetailsid' />
-                                    <order attribute='createdon' descending='true' />
-                                    <order attribute='bsd_name' descending='false' />
-                                    <link-entity name='bsd_unitsspecification' from='bsd_unitsspecificationid' to='bsd_unitsspecification' link-type='inner'>
-                                        <attribute name='bsd_name' alias='unit_spec_name'/>
-                                        <filter type='and'>
-                                            <condition attribute='bsd_unitsspecificationid' operator='eq' value='{UnitSpec.bsd_unitsspecificationid}' />
-                                        </filter>
-                                    </link-entity>
+                                    <order attribute='bsd_typeno' descending='false' />
+                                    <filter type='and'>
+                                      <condition attribute='bsd_unitsspecification' operator='eq' value='{UnitSpec.bsd_unitsspecificationid}'/>
+                                      <condition attribute='bsd_typeno' operator='not-null' />
+                                    </filter>
                                 </entity>
                             </fetch>";
-
             var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<UnitSpecificationDetailModel>>("bsd_unitsspecificationdetailses", fetch);
             if (result != null && result.value.Count > 0)
             {
