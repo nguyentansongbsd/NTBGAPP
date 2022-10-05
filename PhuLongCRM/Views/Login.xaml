@@ -13,6 +13,7 @@
             <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Padding="0,0,0,20">
                 <StackLayout Margin="20,0" Spacing="10" VerticalOptions="Center" >
                     <Image Source="insightland_logo.png" Margin="0,15" />
+                    <Label Text="{x:Static lang:Language.nghiem_thu_va_ban_giao}" FontSize="15" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center"/>
                     <telerikPrimitives:RadBorder CornerRadius="10" BackgroundColor="White" Padding="0" HeightRequest="65">
                         <Grid Margin="10,5" RowDefinitions="Auto,Auto" RowSpacing="0" VerticalOptions="Center">
                             <Label x:Name="lblUserName" Text="{x:Static lang:Language.ten_dang_nhap}" FontSize="14" TextColor="#4EABF5"/>
