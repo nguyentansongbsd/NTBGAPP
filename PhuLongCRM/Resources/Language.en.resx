@@ -3744,4 +3744,10 @@
 	<data name="ngay_nhan_so_hong" xml:space="preserve">
 		<value>Pink book receipt date</value>
 	</data>
+	<data name="nghiem_thu_va_ban_giao" xml:space="preserve">
+		<value>Handover and Acceptance</value>
+	</data>
+	<data name="khong_the_dang_nhap_vi_ban_da_dang_nhap_qua_so_lan_gioi_han" xml:space="preserve">
+		<value>Can not login. Because you have logged in too many times.</value>
+	</data>
 </root>

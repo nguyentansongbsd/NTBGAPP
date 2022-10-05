@@ -417,6 +417,14 @@ namespace PhuLongCRM.ViewModels
                 return;
             }
             var data = result.value.SingleOrDefault();
+            if (data.bsd_startdate.HasValue)
+            {
+                data.bsd_startdate = data.bsd_startdate.Value.ToLocalTime();
+            }
+            if (data.bsd_enddate.HasValue)
+            {
+                data.bsd_enddate = data.bsd_enddate.Value.ToLocalTime();
+            }
             PromotionItem = data;
         }
 
@@ -475,7 +483,10 @@ namespace PhuLongCRM.ViewModels
             {
                 return;
             }
-            Discount = result.value.FirstOrDefault();
+            var data = result.value.SingleOrDefault();
+            data.bsd_startdate = data.bsd_startdate.ToLocalTime();
+            data.bsd_enddate = data.bsd_enddate.ToLocalTime();
+            Discount = data;
             //await LoadDiscountItems(Discount.bsd_discountid);
         }
 
@@ -510,7 +521,17 @@ namespace PhuLongCRM.ViewModels
             {
                 return;
             }
-            HandoverConditionItem = result.value.SingleOrDefault();
+
+            var data = result.value.SingleOrDefault();
+            if (data.bsd_startdate.HasValue)
+            {
+                data.bsd_startdate = data.bsd_startdate.Value.ToLocalTime();
+            }
+            if (data.bsd_enddate.HasValue)
+            {
+                data.bsd_enddate = data.bsd_enddate.Value.ToLocalTime();
+            }
+            HandoverConditionItem = data;
         }
 
         public async Task LoadDiscountsInternel()

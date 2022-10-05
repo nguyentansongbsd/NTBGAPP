@@ -105,5 +105,16 @@ namespace PhuLongCRM.Settings
             get => AppSettings.GetValueOrDefault(nameof(UserCRM), string.Empty);
             set => AppSettings.AddOrUpdateValue(nameof(UserCRM), value);
         }
+
+        public static int CountLoginError
+        {
+            get => AppSettings.GetValueOrDefault(nameof(CountLoginError), 0);
+            set => AppSettings.AddOrUpdateValue(nameof(CountLoginError), value);
+        }
+        public static string DateLoginError
+        {
+            get => AppSettings.GetValueOrDefault(nameof(DateLoginError), string.Empty);
+            set => AppSettings.AddOrUpdateValue(nameof(DateLoginError), value);
+        }
     }
 }

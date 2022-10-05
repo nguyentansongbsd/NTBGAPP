@@ -6,7 +6,7 @@ namespace PhuLongCRM.Config
 {
     public class OrgConfig
     {
-        public const string VerApp = "InsightLand Ver 1.0";
+        public const string VerApp = "InsightLand - VerDemo Ver 1.1";
         //public const string VerApp = "PL.CRM - Version 4.1";
 
         public const string ApiUrl = "https://phulongdev.api.crm5.dynamics.com/api/data/v9.1";
