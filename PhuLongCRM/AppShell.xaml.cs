@@ -122,6 +122,7 @@ namespace PhuLongCRM
 
         private async void Logout_Clicked(System.Object sender, System.EventArgs e)
         {
+            UserLogged.CountLoginError = 0;
             if (UserLogged.IsLoginByUserCRM)
                 DependencyService.Get<IClearCookies>().ClearAllCookies(); ;
             await Shell.Current.GoToAsync("//LoginPage");

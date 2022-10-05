@@ -4993,6 +4993,15 @@ namespace PhuLongCRM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Không thể đăng nhập. Vì bạn đã đăng nhập quá số lần giới hạn..
+        /// </summary>
+        internal static string khong_the_dang_nhap_vi_ban_da_dang_nhap_qua_so_lan_gioi_han {
+            get {
+                return ResourceManager.GetString("khong_the_dang_nhap_vi_ban_da_dang_nhap_qua_so_lan_gioi_han", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Không thể thêm điều kiện bàn giao..
         /// </summary>
         internal static string khong_the_them_dieu_kien_ban_giao {
@@ -6519,6 +6528,15 @@ namespace PhuLongCRM.Resources {
         internal static string nghiem_thu {
             get {
                 return ResourceManager.GetString("nghiem_thu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nghiệm thu và Bàn giao.
+        /// </summary>
+        internal static string nghiem_thu_va_ban_giao {
+            get {
+                return ResourceManager.GetString("nghiem_thu_va_ban_giao", resourceCulture);
             }
         }
         
