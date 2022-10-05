@@ -189,6 +189,7 @@ namespace PhuLongCRM.Views
 
         private void Project_Tapped(object sender, EventArgs e)
         {
+            LoadingHelper.Show();
             ProjectInfo projectInfo = new ProjectInfo(viewModel.Acceptance.project_id);
             projectInfo.OnCompleted = async (IsSuccess) =>
             {
@@ -208,7 +209,7 @@ namespace PhuLongCRM.Views
         private void Contract_Tapped(object sender, EventArgs e)
         {
             LoadingHelper.Show();
-            ContactDetailPage newPage = new ContactDetailPage(viewModel.Acceptance.contract_id);
+            ContractDetailPage newPage = new ContractDetailPage(viewModel.Acceptance.contract_id);
             newPage.OnCompleted = async (OnCompleted) =>
             {
                 if (OnCompleted == true)

@@ -53,7 +53,7 @@
                         </telerikPrimitives:RadExpander.Header>
                         <telerikPrimitives:RadExpander.Content>
                             <StackLayout>
-                                <StackLayout  BindableLayout.ItemsSource="{Binding UnitSpecificationDetails}" BackgroundColor="#eeeeee" Spacing="1">
+                                <StackLayout  BindableLayout.ItemsSource="{Binding UnitSpecificationDetails}" BackgroundColor="#eeeeee" Spacing="1" Margin="0,1,0,0">
                                     <BindableLayout.EmptyViewTemplate>
                                         <DataTemplate>
                                             <Label Text="{x:Static lang:Language.khong_co_du_lieu}" TextColor="Black" HorizontalTextAlignment="Center" BackgroundColor="White" Padding="0,15"/>
@@ -61,29 +61,29 @@
                                     </BindableLayout.EmptyViewTemplate>
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
-                                            <Grid BackgroundColor ="White" Padding="15,10" Margin="0,1" RowDefinitions="Auto,Auto,Auto">
-                                                <Grid.GestureRecognizers>
-                                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UnitSpecificationDetail_Tapped" CommandParameter="{Binding .}"/>
-                                                </Grid.GestureRecognizers>
-                                                <Label Grid.Row="0" Text="{Binding bsd_itemvn}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
-                                                <Label Grid.Row="1" FontSize="15">
-                                                    <Label.FormattedText>
-                                                        <FormattedString>
-                                                            <Span Text="{Binding Source={x:Static lang:Language.type_of_room_vn},StringFormat='{0}:  '}" TextColor="#666666"/>
-                                                            <Span Text=" "/>
-                                                            <Span Text="{Binding bsd_typeofroomvn}" TextColor="#444444"/>
-                                                        </FormattedString>
-                                                    </Label.FormattedText>
-                                                </Label>
-                                                <Label Grid.Row="2" FontSize="15">
-                                                    <Label.FormattedText>
-                                                        <FormattedString>
-                                                            <Span Text="{Binding Source={x:Static lang:Language.mo_ta},StringFormat='{0}:  '}" TextColor="#666666"/>
-                                                            <Span Text=" "/>
-                                                            <Span Text="{Binding bsd_details}" TextColor="#444444"/>
-                                                        </FormattedString>
-                                                    </Label.FormattedText>
-                                                </Label>
+                                            <Grid BackgroundColor ="White" RowDefinitions="Auto,Auto">
+                                                <Label Grid.Row="0" Text="{Binding group}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" VerticalOptions="Start" LineBreakMode="TailTruncation" BackgroundColor="#f4fafe" Padding="20,10"/>
+                                                <StackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding source}" BackgroundColor="#eeeeee" Spacing="1">
+                                                    <BindableLayout.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Grid BackgroundColor ="White" Padding="25,10,20,10" RowDefinitions="Auto,Auto">
+                                                                <Grid.GestureRecognizers>
+                                                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UnitSpecificationDetail_Tapped" CommandParameter="{Binding .}"/>
+                                                                </Grid.GestureRecognizers>
+                                                                <Label Grid.Row="0" Text="{Binding bsd_itemvn}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                                                                <Label Grid.Row="1" FontSize="15">
+                                                                    <Label.FormattedText>
+                                                                        <FormattedString>
+                                                                            <Span Text="{Binding Source={x:Static lang:Language.mo_ta},StringFormat='{0}:  '}" TextColor="#666666"/>
+                                                                            <Span Text=" "/>
+                                                                            <Span Text="{Binding bsd_details}" TextColor="#444444"/>
+                                                                        </FormattedString>
+                                                                    </Label.FormattedText>
+                                                                </Label>
+                                                            </Grid>
+                                                        </DataTemplate>
+                                                    </BindableLayout.ItemTemplate>
+                                                </StackLayout>
                                             </Grid>
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>

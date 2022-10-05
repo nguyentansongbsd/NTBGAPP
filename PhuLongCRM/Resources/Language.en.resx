@@ -3744,6 +3744,9 @@
 	<data name="ngay_nhan_so_hong" xml:space="preserve">
 		<value>Pink book receipt date</value>
 	</data>
+	<data name="thanh_ly_ket_thuc_hop_dong" xml:space="preserve">
+		<value>Completed</value>
+	</data>
 	<data name="nghiem_thu_va_ban_giao" xml:space="preserve">
 		<value>Handover and Acceptance</value>
 	</data>

@@ -70,6 +70,7 @@ namespace PhuLongCRM.Views
 
                 SetButton();
                 //gridButton.IsVisible = !viewModel.UnitInfo.bsd_vippriority;
+                // // thanh lý ket thuc hop dong
                 gridButton.IsVisible = false;
                 OnCompleted?.Invoke(true);
             }

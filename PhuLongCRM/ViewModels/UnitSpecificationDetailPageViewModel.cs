@@ -14,8 +14,8 @@ namespace PhuLongCRM.ViewModels
         private UnitSpecificationModel _unitSpec;
         public UnitSpecificationModel UnitSpec { get => _unitSpec; set { _unitSpec = value; OnPropertyChanged(nameof(UnitSpec)); } }
 
-        private ObservableCollection<UnitSpecificationDetailModel> unitSpecificationDetails;
-        public ObservableCollection<UnitSpecificationDetailModel> UnitSpecificationDetails { get => unitSpecificationDetails; set { unitSpecificationDetails = value; OnPropertyChanged(nameof(UnitSpecificationDetails)); } }
+        private ObservableCollection<UnitSpecificationDetailModelGroup> unitSpecificationDetails2;
+        public ObservableCollection<UnitSpecificationDetailModelGroup> UnitSpecificationDetails { get => unitSpecificationDetails2; set { unitSpecificationDetails2 = value; OnPropertyChanged(nameof(UnitSpecificationDetails)); } }
         public int Page { get; set; } = 1;
 
         private bool _showMore;
@@ -53,8 +53,10 @@ namespace PhuLongCRM.ViewModels
         }
         public async Task LoadUnitSpecificationDetails()
         {
+            // thử để push
             if (UnitSpecificationDetails == null)
-                UnitSpecificationDetails = new ObservableCollection<UnitSpecificationDetailModel>();
+                UnitSpecificationDetails = new ObservableCollection<UnitSpecificationDetailModelGroup>();
+
             if (UnitSpec == null || UnitSpec.bsd_unitsspecificationid == Guid.Empty) return;
             string fetch = $@"<fetch count='5' page='{Page}' version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
                                 <entity name='bsd_unitsspecificationdetails'>
@@ -75,7 +77,15 @@ namespace PhuLongCRM.ViewModels
             {
                 foreach (var item in result.value)
                 {
-                    UnitSpecificationDetails.Add(item);
+                    var last_item = UnitSpecificationDetails.LastOrDefault();
+                    if (last_item != null && item.bsd_typeofroomvn == last_item.group)
+                        last_item.source.Add(item);
+                    else
+                    {
+                        ObservableCollection<UnitSpecificationDetailModel> source = new ObservableCollection<UnitSpecificationDetailModel>();
+                        source.Add(item);
+                        UnitSpecificationDetails.Add(new UnitSpecificationDetailModelGroup(item.bsd_typeofroomvn, source));
+                    }
                 }
             }
             ShowMore = result.value.Count == 5 ? true : false;
