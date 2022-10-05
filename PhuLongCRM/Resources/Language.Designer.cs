@@ -6397,7 +6397,7 @@ namespace PhuLongCRM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OP date.
+        ///   Looks up a localized string similar to Ngày hoàn thành cất nóc.
         /// </summary>
         internal static string ngay_op {
             get {
@@ -7549,7 +7549,7 @@ namespace PhuLongCRM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phí quản lý thực.
+        ///   Looks up a localized string similar to Xác thực phí quản lý.
         /// </summary>
         internal static string phi_quan_ly_thuc {
             get {
@@ -8769,6 +8769,15 @@ namespace PhuLongCRM.Resources {
         internal static string thanh_ly {
             get {
                 return ResourceManager.GetString("thanh_ly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thanh lý kết thúc hợp đồng.
+        /// </summary>
+        internal static string thanh_ly_ket_thuc_hop_dong {
+            get {
+                return ResourceManager.GetString("thanh_ly_ket_thuc_hop_dong", resourceCulture);
             }
         }
         
@@ -10726,7 +10735,7 @@ namespace PhuLongCRM.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Xác nhận tài liệu.
+        ///   Looks up a localized string similar to Xác nhận đủ hồ sơ.
         /// </summary>
         internal static string xac_nhan_tai_lieu {
             get {

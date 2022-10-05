@@ -3721,7 +3721,7 @@
 		<value>Cũ</value>
 	</data>
 	<data name="phi_quan_ly_thuc" xml:space="preserve">
-		<value>Phí quản lý thực</value>
+		<value>Xác thực phí quản lý</value>
 	</data>
 	<data name="nghiem_thu" xml:space="preserve">
 		<value>Nghiệm thu</value>
@@ -3730,18 +3730,21 @@
 		<value>Ngày bàn giao (Thực tế)</value>
 	</data>
 	<data name="ngay_op" xml:space="preserve">
-		<value>OP date</value>
+		<value>Ngày hoàn thành cất nóc</value>
 	</data>
 	<data name="ngay_nop_so_hong" xml:space="preserve">
 		<value>Ngày nộp giấy chứng nhận</value>
 	</data>
 	<data name="xac_nhan_tai_lieu" xml:space="preserve">
-		<value>Xác nhận tài liệu</value>
+		<value>Xác nhận đủ hồ sơ</value>
 	</data>
 	<data name="so_so_hong" xml:space="preserve">
 		<value>Số giấy chứng nhận</value>
 	</data>
 	<data name="ngay_nhan_so_hong" xml:space="preserve">
 		<value>Ngày nhận giấy chứng nhận</value>
+	</data>
+	<data name="thanh_ly_ket_thuc_hop_dong" xml:space="preserve">
+		<value>Thanh lý kết thúc hợp đồng</value>
 	</data>
 </root>
