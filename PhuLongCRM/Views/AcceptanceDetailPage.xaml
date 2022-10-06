@@ -41,6 +41,10 @@
                                 <Label Grid.Column="1" Text="{Binding Acceptance.bsd_name}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
+                                <Label Grid.Column="0" Text="{Binding Source={x:Static lang:Language.so_nghiem_thu},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
+                                <Label Grid.Column="1" Text="{Binding Acceptance.bsd_acceptancenumber}" FontSize="15" TextColor="#444444"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
                                 <Label Grid.Column="0" Text="{Binding Source={x:Static lang:Language.hop_dong},StringFormat='{0}: '}" FontSize="15" TextColor="#444444"/>
                                 <Label Grid.Column="1" Text="{Binding Acceptance.contract_name}" TextColor="{StaticResource NavigationPrimary}" FontSize="15" FontAttributes="Bold">
                                     <Label.GestureRecognizers>
@@ -74,10 +78,6 @@
                         </telerikPrimitives:RadExpander.Header>
                         <telerikPrimitives:RadExpander.Content>
                             <StackLayout Spacing="1" BackgroundColor="#F1F1F1">
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
-                                    <controls:FormLabel Text="{x:Static lang:Language.so_nghiem_thu}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <controls:FormLabelValue Text="{Binding Acceptance.bsd_acceptancenumber}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
-                                </Grid>
                                 <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
                                     <controls:FormLabel Text="{x:Static lang:Language.loai}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
                                     <controls:FormLabelValue Text="{Binding Acceptance.acceptancetype_format}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>

@@ -102,132 +102,32 @@ namespace PhuLongCRM.ViewModels
         }
         public async Task<CrmApiResponse> CancelAcceptance()
         {
-            string path = "/bsd_acceptances(" + Acceptance.bsd_acceptanceid + ")";
-
-            IDictionary<string, object> content = new Dictionary<string, object>();
-            content["statuscode"] = "100000002";
-            content["bsd_cancelledreason"] = Acceptance.bsd_cancelledreason;
-            content["bsd_cancelleddate"] = DateTimeNow.ToUniversalTime(); ;
-            content["bsd_canceller@odata.bind"] = "/systemusers(" + UserLogged.ManagerId + ")";
-
-            CrmApiResponse result = await CrmHelper.PatchData(path, content);
+            var data = new
+            {
+                input = "2btn_Cancel",
+                input2 = Acceptance.bsd_cancelledreason
+            };
+            CrmApiResponse result = await CrmHelper.PostData($"/bsd_acceptances({Acceptance.bsd_acceptanceid})//Microsoft.Dynamics.CRM.bsd_Action_Acceptance", data);
             return result;
 
         }
         public async Task<CrmApiResponse> ConfirmInformation()
         {
-            string path = "/bsd_acceptances(" + Acceptance.bsd_acceptanceid + ")";
-
-            IDictionary<string, object> content = new Dictionary<string, object>();
-            if(Acceptance.bsd_expense > 0)
-                content["statuscode"] = "100000000";
-            else
-                content["statuscode"] = "100000001";
-
-            CrmApiResponse result = await CrmHelper.PatchData(path, content);
+            var data = new
+            {
+                input = "1btn_ConfirmAcceptance"
+            };
+            CrmApiResponse result =  await CrmHelper.PostData($"/bsd_acceptances({Acceptance.bsd_acceptanceid})//Microsoft.Dynamics.CRM.bsd_Action_Acceptance", data);
             return result;
-
         }
-        public async Task<bool> CloseInformation()
+        public async Task<CrmApiResponse> CloseInformation()
         {
-            string path = "/bsd_acceptances(" + Acceptance.bsd_acceptanceid + ")";
-
-            IDictionary<string, object> content = new Dictionary<string, object>();
-            content["statuscode"] = "100000003";
-            content["bsd_confirmer@odata.bind"] = "/systemusers(" + UserLogged.ManagerId + ")";
-            content["bsd_confirmdate"] = DateTimeNow.ToUniversalTime();
-            CrmApiResponse result = await CrmHelper.PatchData(path, content);
-            if (result.IsSuccess)
+            var data = new
             {
-                if (Acceptance.bsd_typeresult == "100000000" || Acceptance.bsd_typeresult == "100000003")
-                {
-                   bool result_contract_unit = await UpdateContract_Unit();
-                    if (result_contract_unit)
-                        return true;
-                    else
-                        return false;
-                }
-                else if (Acceptance.bsd_typeresult == "100000002")
-                {
-                    bool result_acceptanceNotice = await CreateAcceptanceNotice();
-                    if (result_acceptanceNotice)
-                        return true;
-                    else
-                        return false;
-                }
-            }
-            return false;
-        }
-        public async Task<bool> UpdateContract_Unit()
-        {
-            IDictionary<string, object> content_contract = new Dictionary<string, object>();
-            content_contract["bsd_acceptanceinformation@odata.bind"] = "/bsd_acceptances(" + Acceptance.bsd_acceptanceid + ")";
-            content_contract["bsd_acceptance"] = true;
-
-            CrmApiResponse result_contract = await CrmHelper.PatchData($@"/salesorders({Acceptance.contract_id})", content_contract);
-
-            IDictionary<string, object> content_unit = new Dictionary<string, object>();
-            content_unit["bsd_acceptance"] = true;
-
-            CrmApiResponse result_unit = await CrmHelper.PatchData($@"/products({Acceptance.unit_id})", content_unit);
-
-            if (result_contract.IsSuccess == true && result_unit.IsSuccess == true)
-                return true;
-            else
-            {
-                return false;
-            }
-        }
-        private async Task<bool> CreateAcceptanceNotice()
-        {
-            string path = "/bsd_acceptancenoticeses";
-
-            IDictionary<string, object> content = new Dictionary<string, object>();
-            content["statecode"] = "0";
-            content["bsd_name"] = $"Thông báo nghiệm thu lần (2+) của căn hộ <{Acceptance.unit_code}>";
-            content["bsd_date"] = DateTimeNow.ToUniversalTime(); ;
-            content["bsd_project@odata.bind"] = "/bsd_projects(" + Acceptance.project_id + ")";
-            content["bsd_units@odata.bind"] = "/products(" + Acceptance.unit_id + ")";
-            content["bsd_contract@odata.bind"] = "/salesorders(" + Acceptance.contract_id + ")";
-            content["bsd_installment@odata.bind"] = "/bsd_paymentschemedetails(" + Acceptance.installment_id + ")";
-            if (Acceptance.contact_id != Guid.Empty)
-                content["bsd_customer_contact@odata.bind"] = "/contacts(" + Acceptance.contact_id + ")";
-            else if (Acceptance.account_id != Guid.Empty)
-                content["bsd_customer_account@odata.bind"] = "/accounts(" + Acceptance.account_id + ")";
-            CrmApiResponse result = await CrmHelper.PostData(path, content);
-            if(result.IsSuccess)
-            {
-                if (Acceptance.bsd_expense > 0)
-                {
-                    bool result_mics = await CreateMics();
-                    if (result_mics)
-                        return true;
-                    else
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }
-            return false;
-        }
-        private async Task<bool> CreateMics()
-        {
-            string path = "/bsd_miscellaneouses";
-
-            IDictionary<string, object> content = new Dictionary<string, object>();
-            content["statuscode"] = "1";
-            content["bsd_name"] = "Phí phát sinh sau nghiệm thu";
-            content["bsd_duedate"] = DateTimeNow.ToUniversalTime();
-            content["bsd_amount"] = Acceptance.bsd_expense;
-            content["bsd_project@odata.bind"] = "/bsd_projects(" + Acceptance.project_id + ")";
-            content["bsd_units@odata.bind"] = "/products(" + Acceptance.unit_id + ")";
-            content["bsd_optionentry@odata.bind"] = "/salesorders(" + Acceptance.contract_id + ")";
-            content["bsd_installment@odata.bind"] = "/bsd_paymentschemedetails(" + Acceptance.installment_id + ")";
-            content["bsd_installmentnumber"] = Acceptance.installment_number;
-            content["bsd_acceptance@odata.bind"] = "/bsd_acceptances(" + Acceptance.bsd_acceptanceid + ")";
-            CrmApiResponse result = await CrmHelper.PostData(path, content);
-            return result.IsSuccess;
+                input = "3btn_CloseAcceptance"
+            };
+            CrmApiResponse result = await CrmHelper.PostData($"/bsd_acceptances({Acceptance.bsd_acceptanceid})//Microsoft.Dynamics.CRM.bsd_Action_Acceptance", data);
+            return result;
         }
     }
 }
