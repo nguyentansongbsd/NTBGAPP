@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using PhuLongCRM.Helper;
 using PhuLongCRM.Models;
 using PhuLongCRM.Resources;
@@ -19,9 +20,14 @@ namespace PhuLongCRM.Views
             NeedRefresh = false;
             Init();
         }
+
         public async void Init()
         {
-            await viewModel.LoadData();
+            await Task.WhenAll(
+                viewModel.LoadData(),
+                viewModel.LoadProject()
+                );
+            viewModel.LoadStatus();
         }
 
         protected async override void OnAppearing()
@@ -41,6 +47,7 @@ namespace PhuLongCRM.Views
             await viewModel.LoadOnRefreshCommandAsync();
             LoadingHelper.Hide();
         }
+
         private void SearchBar_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
             if (string.IsNullOrEmpty(viewModel.Keyword))
@@ -66,6 +73,20 @@ namespace PhuLongCRM.Views
                     ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
                 }
             };
+        }
+
+        private async void FiltersProject_SelectedItemChange(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            await viewModel.LoadOnRefreshCommandAsync();
+            LoadingHelper.Hide();
+        }
+
+        private async void FiltersStatus_SelectedItemChanged(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            await viewModel.LoadOnRefreshCommandAsync();
+            LoadingHelper.Hide();
         }
     }
 }

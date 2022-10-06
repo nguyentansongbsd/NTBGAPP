@@ -12,27 +12,25 @@ namespace PhuLongCRM.Views
         public static bool? NeedToRefreshLead = null;
         public static bool? NeedToRefreshContact = null;
         public static bool? NeedToRefreshAccount = null;
-        private LeadsContentView LeadsContentView;
         private ContactsContentview ContactsContentview;
-        private AccountsContentView AccountsContentView;
+        private AccountsContentView AccountsContentView; 
         public CustomerPage()
         {
             LoadingHelper.Show();
             InitializeComponent();
-            NeedToRefreshLead = false;
             NeedToRefreshContact = false;
             NeedToRefreshAccount = false;
             Init();
         }
         public async void Init()
         {
-            if (LeadsContentView == null)
+            if (ContactsContentview == null)
             {
-                LeadsContentView = new LeadsContentView();
+                ContactsContentview = new ContactsContentview();
             }
-            LeadsContentView.OnCompleted = async (IsSuccess) =>
+            ContactsContentview.OnCompleted = async (IsSuccess) =>
             {
-                CustomerContentView.Children.Add(LeadsContentView);
+                CustomerContentView.Children.Add(ContactsContentview);
                 LoadingHelper.Hide();
             };
         }
@@ -40,14 +38,7 @@ namespace PhuLongCRM.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            if (LeadsContentView != null && NeedToRefreshLead == true)
-            {
-                LoadingHelper.Show();
-                await LeadsContentView.viewModel.LoadOnRefreshCommandAsync();
-                NeedToRefreshLead = false;
-                LoadingHelper.Hide();
-            }
-
+            
             if (ContactsContentview != null && NeedToRefreshContact == true)
             {
                 LoadingHelper.Show();
@@ -91,40 +82,18 @@ namespace PhuLongCRM.Views
             {
                 if ((int)e.Item == 0)
                 {
-                    if (LeadsContentView != null)
+                    if (ContactsContentview != null)
                     {
-                        LeadsContentView.IsVisible = true;
+                        ContactsContentview.IsVisible = true;
                     }
                     if (AccountsContentView != null)
                     {
                         AccountsContentView.IsVisible = false;
-                    }
-                    if (ContactsContentview != null)
-                    {
-                        ContactsContentview.IsVisible = false;
                     }
                 }
                 else if((int)e.Item == 1)
                 {
-                    if (ContactsContentview == null)
-                    {
-                        LoadingHelper.Show();
-                        ContactsContentview = new ContactsContentview();
-                    }
-                    ContactsContentview.OnCompleted = (IsSuccess) =>
-                    {
-                        CustomerContentView.Children.Add(ContactsContentview);
-                        LoadingHelper.Hide();
-                    };
-                    LeadsContentView.IsVisible = false;
-                    ContactsContentview.IsVisible = true;
-                    if (AccountsContentView != null)
-                    {
-                        AccountsContentView.IsVisible = false;
-                    }
-                }
-                else if ((int)e.Item == 2)
-                {
+                    ContactsContentview.IsVisible = false;
                     if (AccountsContentView == null)
                     {
                         LoadingHelper.Show();
@@ -135,12 +104,7 @@ namespace PhuLongCRM.Views
                         CustomerContentView.Children.Add(AccountsContentView);
                         LoadingHelper.Hide();
                     };
-                    LeadsContentView.IsVisible = false;
                     AccountsContentView.IsVisible = true;
-                    if (ContactsContentview != null)
-                    {
-                        ContactsContentview.IsVisible = false;
-                    }
                 }
             }  
         }
