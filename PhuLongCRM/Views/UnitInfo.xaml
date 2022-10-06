@@ -315,7 +315,7 @@
                         </StackLayout>
                         
                         <StackLayout x:Name="stackGiaoDich" IsVisible="false">
-                            <telerikPrimitives:RadExpander x:Name="layout_danhsachhopdong" IsExpanded="False" AutomationId="masterCardExpander" BorderColor="Transparent">
+                            <telerikPrimitives:RadExpander x:Name="layout_danhsachhopdong" IsExpanded="True" AutomationId="masterCardExpander" BorderColor="Transparent">
                                 <telerikPrimitives:RadExpander.Header>
                                     <telerikPrimitives:ExpanderHeader Style="{x:StaticResource ExpanderHeaderStyle }">
                                         <Label Style="{StaticResource ExpanderHeadingText}" Text="{x:Static lang:Language.hop_dong_title}"/>
@@ -354,7 +354,7 @@
                                 </telerikPrimitives:RadExpander.Content>
                             </telerikPrimitives:RadExpander>
                             
-                            <telerikPrimitives:RadExpander IsExpanded="True" AutomationId="masterCardExpander" BorderColor="Transparent">
+                            <telerikPrimitives:RadExpander IsExpanded="False" AutomationId="masterCardExpander" BorderColor="Transparent">
                                 <telerikPrimitives:RadExpander.Header>
                                     <telerikPrimitives:ExpanderHeader Style="{x:StaticResource ExpanderHeaderStyle }">
                                         <Label Style="{StaticResource ExpanderHeadingText}" Text="{x:Static lang:Language.acceptance_title}"/>

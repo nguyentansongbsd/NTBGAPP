@@ -13,6 +13,11 @@
                     <controls:SearchBar Text="{Binding Keyword}" FontSize="15" SearchButtonPressed="SearchBar_SearchButtonPressed" TextChanged="SearchBar_TextChanged"/>
                 </controls:SearchBarFrame>
 
+                <Grid ColumnDefinitions="*,*" Grid.Row="1" Margin="10,5">
+                    <controls:Filter x:Name="FiltersProject" Grid.Column="0" Placeholder="{x:Static lang:Language.du_an}" SelectedItemChange="FiltersProject_SelectedItemChange" ItemsSource="{Binding Projects}" BottomModal="{x:Reference BottomModal}" NameDisplay="Label" SelectedItem="{Binding Project}" Multiple="False"/>
+                    <controls:Filter x:Name="FiltersStatus" Grid.Column="1" Placeholder="{x:Static lang:Language.tinh_trang}" SelectedItemChanged="FiltersStatus_SelectedItemChanged" ItemsSource="{Binding Statuss}" BottomModal="{x:Reference BottomModal}" NameDisplay="Label" SelectedIds="{Binding Status}" Multiple="True" SelectedDisplay="Selected"/>
+                </Grid>
+
                 <controls:BsdListView x:Name="listView" Grid.Row="2" ItemsSource="{Binding Data}" HasUnevenRows="True" ItemTapped="listView_ItemTapped">
                     <controls:BsdListView.ItemTemplate>
                         <DataTemplate>
@@ -33,6 +38,7 @@
                     </controls:BsdListView.ItemTemplate>
                 </controls:BsdListView>
             </Grid>
+            <controls:BottomModal x:Name="BottomModal"/>
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -57,13 +57,13 @@ namespace PhuLongCRM.Views
                 if (viewModel.ButtonCommandList.Count > 0)
                     viewModel.ButtonCommandList.Clear();
 
-                if(viewModel.Acceptance.statuscode == "1")
+                if(viewModel.Acceptance.statuscode == "100000000")
                     viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.xac_nhan_thong_tin, "FontAwesomeSolid", "\uf46c", null, ConfirmInformation));
 
                 if (viewModel.Acceptance.statuscode == "1" || viewModel.Acceptance.statuscode == "100000001" || viewModel.Acceptance.statuscode == "100000000")
                     viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.huy_nghiem_thu, "FontAwesomeSolid", "\uf05e", null, Cancel));
 
-                if (viewModel.Acceptance.statuscode == "100000001")
+                if (viewModel.Acceptance.statuscode == "100000001" && viewModel.Acceptance.bsd_printedate != null && viewModel.Acceptance.printer_name != null)
                     viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.dong_nghiem_thu, "FontAwesomeSolid", "\uf011", null, Close));
 
                 if (viewModel.Acceptance.statuscode == "1")
@@ -81,7 +81,7 @@ namespace PhuLongCRM.Views
         {
             LoadingHelper.Show();
             var result = await viewModel.CloseInformation();
-            if (result)
+            if (result.IsSuccess)
             {
                 ToastMessageHelper.ShortMessage(Language.thong_bao_thanh_cong);
                 NeedToRefresh = true;
