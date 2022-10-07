@@ -11,7 +11,7 @@
     <ContentPage.Content>
         <AbsoluteLayout>
             <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" RowDefinitions="Auto,*">
-                <controls:TabControl IndexTab="TabControl_IndexTab" ListTab="tiem_nang,ca_nhan,doanh_nghiep" Grid.Row="0"/>
+                <controls:TabControl IndexTab="TabControl_IndexTab" ListTab="ca_nhan,doanh_nghiep" Grid.Row="0"/>
                 <Grid x:Name="CustomerContentView" Grid.Row="1"/>
             </Grid>
             <!--<controls:ExtendedFrame AbsoluteLayout.LayoutBounds="0,1,1,59" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" BackgroundColor="#1399D5" Padding="0" HorizontalOptions="End" Margin="0,0,15,15" HeightRequest="44" WidthRequest="44" CornerRadius="22">

@@ -38,16 +38,26 @@ namespace PhuLongCRM.Views
             this.BindingContext = viewModel = new DashboardViewModel();
 
             await Task.WhenAll(
+                 viewModel.LoadAcceptances(),
+                 viewModel.LoadUnitHandovers(),
+                 viewModel.LoadPinkBookHandovers(),
                  viewModel.LoadTasks(),
                  viewModel.LoadMettings(),
-                 viewModel.LoadPhoneCalls(),
-                 viewModel.LoadQueueFourMonths(),
-                 viewModel.LoadQuoteFourMonths(),
-                 viewModel.LoadOptionEntryFourMonths(),
-                 viewModel.LoadUnitFourMonths(),
-                 viewModel.LoadLeads(),
-                 viewModel.LoadCommissionTransactions()
+                 viewModel.LoadPhoneCalls()
+
                 );
+
+
+
+
+            //viewModel.LoadQueueFourMonths(),
+            //     viewModel.LoadQuoteFourMonths(),
+            //     viewModel.LoadOptionEntryFourMonths(),
+            //     viewModel.LoadUnitFourMonths(),
+            //     viewModel.LoadLeads(),
+            //viewModel.LoadCommissionTransactions()
+
+
 
             MessagingCenter.Subscribe<ScanQRPage, string>(this, "CallBack", async (sender, e) =>
             {

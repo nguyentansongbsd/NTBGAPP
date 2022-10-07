@@ -3767,5 +3767,53 @@
 	</data>
 	<data name="meet_termination_type" xml:space="preserve">
 		<value>Thanh lý</value>
+  </data>
+	<data name="nghiem_thu_trang_chu" xml:space="preserve">
+		<value>NGHIỆM THU</value>
+	</data>
+	<data name="ban_giao_san_pham_trang_chu" xml:space="preserve">
+		<value>BÀN GIAO SẢN PHẨM</value>
+	</data>
+	<data name="ban_giao_giay_chung_nhan_trang_chu" xml:space="preserve">
+		<value>BÀN GIAO GIẤY CHỨNG NHẬN</value>
+	</data>
+	<data name="dang_nghiem_thu_trang_chu" xml:space="preserve">
+		<value>Đang nghiệm thu</value>
+	</data>
+	<data name="da_nghiem_thu_trang_chu" xml:space="preserve">
+		<value>Đã nghiệm thu</value>
+	</data>
+	<data name="dang_ban_giao_trang_chu" xml:space="preserve">
+		<value>Đang bàn giao</value>
+	</data>
+	<data name="da_ban_giao_trang_chu" xml:space="preserve">
+		<value>Đã bàn giao</value>
+	</data>
+	<data name="xac_nhan_ban_giao" xml:space="preserve">
+		<value>Xác Nhận Bàn Giao</value>
+	</data>
+	<data name="vui_long_chon_ngay_xac_nhan" xml:space="preserve">
+		<value>Vui lòng chọn ngày xác nhận.</value>
+	</data>
+	<data name="di_den_nghiem_thu" xml:space="preserve">
+		<value>Đi Đến Nghiệm Thu</value>
+	</data>
+	<data name="di_den_ban_giao_san_pham" xml:space="preserve">
+		<value>Đi Đến Bàn Giao Sản Phẩm</value>
+	</data>
+	<data name="di_den_ban_giao_giay_chung_nhan" xml:space="preserve">
+		<value>Đi Đến Bàn Giao Giấy Chứng Nhận</value>
+	</data>
+	<data name="xac_nhan_du_ho_so_giay_to" xml:space="preserve">
+		<value>Xác Nhận Đủ Hồ Sơ Giấy Tờ</value>
+	</data>
+	<data name="cccd_ho_chieu" xml:space="preserve">
+		<value>CCCD/ Hộ chiếu</value>
+	</data>
+	<data name="hop_dong_confirmdocument" xml:space="preserve">
+		<value>Hợp đồng</value>
+	</data>
+	<data name="hoa_don_vat" xml:space="preserve">
+		<value>Hoá đơn VAT</value>
 	</data>
 </root>

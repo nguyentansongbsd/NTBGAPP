@@ -81,6 +81,29 @@ namespace PhuLongCRM.ViewModels
         private string _totalPaidCommission;
         public string TotalPaidCommission { get => _totalPaidCommission; set { _totalPaidCommission = value; OnPropertyChanged(nameof(TotalPaidCommission)); } }
 
+        #region Nghiem thu
+        private int _totalAcceptancing;
+        public int TotalAcceptanceing { get => _totalAcceptancing; set { _totalAcceptancing = value;OnPropertyChanged(nameof(TotalAcceptanceing)); } }
+        private int _totalAcceptanced;
+        public int TotalAcceptanced { get => _totalAcceptanced; set { _totalAcceptanced = value; OnPropertyChanged(nameof(TotalAcceptanced)); } }
+        #endregion
+
+        #region Ban giao sp
+        private int _totalUnitHandovering;
+        public int TotalUnitHandovering { get => _totalUnitHandovering; set { _totalUnitHandovering = value; OnPropertyChanged(nameof(TotalUnitHandovering)); } }
+        private int _totalUnitHandovered;
+        public int TotalUnitHandovered { get => _totalUnitHandovered; set { _totalUnitHandovered = value; OnPropertyChanged(nameof(TotalUnitHandovered)); } }
+        #endregion
+
+        #region Ban giao GCN
+        private int _totalPinkBookHandovering;
+        public int TotalPinkBookHandovering { get => _totalPinkBookHandovering; set { _totalPinkBookHandovering = value; OnPropertyChanged(nameof(TotalPinkBookHandovering)); } }
+        private int _totalPinkBookHandovered;
+        public int TotalPinkBookHandovered { get => _totalPinkBookHandovered; set { _totalPinkBookHandovered = value; OnPropertyChanged(nameof(TotalPinkBookHandovered)); } }
+        #endregion
+
+
+
         public ICommand RefreshCommand => new Command(async () =>
         {
             IsRefreshing = true;
@@ -102,6 +125,75 @@ namespace PhuLongCRM.ViewModels
             four_Month.Add(second_Month);
             four_Month.Add(third_Month);
             four_Month.Add(fourth_Month);
+        }
+
+        public async Task LoadAcceptances()
+        {
+            string fetchXml = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                                  <entity name='bsd_acceptance'>
+                                    <attribute name='bsd_acceptanceid' />
+                                    <attribute name='bsd_name' />
+                                    <attribute name='statuscode' />
+                                    <order attribute='bsd_name' descending='false' />
+                                    <filter type='and'>
+                                      <condition attribute='statuscode' operator='in'>
+                                        <value>100000000</value>
+                                        <value>100000001</value>
+                                        <value>1</value>
+                                        <value>100000003</value>
+                                      </condition>
+                                    </filter>
+                                  </entity>
+                                </fetch>";
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<AcceptanceListModel>>("bsd_acceptances", fetchXml);
+            if (result == null || result.value.Any() == false) return;
+            this.TotalAcceptanceing = result.value.Where(x => x.statuscode == "100000000" || x.statuscode == "100000001" || x.statuscode == "1").Count(); // sts = Confirmed Information,Confirmed Acceptance,Active : nhung sts dang nghiem thu
+            this.TotalAcceptanced = result.value.Where(x => x.statuscode == "100000003").Count();// sts = Closed : sts Da nghiem thu
+        }
+
+        public async Task LoadUnitHandovers()
+        {
+            string fetchXml = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                                  <entity name='bsd_handover'>
+                                    <attribute name='bsd_handoverid' />
+                                    <attribute name='bsd_name' />
+                                    <attribute name='statuscode' />
+                                    <order attribute='bsd_name' descending='false' />
+                                    <filter type='and'>
+                                      <condition attribute='statuscode' operator='in'>
+                                        <value>1</value>
+                                        <value>100000002</value>
+                                        <value>100000001</value>
+                                      </condition>
+                                    </filter>
+                                  </entity>
+                                </fetch>";
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<UnitHandoversModel>>("bsd_handovers", fetchXml);
+            if (result == null || result.value.Any() == false) return;
+            this.TotalUnitHandovering = result.value.Where(x => x.statuscode == "1").Count(); //sts = Active : Dang ban giao sp
+            this.TotalUnitHandovered = result.value.Where(x => x.statuscode == "100000001").Count(); //sts = Handover : Da ban giao sp
+        }
+
+        public async Task LoadPinkBookHandovers()
+        {
+            string fetchXml = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                                  <entity name='bsd_pinkbookhandover'>
+                                    <attribute name='bsd_pinkbookhandoverid' />
+                                    <attribute name='bsd_name' />
+                                    <attribute name='statuscode' />
+                                    <order attribute='bsd_name' descending='false' />
+                                    <filter type='and'>
+                                      <condition attribute='statuscode' operator='in'>
+                                        <value>1</value>
+                                        <value>100000000</value>
+                                      </condition>
+                                    </filter>
+                                  </entity>
+                                </fetch>";
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<PinkBookHandoversModel>>("bsd_pinkbookhandovers", fetchXml);
+            if (result == null || result.value.Any() == false) return;
+            this.TotalPinkBookHandovering = result.value.Where(x => x.statuscode == "1").Count();// sts = Active : Dang ban giao gcn
+            this.TotalPinkBookHandovered = result.value.Where(x => x.statuscode == "100000000").Count();// sts = Handed over certificate : Da ban giao gcn
         }
 
         public async Task LoadCommissionTransactions()
@@ -637,32 +729,24 @@ namespace PhuLongCRM.ViewModels
         public async Task RefreshDashboard()
         {
             this.Activities.Clear();
-            this.DataMonthQueue.Clear();
-            this.DataMonthQuote.Clear();
-            this.DataMonthOptionEntry.Clear();
-            this.DataMonthUnit.Clear();
-            this.CommissionTransactionChart.Clear();
-            this.LeadsChart.Clear();
-
-            this.TotalCommissionAMonth = 0;
-            this.TotalPaidCommissionAMonth = 0;
-            this.numKHMoi = 0;
-            this.numKHDaChuyenDoi = 0;
-            this.numKHKhongChuyenDoi = 0;
+            this.TotalAcceptanceing = 0;
+            this.TotalAcceptanced = 0;
+            this.TotalUnitHandovering = 0;
+            this.TotalUnitHandovered = 0;
+            this.TotalPinkBookHandovering = 0;
+            this.TotalPinkBookHandovered = 0;
 
             await Task.WhenAll(
+                 this.LoadAcceptances(),
+                 this.LoadUnitHandovers(),
+                 this.LoadPinkBookHandovers(),
                  this.LoadTasks(),
                  this.LoadMettings(),
-                 this.LoadPhoneCalls(),
-                 this.LoadQueueFourMonths(),
-                 this.LoadQuoteFourMonths(),
-                 this.LoadOptionEntryFourMonths(),
-                 this.LoadUnitFourMonths(),
-                 this.LoadLeads(),
-                 this.LoadCommissionTransactions()
+                 this.LoadPhoneCalls()
                 );
         }
     }
+
     public class CountChartModel
     {
         public string group { get; set; }

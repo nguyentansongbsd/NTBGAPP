@@ -44,11 +44,41 @@ namespace PhuLongCRM.ViewModels
         private InterestInstallmentModel _interest;
         public InterestInstallmentModel Interest { get => _interest; set { _interest = value; OnPropertyChanged(nameof(Interest)); } }
 
+        public ObservableCollection<FloatButtonItem> ButtonCommandList { get; set; } = new ObservableCollection<FloatButtonItem>();
+
+        private ConfirmDocumentForPinkBookDetailModel _confirmDocument;
+        public ConfirmDocumentForPinkBookDetailModel ConfirmDocument { get => _confirmDocument; set { _confirmDocument = value;OnPropertyChanged(nameof(ConfirmDocument)); } }
+
+        private ObservableCollection<UnitHandoversModel> _unitHandovers;
+        public ObservableCollection<UnitHandoversModel> UnitHandovers { get => _unitHandovers; set { _unitHandovers = value; OnPropertyChanged(nameof(UnitHandovers)); } }
+
+        public ObservableCollection<AcceptanceListModel> _acceptances;
+        public ObservableCollection<AcceptanceListModel> Acceptances { get => _acceptances; set { _acceptances = value; OnPropertyChanged(nameof(Acceptances)); } }
+
+        public ObservableCollection<PinkBookHandoversModel> PinkBooHandovers { get; set; } = new ObservableCollection<PinkBookHandoversModel>();
+
+        private bool _showMoreAcceptances;
+        public bool ShowMoreAcceptances { get => _showMoreAcceptances; set { _showMoreAcceptances = value; OnPropertyChanged(nameof(ShowMoreAcceptances)); } }
+
+        private bool _showMorePinkBooHandover;
+        public bool ShowMorePinkBooHandover { get => _showMorePinkBooHandover; set { _showMorePinkBooHandover = value; OnPropertyChanged(nameof(ShowMorePinkBooHandover)); } }
+
+        private bool _showMoreUnitHandovers;
+        public bool ShowMoreUnitHandovers { get => _showMoreUnitHandovers; set { _showMoreUnitHandovers = value; OnPropertyChanged(nameof(ShowMoreUnitHandovers)); } }
+
+        public int PagePinkBooHandover { get; set; } = 1;
+        public int PageAcceptance { get; set; } = 1;
+        public int PageUnitHandover { get; set; } = 1;
+
+        public bool IsLoaded { get; set; } = false;
+
         public ContractDetailPageViewModel()
         {
             Contract = new ContractModel();
             CoownerList = new ObservableCollection<ReservationCoownerModel>();
             InstallmentList = new ObservableCollection<ReservationInstallmentDetailPageModel>();
+            UnitHandovers = new ObservableCollection<UnitHandoversModel>();
+            Acceptances = new ObservableCollection<AcceptanceListModel>();
         }
 
         public async Task LoadContract(Guid ContractId)
@@ -156,6 +186,8 @@ namespace PhuLongCRM.ViewModels
             string fetch = @"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
                                   <entity name='salesorder'>
                                     <attribute name='salesorderid' />
+                                    <attribute name='bsd_handover' alias='unit_handoverid'/>
+                                    <attribute name='bsd_acceptanceinformation' alias='acceptanceid'/>
                                     <attribute name='ordernumber' />
                                     <link-entity name='bsd_unitsspecification' from='bsd_unitsspecificationid' to='bsd_unitsspecification' link-type='outer' alias='al'>
                                        <attribute name='bsd_name' alias='bsd_unitsspecification_name' />
@@ -173,6 +205,9 @@ namespace PhuLongCRM.ViewModels
                                         <attribute name='bsd_discounttypeid' alias='discountlist_id' />
                                         <attribute name='bsd_name' alias='discountlist_name' />
                                     </link-entity>
+                                    <link-entity name='bsd_pinkbookhandover' from='bsd_optionentry' to='salesorderid' link-type='inner' alias='ac' >
+                                        <attribute name='bsd_pinkbookhandoverid' alias='pinkbook_handoverid'/>
+                                    </link-entity >
                                     <filter type='and'>
                                         <condition attribute='salesorderid' operator='eq' value='" + ContractId + @"' />
                                     </filter>
@@ -193,6 +228,10 @@ namespace PhuLongCRM.ViewModels
             Contract.paymentscheme_id = data.paymentscheme_id;
             Contract.discountlist_id = data.discountlist_id;
             Contract.discountlist_name = data.discountlist_name;
+
+            Contract.unit_handoverid = data.unit_handoverid;
+            Contract.acceptanceid = data.acceptanceid;
+            Contract.pinkbook_handoverid = data.pinkbook_handoverid;
         }
 
         public async Task LoadCoOwners(Guid ContractId)
@@ -664,6 +703,130 @@ namespace PhuLongCRM.ViewModels
             var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<InterestInstallmentModel>>("bsd_paymentschemedetails", fetchXml);
             if (result == null && result.value.Count == 0) return;
             this.Interest = result.value.SingleOrDefault();
+        }
+
+        public async Task LoadConfirmDocumentForPinkBookDetail(Guid id)
+        {
+            string fetchXml = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                                  <entity name='bsd_confirmdocumentforpinbookdetail'>
+                                    <attribute name='bsd_confirmdocumentforpinbookdetailid' />
+                                    <attribute name='bsd_name' />
+                                    <attribute name='bsd_hasvatinvoice' />
+                                    <attribute name='bsd_hasidcardpassport' />
+                                    <attribute name='bsd_hascontract' />
+                                    <order attribute='bsd_name' descending='false' />
+                                    <filter type='and'>
+                                      <condition attribute='bsd_pptionentry' operator='eq' value='{id}' />
+                                    </filter>
+                                  </entity>
+                                </fetch>";
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<ConfirmDocumentForPinkBookDetailModel>>("bsd_confirmdocumentforpinbookdetails", fetchXml);
+            if (result == null || result.value.Any() == false) return;
+            this.ConfirmDocument = result.value.SingleOrDefault();
+        }
+
+        public async Task LoadAcceptances(Guid contractid)
+        {
+            string fetch = $@"<fetch version='1.0' count='5' page='{PageAcceptance}' output-format='xml-platform' mapping='logical' distinct='false'>
+                                <entity name='bsd_acceptance'>
+                                    <attribute name='bsd_acceptanceid' />
+                                    <attribute name='bsd_name' />
+                                    <attribute name='statuscode' />
+                                    <order attribute='bsd_name' descending='false' />
+                                    <filter type='and'>
+                                        <condition attribute='statuscode' operator='ne' value='2' />
+                                        <condition attribute='bsd_contract' operator='eq' value='{contractid}' />
+                                    </filter>
+                                    <link-entity name='bsd_project' from='bsd_projectid' to='bsd_project' link-type='outer' alias='project'>
+                                        <attribute name='bsd_name' alias='project_name'/>
+                                    </link-entity>
+                                    <link-entity name='product' from='productid' to='bsd_units' link-type='outer' alias='product'>
+                                        <attribute name='name' alias='unit_name'/>
+                                    </link-entity>
+                                    <link-entity name='salesorder' from='salesorderid' to='bsd_contract' link-type='outer' alias='contract'>
+                                        <attribute name='name' alias='contract_name'/>
+                                    </link-entity>
+                                </entity>
+                            </fetch>";
+
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<AcceptanceListModel>>("bsd_acceptances", fetch);
+            if (result == null || result.value.Count == 0) return;
+
+            IsLoaded = true;
+            var data = result.value;
+            ShowMoreAcceptances = data.Count < 5 ? false : true;
+
+            foreach (var item in data)
+            {
+                Acceptances.Add(item);
+            }
+        }
+
+        public async Task LoadUnitHandovers(Guid contractid)
+        {
+            string fetchXml = $@"<fetch version='1.0' count='5' page='{PageUnitHandover}' output-format='xml-platform' mapping='logical' distinct='false'>
+                                  <entity name='bsd_handover'>
+                                    <attribute name='bsd_handoverid' />
+                                    <attribute name='bsd_name' />
+                                    <attribute name='statuscode' />
+                                    <order attribute='bsd_name' descending='false' />
+                                    <filter type='and'>
+                                        <condition attribute='statuscode' operator='ne' value='2' />
+                                        <condition attribute='bsd_optionentry' operator='eq' value='{contractid}' />
+                                    </filter>
+                                    <link-entity name='bsd_project' from='bsd_projectid' to='bsd_projectid' visible='false' link-type='outer' alias='a_3743f43dba81e911a83b000d3a07be23'>
+                                      <attribute name='bsd_name' alias='project_name'/>
+                                    </link-entity>
+                                    <link-entity name='product' from='productid' to='bsd_units' visible='false' link-type='outer' alias='a_96e2d45bba81e911a83b000d3a07be23'>
+                                      <attribute name='name' alias='unit_name'/>
+                                    </link-entity>
+                                  </entity>
+                                </fetch>";
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<UnitHandoversModel>>("bsd_handovers", fetchXml);
+            if (result == null || result.value.Any() == false) return;
+
+            this.ShowMoreUnitHandovers = result.value.Count > 4 ? true : false;
+
+            foreach (var item in result.value)
+            {
+                this.UnitHandovers.Add(item);
+            }
+        }
+
+        public async Task LoadPinkBooHandovers(Guid contractid)
+        {
+            string fetch = $@"<fetch version='1.0' count='5' page='{PagePinkBooHandover}' output-format='xml-platform' mapping='logical' distinct='false'>
+                                  <entity name='bsd_pinkbookhandover'>
+                                    <attribute name='bsd_name' />
+                                    <attribute name='statuscode' />
+                                    <attribute name='bsd_pinkbookhandoverid' />
+                                    <order attribute='bsd_name' descending='false' />
+                                    <filter type='and'>
+                                        <condition attribute='statuscode' operator='ne' value='2' />
+                                        <condition attribute='bsd_optionentry' operator='eq' value='{contractid}' />
+                                    </filter>
+                                    <link-entity name='bsd_project' from='bsd_projectid' to='bsd_project' visible='false' link-type='outer' alias='a_26f8767ec690ec11b400000d3aa1f0ac'>
+                                      <attribute name='bsd_contactfullname' alias='project_name'/>
+                                    </link-entity>
+                                    <link-entity name='product' from='productid' to='bsd_units' visible='false' link-type='outer' alias='a_91124d44c790ec11b400000d3aa1f0ac'>
+                                      <attribute name='name' alias='unit_name'/>
+                                    </link-entity>
+                                    <link-entity name='salesorder' from='salesorderid' to='bsd_optionentry' visible='false' link-type='outer' alias='a_fd36f62dc790ec11b400000d3aa1f0ac'>
+                                      <attribute name='name' alias='optionentry_name'/>
+                                    </link-entity>
+                                  </entity>
+                                </fetch>";
+
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<PinkBookHandoversModel>>("bsd_pinkbookhandovers", fetch);
+            if (result == null) return;
+            IsLoaded = true;
+            var data = result.value;
+            ShowMorePinkBooHandover = data.Count < 5 ? false : true;
+
+            foreach (var x in data)
+            {
+                PinkBooHandovers.Add(x);
+            }
         }
     }
 }

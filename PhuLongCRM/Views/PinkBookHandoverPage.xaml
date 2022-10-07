@@ -7,7 +7,7 @@
     xmlns:controls="clr-namespace:PhuLongCRM.Controls"
     Title="{Binding PinkBookHandover.bsd_name}"
     xmlns:lang="clr-namespace:PhuLongCRM.Resources"
-    x:Class="PhuLongCRM.Views.PinkBookHandoverPage">
+    x:Class="PhuLongCRM.Views.PinkBookHandoverPage" x:Name="this">
     <ContentPage.Resources>
         <converters:NullToHideConverter x:Key="NullToHideConverter"/>
     </ContentPage.Resources>
@@ -161,6 +161,17 @@
                     </telerikPrimitives:RadExpander>
                 </StackLayout>
             </ScrollView>
+            <controls:FloatingButtonGroup x:Name="floatingButtonGroup" ItemsSource="{Binding BindingContext.ButtonCommandList,Source={x:Reference this}}"/>
+            <controls:CenterPopup x:Name="centerConfirm" Title="{x:Static lang:Language.chon_ngay}">
+                <controls:CenterPopup.Body>
+                    <StackLayout>
+                        <controls:FormLabelRequired Text="{x:Static lang:Language.ngay_xac_nhan}"/>                        
+                        <controls:DatePickerBoderControl ShowTime="False" Date="{Binding ConfirmDate}" Placeholder="{x:Static lang:Language.ngay_xac_nhan}" />
+
+                        <Button Text="{x:Static lang:Language.xac_nhan}" Clicked="ConfirmPinkbookHandover_Clicked" BackgroundColor="{x:StaticResource NavigationPrimary}" CornerRadius="5"  TextColor="White" FontAttributes="Bold" HeightRequest="40" HorizontalOptions="End"/>
+                    </StackLayout>
+                </controls:CenterPopup.Body>
+            </controls:CenterPopup>
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

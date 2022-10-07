@@ -58,10 +58,14 @@ namespace PhuLongCRM.Views
 
         private void SetButtonFloatingButton()
         {
-            if (viewModel.UnitHandover.statuscode == "1")
+            if (viewModel.UnitHandover.statuscode == "1") // sts = active
             {
                 viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.huy, "FontAwesomeSolid", "\uf00d", null, CancelUnitHandover));
                 viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.chinh_sua, "FontAwesomeRegular", "\uf044", null, UpdateUnitHandover));
+                if (viewModel.UnitHandover.bsd_handoverformprintdate.HasValue) // co ngay in
+                {
+                    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.xac_nhan_ban_giao, "FontAwesomeRegular", "\uf044", null, ConfirmHandover));
+                }
             }
 
             if (viewModel.UnitHandover.statuscode != "1")
@@ -117,6 +121,37 @@ namespace PhuLongCRM.Views
                     ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
                 }
             };
+        }
+
+        private void ConfirmHandover(object sender, EventArgs e)
+        {
+            centerConfirm.ShowCenterPopup();
+        }
+
+        private async void ConfirmHandover_Clicked(object sender, EventArgs e)
+        {
+            if (!viewModel.ConfirmDate.HasValue)
+            {
+                ToastMessageHelper.ShortMessage(Language.vui_long_chon_ngay_xac_nhan);
+                return;
+            }
+
+            LoadingHelper.Show();
+            CrmApiResponse result = await viewModel.ConfirmHandover();
+            if (result.IsSuccess)
+            {
+                await viewModel.LoadUnitHandover();
+                if (UnitHandovers.NeedRefresh.HasValue) UnitHandovers.NeedRefresh = true;
+                ToastMessageHelper.ShortMessage(Language.thanh_cong);
+                centerConfirm.CloseContent_Tapped(this, EventArgs.Empty);
+                SetButtonFloatingButton();
+                LoadingHelper.Hide();
+            }
+            else
+            {
+                LoadingHelper.Hide();
+                ToastMessageHelper.ShortMessage(result.ErrorResponse.error.message);
+            }
         }
 
         private void OptionEntry_Tapped(object sender, EventArgs e)

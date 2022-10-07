@@ -17,6 +17,9 @@ namespace PhuLongCRM.ViewModels
 
         public ObservableCollection<FloatButtonItem> ButtonCommandList { get; set; } = new ObservableCollection<FloatButtonItem>();
 
+        private DateTime? _confirmDate;
+        public DateTime? ConfirmDate { get => _confirmDate; set { _confirmDate = value;OnPropertyChanged(nameof(ConfirmDate)); } }
+
         public UnitHandoverPageViewModel()
         {
         }
@@ -74,7 +77,7 @@ namespace PhuLongCRM.ViewModels
                                   </entity>
                                 </fetch> ";
             var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<UnitHandoverPageModel>>("bsd_handovers", fetchXml);
-            if (result == null && result.value.Any() == false) return;
+            if (result == null || result.value.Any() == false) return;
             var data = result.value.SingleOrDefault();
             if (data.bsd_handoverformprintdate.HasValue)
             {
@@ -108,13 +111,33 @@ namespace PhuLongCRM.ViewModels
             return result;
         }
 
+        public async Task<CrmApiResponse> ConfirmHandover()
+        {
+            string path = "/bsd_handovers(" + this.UnitHandoverId + ")";
+            var content = await GetContentConfirmHandover();
+            CrmApiResponse result = await CrmHelper.PatchData(path, content);
+            return result;
+        }
+
         private async Task<object> GetContent()
         {
             IDictionary<string, object> data = new Dictionary<string, object>();
-            data["statuscode"] = "100000003";
+            data["statuscode"] = "100000003"; // sts = cancel
             data["bsd_cancelleddate"] = DateTime.Now.ToUniversalTime();
             data["bsd_cancelledreason"] = this.UnitHandover.bsd_cancelledreason;
             data["bsd_canceller@odata.bind"] = "/systemusers(" + UserLogged.ManagerId + ")";
+            return data;
+        }
+
+        private async Task<object> GetContentConfirmHandover()
+        {
+            IDictionary<string, object> data = new Dictionary<string, object>();
+            data["statuscode"] = "100000001";// sts = handover
+            if (this.ConfirmDate.HasValue)
+            {
+                data["bsd_confirmdate"] = this.ConfirmDate.Value.Date.ToUniversalTime();
+            }
+            data["bsd_confirmer@odata.bind"] = "/systemusers(" + UserLogged.ManagerId + ")";
             return data;
         }
     }

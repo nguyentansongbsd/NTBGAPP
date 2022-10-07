@@ -28,35 +28,67 @@
             <RefreshView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
                 <ScrollView Padding="0,0,0,20">
                     <StackLayout Spacing="0">
-                        <Label FontSize="16" TextColor="{StaticResource NavigationPrimary}" FontAttributes="Bold" Padding="14,14,14,8">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="{Binding Source={x:Static lang:Language.hoa_hong},StringFormat='{0} -'}"/>
-                                    <Span Text="{Binding dateBefor,StringFormat=' {0:MM/yyyy}'}"/>
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
+
+                        <!--#region Nghiem Thu-->
+                        <Label FontSize="16" Text="{x:Static lang:Language.nghiem_thu_trang_chu}"  TextColor="{StaticResource NavigationPrimary}" FontAttributes="Bold" Padding="14,14,14,8"/>
                         <Grid ColumnDefinitions="*,*" Margin="14,6">
                             <controls:ExtendedFrame Grid.Column="0" Padding="4,16" VerticalOptions="Center">
                                 <StackLayout Spacing="12">
-                                    <Label Text="{Binding TotalCommission,StringFormat='{0} đ'}" FontSize="18" TextColor="#D42A16" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                                    <Label Text="{x:Static lang:Language.tong_tien}" FontSize="15" TextColor="#B3B3B3" HorizontalTextAlignment="Center"/>
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TongTien_Hover_Tapped"/>
-                                    </StackLayout.GestureRecognizers>
+                                    <Label Text="{Binding TotalAcceptanceing}" FontSize="18" TextColor="#D42A16" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{x:Static lang:Language.dang_nghiem_thu_trang_chu}" FontSize="15" TextColor="#B3B3B3" HorizontalTextAlignment="Center"/>
                                 </StackLayout>
                             </controls:ExtendedFrame>
                             <controls:ExtendedFrame Grid.Column="1" Padding="4,16" VerticalOptions="Center">
                                 <StackLayout Spacing="12">
-                                    <Label Text="{Binding TotalPaidCommission,StringFormat='{0} đ'}" FontSize="18" TextColor="#2196F3" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                                    <Label Text="{x:Static lang:Language.da_nhan}" FontSize="15" TextColor="#B3B3B3" HorizontalTextAlignment="Center"/>
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="DaNhan_Hover_Tapped"/>
-                                    </StackLayout.GestureRecognizers>
+                                    <Label Text="{Binding TotalAcceptanced}" FontSize="18" TextColor="#2196F3" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{x:Static lang:Language.da_nghiem_thu_trang_chu}" FontSize="15" TextColor="#B3B3B3" HorizontalTextAlignment="Center"/>
                                 </StackLayout>
                             </controls:ExtendedFrame>
                         </Grid>
-                        <controls:ExtendedFrame Margin="14,6" Padding="8">
+                        <!--#endregion Nghiem thu-->
+
+                        <!--#region Ban giao sp-->
+                        <Label FontSize="16" Text="{x:Static lang:Language.ban_giao_san_pham_trang_chu}"  TextColor="{StaticResource NavigationPrimary}" FontAttributes="Bold" Padding="14,14,14,8"/>
+                        <Grid ColumnDefinitions="*,*" Margin="14,6">
+                            <controls:ExtendedFrame Grid.Column="0" Padding="4,16" VerticalOptions="Center">
+                                <StackLayout Spacing="12">
+                                    <Label Text="{Binding TotalUnitHandovering}" FontSize="18" TextColor="#D42A16" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{x:Static lang:Language.dang_ban_giao_trang_chu}" FontSize="15" TextColor="#B3B3B3" HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </controls:ExtendedFrame>
+                            <controls:ExtendedFrame Grid.Column="1" Padding="4,16" VerticalOptions="Center">
+                                <StackLayout Spacing="12">
+                                    <Label Text="{Binding TotalUnitHandovered}" FontSize="18" TextColor="#2196F3" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{x:Static lang:Language.da_ban_giao_trang_chu}" FontSize="15" TextColor="#B3B3B3" HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </controls:ExtendedFrame>
+                        </Grid>
+                        <!--#endregion Ban giao sp-->
+
+                        <!--#region Ban giao GCN-->
+                        <Label FontSize="16" Text="{x:Static lang:Language.ban_giao_giay_chung_nhan_trang_chu}"  TextColor="{StaticResource NavigationPrimary}" FontAttributes="Bold" Padding="14,14,14,8"/>
+                        <Grid ColumnDefinitions="*,*" Margin="14,6">
+                            <controls:ExtendedFrame Grid.Column="0" Padding="4,16" VerticalOptions="Center">
+                                <StackLayout Spacing="12">
+                                    <Label Text="{Binding TotalPinkBookHandovering}" FontSize="18" TextColor="#D42A16" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{x:Static lang:Language.dang_ban_giao_trang_chu}" FontSize="15" TextColor="#B3B3B3" HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </controls:ExtendedFrame>
+                            <controls:ExtendedFrame Grid.Column="1" Padding="4,16" VerticalOptions="Center">
+                                <StackLayout Spacing="12">
+                                    <Label Text="{Binding TotalPinkBookHandovered}" FontSize="18" TextColor="#2196F3" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{x:Static lang:Language.da_ban_giao_trang_chu}" FontSize="15" TextColor="#B3B3B3" HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </controls:ExtendedFrame>
+                        </Grid>
+                        <!--#endregion Ban giao sp-->
+
+
+
+
+
+
+                        <!--<controls:ExtendedFrame Margin="14,6" Padding="8">
                             <Grid>
                                 <telerikChart:RadCartesianChart HeightRequest="250" >
                                     <telerikChart:RadCartesianChart.ChartBehaviors>
@@ -84,9 +116,9 @@
                                             </telerikChart:ChartPalette.Entries>
                                         </telerikChart:ChartPalette>
                                     </telerikChart:RadCartesianChart.Palette>
-                                    <!--<telerikChart:RadCartesianChart.GestureRecognizers>
+                                    <telerikChart:RadCartesianChart.GestureRecognizers>
                                         <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="BieuDo_Hover_Tapped"/>
-                                    </telerikChart:RadCartesianChart.GestureRecognizers>-->
+                                    </telerikChart:RadCartesianChart.GestureRecognizers>
                                 </telerikChart:RadCartesianChart>
                                 <Grid>
                                     <Grid.GestureRecognizers>
@@ -202,7 +234,7 @@
                                     <Label Text="{x:Static lang:Language.khong_chuyen_doi}" Grid.Column="1" FontSize="15" TextColor="#333333" VerticalTextAlignment="Center"/>
                                 </Grid>
                             </Grid>
-                        </controls:ExtendedFrame>
+                        </controls:ExtendedFrame>-->
 
                         <Grid Padding="14,14,14,8" ColumnDefinitions="*,Auto">
                             <Label Grid.Column="0" Text="{x:Static lang:Language.cong_viec_hom_nay}" FontSize="16" TextColor="{StaticResource NavigationPrimary}" FontAttributes="Bold"/>
