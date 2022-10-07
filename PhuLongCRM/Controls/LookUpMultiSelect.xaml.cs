@@ -310,10 +310,10 @@ namespace PhuLongCRM.Controls
         private void SetUpContact()
         {
             string ne_cus = null;
-            if(ne_customer != Guid.Empty)
+            if (ne_customer != Guid.Empty)
             {
                 ne_cus = "<condition attribute='contactid' operator='ne' value='" + ne_customer + @"' />";
-            }    
+            }
             string fetch = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
                   <entity name='contact'>
                     <attribute name='contactid' alias='Val' />
@@ -323,8 +323,17 @@ namespace PhuLongCRM.Controls
                     <attribute name='bsd_passport' alias='HC' />
                     <order attribute='fullname' descending='false' />                   
                     <filter type='and'>
-                        <condition attribute='{UserLogged.UserAttribute}' operator='eq' uitype='bsd_employee' value='" + UserLogged.Id + @"' />
-                        " + ne_cus + @"
+                        <condition attribute='{UserLogged.UserAttribute}' operator='eq' value='{UserLogged.Id}' />
+                        { ne_cus}
+                        <filter type='or'>
+                            <condition attribute='bsd_fullname' operator='like' value='%25key%25' />
+                            <condition attribute='bsd_identitycardnumber' operator='like' value='%25key%25' />
+                            <condition attribute='mobilephone' operator='like' value='%25key%25' />
+                            <condition attribute='bsd_passport' operator='like' value='%25key%25' />
+                            <condition attribute='bsd_identitycard' operator='like' value='%25key%25' />
+                            <condition attribute='emailaddress1' operator='like' value='%25key%25' />
+                            <condition attribute='bsd_customercode' operator='like' value='%25key%25' />
+                        </filter>
                     </filter>
                   </entity>
                 </fetch>";
@@ -376,7 +385,7 @@ namespace PhuLongCRM.Controls
                                 <order attribute='createdon' descending='true' />
                                 <filter type='and'>
                                     {loadNewLead}
-                                    <condition attribute='{UserLogged.UserAttribute}' operator='eq' uitype='bsd_employee' value='{UserLogged.Id}' />
+                                    <condition attribute='{UserLogged.UserAttribute}' operator='eq' value='{UserLogged.Id}' />
                                     {ne_cus}
                                 </filter>
                               </entity>
@@ -422,8 +431,14 @@ namespace PhuLongCRM.Controls
                                 <attribute name='bsd_registrationcode' alias='SoGPKD'/>
                                 <order attribute='createdon' descending='true' />
                                 <filter type='and'>
-                                    <condition attribute='{UserLogged.UserAttribute}' operator='eq' uitype='bsd_employee' value='" + UserLogged.Id + @"' />
-                                    " + ne_cus + @"
+                                    <condition attribute='{UserLogged.UserAttribute}' operator='eq' value='{UserLogged.Id}' />
+                                    {ne_cus}
+                                    <filter type='or'>
+                                        <condition attribute='name' operator='like' value='%25key%25' />
+                                        <condition attribute='telephone1' operator='like' value='%25key%25' />
+                                        <condition attribute='bsd_registrationcode' operator='like' value='%25key%25' />
+                                        <condition attribute='bsd_customercode' operator='like' value='%25key%25' />
+                                    </filter>
                                 </filter>
                               </entity>
                             </fetch>";

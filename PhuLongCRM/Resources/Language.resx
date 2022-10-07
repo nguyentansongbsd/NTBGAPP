@@ -3753,6 +3753,21 @@
 	<data name="khong_the_dang_nhap_vi_ban_da_dang_nhap_qua_so_lan_gioi_han" xml:space="preserve">
 		<value>Không thể đăng nhập. Vì bạn đã đăng nhập quá số lần giới hạn.</value>
 	</data>
+	<data name="meet_acceptance_notices_type" xml:space="preserve">
+		<value>Thông báo nghiệm thu</value>
+	</data>
+	<data name="meet_units_handover_type" xml:space="preserve">
+		<value>Bàn giao sản phẩm</value>
+	</data>
+	<data name="meet_pink_book_handover_type" xml:space="preserve">
+		<value>Bàn giao giấy chứng nhận</value>
+	</data>
+	<data name="meet_end_of_contract_type" xml:space="preserve">
+		<value>Kết thúc hợp đồng</value>
+	</data>
+	<data name="meet_termination_type" xml:space="preserve">
+		<value>Thanh lý</value>
+  </data>
 	<data name="nghiem_thu_trang_chu" xml:space="preserve">
 		<value>NGHIỆM THU</value>
 	</data>

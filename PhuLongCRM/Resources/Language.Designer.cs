@@ -4109,6 +4109,51 @@ namespace PhuLongCRM.Resources {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Thông báo nghiệm thu.
+        /// </summary>
+        internal static string meet_acceptance_notices_type {
+            get {
+                return ResourceManager.GetString("meet_acceptance_notices_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kết thúc hợp đồng.
+        /// </summary>
+        internal static string meet_end_of_contract_type {
+            get {
+                return ResourceManager.GetString("meet_end_of_contract_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bàn giao giấy chứng nhận.
+        /// </summary>
+        internal static string meet_pink_book_handover_type {
+            get {
+                return ResourceManager.GetString("meet_pink_book_handover_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thanh lý.
+        /// </summary>
+        internal static string meet_termination_type {
+            get {
+                return ResourceManager.GetString("meet_termination_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bàn giao sản phẩm.
+        /// </summary>
+        internal static string meet_units_handover_type {
+            get {
+                return ResourceManager.GetString("meet_units_handover_type", resourceCulture);
+            }
+        }
+        
         internal static string ban_dang_tich_chon_chieu_khau_theo_pttt_ban_co_chac_chan_muon_thay_doi_pttt_nay {
             get {
                 return ResourceManager.GetString("ban_dang_tich_chon_chieu_khau_theo_pttt_ban_co_chac_chan_muon_thay_doi_pttt_nay", resourceCulture);
