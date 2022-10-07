@@ -7318,5 +7318,59 @@ namespace PhuLongCRM.Resources {
                 return ResourceManager.GetString("da_ban_giao_trang_chu", resourceCulture);
             }
         }
+        
+        internal static string xac_nhan_ban_giao {
+            get {
+                return ResourceManager.GetString("xac_nhan_ban_giao", resourceCulture);
+            }
+        }
+        
+        internal static string vui_long_chon_ngay_xac_nhan {
+            get {
+                return ResourceManager.GetString("vui_long_chon_ngay_xac_nhan", resourceCulture);
+            }
+        }
+        
+        internal static string di_den_nghiem_thu {
+            get {
+                return ResourceManager.GetString("di_den_nghiem_thu", resourceCulture);
+            }
+        }
+        
+        internal static string di_den_ban_giao_san_pham {
+            get {
+                return ResourceManager.GetString("di_den_ban_giao_san_pham", resourceCulture);
+            }
+        }
+        
+        internal static string di_den_ban_giao_giay_chung_nhan {
+            get {
+                return ResourceManager.GetString("di_den_ban_giao_giay_chung_nhan", resourceCulture);
+            }
+        }
+        
+        internal static string xac_nhan_du_ho_so_giay_to {
+            get {
+                return ResourceManager.GetString("xac_nhan_du_ho_so_giay_to", resourceCulture);
+            }
+        }
+        
+        internal static string cccd_ho_chieu {
+            get {
+                return ResourceManager.GetString("cccd_ho_chieu", resourceCulture);
+            }
+        }
+        
+        internal static string hop_dong_confirmdocument {
+            get {
+                return ResourceManager.GetString("hop_dong_confirmdocument", resourceCulture);
+            }
+        }
+        
+        internal static string hoa_don_vat {
+            get {
+                return ResourceManager.GetString("hoa_don_vat", resourceCulture);
+            }
+        }
     }
 }

@@ -101,6 +101,7 @@ namespace PhuLongCRM.ViewModels
 
             var content = new
             {
+                bsd_handoverdate = this.UnitHandover.bsd_handoverdate,
                 bsd_actualnsa = this.UnitHandover.bsd_actualnsa,
                 bsd_producterror = this.UnitHandover.bsd_producterror
             };

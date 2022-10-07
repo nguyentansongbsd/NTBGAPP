@@ -3774,4 +3774,31 @@
 	<data name="da_ban_giao_trang_chu" xml:space="preserve">
 		<value>Đã bàn giao</value>
 	</data>
+	<data name="xac_nhan_ban_giao" xml:space="preserve">
+		<value>Confirm Handover</value>
+	</data>
+	<data name="vui_long_chon_ngay_xac_nhan" xml:space="preserve">
+		<value>Pleass choose confirm date.</value>
+	</data>
+	<data name="di_den_nghiem_thu" xml:space="preserve">
+		<value>Go To Acceptance</value>
+	</data>
+	<data name="di_den_ban_giao_san_pham" xml:space="preserve">
+		<value>Go To Unit Handover</value>
+	</data>
+	<data name="di_den_ban_giao_giay_chung_nhan" xml:space="preserve">
+		<value>Go To Pink-book Handover</value>
+	</data>
+	<data name="xac_nhan_du_ho_so_giay_to" xml:space="preserve">
+		<value>Confirm Document For Pinkbook</value>
+	</data>
+	<data name="cccd_ho_chieu" xml:space="preserve">
+		<value>Has ID Card/ Passport</value>
+	</data>
+	<data name="hop_dong_confirmdocument" xml:space="preserve">
+		<value>Has Contract</value>
+	</data>
+	<data name="hoa_don_vat" xml:space="preserve">
+		<value>Has VAT Invoice</value>
+	</data>
 </root>

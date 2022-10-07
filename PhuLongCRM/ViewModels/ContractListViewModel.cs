@@ -60,6 +60,15 @@ namespace PhuLongCRM.ViewModels
                     project = null;
                 }
 
+                //<condition attribute='statuscode' operator='not-in'>
+                //                            <value>4</value>
+                //                            <value>3</value>
+                //                            <value>100003</value>
+                //                            <value>1</value>
+                //                            <value>100002</value>
+                //                            <value>2</value>
+                //                        </condition>
+
                 EntityName = "salesorders";
                 FetchXml = $@"<fetch version='1.0' count='15' page='{Page}' output-format='xml-platform' mapping='logical' distinct='false'>
                                 <entity name='salesorder'>
@@ -76,13 +85,13 @@ namespace PhuLongCRM.ViewModels
                                     <filter type='and'>
                                         {project}
                                         {status}
-                                        <condition attribute='statuscode' operator='not-in'>
-                                            <value>4</value>
-                                            <value>3</value>
-                                            <value>100003</value>
-                                            <value>1</value>
-                                            <value>100002</value>
-                                            <value>2</value>
+                                        <condition attribute='statuscode' operator='in'>
+                                            <value>100000005</value>
+                                            <value>100000009</value>
+                                            <value>100000004</value>
+                                            <value>100000011</value>
+                                            <value>100000012</value>
+                                            <value>100001</value>
                                         </condition>
                                         <condition attribute = '{attibute}' operator= 'eq' value = '{UserLogged.Id}' />  
                                         <filter type='or'>      
@@ -119,7 +128,8 @@ namespace PhuLongCRM.ViewModels
                 var list = ContractStatusCodeData.ContractStatusData();
                 foreach (var item in list)
                 {
-                    if (item.Id != "4" && item.Id != "3" && item.Id != "100003" && item.Id != "1" && item.Id != "100002" && item.Id != "2")
+                    //if (item.Id != "4" && item.Id != "3" && item.Id != "100003" && item.Id != "1" && item.Id != "100002" && item.Id != "2")
+                    if (item.Id == "100001" || item.Id == "100000012" || item.Id == "100000011" || item.Id == "100000004" || item.Id == "100000009" || item.Id == "100000005")
                         FiltersStatus.Add(new OptionSet(item.Id, item.Name));
                 }
             }
