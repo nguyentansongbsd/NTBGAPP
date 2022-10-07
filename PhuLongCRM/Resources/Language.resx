@@ -3768,4 +3768,28 @@
 	<data name="meet_termination_type" xml:space="preserve">
 		<value>Thanh lý</value>
 	</data>
+	<data name="nghiem_thu_trang_chu" xml:space="preserve">
+		<value>NGHIỆM THU</value>
+	</data>
+	<data name="ban_giao_san_pham_trang_chu" xml:space="preserve">
+		<value>BÀN GIAO SẢN PHẨM</value>
+	</data>
+	<data name="ban_giao_giay_chung_nhan_trang_chu" xml:space="preserve">
+		<value>BÀN GIAO GIẤY CHỨNG NHẬN</value>
+	</data>
+	<data name="dang_nghiem_thu_trang_chu" xml:space="preserve">
+		<value>Đang nghiệm thu</value>
+	</data>
+	<data name="da_nghiem_thu_trang_chu" xml:space="preserve">
+		<value>Đã nghiệm thu</value>
+	</data>
+	<data name="dang_ban_giao_trang_chu" xml:space="preserve">
+		<value>Đang bàn giao</value>
+	</data>
+	<data name="da_ban_giao_trang_chu" xml:space="preserve">
+		<value>Đã bàn giao</value>
+	</data>
+	<data name="chon_hop_dong" xml:space="preserve">
+		<value>Chọn hợp đồng</value>
+	</data>
 </root>
