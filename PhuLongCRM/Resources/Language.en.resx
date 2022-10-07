@@ -3753,4 +3753,19 @@
 	<data name="khong_the_dang_nhap_vi_ban_da_dang_nhap_qua_so_lan_gioi_han" xml:space="preserve">
 		<value>Can not login. Because you have logged in too many times.</value>
 	</data>
+	<data name="meet_acceptance_notices_type" xml:space="preserve">
+		<value>Acceptance notices</value>
+	</data>
+	<data name="meet_units_handover_type" xml:space="preserve">
+		<value>Units- Handover</value>
+	</data>
+	<data name="meet_pink_book_handover_type" xml:space="preserve">
+		<value>Pink-book Handover</value>
+	</data>
+	<data name="meet_end_of_contract_type" xml:space="preserve">
+		<value>End of contract</value>
+	</data>
+	<data name="meet_termination_type" xml:space="preserve">
+		<value>Termination</value>
+	</data>
 </root>

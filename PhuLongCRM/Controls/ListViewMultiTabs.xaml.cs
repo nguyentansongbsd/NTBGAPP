@@ -85,9 +85,11 @@ namespace PhuLongCRM.Controls
                 grid.Padding = new Thickness(10, 5, 10, 5);
 
                 Label lb = new Label();
-                lb.TextColor = (Color)App.Current.Resources["NavigationPrimary"];
+                //   lb.TextColor = (Color)App.Current.Resources["NavigationPrimary"];
+                lb.TextColor = Color.FromHex("#444444");
                 lb.FontSize = 15;
-                lb.FontAttributes = FontAttributes.Bold;
+                // lb.FontAttributes = FontAttributes.Bold;
+                lb.FontAttributes = FontAttributes.None;
                 lb.SetBinding(Label.TextProperty, "Label");
                 lb.BackgroundColor = Color.White;
                 lb.VerticalOptions = LayoutOptions.Center;
@@ -135,7 +137,7 @@ namespace PhuLongCRM.Controls
                 if (isSelect == true)
                 {
                     CheckBox checkbox = new CheckBox();
-                    checkbox.Color = Color.FromHex("#2196F3");
+                   // checkbox.Color = Color.FromHex("#2196F3");
                     checkbox.SetBinding(CheckBox.IsCheckedProperty, "Selected");
                     checkbox.HorizontalOptions = LayoutOptions.End;
                     checkbox.VerticalOptions = LayoutOptions.Center;

@@ -72,6 +72,25 @@ namespace PhuLongCRM.ViewModels
 
         private OptionSet _customerMapping;
         public OptionSet CustomerMapping { get => _customerMapping; set { _customerMapping = value; OnPropertyChanged(nameof(CustomerMapping)); } }
+
+        private OptionSet _project;
+        public OptionSet Project { get => _project; set { _project = value; OnPropertyChanged(nameof(Project)); } }
+
+        private List<OptionSet> _projects;
+        public List<OptionSet> Projects { get => _projects; set { _projects = value; OnPropertyChanged(nameof(Projects)); } }
+
+        private OptionSet _oe;
+        public OptionSet OE { get => _oe; set { _oe = value; OnPropertyChanged(nameof(OE)); } }
+
+        private List<OptionSet> _oes;
+        public List<OptionSet> OEs { get => _oes; set { _oes = value; OnPropertyChanged(nameof(OEs)); } }
+
+        private OptionSet _unit;
+        public OptionSet Unit { get => _unit; set { _unit = value; OnPropertyChanged(nameof(Unit)); } }
+
+        private List<OptionSet> _units;
+        public List<OptionSet> Units { get => _units; set { _units = value; OnPropertyChanged(nameof(Units)); } }
+
         public MeetingViewModel()
         {
             MeetingModel = new MeetingModel();

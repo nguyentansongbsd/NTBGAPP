@@ -394,6 +394,8 @@ namespace PhuLongCRM.Controls
                             <condition attribute='bsd_fullname' operator='like' value='%25key%25' />
                             <condition attribute='bsd_identitycardnumber' operator='like' value='%25key%25' />
                             <condition attribute='mobilephone' operator='like' value='%25key%25' />
+<condition attribute='bsd_passport' operator='like' value='%25key%25' />
+<condition attribute='bsd_identitycard' operator='like' value='%25key%25' />
                             <condition attribute='emailaddress1' operator='like' value='%25key%25' />
                             <condition attribute='bsd_customercode' operator='like' value='%25key%25' />
                         </filter>
