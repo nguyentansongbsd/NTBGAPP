@@ -27,9 +27,7 @@
                                 </telerikPrimitives:RadBorder>
 
                                 <controls:FormLabel Text="{x:Static lang:Language.ngay_ban_giao_thuc_te_sp}" FontSize="15"/>
-                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
-                                    <Label Text="{Binding UnitHandover.bsd_handoverdate,StringFormat='{0:dd/MM/yyyy}'}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
-                                </telerikPrimitives:RadBorder>
+                                <controls:DatePickerBoderControl ShowTime="False" Date="{Binding UnitHandover.bsd_handoverdate}" Placeholder="{x:Static lang:Language.ngay_ban_giao_thuc_te_sp}"/>
 
                                 <controls:FormLabel Text="{x:Static lang:Language.dien_tich_thuc_te_ban_giao_sp}" FontSize="15"/>
                                 <controls:DecimalEntry Price="{Binding UnitHandover.bsd_actualnsa}" Placeholder="{x:Static lang:Language.dien_tich_thuc_te_ban_giao_sp}"/>

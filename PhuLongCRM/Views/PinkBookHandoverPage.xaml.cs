@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PhuLongCRM.Helper;
+using PhuLongCRM.Models;
 using PhuLongCRM.Resources;
 using PhuLongCRM.ViewModels;
 using Xamarin.Forms;
@@ -24,11 +25,62 @@ namespace PhuLongCRM.Views
             await viewModel.LoadPinkBookHandover();
             if (viewModel.PinkBookHandover != null)
             {
+                SetButtonFloatingButton();
                 OnCompleted?.Invoke(true);
             }
             else
             {
                 OnCompleted?.Invoke(false);
+            }
+        }
+
+        private void SetButtonFloatingButton()
+        {
+            if (viewModel.PinkBookHandover.statuscode == "1")
+            {
+                if (viewModel.PinkBookHandover.bsd_printdate.HasValue) // co ngay in
+                {
+                    viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.xac_nhan_ban_giao, "FontAwesomeRegular", "\uf044", null, ConfirmHandover));
+                }
+                else
+                {
+                    floatingButtonGroup.IsVisible = false;
+                }
+            }
+            else
+            {
+                floatingButtonGroup.IsVisible = false;
+            }
+        }
+
+        private void ConfirmHandover(object sender, EventArgs e)
+        {
+            centerConfirm.ShowCenterPopup();
+        }
+
+        private async void ConfirmPinkbookHandover_Clicked(object sender, EventArgs e)
+        {
+            if (!viewModel.ConfirmDate.HasValue)
+            {
+                ToastMessageHelper.ShortMessage(Language.vui_long_chon_ngay_xac_nhan);
+                return;
+            }
+
+            LoadingHelper.Show();
+            CrmApiResponse result = await viewModel.ConfirmPinkbookHandover();
+            if (result.IsSuccess)
+            {
+                await viewModel.LoadPinkBookHandover();
+                if (PinkBookHandovers.NeedRefresh.HasValue) PinkBookHandovers.NeedRefresh = true;
+                ToastMessageHelper.ShortMessage(Language.thanh_cong);
+                centerConfirm.CloseContent_Tapped(this, EventArgs.Empty);
+                SetButtonFloatingButton();
+                LoadingHelper.Hide();
+            }
+            else
+            {
+                LoadingHelper.Hide();
+                ToastMessageHelper.ShortMessage(result.ErrorResponse.error.message);
             }
         }
 

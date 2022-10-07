@@ -26,24 +26,96 @@ namespace PhuLongCRM.Views
 
         public async void Init()
         {
-            await Task.WhenAll(
-                    viewModel.LoadContract(ContractId),
-                    viewModel.LoadPromotions(this.ContractId),
-                    viewModel.LoadSpecialDiscount(this.ContractId),
-                    viewModel.LoadCoOwners(ContractId),
-                    viewModel.LoadDiscountsPaymentScheme());
-            await Task.WhenAll(
-                     viewModel.LoadHandoverCondition(this.ContractId),
-                     viewModel.LoadDiscounts(),
-                     viewModel.LoadDiscountsInternel(),
-                     viewModel.LoadDiscountsExChange());
+            //viewModel.LoadPromotions(this.ContractId),
+            //    viewModel.LoadDiscountsPaymentScheme()
+            //viewModel.LoadDiscounts(),
+            //         viewModel.LoadDiscountsInternel(),
+            //         viewModel.LoadDiscountsExChange())
+            //viewModel.LoadSpecialDiscount(this.ContractId)
+            await viewModel.LoadContract(ContractId);
             if (viewModel.Contract.salesorderid != Guid.Empty)
             {
+                await Task.WhenAll(
+                     viewModel.LoadCoOwners(ContractId),
+                     viewModel.LoadHandoverCondition(this.ContractId),
+                     viewModel.LoadConfirmDocumentForPinkBookDetail(this.ContractId)
+                     );
+                SetButtonFloatingButton();
                 OnCompleted?.Invoke(true);
             }
             else
                 OnCompleted?.Invoke(false);
             LoadingHelper.Hide();
+        }
+
+        private void SetButtonFloatingButton()
+        {
+            if (viewModel.Contract.acceptanceid != Guid.Empty)
+            {
+                viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.di_den_nghiem_thu, "FontAwesomeRegular", "\uf2d2", null, GoToAcceptance));
+            }
+            if (viewModel.Contract.unit_handoverid != Guid.Empty)
+            {
+                viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.di_den_ban_giao_san_pham, "FontAwesomeSolid", "\uf4ce", null, GoToUnitHandover));
+            }
+            if (viewModel.Contract.pinkbook_handoverid != Guid.Empty)
+            {
+                viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.di_den_ban_giao_giay_chung_nhan, "FontAwesomeRegular", "\uf2b9", null, GoToPinkBookHandover));
+            }
+        }
+
+        private void GoToUnitHandover(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            UnitHandoverPage unitHandover = new UnitHandoverPage(viewModel.Contract.unit_handoverid);
+            unitHandover.OnCompleted = async (isSuccess) => {
+                if (isSuccess)
+                {
+                    await Navigation.PushAsync(unitHandover);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+                }
+            };
+        }
+
+        private void GoToAcceptance(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            AcceptanceDetailPage acceptance = new AcceptanceDetailPage(viewModel.Contract.acceptanceid);
+            acceptance.OnCompleted = async (isSuccess) => {
+                if (isSuccess)
+                {
+                    await Navigation.PushAsync(acceptance);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+                }
+            };
+        }
+
+        private void GoToPinkBookHandover(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            PinkBookHandoverPage pinkBookHandover = new PinkBookHandoverPage(viewModel.Contract.pinkbook_handoverid);
+            pinkBookHandover.OnCompleted = async (isSuccess) => {
+                if (isSuccess)
+                {
+                    await Navigation.PushAsync(pinkBookHandover);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+                }
+            };
         }
 
         // tab lich
@@ -301,38 +373,44 @@ namespace PhuLongCRM.Views
             LoadingHelper.Hide();
         }
 
-        private void TabControl_IndexTab(object sender, LookUpChangeEvent e)
+        private async void TabControl_IndexTab(object sender, LookUpChangeEvent e)
         {
             if (e.Item != null)
             {
                 if ((int)e.Item == 0)
                 {
-                    TabChinhSach.IsVisible = true;
-                    TabChiTiet.IsVisible = false;
-                    TabTongHop.IsVisible = false;
-                    TabLich.IsVisible = false;
-                }
-                else if ((int)e.Item == 1)
-                {
-                    TabChinhSach.IsVisible = false;
-                    TabChiTiet.IsVisible = true;
-                    TabTongHop.IsVisible = false;
-                    TabLich.IsVisible = false;
-                }
-                else if ((int)e.Item == 2)
-                {
-                    TabChinhSach.IsVisible = false;
+                    //TabChinhSach.IsVisible = false;
                     TabChiTiet.IsVisible = false;
                     TabTongHop.IsVisible = true;
                     TabLich.IsVisible = false;
+                    TabBanGiao.IsVisible = false;
                 }
-                else if ((int)e.Item == 3)
+                else if ((int)e.Item == 1)
                 {
-                    TabChinhSach.IsVisible = false;
+                    //TabChinhSach.IsVisible = false;
+                    TabChiTiet.IsVisible = true;
+                    TabTongHop.IsVisible = false;
+                    TabLich.IsVisible = false;
+                    TabBanGiao.IsVisible = false;
+                }
+                else if ((int)e.Item == 2)
+                {
+                    //TabChinhSach.IsVisible = false;
                     TabChiTiet.IsVisible = false;
                     TabTongHop.IsVisible = false;
                     TabLich.IsVisible = true;
+                    TabBanGiao.IsVisible = false;
                     LoadInstallmentList(this.ContractId);
+                }else if ((int)e.Item == 3)
+                {
+                    LoadingHelper.Show();
+                    await Task.WhenAll(viewModel.LoadAcceptances(this.ContractId), viewModel.LoadUnitHandovers(this.ContractId), viewModel.LoadPinkBooHandovers(this.ContractId));
+
+                    TabChiTiet.IsVisible = false;
+                    TabTongHop.IsVisible = false;
+                    TabLich.IsVisible = false;
+                    TabBanGiao.IsVisible = true;
+                    LoadingHelper.Hide();
                 }
             }
         }
@@ -381,6 +459,91 @@ namespace PhuLongCRM.Views
             await viewModel.LoadInstallmentById(item.bsd_paymentschemedetailid);
             Interest_CenterPopup.ShowCenterPopup();
             LoadingHelper.Hide();
+        }
+
+
+        private async void ShowMoreUnitHandovers_Clicked(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            viewModel.PageUnitHandover++;
+            await viewModel.LoadUnitHandovers(this.ContractId);
+            LoadingHelper.Hide();
+        }
+
+        private async void ShowMoreAcceptances_Clicked(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            viewModel.PageAcceptance++;
+            await viewModel.LoadAcceptances(this.ContractId);
+            LoadingHelper.Hide();
+        }
+
+        private async void ShowMorePinkBooHandovers_Clicked(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            viewModel.PagePinkBooHandover++;
+            await viewModel.LoadPinkBooHandovers(this.ContractId);
+            LoadingHelper.Hide();
+        }
+
+        private void AcceptanceItem_Tapped(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            var item = (AcceptanceListModel)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            AcceptanceDetailPage page = new AcceptanceDetailPage(item.bsd_acceptanceid);
+            page.OnCompleted = async (OnCompleted) =>
+            {
+                if (OnCompleted == true)
+                {
+                    await Navigation.PushAsync(page);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+                }
+
+            };
+        }
+
+        private void PinkBooHandoverItem_Tapped(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            var item = (PinkBookHandoversModel)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            PinkBookHandoverPage pinkBookHandover = new PinkBookHandoverPage(item.bsd_pinkbookhandoverid);
+            pinkBookHandover.OnCompleted = async (isSuccessed) =>
+            {
+                if (isSuccessed)
+                {
+                    await Navigation.PushAsync(pinkBookHandover);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+                }
+            };
+        }
+
+        private void UnitHandoverItem_Tapped(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            var item = (UnitHandoversModel)((sender as StackLayout).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            UnitHandoverPage unitHandover = new UnitHandoverPage(item.bsd_handoverid);
+            unitHandover.OnCompleted = async (isSuccessed) => {
+                if (isSuccessed)
+                {
+                    await Navigation.PushAsync(unitHandover);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+                }
+            };
         }
     }
 }
