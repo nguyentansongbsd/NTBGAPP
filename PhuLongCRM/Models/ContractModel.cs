@@ -363,5 +363,9 @@ namespace PhuLongCRM.Models
 
         public string bsd_chietkhautheopttt { get; set; }
         public string bsd_selectedchietkhaupttt { get; set; }
+
+        public Guid unit_handoverid { get; set; }
+        public Guid acceptanceid { get; set; }
+        public Guid pinkbook_handoverid { get; set; }
     }
 }

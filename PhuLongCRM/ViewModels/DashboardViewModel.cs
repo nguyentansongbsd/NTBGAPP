@@ -170,7 +170,7 @@ namespace PhuLongCRM.ViewModels
                                 </fetch>";
             var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<UnitHandoversModel>>("bsd_handovers", fetchXml);
             if (result == null || result.value.Any() == false) return;
-            this.TotalUnitHandovering = result.value.Where(x => x.statuscode == "1" || x.statuscode == "100000002").Count(); //sts = Active,PinkBook Handover : Dang ban giao sp
+            this.TotalUnitHandovering = result.value.Where(x => x.statuscode == "1").Count(); //sts = Active : Dang ban giao sp
             this.TotalUnitHandovered = result.value.Where(x => x.statuscode == "100000001").Count(); //sts = Handover : Da ban giao sp
         }
 

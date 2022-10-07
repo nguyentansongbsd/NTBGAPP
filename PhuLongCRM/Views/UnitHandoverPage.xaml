@@ -160,6 +160,16 @@
                     </StackLayout>
                 </controls:CenterPopup.Body>
             </controls:CenterPopup>
+            <controls:CenterPopup x:Name="centerConfirm" Title="{x:Static lang:Language.chon_ngay}">
+                <controls:CenterPopup.Body>
+                    <StackLayout>
+                        <controls:FormLabelRequired Text="{x:Static lang:Language.ngay_xac_nhan}"/>                        
+                        <controls:DatePickerBoderControl ShowTime="False" Date="{Binding ConfirmDate}" Placeholder="{x:Static lang:Language.ngay_xac_nhan}" />
+
+                        <Button Text="{x:Static lang:Language.xac_nhan}" Clicked="ConfirmHandover_Clicked" BackgroundColor="{x:StaticResource NavigationPrimary}" CornerRadius="5"  TextColor="White" FontAttributes="Bold" HeightRequest="40" HorizontalOptions="End"/>
+                    </StackLayout>
+                </controls:CenterPopup.Body>
+            </controls:CenterPopup>
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

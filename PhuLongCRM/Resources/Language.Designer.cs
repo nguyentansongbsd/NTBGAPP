@@ -1024,6 +1024,15 @@ namespace PhuLongCRM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CCCD/ Hộ chiếu.
+        /// </summary>
+        internal static string cccd_ho_chieu {
+            get {
+                return ResourceManager.GetString("cccd_ho_chieu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cha mẹ.
         /// </summary>
         internal static string cha_me {
@@ -3157,6 +3166,24 @@ namespace PhuLongCRM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Đi Đến Bàn Giao Giấy Chứng Nhận.
+        /// </summary>
+        internal static string di_den_ban_giao_giay_chung_nhan {
+            get {
+                return ResourceManager.GetString("di_den_ban_giao_giay_chung_nhan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đi Đến Bàn Giao Sản Phẩm.
+        /// </summary>
+        internal static string di_den_ban_giao_san_pham {
+            get {
+                return ResourceManager.GetString("di_den_ban_giao_san_pham", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Đi đến Hợp đồng.
         /// </summary>
         internal static string di_den_hop_dong {
@@ -3180,6 +3207,15 @@ namespace PhuLongCRM.Resources {
         internal static string di_den_kh_doanh_nghiep {
             get {
                 return ResourceManager.GetString("di_den_kh_doanh_nghiep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đi Đến Nghiệm Thu.
+        /// </summary>
+        internal static string di_den_nghiem_thu {
+            get {
+                return ResourceManager.GetString("di_den_nghiem_thu", resourceCulture);
             }
         }
         
@@ -4336,6 +4372,15 @@ namespace PhuLongCRM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hoá đơn VAT.
+        /// </summary>
+        internal static string hoa_don_vat {
+            get {
+                return ResourceManager.GetString("hoa_don_vat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HOA HỒNG.
         /// </summary>
         internal static string hoa_hong {
@@ -4431,6 +4476,15 @@ namespace PhuLongCRM.Resources {
         internal static string hop_dong {
             get {
                 return ResourceManager.GetString("hop_dong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hợp đồng.
+        /// </summary>
+        internal static string hop_dong_confirmdocument {
+            get {
+                return ResourceManager.GetString("hop_dong_confirmdocument", resourceCulture);
             }
         }
         
@@ -10357,6 +10411,15 @@ namespace PhuLongCRM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vui lòng chọn ngày xác nhận..
+        /// </summary>
+        internal static string vui_long_chon_ngay_xac_nhan {
+            get {
+                return ResourceManager.GetString("vui_long_chon_ngay_xac_nhan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vui lòng chọn người đại diện..
         /// </summary>
         internal static string vui_long_chon_nguoi_dai_dien {
@@ -10785,6 +10848,24 @@ namespace PhuLongCRM.Resources {
         internal static string xac_nhan {
             get {
                 return ResourceManager.GetString("xac_nhan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xác Nhận Bàn Giao.
+        /// </summary>
+        internal static string xac_nhan_ban_giao {
+            get {
+                return ResourceManager.GetString("xac_nhan_ban_giao", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xác Nhận Đủ Hồ Sơ Giấy Tờ.
+        /// </summary>
+        internal static string xac_nhan_du_ho_so_giay_to {
+            get {
+                return ResourceManager.GetString("xac_nhan_du_ho_so_giay_to", resourceCulture);
             }
         }
         

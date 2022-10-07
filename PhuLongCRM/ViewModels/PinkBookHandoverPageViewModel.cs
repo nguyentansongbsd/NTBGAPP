@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using PhuLongCRM.Helper;
 using PhuLongCRM.Models;
+using PhuLongCRM.Settings;
 
 namespace PhuLongCRM.ViewModels
 {
@@ -11,6 +14,11 @@ namespace PhuLongCRM.ViewModels
         public Guid PinkBookHandoverId { get; set; }
         private PinkBookHandoverPageModel _pinkBookHandover;
         public PinkBookHandoverPageModel PinkBookHandover { get => _pinkBookHandover; set { _pinkBookHandover = value;OnPropertyChanged(nameof(PinkBookHandover)); } }
+
+        public ObservableCollection<FloatButtonItem> ButtonCommandList { get; set; } = new ObservableCollection<FloatButtonItem>();
+
+        private DateTime? _confirmDate;
+        public DateTime? ConfirmDate { get => _confirmDate; set { _confirmDate = value; OnPropertyChanged(nameof(ConfirmDate)); } }
 
         public PinkBookHandoverPageViewModel()
         {
@@ -67,7 +75,7 @@ namespace PhuLongCRM.ViewModels
                                   </entity>
                                 </fetch>";
             var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<PinkBookHandoverPageModel>>("bsd_pinkbookhandovers", fetchXml);
-            if (result == null && result.value.Any() == false) return;
+            if (result == null || result.value.Any() == false) return;
             var data = result.value.SingleOrDefault();
             if (data.bsd_printdate.HasValue)
             {
@@ -90,6 +98,26 @@ namespace PhuLongCRM.ViewModels
                 data.bsd_pinkbookreceiptdate = data.bsd_pinkbookreceiptdate.Value.ToLocalTime();
             }
             this.PinkBookHandover = data;
+        }
+
+        public async Task<CrmApiResponse> ConfirmPinkbookHandover()
+        {
+            string path = "/bsd_pinkbookhandovers(" + this.PinkBookHandoverId + ")";
+            var content = await GetContentConfirmHandover();
+            CrmApiResponse result = await CrmHelper.PatchData(path, content);
+            return result;
+        }
+
+        private async Task<object> GetContentConfirmHandover()
+        {
+            IDictionary<string, object> data = new Dictionary<string, object>();
+            data["statuscode"] = "100000000";// sts = pink book handover
+            if (this.ConfirmDate.HasValue)
+            {
+                data["bsd_confirmdate"] = this.ConfirmDate.Value.Date.ToUniversalTime();
+            }
+            data["bsd_confirmer@odata.bind"] = "/systemusers(" + UserLogged.ManagerId + ")";
+            return data;
         }
     }
 }
