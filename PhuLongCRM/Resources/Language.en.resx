@@ -3767,7 +3767,7 @@
 	</data>
 	<data name="meet_termination_type" xml:space="preserve">
 		<value>Termination</value>
-  </data>
+	</data>
 	<data name="nghiem_thu_trang_chu" xml:space="preserve">
 		<value>ACCEPTANCE</value>
 	</data>
@@ -3788,6 +3788,9 @@
 	</data>
 	<data name="da_ban_giao_trang_chu" xml:space="preserve">
 		<value>Đã bàn giao</value>
+	</data>
+	<data name="chon_hop_dong" xml:space="preserve">
+		<value>Choose contract</value>
 	</data>
 	<data name="xac_nhan_ban_giao" xml:space="preserve">
 		<value>Confirm Handover</value>

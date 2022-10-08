@@ -1,6 +1,7 @@
 ﻿using PhuLongCRM.Controls;
 using PhuLongCRM.Helper;
 using PhuLongCRM.Models;
+using PhuLongCRM.Resources;
 using PhuLongCRM.Settings;
 using PhuLongCRM.Views;
 using System;
@@ -79,17 +80,17 @@ namespace PhuLongCRM.ViewModels
         private List<OptionSet> _projects;
         public List<OptionSet> Projects { get => _projects; set { _projects = value; OnPropertyChanged(nameof(Projects)); } }
 
-        private OptionSet _oe;
-        public OptionSet OE { get => _oe; set { _oe = value; OnPropertyChanged(nameof(OE)); } }
+        private ContractModel _contract;
+        public ContractModel Contract { get => _contract; set { _contract = value; OnPropertyChanged(nameof(Contract)); } }
 
-        private List<OptionSet> _oes;
-        public List<OptionSet> OEs { get => _oes; set { _oes = value; OnPropertyChanged(nameof(OEs)); } }
+        private List<ContractModel> _contracts;
+        public List<ContractModel> Contracts { get => _contracts; set { _contracts = value; OnPropertyChanged(nameof(Contracts)); } }
 
         private OptionSet _unit;
         public OptionSet Unit { get => _unit; set { _unit = value; OnPropertyChanged(nameof(Unit)); } }
 
-        private List<OptionSet> _units;
-        public List<OptionSet> Units { get => _units; set { _units = value; OnPropertyChanged(nameof(Units)); } }
+        private OptionSet _khachHang;
+        public OptionSet KhachHang { get => _khachHang; set { _khachHang = value; OnPropertyChanged(nameof(KhachHang)); } }
 
         public MeetingViewModel()
         {
@@ -98,6 +99,8 @@ namespace PhuLongCRM.ViewModels
             AllsLookUpOptional = new List<List<OptionSetFilter>>();
             Tabs = new List<string>();
             ShowButton = true;
+            Projects = new List<OptionSet>();
+            Contracts = new List<ContractModel>();
         }
 
         public async Task loadDataMeet(Guid id)
@@ -116,6 +119,9 @@ namespace PhuLongCRM.ViewModels
                       <attribute name='activityid' />
                       <attribute name='description' />
                       <attribute name='bsd_collectiontype' />
+                    <attribute name='bsd_units' alias='unit_id'/>
+                    <attribute name='bsd_project' alias='project_id'/>
+                    <attribute name='bsd_optionentry' alias='contract_id'/>
                       <order attribute='createdon' descending='true' />
                       <filter type='and'>
                           <condition attribute='activityid' operator='eq' uitype='appointment' value='" + id + @"' />
@@ -135,6 +141,15 @@ namespace PhuLongCRM.ViewModels
                     <link-entity name='opportunity' from='opportunityid' to='regardingobjectid' link-type='outer' alias='ab'>
                         <attribute name='opportunityid' alias='queue_id'/>                  
                         <attribute name='name' alias='queue_name'/>
+                    </link-entity>
+                    <link-entity name='salesorder' from='salesorderid' to='bsd_optionentry' link-type='outer'>
+                        <attribute name='name' alias='contract_name'/>
+                    </link-entity>
+                    <link-entity name='product' from='productid' to='bsd_units' link-type='outer'>
+                        <attribute name='name' alias='unit_name'/>
+                    </link-entity>
+                    <link-entity name='bsd_project' from='bsd_projectid' to='bsd_project' link-type='outer'>
+                        <attribute name='bsd_name' alias='project_name'/>
                     </link-entity>
                   </entity>
                 </fetch>";
@@ -201,6 +216,14 @@ namespace PhuLongCRM.ViewModels
                 ShowButton = true;
             else
                 ShowButton = false;
+
+            if (MeetingModel.project_id != Guid.Empty)
+                Project = new OptionSet { Val = MeetingModel.project_id.ToString(), Label = MeetingModel.project_name };
+            if(MeetingModel.unit_id != Guid.Empty)
+                Unit = new OptionSet { Label = MeetingModel.unit_name , Val= MeetingModel.unit_id.ToString()};
+            if (MeetingModel.contract_id != Guid.Empty)
+                Contract = new ContractModel { salesorderid = MeetingModel.contract_id, salesorder_name = MeetingModel.contract_name };
+            ToastMessageHelper.ShortMessage(MeetingModel.project_id.ToString());
 
             string xml_fetch = @"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='true'>
                   <entity name='appointment'>
@@ -293,7 +316,6 @@ namespace PhuLongCRM.ViewModels
             var result = await CrmHelper.SetNullLookupField("appointments", id, fieldName);
             return result.IsSuccess;
         }
-
         private async Task<object> getContent()
         {
             IDictionary<string, object> data = new Dictionary<string, object>();
@@ -335,31 +357,31 @@ namespace PhuLongCRM.ViewModels
 
             if (CustomerMapping != null)
             {
-                IDictionary<string, object> item_required = new Dictionary<string, object>();
-                if (CustomerMapping.Title == CodeContac)
-                {
-                    item_required["partyid_contact@odata.bind"] = "/contacts(" + CustomerMapping.Val + ")";
-                    item_required["participationtypemask"] = 5;
-                    arrayMeeting.Add(item_required);
+                //IDictionary<string, object> item_required = new Dictionary<string, object>();
+                //if (CustomerMapping.Title == CodeContac)
+                //{
+                //    item_required["partyid_contact@odata.bind"] = "/contacts(" + CustomerMapping.Val + ")";
+                //    item_required["participationtypemask"] = 5;
+                //    arrayMeeting.Add(item_required);
 
-                    data["regardingobjectid_contact_appointment@odata.bind"] = "/contacts(" + CustomerMapping.Val + ")";
-                }
-                else if (CustomerMapping.Title == CodeAccount)
-                {
-                    item_required["partyid_account@odata.bind"] = "/accounts(" + CustomerMapping.Val + ")";
-                    item_required["participationtypemask"] = 5;
-                    arrayMeeting.Add(item_required);
+                //    data["regardingobjectid_contact_appointment@odata.bind"] = "/contacts(" + CustomerMapping.Val + ")";
+                //}
+                //else if (CustomerMapping.Title == CodeAccount)
+                //{
+                //    item_required["partyid_account@odata.bind"] = "/accounts(" + CustomerMapping.Val + ")";
+                //    item_required["participationtypemask"] = 5;
+                //    arrayMeeting.Add(item_required);
 
-                    data["regardingobjectid_account_appointment@odata.bind"] = "/accounts(" + CustomerMapping.Val + ")";
-                }
-                else if (CustomerMapping.Title == CodeLead)
-                {
-                    item_required["partyid_lead@odata.bind"] = "/leads(" + CustomerMapping.Val + ")";
-                    item_required["participationtypemask"] = 5;
-                    arrayMeeting.Add(item_required);
+                //    data["regardingobjectid_account_appointment@odata.bind"] = "/accounts(" + CustomerMapping.Val + ")";
+                //}
+                //else if (CustomerMapping.Title == CodeLead)
+                //{
+                //    item_required["partyid_lead@odata.bind"] = "/leads(" + CustomerMapping.Val + ")";
+                //    item_required["participationtypemask"] = 5;
+                //    arrayMeeting.Add(item_required);
 
-                    data["regardingobjectid_lead_appointment@odata.bind"] = "/leads(" + CustomerMapping.Val + ")";
-                }
+                //    data["regardingobjectid_lead_appointment@odata.bind"] = "/leads(" + CustomerMapping.Val + ")";
+                //}
                 //else if (CustomerMapping.Title == CodeQueue)
                 //{
                 //    if (Customer != null && Customer.Selected == true) // selected = true là required từ queue
@@ -452,9 +474,24 @@ namespace PhuLongCRM.ViewModels
             {
                 data["bsd_employee_Appointment@odata.bind"] = "/bsd_employees(" + UserLogged.Id + ")";
             }
+            if (Project != null)
+                data["bsd_project_Appointment@odata.bind"] = "/bsd_projects(" + Project.Val + ")";
+            if (Contract != null)
+                data["bsd_optionentry_Appointment@odata.bind"] = "/salesorders(" + Contract.salesorderid + ")";
+            if (Unit != null)
+                data["bsd_units_Appointment@odata.bind"] = "/products(" + Unit.Val + ")";
+            //if (KhachHang != null && KhachHang.Title != CodeAccount)
+            //{
+            //    data["bsd_customer_Appointment_account@odata.bind"] = "/accounts(" + KhachHang.Val + ")";
+            //    await DeletLookup("bsd_customer_Appointment_contact", MeetingModel.activityid);
+            //}
+            //else if (KhachHang != null && KhachHang.Title != CodeContac)
+            //{
+            //    data["bsd_customer_Appointment_contact@odata.bind"] = "/contacts(" + KhachHang.Val + ")";
+            //    await DeletLookup("bsd_customer_Appointment_account", MeetingModel.activityid);
+            //}
             return data;
         }
-
         public async Task<bool> createMeeting()
         {
             MeetingModel.activityid = Guid.NewGuid();
@@ -471,10 +508,10 @@ namespace PhuLongCRM.ViewModels
             }
             else
             {
+                ToastMessageHelper.ShortMessage(result.ErrorResponse.error.message);
                 return false;
             }
         }
-
         public async Task<bool> UpdateMeeting(Guid meetingid)
         {
             var actualdurationminutes = Math.Round((MeetingModel.scheduledend.Value - MeetingModel.scheduledstart.Value).TotalMinutes);
@@ -489,6 +526,105 @@ namespace PhuLongCRM.ViewModels
             else
             {
                 return false;
+            }
+        }
+        public async Task LoadProjects()
+        {
+            if (Projects != null)
+            {
+                string fetchXml = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                                <entity name='bsd_project'>
+                                    <attribute name='bsd_projectid' alias='Val'/>
+                                    <attribute name='bsd_name' alias='Label'/>
+                                    <order attribute='bsd_name' descending='false' />
+                                    <filter type='and'>
+                                      <condition attribute='statuscode' operator='eq' value='861450002' />
+                                    </filter>
+                                  </entity>
+                            </fetch>";
+                var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<OptionSet>>("bsd_projects", fetchXml);
+                if (result == null || result.value.Any() == false) return;
+
+                var data = result.value;
+                foreach (var item in data)
+                {
+                    Projects.Add(item);
+                }
+            }
+        }
+        public async Task LoadContracts()
+        {
+            string status = string.Empty;
+            string project = string.Empty;
+
+            if (CollectionType != null)
+            {
+                if (CollectionType.Val == "100000000")
+                    status = @"<condition attribute='statuscode' operator='in'>
+                                    <value>100000000</value>
+                                    <value>100000001</value>
+                                    <value>100000008</value>
+                                    <value>100000007</value>
+                                    <value>100000002</value>
+                                    <value>100000003</value>
+                                </condition>";
+                else if (CollectionType.Val == "100000003")
+                    status = @"<condition attribute='statuscode' operator='in'>
+                                    <value>100000000</value>
+                                    <value>100000001</value>
+                                    <value>100000008</value>
+                                    <value>100000007</value>
+                                    <value>100000002</value>
+                                    <value>100000003</value>
+                                    <value>100000009</value>
+                                </condition>";
+                else if (CollectionType.Val == "100000001")
+                    status = @"<condition attribute='statuscode' operator='in'>
+                                    <value>100000004</value>
+                                    <value>100000011</value>
+                                </condition>";
+            }
+
+            if (Project != null)
+                project = $@"<condition attribute='bsd_project' operator='eq' value='{Project.Val}' />";
+
+            if (Contracts != null)
+            {
+                string fetchXml = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                                <entity name='salesorder'>
+                                    <attribute name='name' alias='salesorder_name'/>
+                                    <attribute name='salesorderid' />
+                                    <attribute name='customerid' />
+                                    <attribute name='bsd_unitnumber' alias='unit_id'/>
+                                    <attribute name='bsd_project' alias='project_id'/>
+                                    <order attribute='bsd_project' descending='true' />
+                                    <filter type='and'>
+                                        {status}
+                                        {project}
+                                        <condition attribute = '{UserLogged.UserAttribute}' operator= 'eq' value = '{UserLogged.Id}' />       
+                                    </filter >
+                                    <link-entity name='bsd_project' from='bsd_projectid' to='bsd_project' link-type='outer' alias='aa'>
+                                        <attribute name='bsd_name' alias='project_name'/>
+                                    </link-entity>
+                                    <link-entity name='product' from='productid' to='bsd_unitnumber' link-type='outer' alias='ab'>
+                                        <attribute name='name' alias='unit_name'/>
+                                    </link-entity>
+                                    <link-entity name='account' from='accountid' to='customerid' link-type='outer' alias='ac'>
+                                        <attribute name='name' alias='account_name'/>
+                                    </link-entity>
+                                    <link-entity name='contact' from='contactid' to='customerid' link-type='outer' alias='ad'>
+                                        <attribute name='bsd_fullname' alias='contact_name'/>
+                                    </link-entity>
+                                </entity>
+                            </fetch>";
+                var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<ContractModel>>("salesorders", fetchXml);
+                if (result == null || result.value.Any() == false) return;
+
+                var data = result.value;
+                foreach (var item in data)
+                {
+                    Contracts.Add(item);
+                }
             }
         }
     }
