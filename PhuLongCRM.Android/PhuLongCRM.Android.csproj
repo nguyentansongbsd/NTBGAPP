@@ -111,6 +111,7 @@
     <Compile Include="Renderers\EntryNoneBorderRenderer.cs" />
     <Compile Include="Services\PdfService.cs" />
     <Compile Include="Services\FileService.cs" />
+    <Compile Include="Renderers\CustomChartRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
