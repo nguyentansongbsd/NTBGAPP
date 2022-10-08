@@ -186,5 +186,11 @@ namespace PhuLongCRM.Models
         public string optional { get => _optional; set { _optional = value; OnPropertyChanged(nameof(optional)); } }
 
         public string bsd_collectiontype { get; set; }
+        public Guid contract_id { get; set; }
+        public string contract_name { get; set; }
+        public Guid project_id { get; set; }
+        public string project_name { get; set; }
+        public Guid unit_id { get; set; }
+        public string unit_name { get; set; }
     }
 }

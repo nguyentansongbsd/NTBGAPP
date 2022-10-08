@@ -89,6 +89,9 @@ namespace PhuLongCRM.ViewModels
         private OptionSet _unit;
         public OptionSet Unit { get => _unit; set { _unit = value; OnPropertyChanged(nameof(Unit)); } }
 
+        private OptionSet _khachHang;
+        public OptionSet KhachHang { get => _khachHang; set { _khachHang = value; OnPropertyChanged(nameof(KhachHang)); } }
+
         public MeetingViewModel()
         {
             MeetingModel = new MeetingModel();
@@ -116,6 +119,9 @@ namespace PhuLongCRM.ViewModels
                       <attribute name='activityid' />
                       <attribute name='description' />
                       <attribute name='bsd_collectiontype' />
+                    <attribute name='bsd_units' alias='unit_id'/>
+                    <attribute name='bsd_project' alias='project_id'/>
+                    <attribute name='bsd_optionentry' alias='contract_id'/>
                       <order attribute='createdon' descending='true' />
                       <filter type='and'>
                           <condition attribute='activityid' operator='eq' uitype='appointment' value='" + id + @"' />
@@ -135,6 +141,15 @@ namespace PhuLongCRM.ViewModels
                     <link-entity name='opportunity' from='opportunityid' to='regardingobjectid' link-type='outer' alias='ab'>
                         <attribute name='opportunityid' alias='queue_id'/>                  
                         <attribute name='name' alias='queue_name'/>
+                    </link-entity>
+                    <link-entity name='salesorder' from='salesorderid' to='bsd_optionentry' link-type='outer'>
+                        <attribute name='name' alias='contract_name'/>
+                    </link-entity>
+                    <link-entity name='product' from='productid' to='bsd_units' link-type='outer'>
+                        <attribute name='name' alias='unit_name'/>
+                    </link-entity>
+                    <link-entity name='bsd_project' from='bsd_projectid' to='bsd_project' link-type='outer'>
+                        <attribute name='bsd_name' alias='project_name'/>
                     </link-entity>
                   </entity>
                 </fetch>";
@@ -201,6 +216,14 @@ namespace PhuLongCRM.ViewModels
                 ShowButton = true;
             else
                 ShowButton = false;
+
+            if (MeetingModel.project_id != Guid.Empty)
+                Project = new OptionSet { Val = MeetingModel.project_id.ToString(), Label = MeetingModel.project_name };
+            if(MeetingModel.unit_id != Guid.Empty)
+                Unit = new OptionSet { Label = MeetingModel.unit_name , Val= MeetingModel.unit_id.ToString()};
+            if (MeetingModel.contract_id != Guid.Empty)
+                Contract = new ContractModel { salesorderid = MeetingModel.contract_id, salesorder_name = MeetingModel.contract_name };
+            ToastMessageHelper.ShortMessage(MeetingModel.project_id.ToString());
 
             string xml_fetch = @"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='true'>
                   <entity name='appointment'>
@@ -334,31 +357,31 @@ namespace PhuLongCRM.ViewModels
 
             if (CustomerMapping != null)
             {
-                IDictionary<string, object> item_required = new Dictionary<string, object>();
-                if (CustomerMapping.Title == CodeContac)
-                {
-                    item_required["partyid_contact@odata.bind"] = "/contacts(" + CustomerMapping.Val + ")";
-                    item_required["participationtypemask"] = 5;
-                    arrayMeeting.Add(item_required);
+                //IDictionary<string, object> item_required = new Dictionary<string, object>();
+                //if (CustomerMapping.Title == CodeContac)
+                //{
+                //    item_required["partyid_contact@odata.bind"] = "/contacts(" + CustomerMapping.Val + ")";
+                //    item_required["participationtypemask"] = 5;
+                //    arrayMeeting.Add(item_required);
 
-                    data["regardingobjectid_contact_appointment@odata.bind"] = "/contacts(" + CustomerMapping.Val + ")";
-                }
-                else if (CustomerMapping.Title == CodeAccount)
-                {
-                    item_required["partyid_account@odata.bind"] = "/accounts(" + CustomerMapping.Val + ")";
-                    item_required["participationtypemask"] = 5;
-                    arrayMeeting.Add(item_required);
+                //    data["regardingobjectid_contact_appointment@odata.bind"] = "/contacts(" + CustomerMapping.Val + ")";
+                //}
+                //else if (CustomerMapping.Title == CodeAccount)
+                //{
+                //    item_required["partyid_account@odata.bind"] = "/accounts(" + CustomerMapping.Val + ")";
+                //    item_required["participationtypemask"] = 5;
+                //    arrayMeeting.Add(item_required);
 
-                    data["regardingobjectid_account_appointment@odata.bind"] = "/accounts(" + CustomerMapping.Val + ")";
-                }
-                else if (CustomerMapping.Title == CodeLead)
-                {
-                    item_required["partyid_lead@odata.bind"] = "/leads(" + CustomerMapping.Val + ")";
-                    item_required["participationtypemask"] = 5;
-                    arrayMeeting.Add(item_required);
+                //    data["regardingobjectid_account_appointment@odata.bind"] = "/accounts(" + CustomerMapping.Val + ")";
+                //}
+                //else if (CustomerMapping.Title == CodeLead)
+                //{
+                //    item_required["partyid_lead@odata.bind"] = "/leads(" + CustomerMapping.Val + ")";
+                //    item_required["participationtypemask"] = 5;
+                //    arrayMeeting.Add(item_required);
 
-                    data["regardingobjectid_lead_appointment@odata.bind"] = "/leads(" + CustomerMapping.Val + ")";
-                }
+                //    data["regardingobjectid_lead_appointment@odata.bind"] = "/leads(" + CustomerMapping.Val + ")";
+                //}
                 //else if (CustomerMapping.Title == CodeQueue)
                 //{
                 //    if (Customer != null && Customer.Selected == true) // selected = true là required từ queue
@@ -451,6 +474,22 @@ namespace PhuLongCRM.ViewModels
             {
                 data["bsd_employee_Appointment@odata.bind"] = "/bsd_employees(" + UserLogged.Id + ")";
             }
+            if (Project != null)
+                data["bsd_project_Appointment@odata.bind"] = "/bsd_projects(" + Project.Val + ")";
+            if (Contract != null)
+                data["bsd_optionentry_Appointment@odata.bind"] = "/salesorders(" + Contract.salesorderid + ")";
+            if (Unit != null)
+                data["bsd_units_Appointment@odata.bind"] = "/products(" + Unit.Val + ")";
+            //if (KhachHang != null && KhachHang.Title != CodeAccount)
+            //{
+            //    data["bsd_customer_Appointment_account@odata.bind"] = "/accounts(" + KhachHang.Val + ")";
+            //    await DeletLookup("bsd_customer_Appointment_contact", MeetingModel.activityid);
+            //}
+            //else if (KhachHang != null && KhachHang.Title != CodeContac)
+            //{
+            //    data["bsd_customer_Appointment_contact@odata.bind"] = "/contacts(" + KhachHang.Val + ")";
+            //    await DeletLookup("bsd_customer_Appointment_account", MeetingModel.activityid);
+            //}
             return data;
         }
         public async Task<bool> createMeeting()
@@ -469,6 +508,7 @@ namespace PhuLongCRM.ViewModels
             }
             else
             {
+                ToastMessageHelper.ShortMessage(result.ErrorResponse.error.message);
                 return false;
             }
         }
@@ -552,7 +592,7 @@ namespace PhuLongCRM.ViewModels
             {
                 string fetchXml = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
                                 <entity name='salesorder'>
-                                    <attribute name='name' />
+                                    <attribute name='name' alias='salesorder_name'/>
                                     <attribute name='salesorderid' />
                                     <attribute name='customerid' />
                                     <attribute name='bsd_unitnumber' alias='unit_id'/>

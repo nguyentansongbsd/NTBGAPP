@@ -424,39 +424,40 @@ namespace PhuLongCRM.Views
 
         private async void lookupProject_SelectedItemChange(object sender, LookUpChangeEvent e)
         {
+            if (viewModel.Contracts != null)
+                viewModel.Contracts.Clear();
             await viewModel.LoadContracts();
+            viewModel.KhachHang = null;
+            viewModel.Contract = null;
+            viewModel.Unit = null;
         }
-
         private void lookupContract_SelectedItemChange(object sender, LookUpChangeEvent e)
         {
             if (viewModel.Contract != null)
             {
                 if (!string.IsNullOrWhiteSpace(viewModel.Contract.account_name))
-                    viewModel.CustomerMapping = new OptionSet { Label = viewModel.Contract.account_name, Val = viewModel.Contract.customerid.ToString(), Title = viewModel.CodeAccount };
+                    viewModel.KhachHang = new OptionSet { Label = viewModel.Contract.account_name, Val = viewModel.Contract.customerid.ToString(), Title = viewModel.CodeAccount };
                 else if (!string.IsNullOrWhiteSpace(viewModel.Contract.contact_name))
-                    viewModel.CustomerMapping = new OptionSet { Label = viewModel.Contract.contact_name, Val = viewModel.Contract.customerid.ToString(), Title = viewModel.CodeContac };
+                    viewModel.KhachHang = new OptionSet { Label = viewModel.Contract.contact_name, Val = viewModel.Contract.customerid.ToString(), Title = viewModel.CodeContac };
                 if (viewModel.Contract.project_id != Guid.Empty)
                     viewModel.Project = new OptionSet { Val = viewModel.Contract.project_id.ToString(), Label = viewModel.Contract.project_name };
                 if (viewModel.Contract.unit_id != Guid.Empty)
                     viewModel.Unit = new OptionSet { Val = viewModel.Contract.unit_id.ToString(), Label = viewModel.Contract.unit_name };
             }
+            else
+            {
+                viewModel.KhachHang = null;
+                viewModel.Project = null;
+                viewModel.Unit = null;
+            }    
         }
 
         private void lookupCollectionType_SelectedItemChange(object sender, LookUpChangeEvent e)
         {
-            if(viewModel.CollectionType != null)
-            {
-                if(viewModel.CollectionType.Val == "100000001" || viewModel.CollectionType.Val == "100000003" || viewModel.CollectionType.Val == "100000000")
-                {
-                    Lookup_Customer.IsVisible = false;
-                    RegardingMapping.IsVisible = true;
-                }   
-                else
-                {
-                    Lookup_Customer.IsVisible = true;
-                    RegardingMapping.IsVisible = false;
-                }    
-            }    
+            viewModel.KhachHang = null;
+            viewModel.Project = null;
+            viewModel.Contract = null;
+            viewModel.Unit = null;
         }
     }
 }
