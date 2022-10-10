@@ -192,5 +192,13 @@ namespace PhuLongCRM.Models
         public string project_name { get; set; }
         public Guid unit_id { get; set; }
         public string unit_name { get; set; }
+        public Guid customer_contact_id { get; set; }
+        public string customer_contact_name { get; set; }
+        public Guid customer_account_id { get; set; }
+        public string customer_account_name { get; set; }
+        public Guid payment_notices_id { get; set; }
+        public string payment_notices_name { get; set; }
+        public Guid handover_notice_id { get; set; }
+        public string handover_notice_name { get; set; }
     }
 }

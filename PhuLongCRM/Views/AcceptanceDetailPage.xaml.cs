@@ -264,5 +264,24 @@ namespace PhuLongCRM.Views
                 };
             }
         }
+
+        private void TabControl_IndexTab(object sender, LookUpChangeEvent e)
+        {
+            if (e.Item != null)
+            {
+                if ((int)e.Item == 0)
+                {
+                    stackThongTin.IsVisible = true;
+                    stackNghiemThu.IsVisible = false;
+                }
+                else if ((int)e.Item == 1)
+                {
+                    LoadingHelper.Show();
+                    stackThongTin.IsVisible = false;
+                    stackNghiemThu.IsVisible = true;
+                    LoadingHelper.Hide();
+                }
+            }
+        }
     }
 }

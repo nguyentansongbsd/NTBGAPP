@@ -119,9 +119,6 @@ namespace PhuLongCRM.ViewModels
                       <attribute name='activityid' />
                       <attribute name='description' />
                       <attribute name='bsd_collectiontype' />
-                    <attribute name='bsd_units' alias='unit_id'/>
-                    <attribute name='bsd_project' alias='project_id'/>
-                    <attribute name='bsd_optionentry' alias='contract_id'/>
                       <order attribute='createdon' descending='true' />
                       <filter type='and'>
                           <condition attribute='activityid' operator='eq' uitype='appointment' value='" + id + @"' />
@@ -138,18 +135,33 @@ namespace PhuLongCRM.ViewModels
                           <attribute name='leadid' alias='lead_id'/>                  
                           <attribute name='fullname' alias='lead_name'/>
                       </link-entity>
-                    <link-entity name='opportunity' from='opportunityid' to='regardingobjectid' link-type='outer' alias='ab'>
-                        <attribute name='opportunityid' alias='queue_id'/>                  
-                        <attribute name='name' alias='queue_name'/>
-                    </link-entity>
                     <link-entity name='salesorder' from='salesorderid' to='bsd_optionentry' link-type='outer'>
                         <attribute name='name' alias='contract_name'/>
+                        <attribute name='salesorderid' alias='contract_id'/>
                     </link-entity>
                     <link-entity name='product' from='productid' to='bsd_units' link-type='outer'>
                         <attribute name='name' alias='unit_name'/>
+                        <attribute name='productid' alias='unit_id'/>
                     </link-entity>
                     <link-entity name='bsd_project' from='bsd_projectid' to='bsd_project' link-type='outer'>
                         <attribute name='bsd_name' alias='project_name'/>
+                        <attribute name='bsd_projectid' alias='project_id'/>
+                    </link-entity>
+                    <link-entity name='account' from='accountid' to='bsd_customer' link-type='outer'>
+                        <attribute name='accountid' alias='customer_account_id' />                  
+                        <attribute name='bsd_name' alias='customer_account_name'/>
+                    </link-entity>
+                    <link-entity name='contact' from='contactid' to='bsd_customer' link-type='outer'>
+                        <attribute name='contactid' alias='customer_contact_id' />                  
+                        <attribute name='fullname' alias='customer_contact_name'/>
+                    </link-entity>
+                    <link-entity name='bsd_customernotices' from='bsd_customernoticesid' to='regardingobjectid' link-type='outer'>
+                        <attribute name='bsd_customernoticesid' alias='payment_notices_id' />                  
+                        <attribute name='bsd_name' alias='payment_notices_name'/>
+                    </link-entity>
+                    <link-entity name='bsd_handovernotice' from='bsd_handovernoticeid' to='regardingobjectid' link-type='outer'>
+                        <attribute name='bsd_handovernoticeid' alias='handover_notice_id' />                  
+                        <attribute name='bsd_name' alias='handover_notice_name'/>
                     </link-entity>
                   </entity>
                 </fetch>";
@@ -217,13 +229,22 @@ namespace PhuLongCRM.ViewModels
             else
                 ShowButton = false;
 
-            if (MeetingModel.project_id != Guid.Empty)
-                Project = new OptionSet { Val = MeetingModel.project_id.ToString(), Label = MeetingModel.project_name };
-            if(MeetingModel.unit_id != Guid.Empty)
-                Unit = new OptionSet { Label = MeetingModel.unit_name , Val= MeetingModel.unit_id.ToString()};
-            if (MeetingModel.contract_id != Guid.Empty)
-                Contract = new ContractModel { salesorderid = MeetingModel.contract_id, salesorder_name = MeetingModel.contract_name };
-            ToastMessageHelper.ShortMessage(MeetingModel.project_id.ToString());
+            if (data.project_id != Guid.Empty)
+                Project = new OptionSet { Val = data.project_id.ToString(), Label = data.project_name };
+            if(data.unit_id != Guid.Empty)
+                Unit = new OptionSet { Label = data.unit_name , Val= data.unit_id.ToString()};
+            if (data.contract_id != Guid.Empty)
+                Contract = new ContractModel { salesorderid = data.contract_id, salesorder_name = data.contract_name };
+            if (data.customer_account_id != Guid.Empty)
+                KhachHang = new OptionSet { Val = data.customer_account_id.ToString(), Label = data.customer_account_name , Title = CodeAccount};
+            if (data.customer_contact_id != Guid.Empty)
+                KhachHang = new OptionSet { Val = data.customer_contact_id.ToString(), Label = data.customer_contact_name, Title = CodeContac };
+            if (data.payment_notices_id != Guid.Empty)
+                CustomerMapping = new OptionSet { Val = data.payment_notices_id.ToString(), Label = data.payment_notices_name};
+            if (data.handover_notice_id != Guid.Empty)
+                CustomerMapping = new OptionSet { Val = data.handover_notice_id.ToString(), Label = data.handover_notice_name };
+            if (CustomerMapping != null)
+                Customer = CustomerMapping;
 
             string xml_fetch = @"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='true'>
                   <entity name='appointment'>
@@ -275,7 +296,6 @@ namespace PhuLongCRM.ViewModels
                 Required = requiredIds;
             }
         }
-
         public async Task<List<PartyModel>> loadDataParty(Guid id)
         {
             string xml_fetch = @"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='true'>
@@ -331,7 +351,8 @@ namespace PhuLongCRM.ViewModels
             data["statuscode"] = MeetingModel.statuscode;
             data["bsd_collectiontype"] = this.CollectionType.Val;
 
-            if (Customer != null && Customer.Selected == false) // selected = flase là customer từ page khác queue
+            // collectiontype != null thì phải regardingobjectid theo type
+            if (Customer != null && Customer.Selected == false && CollectionType == null) // selected = flase là customer từ page khác queue
             {
                 if (Customer.Title == CodeLead)
                 {
@@ -357,31 +378,31 @@ namespace PhuLongCRM.ViewModels
 
             if (CustomerMapping != null)
             {
-                //IDictionary<string, object> item_required = new Dictionary<string, object>();
-                //if (CustomerMapping.Title == CodeContac)
-                //{
-                //    item_required["partyid_contact@odata.bind"] = "/contacts(" + CustomerMapping.Val + ")";
-                //    item_required["participationtypemask"] = 5;
-                //    arrayMeeting.Add(item_required);
+                IDictionary<string, object> item_required = new Dictionary<string, object>();
+                if (CustomerMapping.Title == CodeContac)
+                {
+                    item_required["partyid_contact@odata.bind"] = "/contacts(" + CustomerMapping.Val + ")";
+                    item_required["participationtypemask"] = 5;
+                    arrayMeeting.Add(item_required);
 
-                //    data["regardingobjectid_contact_appointment@odata.bind"] = "/contacts(" + CustomerMapping.Val + ")";
-                //}
-                //else if (CustomerMapping.Title == CodeAccount)
-                //{
-                //    item_required["partyid_account@odata.bind"] = "/accounts(" + CustomerMapping.Val + ")";
-                //    item_required["participationtypemask"] = 5;
-                //    arrayMeeting.Add(item_required);
+                    data["regardingobjectid_contact_appointment@odata.bind"] = "/contacts(" + CustomerMapping.Val + ")";
+                }
+                else if (CustomerMapping.Title == CodeAccount)
+                {
+                    item_required["partyid_account@odata.bind"] = "/accounts(" + CustomerMapping.Val + ")";
+                    item_required["participationtypemask"] = 5;
+                    arrayMeeting.Add(item_required);
 
-                //    data["regardingobjectid_account_appointment@odata.bind"] = "/accounts(" + CustomerMapping.Val + ")";
-                //}
-                //else if (CustomerMapping.Title == CodeLead)
-                //{
-                //    item_required["partyid_lead@odata.bind"] = "/leads(" + CustomerMapping.Val + ")";
-                //    item_required["participationtypemask"] = 5;
-                //    arrayMeeting.Add(item_required);
+                    data["regardingobjectid_account_appointment@odata.bind"] = "/accounts(" + CustomerMapping.Val + ")";
+                }
+                else if (CustomerMapping.Title == CodeLead)
+                {
+                    item_required["partyid_lead@odata.bind"] = "/leads(" + CustomerMapping.Val + ")";
+                    item_required["participationtypemask"] = 5;
+                    arrayMeeting.Add(item_required);
 
-                //    data["regardingobjectid_lead_appointment@odata.bind"] = "/leads(" + CustomerMapping.Val + ")";
-                //}
+                    data["regardingobjectid_lead_appointment@odata.bind"] = "/leads(" + CustomerMapping.Val + ")";
+                }
                 //else if (CustomerMapping.Title == CodeQueue)
                 //{
                 //    if (Customer != null && Customer.Selected == true) // selected = true là required từ queue
@@ -480,16 +501,29 @@ namespace PhuLongCRM.ViewModels
                 data["bsd_optionentry_Appointment@odata.bind"] = "/salesorders(" + Contract.salesorderid + ")";
             if (Unit != null)
                 data["bsd_units_Appointment@odata.bind"] = "/products(" + Unit.Val + ")";
-            //if (KhachHang != null && KhachHang.Title != CodeAccount)
-            //{
-            //    data["bsd_customer_Appointment_account@odata.bind"] = "/accounts(" + KhachHang.Val + ")";
-            //    await DeletLookup("bsd_customer_Appointment_contact", MeetingModel.activityid);
-            //}
-            //else if (KhachHang != null && KhachHang.Title != CodeContac)
-            //{
-            //    data["bsd_customer_Appointment_contact@odata.bind"] = "/contacts(" + KhachHang.Val + ")";
-            //    await DeletLookup("bsd_customer_Appointment_account", MeetingModel.activityid);
-            //}
+            if (KhachHang != null && KhachHang.Title == CodeAccount)
+            {
+                data["bsd_customer_Appointment_account@odata.bind"] = "/accounts(" + KhachHang.Val + ")";
+            }
+            else if (KhachHang != null && KhachHang.Title == CodeContac)
+            {
+                data["bsd_customer_Appointment_contact@odata.bind"] = "/contacts(" + KhachHang.Val + ")";
+            }
+            if (CollectionType != null && CustomerMapping != null)
+            {
+                if (CollectionType.Val == "100000000")
+                {
+                   // data["regardingobjectid_bsd_handovernotice_appointment@odata.bind"] = "/accounts(" + CustomerMapping.Val + ")";
+                }
+                else if (CollectionType.Val == "100000003")
+                {
+                    data["regardingobjectid_bsd_handovernotice_appointment@odata.bind"] = "/bsd_handovernotices(" + CustomerMapping.Val + ")";
+                }
+                else if (CollectionType.Val == "100000001")
+                {
+                    data["regardingobjectid_bsd_customernotices_appointment@odata.bind"] = "/bsd_customernoticeses(" + CustomerMapping.Val + ")";
+                }
+            }
             return data;
         }
         public async Task<bool> createMeeting()
@@ -525,6 +559,7 @@ namespace PhuLongCRM.ViewModels
             }
             else
             {
+                ToastMessageHelper.ShortMessage(result.ErrorResponse.error.message);
                 return false;
             }
         }
@@ -611,9 +646,11 @@ namespace PhuLongCRM.ViewModels
                                     </link-entity>
                                     <link-entity name='account' from='accountid' to='customerid' link-type='outer' alias='ac'>
                                         <attribute name='name' alias='account_name'/>
+<attribute name='accountid' alias='account_id'/>
                                     </link-entity>
                                     <link-entity name='contact' from='contactid' to='customerid' link-type='outer' alias='ad'>
                                         <attribute name='bsd_fullname' alias='contact_name'/>
+<attribute name='contactid' alias='contact_id'/>
                                     </link-entity>
                                 </entity>
                             </fetch>";
@@ -624,6 +661,65 @@ namespace PhuLongCRM.ViewModels
                 foreach (var item in data)
                 {
                     Contracts.Add(item);
+                }
+            }
+        }
+        public async Task LoadRegarding()
+        {
+            if (CollectionType != null)
+            {
+                if (CollectionType.Val == "100000000")
+                {
+                    string fetchXml = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                                <entity name='bsd_project'>
+                                    <attribute name='bsd_projectid' alias='Val'/>
+                                    <attribute name='bsd_name' alias='Label'/>
+                                    <order attribute='bsd_name' descending='false' />
+                                    <filter type='and'>
+                                      <condition attribute='statuscode' operator='eq' value='861450002' />
+                                    </filter>
+                                  </entity>
+                            </fetch>";
+                    var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<OptionSet>>("bsd_projects", fetchXml);
+                    if (result == null || result.value.Any() == false) return;
+
+                    var data = result.value;
+                }
+                else if (CollectionType.Val == "100000003") // Handover Notice
+                {
+                    string fetchXml = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                                            <entity name='bsd_handovernotice'>
+                                                <attribute name='bsd_name' alias='Label'/>
+                                                <attribute name='bsd_handovernoticeid' alias='Val'/>
+                                                <order attribute='createdon' descending='true' />
+                                                <filter type='and'>
+                                                    <condition attribute='bsd_optionentry' operator='eq' value='{Contract.salesorderid}' />
+                                                </filter>
+                                            </entity>
+                                        </fetch>";
+                    var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<OptionSet>>("bsd_handovernotices", fetchXml);
+                    if (result == null || result.value.Any() == false) return;
+
+                    if (result.value.FirstOrDefault() != null)
+                        CustomerMapping = result.value.FirstOrDefault();
+                }
+                else if (CollectionType.Val == "100000001")
+                {
+                    string fetchXml = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                                            <entity name='bsd_customernotices'>
+                                                <attribute name='bsd_name' alias='Label'/>
+                                                <attribute name='bsd_customernoticesid' alias='Val'/>
+                                                <order attribute='createdon' descending='true' />
+                                                <filter type='and'>
+                                                    <condition attribute='bsd_optionentry' operator='eq' value='{Contract.salesorderid}' />
+                                                </filter>
+                                            </entity>
+                                        </fetch>";
+                    var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<OptionSet>>("bsd_customernoticeses", fetchXml);
+                    if (result == null || result.value.Any() == false) return;
+
+                    if (result.value.FirstOrDefault() != null)
+                        CustomerMapping = result.value.FirstOrDefault();
                 }
             }
         }

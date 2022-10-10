@@ -70,112 +70,122 @@
                             </Grid>
                         </StackLayout>
                     </telerikPrimitives:RadBorder>
-                    <telerikPrimitives:RadExpander IsExpanded="True" AutomationId="masterCardExpander" BorderColor="Transparent">
-                        <telerikPrimitives:RadExpander.Header>
-                            <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
-                                <Label Text="{x:Static lang:Language.thong_tin_title}" Style="{StaticResource ExpanderHeadingText}"/>
-                            </telerikPrimitives:ExpanderHeader>
-                        </telerikPrimitives:RadExpander.Header>
-                        <telerikPrimitives:RadExpander.Content>
-                            <StackLayout Spacing="1" BackgroundColor="#F1F1F1">
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.loai}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <controls:FormLabelValue Text="{Binding Acceptance.acceptancetype_format}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.khach_hang}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <Label Text="{Binding Acceptance.customer_name}" Grid.Column="1" FontSize="15" TextColor="#2196F3" HorizontalTextAlignment="End" Padding="0,10,25,10" FontAttributes="Bold">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Customer_Tapped" />
-                                        </Label.GestureRecognizers>
-                                    </Label>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.loai_ket_qua}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <controls:FormLabelValue Text="{Binding Acceptance.typeresult_format}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.thong_bao_nghiem_thu}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <Label Text="{Binding Acceptance.acceptance_noti_name}" Grid.Column="1" FontSize="15" TextColor="#2196F3" HorizontalTextAlignment="End" Padding="0,10,25,10" FontAttributes="Bold">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer NumberOfTapsRequired="1" />
-                                        </Label.GestureRecognizers>
-                                    </Label>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.ngay_nghiem_thu}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <controls:FormLabelValue Text="{Binding Acceptance.bsd_actualacceptancedate,StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.chi_phi}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <controls:FormLabelValue Text="{Binding Acceptance.expense_format,StringFormat='{0} đ'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.lich}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <Label Text="{Binding Acceptance.installment_name}" Grid.Column="1" FontSize="15" TextColor="#2196F3" HorizontalTextAlignment="End" Padding="0,10,25,10" FontAttributes="Bold">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer NumberOfTapsRequired="1" />
-                                        </Label.GestureRecognizers>
-                                    </Label>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.ngay_nghiem_thu_lai}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <controls:FormLabelValue Text="{Binding Acceptance.bsd_reacceptancedate,StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.thoi_gian_sua_chua}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <controls:FormLabelValue Text="{Binding Acceptance.bsd_repairtimeday}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.ghi_chu}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <controls:FormLabelValue Text="{Binding Acceptance.bsd_remark}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
-                                </Grid>
-                            </StackLayout>
-                        </telerikPrimitives:RadExpander.Content>
-                    </telerikPrimitives:RadExpander>
-                    <telerikPrimitives:RadExpander IsExpanded="True" AutomationId="masterCardExpander" BorderColor="Transparent">
-                        <telerikPrimitives:RadExpander.Header>
-                            <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
-                                <Label Text="{x:Static lang:Language.thong_tin_chi_tiet_title}" Style="{StaticResource ExpanderHeadingText}"/>
-                            </telerikPrimitives:ExpanderHeader>
-                        </telerikPrimitives:RadExpander.Header>
-                        <telerikPrimitives:RadExpander.Content>
-                            <StackLayout Spacing="1" BackgroundColor="#F1F1F1">
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.nguoi_in}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <Label Text="{Binding Acceptance.printer_name}" Grid.Column="1" FontSize="15" TextColor="#2196F3" HorizontalTextAlignment="End" Padding="0,10,25,10" FontAttributes="Bold"/>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.ngay_in}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <controls:FormLabelValue Text="{Binding Acceptance.bsd_printedate,StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.nguoi_xac_nhan}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <Label Text="{Binding Acceptance.confirmer_name}" Grid.Column="1" FontSize="15" TextColor="#2196F3" HorizontalTextAlignment="End" Padding="0,10,25,10" FontAttributes="Bold"/>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.ngay_xac_nhan}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <controls:FormLabelValue Text="{Binding Acceptance.bsd_confirmdate,StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.nguoi_huy}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <Label Text="{Binding Acceptance.canceller_name}" Grid.Column="1" FontSize="15" TextColor="#2196F3" HorizontalTextAlignment="End" Padding="0,10,25,10" FontAttributes="Bold"/>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.ngay_huy}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <controls:FormLabelValue Text="{Binding Acceptance.bsd_cancelleddate,StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
-                                    <controls:FormLabel Text="{x:Static lang:Language.ly_do_huy}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <controls:FormLabelValue Text="{Binding Acceptance.bsd_cancelledreason}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
-                                </Grid>
-                                <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
-                                    <controls:FormLabel Text="{x:Static lang:Language.ly_do_dung}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
-                                    <controls:FormLabelValue Text="{Binding Acceptance.bsd_deactivereason}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
-                                </Grid>
-                            </StackLayout>
-                        </telerikPrimitives:RadExpander.Content>
-                    </telerikPrimitives:RadExpander>
+
+                    <controls:TabControl ListTab="thong_tin_title,thong_tin_title" IndexTab="TabControl_IndexTab"/>
+
+                    <StackLayout x:Name="stackThongTin">
+                        <telerikPrimitives:RadExpander IsExpanded="True" AutomationId="masterCardExpander" BorderColor="Transparent">
+                            <telerikPrimitives:RadExpander.Header>
+                                <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
+                                    <Label Text="{x:Static lang:Language.thong_tin_title}" Style="{StaticResource ExpanderHeadingText}"/>
+                                </telerikPrimitives:ExpanderHeader>
+                            </telerikPrimitives:RadExpander.Header>
+                            <telerikPrimitives:RadExpander.Content>
+                                <StackLayout Spacing="1" BackgroundColor="#F1F1F1">
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.loai}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <controls:FormLabelValue Text="{Binding Acceptance.acceptancetype_format}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.khach_hang}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <Label Text="{Binding Acceptance.customer_name}" Grid.Column="1" FontSize="15" TextColor="#2196F3" HorizontalTextAlignment="End" Padding="0,10,25,10" FontAttributes="Bold">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Customer_Tapped" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.loai_ket_qua}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <controls:FormLabelValue Text="{Binding Acceptance.typeresult_format}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.thong_bao_nghiem_thu}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <Label Text="{Binding Acceptance.acceptance_noti_name}" Grid.Column="1" FontSize="15" TextColor="#2196F3" HorizontalTextAlignment="End" Padding="0,10,25,10" FontAttributes="Bold">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.ngay_nghiem_thu}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <controls:FormLabelValue Text="{Binding Acceptance.bsd_actualacceptancedate,StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.chi_phi}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <controls:FormLabelValue Text="{Binding Acceptance.expense_format,StringFormat='{0} đ'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.lich}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <Label Text="{Binding Acceptance.installment_name}" Grid.Column="1" FontSize="15" TextColor="#2196F3" HorizontalTextAlignment="End" Padding="0,10,25,10" FontAttributes="Bold">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.ngay_nghiem_thu_lai}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <controls:FormLabelValue Text="{Binding Acceptance.bsd_reacceptancedate,StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.thoi_gian_sua_chua}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <controls:FormLabelValue Text="{Binding Acceptance.bsd_repairtimeday}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.ghi_chu}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <controls:FormLabelValue Text="{Binding Acceptance.bsd_remark}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
+                                    </Grid>
+                                </StackLayout>
+                            </telerikPrimitives:RadExpander.Content>
+                        </telerikPrimitives:RadExpander>
+                        <telerikPrimitives:RadExpander IsExpanded="True" AutomationId="masterCardExpander" BorderColor="Transparent">
+                            <telerikPrimitives:RadExpander.Header>
+                                <telerikPrimitives:ExpanderHeader Style="{StaticResource ExpanderHeaderStyle}">
+                                    <Label Text="{x:Static lang:Language.thong_tin_chi_tiet_title}" Style="{StaticResource ExpanderHeadingText}"/>
+                                </telerikPrimitives:ExpanderHeader>
+                            </telerikPrimitives:RadExpander.Header>
+                            <telerikPrimitives:RadExpander.Content>
+                                <StackLayout Spacing="1" BackgroundColor="#F1F1F1">
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.nguoi_in}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <Label Text="{Binding Acceptance.printer_name}" Grid.Column="1" FontSize="15" TextColor="#2196F3" HorizontalTextAlignment="End" Padding="0,10,25,10" FontAttributes="Bold"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.ngay_in}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <controls:FormLabelValue Text="{Binding Acceptance.bsd_printedate,StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.nguoi_xac_nhan}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <Label Text="{Binding Acceptance.confirmer_name}" Grid.Column="1" FontSize="15" TextColor="#2196F3" HorizontalTextAlignment="End" Padding="0,10,25,10" FontAttributes="Bold"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.ngay_xac_nhan}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <controls:FormLabelValue Text="{Binding Acceptance.bsd_confirmdate,StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.nguoi_huy}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <Label Text="{Binding Acceptance.canceller_name}" Grid.Column="1" FontSize="15" TextColor="#2196F3" HorizontalTextAlignment="End" Padding="0,10,25,10" FontAttributes="Bold"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.ngay_huy}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <controls:FormLabelValue Text="{Binding Acceptance.bsd_cancelleddate,StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White">
+                                        <controls:FormLabel Text="{x:Static lang:Language.ly_do_huy}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <controls:FormLabelValue Text="{Binding Acceptance.bsd_cancelledreason}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*" BackgroundColor="White" >
+                                        <controls:FormLabel Text="{x:Static lang:Language.ly_do_dung}" Grid.Column="0" FontSize="15" TextColor="#444444" VerticalOptions="Start" Padding="25,10,0,10"/>
+                                        <controls:FormLabelValue Text="{Binding Acceptance.bsd_deactivereason}" Grid.Column="1" FontSize="15" TextColor="#444444" Padding="0,10,25,10" HorizontalTextAlignment="End"/>
+                                    </Grid>
+                                </StackLayout>
+                            </telerikPrimitives:RadExpander.Content>
+                        </telerikPrimitives:RadExpander>
+                    </StackLayout>
+
+                    <Grid x:Name="stackNghiemThu">
+                        
+                    </Grid>
+                    
                 </StackLayout>
             </ScrollView>
             <controls:FloatingButtonGroup x:Name="floatingButtonGroup" ItemsSource="{Binding BindingContext.ButtonCommandList,Source={x:Reference this}}"/>

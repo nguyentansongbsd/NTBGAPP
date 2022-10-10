@@ -430,25 +430,34 @@ namespace PhuLongCRM.Views
             viewModel.KhachHang = null;
             viewModel.Contract = null;
             viewModel.Unit = null;
+            viewModel.CustomerMapping = null;
+            Lookup_Customer.IsVisible = true;
+            RegardingMapping.IsVisible = false;
         }
-        private void lookupContract_SelectedItemChange(object sender, LookUpChangeEvent e)
+        private async void lookupContract_SelectedItemChange(object sender, LookUpChangeEvent e)
         {
             if (viewModel.Contract != null)
             {
                 if (!string.IsNullOrWhiteSpace(viewModel.Contract.account_name))
-                    viewModel.KhachHang = new OptionSet { Label = viewModel.Contract.account_name, Val = viewModel.Contract.customerid.ToString(), Title = viewModel.CodeAccount };
+                    viewModel.KhachHang = new OptionSet { Label = viewModel.Contract.account_name, Val = viewModel.Contract.account_id.ToString(), Title = viewModel.CodeAccount };
                 else if (!string.IsNullOrWhiteSpace(viewModel.Contract.contact_name))
-                    viewModel.KhachHang = new OptionSet { Label = viewModel.Contract.contact_name, Val = viewModel.Contract.customerid.ToString(), Title = viewModel.CodeContac };
+                    viewModel.KhachHang = new OptionSet { Label = viewModel.Contract.contact_name, Val = viewModel.Contract.contact_id.ToString(), Title = viewModel.CodeContac };
                 if (viewModel.Contract.project_id != Guid.Empty)
                     viewModel.Project = new OptionSet { Val = viewModel.Contract.project_id.ToString(), Label = viewModel.Contract.project_name };
                 if (viewModel.Contract.unit_id != Guid.Empty)
                     viewModel.Unit = new OptionSet { Val = viewModel.Contract.unit_id.ToString(), Label = viewModel.Contract.unit_name };
+                await viewModel.LoadRegarding();
+                Lookup_Customer.IsVisible = false;
+                RegardingMapping.IsVisible = true;
             }
             else
             {
+                viewModel.CustomerMapping = null;
                 viewModel.KhachHang = null;
                 viewModel.Project = null;
                 viewModel.Unit = null;
+                Lookup_Customer.IsVisible = true;
+                RegardingMapping.IsVisible = false;
             }    
         }
 
@@ -458,6 +467,9 @@ namespace PhuLongCRM.Views
             viewModel.Project = null;
             viewModel.Contract = null;
             viewModel.Unit = null;
+            viewModel.CustomerMapping = null;
+            Lookup_Customer.IsVisible = true;
+            RegardingMapping.IsVisible = false;
         }
     }
 }
