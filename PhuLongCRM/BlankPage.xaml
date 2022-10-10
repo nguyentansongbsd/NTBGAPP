@@ -33,34 +33,22 @@
                                 <telerikChart:BarSeries CategoryBinding="Category" ValueBinding="Value" ItemsSource="{Binding Data}" />
                             </telerikChart:RadCartesianChart.Series>
                         </telerikChart:RadCartesianChart>-->
-                        <telerikChart:RadCartesianChart Margin="0, 20, 0, 0" HeightRequest="250">
-                            <telerikChart:RadCartesianChart.ChartBehaviors>
-                                <telerikChart:ChartSelectionBehavior DataPointSelectionMode="None" SeriesSelectionMode="Single" />
-                            </telerikChart:RadCartesianChart.ChartBehaviors>
-                            <telerikChart:RadCartesianChart.HorizontalAxis>
+                        <controls:ChartControl Margin="0, 20, 0, 0" HeightRequest="250">
+                            <controls:ChartControl.HorizontalAxis>
                                 <telerikChart:CategoricalAxis LineColor="#A9A9A9" MajorTickThickness="2" PlotMode="BetweenTicks" LabelFitMode="MultiLine" ShowLabels="True" MajorTickBackgroundColor="#A9A9A9" />
-                            </telerikChart:RadCartesianChart.HorizontalAxis>
-                            <telerikChart:RadCartesianChart.VerticalAxis>
+                            </controls:ChartControl.HorizontalAxis>
+                            <controls:ChartControl.VerticalAxis>
                                 <telerikChart:NumericalAxis LineColor="#A9A9A9" MajorTickBackgroundColor="#A9A9A9" Minimum="0" Maximum="500" MajorStep="100" LabelFormat="#,0 tr"/>
-                            </telerikChart:RadCartesianChart.VerticalAxis>
-                            <telerikChart:RadCartesianChart.Grid>
+                            </controls:ChartControl.VerticalAxis>
+                            <controls:ChartControl.Grid>
                                 <telerikChart:CartesianChartGrid MajorLinesVisibility="Y" MajorLineThickness="1" />
-                            </telerikChart:RadCartesianChart.Grid>
+                            </controls:ChartControl.Grid>
 
-
-                            <telerikChart:RadCartesianChart.Series>
-                                <telerikChart:BarSeries ItemsSource="{Binding CategoricalData}" ValueBinding="Value" CategoryBinding="Category" CombineMode="Cluster"/>
-                                <telerikChart:BarSeries ItemsSource="{Binding CategoricalData2}" ValueBinding="Value" CategoryBinding="Category" CombineMode="Cluster"/>
-                            </telerikChart:RadCartesianChart.Series>
-                            <telerikChart:RadCartesianChart.Palette>
-                                <telerikChart:ChartPalette>
-                                    <telerikChart:ChartPalette.Entries>
-                                        <telerikChart:PaletteEntry FillColor="#D42A16" StrokeColor="#4D4D4D" />
-                                        <telerikChart:PaletteEntry FillColor="#2196F3" StrokeColor="#4D4D4D" />
-                                    </telerikChart:ChartPalette.Entries>
-                                </telerikChart:ChartPalette>
-                            </telerikChart:RadCartesianChart.Palette>
-                        </telerikChart:RadCartesianChart>
+                            <controls:ChartControl.Series>
+                                <telerikChart:BarSeries ItemsSource="{Binding CategoricalData}" ValueBinding="Value" CategoryBinding="Category"/>
+                                <telerikChart:LineSeries Stroke="#D42A16" StrokeThickness="2" ItemsSource="{Binding CategoricalData2}" ValueBinding="Value" CategoryBinding="Category"/>
+                            </controls:ChartControl.Series>
+                        </controls:ChartControl>
                     </Grid>
                 </controls:ExtendedFrame>
 
