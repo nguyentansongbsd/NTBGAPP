@@ -40,6 +40,8 @@ namespace PhuLongCRM.Models
         }
         public string contact_name { get; set; } // tên khách hàng cá nhân
         public string account_name { get; set; } // tên khách hàng doanh nghiệp
+        public Guid contact_id { get; set; } // tên khách hàng cá nhân
+        public Guid account_id { get; set; } // tên khách hàng doanh nghiệp
 
         // detail
         public Guid queue_id { get; set; } // id giữ chô
