@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:PhuLongCRM.Controls"
+    xmlns:telerikChart="clr-namespace:Telerik.XamarinForms.Chart;assembly=Telerik.XamarinForms.Chart"
+    x:Class="PhuLongCRM.Controls.ChartBarSeriesControl">
+    <ContentView.Content>
+        <controls:ExtendedFrame Margin="14,6" Padding="8">
+            <Grid>
+                <telerikChart:RadCartesianChart Margin="0, 20, 0, 0" HeightRequest="250">
+                    <telerikChart:RadCartesianChart.HorizontalAxis>
+                        <telerikChart:CategoricalAxis LineColor="#A9A9A9" MajorTickThickness="2" PlotMode="BetweenTicks" LabelFitMode="MultiLine" ShowLabels="True" MajorTickBackgroundColor="#A9A9A9" />
+                    </telerikChart:RadCartesianChart.HorizontalAxis>
+                    <telerikChart:RadCartesianChart.VerticalAxis>
+                        <telerikChart:NumericalAxis LineColor="#A9A9A9" MajorTickBackgroundColor="#A9A9A9" Minimum="0" Maximum="500" MajorStep="100" LabelFormat="#,0 tr"/>
+                    </telerikChart:RadCartesianChart.VerticalAxis>
+                    <telerikChart:RadCartesianChart.Grid>
+                        <telerikChart:CartesianChartGrid MajorLinesVisibility="Y" MajorLineThickness="1" />
+                    </telerikChart:RadCartesianChart.Grid>
+
+                    <telerikChart:RadCartesianChart.Series>
+                        <telerikChart:BarSeries ItemsSource="{Binding CategoricalData}" ValueBinding="Value" CategoryBinding="Category" CombineMode="None"/>
+                        <telerikChart:BarSeries ItemsSource="{Binding CategoricalData2}" ValueBinding="Value" CategoryBinding="Category" CombineMode="None"/>
+                        <!--<telerikChart:LineSeries Stroke="#D42A16" StrokeThickness="2" ItemsSource="{Binding CategoricalData2}" ValueBinding="Value" CategoryBinding="Category"/>-->
+                    </telerikChart:RadCartesianChart.Series>
+                </telerikChart:RadCartesianChart>
+            </Grid>
+        </controls:ExtendedFrame>
+    </ContentView.Content>
+</ContentView>

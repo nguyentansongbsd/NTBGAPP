@@ -15,6 +15,7 @@ namespace PhuLongCRM.iOS.Renderers
 {
     public class CustomChartRenderer : Telerik.XamarinForms.ChartRenderer.iOS.CartesianChartRenderer
     {
+        TelerikUI.TKChartNumericAxis tKChartNumericAxis { get; set; } = new TelerikUI.TKChartNumericAxis(new NSNumber(0), new NSNumber(100));
         public CustomChartRenderer()
         {
 
@@ -23,7 +24,6 @@ namespace PhuLongCRM.iOS.Renderers
         protected override void OnElementChanged(ElementChangedEventArgs<RadCartesianChart> e)
         {
             base.OnElementChanged(e);
-            TelerikUI.TKChartNumericAxis tKChartNumericAxis = new TelerikUI.TKChartNumericAxis(new NSNumber(0), new NSNumber(100));
             tKChartNumericAxis.MajorTickInterval = 10;
             tKChartNumericAxis.Position = TelerikUI.TKChartAxisPosition.Right;
             tKChartNumericAxis.Style.LabelStyle.TextAlignment = TKChartAxisLabelAlignment.Left;
@@ -31,9 +31,27 @@ namespace PhuLongCRM.iOS.Renderers
             tKChartNumericAxis.Style.LineHidden = false;
             this.Control.AddAxis(tKChartNumericAxis);
 
-            var barSeries1 = this.Control.Series[1] as TelerikUI.TKChartLineSeries;
+        }
+
+        protected override void UpdateNativeWidget()
+        {
+            base.UpdateNativeWidget();
+
+            var barSeries = this.Control.Series[0] as TelerikUI.TKChartColumnSeries;
+            var barSeries1 = this.Control.Series[1] as TelerikUI.TKChartColumnSeries;
+            barSeries1.AllowClustering = true;
             barSeries1.YAxis = tKChartNumericAxis;
+            this.Control.Series[0] = barSeries;
+            this.Control.Series[1] = barSeries1;
+            //barSeries1.Selection = TKChartSeriesSelection.Series;
             
+
+            //TKChartColumnSeries series = new TKChartColumnSeries(barSeries1.);
+
+
+            //series.Selection = TKChartSeriesSelection.Series;
+
+            //this.Control.AddSeries(barSeries1);
         }
     }
 }

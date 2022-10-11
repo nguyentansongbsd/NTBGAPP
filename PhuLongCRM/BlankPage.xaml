@@ -20,19 +20,9 @@
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout BackgroundColor="Red" Margin="0,50,0,0">
-                <controls:ExtendedFrame Margin="14,6" Padding="8">
+                <controls:ChartBarSeriesControl/>
+                <!--<controls:ExtendedFrame Margin="14,6" Padding="8">
                     <Grid>
-                        <!--<telerikChart:RadCartesianChart x:Name="chart">
-                            <telerikChart:RadCartesianChart.HorizontalAxis>
-                                <telerikChart:CategoricalAxis />
-                            </telerikChart:RadCartesianChart.HorizontalAxis>
-                            <telerikChart:RadCartesianChart.VerticalAxis>
-                                <telerikChart:NumericalAxis />
-                            </telerikChart:RadCartesianChart.VerticalAxis>
-                            <telerikChart:RadCartesianChart.Series>
-                                <telerikChart:BarSeries CategoryBinding="Category" ValueBinding="Value" ItemsSource="{Binding Data}" />
-                            </telerikChart:RadCartesianChart.Series>
-                        </telerikChart:RadCartesianChart>-->
                         <controls:ChartControl Margin="0, 20, 0, 0" HeightRequest="250">
                             <controls:ChartControl.HorizontalAxis>
                                 <telerikChart:CategoricalAxis LineColor="#A9A9A9" MajorTickThickness="2" PlotMode="BetweenTicks" LabelFitMode="MultiLine" ShowLabels="True" MajorTickBackgroundColor="#A9A9A9" />
@@ -45,47 +35,13 @@
                             </controls:ChartControl.Grid>
 
                             <controls:ChartControl.Series>
-                                <telerikChart:BarSeries ItemsSource="{Binding CategoricalData}" ValueBinding="Value" CategoryBinding="Category"/>
+                                <telerikChart:BarSeries ItemsSource="{Binding CategoricalData}" ValueBinding="Value" CategoryBinding="Category" CombineMode="None"/>
+                                <telerikChart:BarSeries ItemsSource="{Binding CategoricalData2}" ValueBinding="Value" CategoryBinding="Category" CombineMode="None"/>
                                 <telerikChart:LineSeries Stroke="#D42A16" StrokeThickness="2" ItemsSource="{Binding CategoricalData2}" ValueBinding="Value" CategoryBinding="Category"/>
                             </controls:ChartControl.Series>
                         </controls:ChartControl>
                     </Grid>
-                </controls:ExtendedFrame>
-
-                <!--<telerikChart:RadCartesianChart Margin="0, 20, 0, 0" HeightRequest="500">
-
-                    <telerikChart:RadCartesianChart.HorizontalAxis>
-                        <telerikChart:NumericalAxis/>
-                    </telerikChart:RadCartesianChart.HorizontalAxis>
-
-                    <telerikChart:RadCartesianChart.VerticalAxis>
-                        <telerikChart:NumericalAxis/>
-                    </telerikChart:RadCartesianChart.VerticalAxis>
-                    <telerikChart:RadCartesianChart.ChartBehaviors>
-                        <telerikChart:ChartPanAndZoomBehavior ZoomMode="Both" 
-                                                    PanMode="Both" 
-                                                    HandleDoubleTap="True"/>
-                    </telerikChart:RadCartesianChart.ChartBehaviors>
-                    <telerikChart:RadCartesianChart.Series>
-                        <telerikChart:BarSeries ItemsSource="{Binding CategoricalData}">
-                            <telerikChart:BarSeries.ValueBinding>
-                                <telerikChart:PropertyNameDataPointBinding PropertyName="Value"/>
-                            </telerikChart:BarSeries.ValueBinding>
-                            <telerikChart:BarSeries.CategoryBinding>
-                                <telerikChart:PropertyNameDataPointBinding PropertyName="Category"/>
-                            </telerikChart:BarSeries.CategoryBinding>
-                        </telerikChart:BarSeries>
-
-                        <telerikChart:LineSeries ItemsSource="{Binding CategoricalData2}">
-                            <telerikChart:LineSeries.ValueBinding>
-                                <telerikChart:PropertyNameDataPointBinding PropertyName="Value"/>
-                            </telerikChart:LineSeries.ValueBinding>
-                            <telerikChart:LineSeries.CategoryBinding>
-                                <telerikChart:PropertyNameDataPointBinding PropertyName="Time"/>
-                            </telerikChart:LineSeries.CategoryBinding>
-                        </telerikChart:LineSeries>
-                    </telerikChart:RadCartesianChart.Series>
-                </telerikChart:RadCartesianChart>-->
+                </controls:ExtendedFrame>-->
             </StackLayout>
 
         </AbsoluteLayout>
