@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms.Extended;
 
 namespace PhuLongCRM.ViewModels
 {
@@ -22,6 +23,16 @@ namespace PhuLongCRM.ViewModels
 
         private DateTime _dateTimeNow;
         public DateTime DateTimeNow { get => _dateTimeNow; set { _dateTimeNow = value; OnPropertyChanged(nameof(DateTimeNow)); } }
+
+        private ObservableCollection<UnitSpecificationDetailModelGroup> unitSpecificationDetails;
+        public ObservableCollection<UnitSpecificationDetailModelGroup> UnitSpecificationDetails { get => unitSpecificationDetails; set { unitSpecificationDetails = value; OnPropertyChanged(nameof(UnitSpecificationDetails)); } }
+
+        private UnitSpecificationDetailModel unitSpecificationDetail;
+        public UnitSpecificationDetailModel UnitSpecificationDetail { get => unitSpecificationDetail; set { unitSpecificationDetail = value; OnPropertyChanged(nameof(UnitSpecificationDetail)); } }
+        public int Page { get; set; } = 1;
+
+        private bool _showMore;
+        public bool ShowMore { get => _showMore; set { _showMore = value; OnPropertyChanged(nameof(ShowMore)); } }
         public AcceptanceDetailPageViewModel()
         {
             DateTimeNow = DateTime.Now;
@@ -128,6 +139,100 @@ namespace PhuLongCRM.ViewModels
             };
             CrmApiResponse result = await CrmHelper.PostData($"/bsd_acceptances({Acceptance.bsd_acceptanceid})//Microsoft.Dynamics.CRM.bsd_Action_Acceptance", data);
             return result;
+        }
+        public async Task LoadUnitSpecificationDetails()
+        {
+            // thử để push
+            if (UnitSpecificationDetails == null)
+                UnitSpecificationDetails = new ObservableCollection<UnitSpecificationDetailModelGroup>();
+
+            //string fetch = $@"<fetch count='15' page='{Page}' version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+            //                    <entity name='bsd_unitsspecificationdetails'>
+            //                        <attribute name='bsd_typeofroomvn' />
+            //                        <attribute name='bsd_itemvn' />
+            //                        <attribute name='bsd_details' />
+            //                        <attribute name='bsd_typeno' />
+            //                        <attribute name='bsd_unitsspecificationdetailsid' />
+            //                        <order attribute='bsd_typeno' descending='false' />
+            //                        <filter type='and'>
+            //                          <condition attribute='bsd_typeno' operator='not-null' />
+            //                        </filter>
+            //                        <link-entity name='bsd_unitsspecification' from='bsd_unitsspecificationid' to='bsd_unitsspecification' link-type='inner'>
+            //                            <link-entity name='salesorder' from='bsd_unitsspecification' to='bsd_unitsspecificationid' link-type='inner'>
+            //                                <link-entity name='bsd_acceptance' from='bsd_contract' to='salesorderid' link-type='inner'>
+            //                                    <filter type='and'>
+            //                                        <condition attribute='bsd_acceptanceid' operator='eq' value='{Acceptance.bsd_acceptanceid}' />
+            //                                    </filter>
+            //                                </link-entity>
+            //                            </link-entity>
+            //                        </link-entity>
+            //                    </entity>
+            //                </fetch>";
+            string fetch = $@"<fetch count='5' page='{Page}' version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                                <entity name='bsd_unitsspecificationdetails'>
+                                    <attribute name='bsd_typeofroomvn' />
+                                    <attribute name='bsd_itemvn' />
+                                    <attribute name='bsd_details' />
+                                    <attribute name='bsd_typeno' />
+                                    <attribute name='bsd_unitsspecificationdetailsid' />
+                                    <order attribute='bsd_typeno' descending='false' />
+                                    <filter type='and'>
+                                      <condition attribute='bsd_typeno' operator='not-null' />
+                                    </filter>
+                                    <link-entity name='bsd_unitsspecification' from='bsd_unitsspecificationid' to='bsd_unitsspecification' link-type='inner'>
+<filter type='and'>
+                                      <condition attribute='bsd_unitsspecificationid' operator='eq' value='7d73726d-18dc-ec11-bb3c-00224859cf1f' />
+                                    </filter>                                        
+                                    </link-entity>
+                                </entity>
+                            </fetch>";
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<UnitSpecificationDetailModel>>("bsd_unitsspecificationdetailses", fetch);
+            if (result != null && result.value.Count > 0)
+            {
+                foreach (var item in result.value)
+                {
+                    var last_item = UnitSpecificationDetails.LastOrDefault();
+                    if (last_item != null && item.bsd_typeofroomvn == last_item.group)
+                        last_item.source.Add(item);
+                    else
+                    {
+                        ObservableCollection<UnitSpecificationDetailModel> source = new ObservableCollection<UnitSpecificationDetailModel>();
+                        source.Add(item);
+                        UnitSpecificationDetails.Add(new UnitSpecificationDetailModelGroup(item.bsd_typeofroomvn, source));
+                    }
+                }
+            }
+            ShowMore = result.value.Count == 5 ? true : false;
+        }
+        public async Task<CrmApiResponse> UpdateUnitSpecificationDetail(UnitSpecificationDetailModel item)
+        {
+            string path = "/bsd_unitsspecificationdetailses(" + item.bsd_unitsspecificationdetailsid + ")";
+            IDictionary<string, object> content = new Dictionary<string, object>();
+            //content["bsd_repairtimeday"] = item.bsd_typeno;
+            //content["bsd_remark"] = item.bsd_typeno;
+            CrmApiResponse result = await CrmHelper.PatchData(path, content);
+            return result;
+        }
+        public async Task LoadUnitSpecificationDetail( Guid id)
+        {
+            string fetch = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                                <entity name='bsd_unitsspecificationdetails'>
+                                    <attribute name='bsd_typeofroomvn' />
+                                    <attribute name='bsd_itemvn' />
+                                    <attribute name='bsd_details' />
+                                    <attribute name='bsd_typeno' />
+                                    <attribute name='bsd_unitsspecificationdetailsid' />
+                                    <order attribute='bsd_typeno' descending='false' />
+                                    <filter type='and'>
+                                        <condition attribute='bsd_unitsspecificationdetailsid' operator='eq' value='{id}' />
+                                    </filter>
+                                </entity>
+                            </fetch>";
+            var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<UnitSpecificationDetailModel>>("bsd_unitsspecificationdetailses", fetch);
+            if (result != null && result.value.Count > 0)
+            {
+                UnitSpecificationDetail = result.value.FirstOrDefault();
+            }
         }
     }
 }
