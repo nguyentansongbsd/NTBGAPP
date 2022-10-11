@@ -265,7 +265,7 @@ namespace PhuLongCRM.Views
             }
         }
 
-        private void TabControl_IndexTab(object sender, LookUpChangeEvent e)
+        private async void TabControl_IndexTab(object sender, LookUpChangeEvent e)
         {
             if (e.Item != null)
             {
@@ -277,10 +277,72 @@ namespace PhuLongCRM.Views
                 else if ((int)e.Item == 1)
                 {
                     LoadingHelper.Show();
+                    if (viewModel.Acceptance != null && viewModel.Acceptance.bsd_acceptanceid != Guid.Empty && viewModel.UnitSpecificationDetails == null)
+                        await viewModel.LoadUnitSpecificationDetails();
                     stackThongTin.IsVisible = false;
                     stackNghiemThu.IsVisible = true;
                     LoadingHelper.Hide();
                 }
+            }
+        }
+        private async void ShowMore_Clicked(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            viewModel.Page++;
+            await viewModel.LoadUnitSpecificationDetails();
+            LoadingHelper.Hide();
+        }
+
+        private async void SaveUnitSpecificationDetail_Clicked(object sender, EventArgs e)
+        {
+            Guid id = (Guid)(sender as Button).CommandParameter;
+            if (id != Guid.Empty)
+            {
+                foreach (var item in viewModel.UnitSpecificationDetails)
+                {
+                  var unitspec = item.Where(x => x.bsd_unitsspecificationdetailsid == id).FirstOrDefault();
+                    if(unitspec != null)
+                    {
+                        ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+                        LoadingHelper.Show();
+                        var result = await viewModel.UpdateUnitSpecificationDetail(unitspec);
+                        if (result.IsSuccess)
+                            ToastMessageHelper.ShortMessage(Language.thong_bao_thanh_cong);
+                        else
+                            ToastMessageHelper.LongMessage(result.ErrorResponse.error.message);
+                        LoadingHelper.Hide();
+                    }    
+                }    
+            }    
+        }
+
+        private void ClosePopupUnitSpecDetail_Clicked(object sender, EventArgs e)
+        {
+            PopupUnitSpecDetail.CloseContent();
+        }
+
+        private async void SavePopupUnitSpecDetail_Clicked(object sender, EventArgs e)
+        {
+            if (viewModel.UnitSpecificationDetail != null)
+            {
+                LoadingHelper.Show();
+                var result = await viewModel.UpdateUnitSpecificationDetail(viewModel.UnitSpecificationDetail);
+                if (result.IsSuccess)
+                    ToastMessageHelper.ShortMessage(Language.thong_bao_thanh_cong);
+                else
+                    ToastMessageHelper.LongMessage(result.ErrorResponse.error.message);
+                LoadingHelper.Hide();
+            }
+        }
+        private async void UnitSpecificationDetail_Tapped(object sender, EventArgs e)
+        {
+            Guid id = (Guid)((sender as Grid).GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            if (id != Guid.Empty)
+            {
+                LoadingHelper.Show();
+                await viewModel.LoadUnitSpecificationDetail(id);
+                PopupUnitSpecDetail.ShowCenterPopup();
+                LoadingHelper.Hide();
             }
         }
     }

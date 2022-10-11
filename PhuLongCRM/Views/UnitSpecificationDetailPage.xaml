@@ -53,7 +53,7 @@
                         </telerikPrimitives:RadExpander.Header>
                         <telerikPrimitives:RadExpander.Content>
                             <StackLayout>
-                                <StackLayout  BindableLayout.ItemsSource="{Binding UnitSpecificationDetails}" BackgroundColor="#eeeeee" Spacing="1" Margin="0,1,0,0">
+                                <StackLayout BindableLayout.ItemsSource="{Binding UnitSpecificationDetails}" BackgroundColor="#eeeeee" Spacing="1" Margin="0,1,0,0">
                                     <BindableLayout.EmptyViewTemplate>
                                         <DataTemplate>
                                             <Label Text="{x:Static lang:Language.khong_co_du_lieu}" TextColor="Black" HorizontalTextAlignment="Center" BackgroundColor="White" Padding="0,15"/>

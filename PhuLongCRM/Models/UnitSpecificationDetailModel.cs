@@ -12,6 +12,7 @@ namespace PhuLongCRM.Models
         public string bsd_typeofroomvn { get; set; }
         public string bsd_details { get; set; }
         public string bsd_typeno { get; set; }
+        public bool showbtn { get; set; }
     }
     public class UnitSpecificationDetailModelGroup : List<UnitSpecificationDetailModel>
     {
