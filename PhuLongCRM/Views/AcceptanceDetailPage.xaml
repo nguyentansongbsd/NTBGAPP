@@ -183,10 +183,16 @@
                     </StackLayout>
 
                     <StackLayout x:Name="stackNghiemThu" IsVisible="False">
-                        <Grid ColumnDefinitions="25,*,50,100,*" VerticalOptions="Start" Padding="10">
-                            <Label Grid.Column="2" Grid.Row="0" Text="Đạt" TextColor="#444444" FontSize="15" Padding="10,0" HorizontalTextAlignment="Center"/>
-                            <Label Grid.Column="3" Grid.Row="0" Text="Không Đạt" TextColor="#444444" FontSize="15" Padding="10,0" HorizontalTextAlignment="Center"/>
-                            <Label Grid.Column="4" Grid.Row="0" Text="Lỗi" TextColor="#444444" FontSize="15" Padding="10,0" HorizontalTextAlignment="Center"/>
+                        <Grid ColumnDefinitions="25,*,50,100,*" VerticalOptions="Start" Padding="10,5">
+                            <telerikPrimitives:RadBorder Grid.Column="2" Grid.Row="0" Padding="5" BorderThickness="1" BorderColor="#2FCC71" CornerRadius="5">
+                                <Label Text="Đạt" TextColor="#444444" FontSize="15" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                            </telerikPrimitives:RadBorder>
+                            <telerikPrimitives:RadBorder Grid.Column="3" Grid.Row="0" Padding="5" BorderThickness="1" BorderColor="#F1C50D" CornerRadius="5">
+                                <Label Text="Không Đạt" TextColor="#444444" FontSize="15" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                            </telerikPrimitives:RadBorder>
+                            <telerikPrimitives:RadBorder Grid.Column="4" Grid.Row="0" Padding="5" BorderThickness="1" BorderColor="Red" CornerRadius="5">
+                                <Label Text="Lỗi" TextColor="#444444" FontSize="15" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                            </telerikPrimitives:RadBorder>
                         </Grid>
                         <StackLayout BindableLayout.ItemsSource="{Binding UnitSpecificationDetails}" BackgroundColor="#eeeeee" Spacing="1" Margin="0,1,0,0">
                             <BindableLayout.EmptyViewTemplate>
@@ -205,24 +211,11 @@
                                                         <Grid.GestureRecognizers>
                                                             <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UnitSpecificationDetail_Tapped" CommandParameter="{Binding bsd_unitsspecificationdetailsid}"/>
                                                         </Grid.GestureRecognizers>
-                                                        <Label Grid.Column="0" Text="{Binding bsd_typeno}" TextColor="#444444" FontSize="16" BackgroundColor="Aqua" FontAttributes="Bold" VerticalOptions="Start"/>
+                                                        <Label Grid.Column="0" Text="{Binding bsd_typeno}" TextColor="#444444" FontSize="16" FontAttributes="Bold" VerticalOptions="Start"/>
                                                         <Label Grid.Column="1" Text="{Binding bsd_itemvn}" TextColor="{StaticResource NavigationPrimary}" FontSize="16" FontAttributes="Bold" VerticalOptions="Start"/>
-                                                        <CheckBox x:Name="checkboxPass" Grid.Column="2" HorizontalOptions="Center"/>
-                                                        <CheckBox x:Name="checkboxError" Grid.Column="3" HorizontalOptions="Center" />
-                                                        <controls:MainEntry x:Name="entryError" Grid.Column="4" Text="{Binding bsd_remark}" FontSize="15"/>
-                                                        <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" CommandParameter="{Binding bsd_unitsspecificationdetailsid}" Clicked="SaveUnitSpecificationDetail_Clicked" IsVisible="False" BorderColor="{StaticResource NavigationPrimary}" CornerRadius="5" BorderWidth="1" BackgroundColor="Transparent" Text="{x:Static lang:Language.luu}" TextTransform="None" TextColor="#1399D5" HeightRequest="30" HorizontalOptions="Center" Margin="0,5,0,10" Padding="30,0,30,0">
-                                                            <Button.Triggers>
-                                                                <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference checkboxPass}, Path=IsChecked}" Value="true">
-                                                                    <Setter Property="IsVisible" Value="True" />
-                                                                </DataTrigger>
-                                                                <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference checkboxError}, Path=IsChecked}" Value="true">
-                                                                    <Setter Property="IsVisible" Value="True" />
-                                                                </DataTrigger>
-                                                                <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference entryError}, Path=Text.Length}" Value="0">
-                                                                    <Setter Property="IsVisible" Value="True" />
-                                                                </DataTrigger>
-                                                            </Button.Triggers>
-                                                        </Button>
+                                                        <CheckBox x:Name="checkboxPass" Grid.Column="2" HorizontalOptions="Center" Color="#2FCC71"/>
+                                                        <CheckBox x:Name="checkboxError" Grid.Column="3" HorizontalOptions="Center" Color="Red"/>
+                                                        <Label Grid.Column="4" Text="{Binding bsd_typeno}" TextColor="#444444" FontSize="15" VerticalOptions="Start"/>
                                                     </Grid>
                                                 </DataTemplate>
                                             </BindableLayout.ItemTemplate>
