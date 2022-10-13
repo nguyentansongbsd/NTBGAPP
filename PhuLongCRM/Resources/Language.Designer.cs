@@ -10861,6 +10861,15 @@ namespace PhuLongCRM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Xác nhận đủ hồ sơ.
+        /// </summary>
+        internal static string xac_nhan_du_ho_so {
+            get {
+                return ResourceManager.GetString("xac_nhan_du_ho_so", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Xác Nhận Đủ Hồ Sơ Giấy Tờ.
         /// </summary>
         internal static string xac_nhan_du_ho_so_giay_to {

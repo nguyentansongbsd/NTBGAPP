@@ -3819,4 +3819,7 @@
 	<data name="hoa_don_vat" xml:space="preserve">
 		<value>Has VAT Invoice</value>
 	</data>
+	<data name="xac_nhan_du_ho_so" xml:space="preserve">
+		<value>Confirm document</value>
+	</data>
 </root>
