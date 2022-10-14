@@ -62,6 +62,28 @@ namespace PhuLongCRM.Views
             {
                 viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.di_den_ban_giao_giay_chung_nhan, "FontAwesomeRegular", "\uf2b9", null, GoToPinkBookHandover));
             }
+            if(viewModel.Contract != null && viewModel.Contract.statuscode != 100000006 && viewModel.Contract.bsd_specialhandoverunit == true)
+            {
+                viewModel.ButtonCommandList.Add(new FloatButtonItem(Language.tao_ban_giao_san_pham, "FontAwesomeRegular", "\uf2b9", null, CreateUnitHandover));
+            }
+        }
+
+        private async void CreateUnitHandover(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            UnitHandoverForm newPage = new UnitHandoverForm(viewModel.Contract);
+            newPage.OnCompleted = async (isSuccess) => {
+                if (isSuccess)
+                {
+                    await Navigation.PushAsync(newPage);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(Language.khong_tim_thay_thong_tin_vui_long_thu_lai);
+                }
+            };
         }
 
         private void GoToUnitHandover(object sender, EventArgs e)

@@ -146,46 +146,48 @@ namespace PhuLongCRM.ViewModels
             if (UnitSpecificationDetails == null)
                 UnitSpecificationDetails = new ObservableCollection<UnitSpecificationDetailModelGroup>();
 
-            //string fetch = $@"<fetch count='15' page='{Page}' version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
-            //                    <entity name='bsd_unitsspecificationdetails'>
-            //                        <attribute name='bsd_typeofroomvn' />
-            //                        <attribute name='bsd_itemvn' />
-            //                        <attribute name='bsd_details' />
-            //                        <attribute name='bsd_typeno' />
-            //                        <attribute name='bsd_unitsspecificationdetailsid' />
-            //                        <order attribute='bsd_typeno' descending='false' />
-            //                        <filter type='and'>
-            //                          <condition attribute='bsd_typeno' operator='not-null' />
-            //                        </filter>
-            //                        <link-entity name='bsd_unitsspecification' from='bsd_unitsspecificationid' to='bsd_unitsspecification' link-type='inner'>
-            //                            <link-entity name='salesorder' from='bsd_unitsspecification' to='bsd_unitsspecificationid' link-type='inner'>
-            //                                <link-entity name='bsd_acceptance' from='bsd_contract' to='salesorderid' link-type='inner'>
-            //                                    <filter type='and'>
-            //                                        <condition attribute='bsd_acceptanceid' operator='eq' value='{Acceptance.bsd_acceptanceid}' />
-            //                                    </filter>
-            //                                </link-entity>
-            //                            </link-entity>
-            //                        </link-entity>
-            //                    </entity>
-            //                </fetch>";
-            string fetch = $@"<fetch count='5' page='{Page}' version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+            string fetch = $@"<fetch count='15' page='{Page}' version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
                                 <entity name='bsd_unitsspecificationdetails'>
                                     <attribute name='bsd_typeofroomvn' />
                                     <attribute name='bsd_itemvn' />
                                     <attribute name='bsd_details' />
                                     <attribute name='bsd_typeno' />
+                                    <attribute name='bsd_no' />
                                     <attribute name='bsd_unitsspecificationdetailsid' />
                                     <order attribute='bsd_typeno' descending='false' />
                                     <filter type='and'>
                                       <condition attribute='bsd_typeno' operator='not-null' />
                                     </filter>
                                     <link-entity name='bsd_unitsspecification' from='bsd_unitsspecificationid' to='bsd_unitsspecification' link-type='inner'>
-<filter type='and'>
-                                      <condition attribute='bsd_unitsspecificationid' operator='eq' value='7d73726d-18dc-ec11-bb3c-00224859cf1f' />
-                                    </filter>                                        
+                                        <link-entity name='salesorder' from='bsd_unitsspecification' to='bsd_unitsspecificationid' link-type='inner'>
+                                            <link-entity name='bsd_acceptance' from='bsd_contract' to='salesorderid' link-type='inner'>
+                                                <filter type='and'>
+                                                    <condition attribute='bsd_acceptanceid' operator='eq' value='{Acceptance.bsd_acceptanceid}' />
+                                                </filter>
+                                            </link-entity>
+                                        </link-entity>
                                     </link-entity>
                                 </entity>
                             </fetch>";
+            //string fetch = $@"<fetch count='5' page='{Page}' version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+            //                    <entity name='bsd_unitsspecificationdetails'>
+            //                        <attribute name='bsd_typeofroomvn' />
+            //                        <attribute name='bsd_itemvn' />
+            //                        <attribute name='bsd_details' />
+            //                        <attribute name='bsd_typeno' />
+            //                        <attribute name='bsd_no' />
+            //                        <attribute name='bsd_unitsspecificationdetailsid' />
+            //                        <order attribute='bsd_typeno' descending='false' />
+            //                        <filter type='and'>
+            //                          <condition attribute='bsd_typeno' operator='not-null' />
+            //                        </filter>
+            //                        <link-entity name='bsd_unitsspecification' from='bsd_unitsspecificationid' to='bsd_unitsspecification' link-type='inner'>
+            //                            <filter type='and'>
+            //                                <condition attribute='bsd_unitsspecificationid' operator='eq' value='7d73726d-18dc-ec11-bb3c-00224859cf1f' />
+            //                            </filter>                                        
+            //                        </link-entity>
+            //                    </entity>
+            //                </fetch>";
             var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<UnitSpecificationDetailModel>>("bsd_unitsspecificationdetailses", fetch);
             if (result != null && result.value.Count > 0)
             {
