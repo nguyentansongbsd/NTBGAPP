@@ -16,6 +16,9 @@ namespace PhuLongCRM.ViewModels
     {
         public ObservableCollection<ActivitiModel> Activities { get; set; } = new ObservableCollection<ActivitiModel>();
 
+        public ObservableCollection<ChartModel> AcceptanceTotalExpense { get; set; } = new ObservableCollection<ChartModel>();
+        public ObservableCollection<ChartModel> AcceptanceNumTotal { get; set; } = new ObservableCollection<ChartModel>();
+
         public ObservableCollection<ChartModel> DataMonthQueue { get; set; } = new ObservableCollection<ChartModel>();
         public ObservableCollection<ChartModel> DataMonthQuote { get; set; } = new ObservableCollection<ChartModel>();
         public ObservableCollection<ChartModel> DataMonthOptionEntry { get; set; } = new ObservableCollection<ChartModel>();
@@ -83,7 +86,7 @@ namespace PhuLongCRM.ViewModels
 
         #region Nghiem thu
         private int _totalAcceptancing;
-        public int TotalAcceptanceing { get => _totalAcceptancing; set { _totalAcceptancing = value;OnPropertyChanged(nameof(TotalAcceptanceing)); } }
+        public int TotalAcceptanceing { get => _totalAcceptancing; set { _totalAcceptancing = value; OnPropertyChanged(nameof(TotalAcceptanceing)); } }
         private int _totalAcceptanced;
         public int TotalAcceptanced { get => _totalAcceptanced; set { _totalAcceptanced = value; OnPropertyChanged(nameof(TotalAcceptanced)); } }
         #endregion
@@ -132,8 +135,9 @@ namespace PhuLongCRM.ViewModels
             string fetchXml = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
                                   <entity name='bsd_acceptance'>
                                     <attribute name='bsd_acceptanceid' />
-                                    <attribute name='bsd_name' />
-                                    <attribute name='statuscode' />
+                                    <attribute name='bsd_name'/>
+                                    <attribute name='statuscode'/>
+                                    <attribute name='bsd_expense'/>
                                     <order attribute='bsd_name' descending='false' />
                                     <filter type='and'>
                                       <condition attribute='statuscode' operator='in'>
@@ -143,12 +147,27 @@ namespace PhuLongCRM.ViewModels
                                         <value>100000003</value>
                                       </condition>
                                     </filter>
+                                    <link-entity name='bsd_project' from='bsd_projectid' to='bsd_project' visible='false' link-type='outer' alias='a_f1ec0b1f36f4eb1194ef00224856b174'>
+                                      <attribute name='bsd_projectcode' alias='projectcode' />
+                                      <attribute name='bsd_projectid' alias='projectid'/>
+                                    </link-entity>
                                   </entity>
                                 </fetch>";
             var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<AcceptanceListModel>>("bsd_acceptances", fetchXml);
             if (result == null || result.value.Any() == false) return;
             this.TotalAcceptanceing = result.value.Where(x => x.statuscode == "100000000" || x.statuscode == "100000001" || x.statuscode == "1").Count(); // sts = Confirmed Information,Confirmed Acceptance,Active : nhung sts dang nghiem thu
             this.TotalAcceptanced = result.value.Where(x => x.statuscode == "100000003").Count();// sts = Closed : sts Da nghiem thu
+
+            List<AcceptanceListModel> listGroupByProject = result.value.GroupBy(x => x.projectid).Select(y => y.First()).ToList();
+
+            
+
+            foreach (var item in listGroupByProject)
+            {
+                var a = result.value.Where(x => x.projectid == item.projectid).Select(x => x.bsd_expense).Sum().ToString("#,00");
+                this.AcceptanceTotalExpense.Add(new ChartModel() { Category = item.projectcode, Value = result.value.Where(x => x.projectid == item.projectid).Select(x => x.bsd_expense).Sum() });
+                this.AcceptanceNumTotal.Add(new ChartModel() { Category = item.projectcode, Value = result.value.Where(x => x.projectid == item.projectid).Count() });
+            }
         }
 
         public async Task LoadUnitHandovers()

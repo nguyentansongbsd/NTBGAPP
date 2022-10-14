@@ -7,25 +7,66 @@
     x:Class="PhuLongCRM.Controls.ChartBarSeriesControl">
     <ContentView.Content>
         <controls:ExtendedFrame Margin="14,6" Padding="8">
-            <Grid>
-                <telerikChart:RadCartesianChart Margin="0, 20, 0, 0" HeightRequest="250">
-                    <telerikChart:RadCartesianChart.HorizontalAxis>
-                        <telerikChart:CategoricalAxis LineColor="#A9A9A9" MajorTickThickness="2" PlotMode="BetweenTicks" LabelFitMode="MultiLine" ShowLabels="True" MajorTickBackgroundColor="#A9A9A9" />
-                    </telerikChart:RadCartesianChart.HorizontalAxis>
-                    <telerikChart:RadCartesianChart.VerticalAxis>
-                        <telerikChart:NumericalAxis LineColor="#A9A9A9" MajorTickBackgroundColor="#A9A9A9" Minimum="0" Maximum="500" MajorStep="100" LabelFormat="#,0 tr"/>
-                    </telerikChart:RadCartesianChart.VerticalAxis>
-                    <telerikChart:RadCartesianChart.Grid>
-                        <telerikChart:CartesianChartGrid MajorLinesVisibility="Y" MajorLineThickness="1" />
-                    </telerikChart:RadCartesianChart.Grid>
+            <StackLayout>
+                <Grid IsVisible="{OnPlatform iOS=true,Android=false}">
+                    <telerikChart:RadCartesianChart x:Name="radCartesianChatIOs1" HeightRequest="250">
+                        <telerikChart:RadCartesianChart.HorizontalAxis>
+                            <telerikChart:CategoricalAxis LineColor="#A9A9A9" MajorTickThickness="2" PlotMode="BetweenTicks" LabelFitMode="MultiLine" ShowLabels="True" MajorTickBackgroundColor="#A9A9A9" />
+                        </telerikChart:RadCartesianChart.HorizontalAxis>
+                        <telerikChart:RadCartesianChart.VerticalAxis>
+                            <telerikChart:NumericalAxis x:Name="numericalAxisLeft" LineColor="#A9A9A9" MajorTickBackgroundColor="#A9A9A9"/>
+                        </telerikChart:RadCartesianChart.VerticalAxis>
+                        <telerikChart:RadCartesianChart.Grid>
+                            <telerikChart:CartesianChartGrid MajorLinesVisibility="Y" MajorLineThickness="1" />
+                        </telerikChart:RadCartesianChart.Grid>
 
-                    <telerikChart:RadCartesianChart.Series>
-                        <telerikChart:BarSeries ItemsSource="{Binding CategoricalData}" ValueBinding="Value" CategoryBinding="Category" CombineMode="None"/>
-                        <telerikChart:BarSeries ItemsSource="{Binding CategoricalData2}" ValueBinding="Value" CategoryBinding="Category" CombineMode="None"/>
-                        <!--<telerikChart:LineSeries Stroke="#D42A16" StrokeThickness="2" ItemsSource="{Binding CategoricalData2}" ValueBinding="Value" CategoryBinding="Category"/>-->
-                    </telerikChart:RadCartesianChart.Series>
-                </telerikChart:RadCartesianChart>
-            </Grid>
+                        <telerikChart:RadCartesianChart.Series>
+                            <telerikChart:BarSeries x:Name="barSeriesIOs1" ValueBinding="Value" CategoryBinding="Category" CombineMode="None"/>
+                            <telerikChart:BarSeries x:Name="barSeriesIOs2" ValueBinding="Value" CategoryBinding="Category" CombineMode="None"/>
+                        </telerikChart:RadCartesianChart.Series>
+                        <telerikChart:RadCartesianChart.Palette>
+                            <telerikChart:ChartPalette x:Name="chartPaletteFirBarSeriesIOs"/>
+                        </telerikChart:RadCartesianChart.Palette>
+                    </telerikChart:RadCartesianChart>
+
+                    <telerikChart:RadCartesianChart x:Name="radCartesianChatIOs2" HeightRequest="250" BackgroundColor="Transparent">
+                        <telerikChart:RadCartesianChart.HorizontalAxis>
+                            <telerikChart:CategoricalAxis LineColor="Transparent" LabelTextColor="Transparent" MajorTickThickness="0" PlotMode="BetweenTicks" LabelFitMode="MultiLine" ShowLabels="True" MajorTickBackgroundColor="Transparent"/>
+                        </telerikChart:RadCartesianChart.HorizontalAxis>
+                        <telerikChart:RadCartesianChart.VerticalAxis>
+                            <telerikChart:NumericalAxis x:Name="numericalAxisRight" Location="Right" LineColor="#A9A9A9" MajorTickBackgroundColor="#A9A9A9"/>
+                        </telerikChart:RadCartesianChart.VerticalAxis>
+                        
+                        <telerikChart:RadCartesianChart.Series>
+                            <telerikChart:BarSeries x:Name="barSeriesIOs3" ValueBinding="Value" CategoryBinding="Category" CombineMode="None"/>
+                            <telerikChart:BarSeries x:Name="barSeriesIOs4" ValueBinding="Value" CategoryBinding="Category" CombineMode="None"/>
+                        </telerikChart:RadCartesianChart.Series>
+                        <telerikChart:RadCartesianChart.Palette>
+                            <telerikChart:ChartPalette x:Name="chartPaletteSecBarSeriesIOs"/>
+                        </telerikChart:RadCartesianChart.Palette>
+                    </telerikChart:RadCartesianChart>
+                </Grid>
+
+                <controls:ChartControl x:Name="charControl" IsVisible="{OnPlatform iOS=false,Android=true}" Margin="0, 20, 0, 0" HeightRequest="250" >
+                    <controls:ChartControl.HorizontalAxis>
+                        <telerikChart:CategoricalAxis LineColor="#A9A9A9" MajorTickThickness="2" PlotMode="BetweenTicks" LabelFitMode="MultiLine" ShowLabels="True" MajorTickBackgroundColor="#A9A9A9" />
+                    </controls:ChartControl.HorizontalAxis>
+                    <controls:ChartControl.VerticalAxis>
+                        <telerikChart:NumericalAxis x:Name="numericalAxisLeftAndroid" LineColor="#A9A9A9" MajorTickBackgroundColor="#A9A9A9" />
+                    </controls:ChartControl.VerticalAxis>
+                    <controls:ChartControl.Grid>
+                        <telerikChart:CartesianChartGrid MajorLinesVisibility="Y" MajorLineThickness="1" />
+                    </controls:ChartControl.Grid>
+
+                    <controls:ChartControl.Series>
+                        <telerikChart:BarSeries x:Name="barSeriesAndroid1" ValueBinding="Value" CategoryBinding="Category" CombineMode="Cluster"/>
+                        <telerikChart:BarSeries x:Name="barSeriesAndroid2" ValueBinding="Value" CategoryBinding="Category" CombineMode="Cluster"/>
+                    </controls:ChartControl.Series>
+                    <controls:ChartControl.Palette>
+                        <telerikChart:ChartPalette x:Name="chartPaletteBarSeriesAndroid"/>
+                    </controls:ChartControl.Palette>
+                </controls:ChartControl>
+            </StackLayout>
         </controls:ExtendedFrame>
     </ContentView.Content>
 </ContentView>

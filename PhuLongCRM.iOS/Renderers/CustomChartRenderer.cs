@@ -30,21 +30,27 @@ namespace PhuLongCRM.iOS.Renderers
             tKChartNumericAxis.Style.MajorTickStyle.TicksHidden = false;
             tKChartNumericAxis.Style.LineHidden = false;
             this.Control.AddAxis(tKChartNumericAxis);
-
         }
 
         protected override void UpdateNativeWidget()
         {
             base.UpdateNativeWidget();
 
-            var barSeries = this.Control.Series[0] as TelerikUI.TKChartColumnSeries;
-            var barSeries1 = this.Control.Series[1] as TelerikUI.TKChartColumnSeries;
-            barSeries1.AllowClustering = true;
-            barSeries1.YAxis = tKChartNumericAxis;
-            this.Control.Series[0] = barSeries;
-            this.Control.Series[1] = barSeries1;
-            //barSeries1.Selection = TKChartSeriesSelection.Series;
-            
+            if (this.Control.Series.Length == 2)
+            {
+                if (this.Control.Series[1] is TKChartColumnSeries)
+                {
+                    var barSeries = this.Control.Series[1] as TKChartColumnSeries;
+                    barSeries.AllowClustering = true;
+                    barSeries.YAxis = tKChartNumericAxis;
+                }
+            }
+
+            //var barSeries = this.Control.Series[0] as TelerikUI.TKChartColumnSeries;
+            //var barSeries1 = this.Control.Series[1] as TelerikUI.TKChartColumnSeries;
+            //barSeries1.AllowClustering = true;
+            //barSeries1.YAxis = tKChartNumericAxis;
+
 
             //TKChartColumnSeries series = new TKChartColumnSeries(barSeries1.);
 
