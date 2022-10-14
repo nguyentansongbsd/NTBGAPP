@@ -18,9 +18,9 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <AbsoluteLayout>
-            <StackLayout BackgroundColor="Red" Margin="0,50,0,0">
-                <controls:ChartBarSeriesControl/>
+        <AbsoluteLayout BackgroundColor="Yellow">
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Red" Margin="0,50,0,0">
+                <controls:ChartBarSeriesControl FirBarSeriesData="{Binding CategoricalData}" SecBarSeriesData="{Binding CategoricalData2}" FirBarSeriesColor="#2196F3" SecBarSeriesColor="#D42A16" MinLeftBarSeries="0" MaxLeftBarSeries="500" MajorStepLeftBarSeries="100" LabelFormatLeftBarSeries="#,0 tr" MinRightBarSeries="0" MaxRightBarSeries="100" MajorStepRightBarSeries="20" />
                 <!--<controls:ExtendedFrame Margin="14,6" Padding="8">
                     <Grid>
                         <controls:ChartControl Margin="0, 20, 0, 0" HeightRequest="250">

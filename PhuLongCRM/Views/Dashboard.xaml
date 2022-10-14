@@ -45,6 +45,7 @@
                                 </StackLayout>
                             </controls:ExtendedFrame>
                         </Grid>
+                        <controls:ChartBarSeriesControl FirBarSeriesData="{Binding AcceptanceTotalExpense}" SecBarSeriesData="{Binding AcceptanceNumTotal}" FirBarSeriesColor="#2196F3" SecBarSeriesColor="#D42A16" MinLeftBarSeries="0" MaxLeftBarSeries="100" MajorStepLeftBarSeries="20" LabelFormatLeftBarSeries="#,0 tỷ" MinRightBarSeries="0" MaxRightBarSeries="100" MajorStepRightBarSeries="20" />
                         <!--#endregion Nghiem thu-->
 
                         <!--#region Ban giao sp-->

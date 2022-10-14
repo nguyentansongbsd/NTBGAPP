@@ -54,12 +54,14 @@ namespace PhuLongCRM
             this.CategoricalData.Add(new CategoricalData { Category = "C", Value = 175 });
             this.CategoricalData.Add(new CategoricalData { Category = "D", Value = 300});
             this.CategoricalData.Add(new CategoricalData { Category = "E", Value = 400 });
+            this.CategoricalData.Add(new CategoricalData { Category = "F", Value = 350 });
 
             this.CategoricalData2.Add(new CategoricalData { Category = "A", Value = 2 });
             this.CategoricalData2.Add(new CategoricalData { Category = "B", Value = 4 });
             this.CategoricalData2.Add(new CategoricalData { Category = "C", Value = 6 });
             this.CategoricalData2.Add(new CategoricalData { Category = "D", Value = 7 });
             this.CategoricalData2.Add(new CategoricalData { Category = "E", Value = 10});
+            this.CategoricalData2.Add(new CategoricalData { Category = "F", Value = 40 });
 
         }
 
