@@ -3822,4 +3822,7 @@
 	<data name="xac_nhan_du_ho_so" xml:space="preserve">
 		<value>Xác nhận đủ hồ sơ</value>
 	</data>
+	<data name="tao_ban_giao_san_pham" xml:space="preserve">
+		<value>Tạo Bàn giao sản phẩm</value>
+	</data>
 </root>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PhuLongCRM.Helper;
@@ -95,6 +96,41 @@ namespace PhuLongCRM.ViewModels
             this.UnitHandover = data;
         }
 
+        public async Task LoadContract(ContractModel contract)
+        {
+            if (contract != null)
+            {
+                UnitHandoverPageModel item = new UnitHandoverPageModel();
+                item.optionentry_id = contract.salesorderid;
+                item.optionentry_name = contract.unit_name;
+                item.project_id = contract.project_id;
+                item.project_name = contract.project_name;
+                item.unit_id = contract.unit_id;
+                item.unit_name = contract.unit_name;
+                item.bsd_actualnsa = contract.bsd_constructionarea;
+                item.bsd_totalpaidamount = contract.totalamount;
+                string fetchXml = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                                        <entity name='bsd_handovernotice'>
+                                            <attribute name='bsd_name' alias='Label'/>
+                                            <attribute name='bsd_handovernoticeid' alias='Val'/>
+                                            <link-entity name='salesorder' from='salesorderid' to='bsd_optionentry' link-type='inner' alias='aa'>
+                                                <filter type='and'>
+                                                    <condition attribute='salesorderid' operator='eq' value='{contract.salesorderid}' />
+                                                </filter>
+                                            </link-entity>
+                                        </entity>
+                                    </fetch>";
+                var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<OptionSet>>("bsd_handovernotices", fetchXml);
+                if (result != null && result.value.Any() == true);
+                {
+                    var data = result.value.SingleOrDefault();
+                    item.handovernotice_name = data.Label;
+                    item.handovernotice_id = Guid.Parse(data.Val);
+                }
+                UnitHandover = item;
+            }
+        }
+
         public async Task<CrmApiResponse> UpdateUnitHandover()
         {
             string path = "/bsd_handovers(" + this.UnitHandoverId + ")";
@@ -107,6 +143,41 @@ namespace PhuLongCRM.ViewModels
             };
             CrmApiResponse result = await CrmHelper.PatchData(path, content);
             return result;
+        }
+        public async Task<CrmApiResponse> CreateUnitHandover()
+        {
+            string path = "/bsd_handovers";
+
+            var content = await getContent();
+            CrmApiResponse result = await CrmHelper.PostData(path, content);
+            return result;
+        }
+        public async Task<object> getContent()
+        {
+            IDictionary<string, object> data = new Dictionary<string, object>();
+            if (UnitHandover.project_id != Guid.Empty)
+            {
+                data["bsd_projectid@odata.bind"] = "/bsd_projects(" + UnitHandover.project_id + ")";
+            }
+            if (UnitHandover.unit_id != Guid.Empty)
+            {
+                data["bsd_Units@odata.bind"] = "/products(" + UnitHandover.unit_id + ")";
+            }
+            if (UnitHandover.optionentry_id != Guid.Empty)
+            {
+                data["bsd_OptionEntry@odata.bind"] = "/salesorders(" + UnitHandover.optionentry_id + ")";
+            }
+            if (UnitHandover.handovernotice_id != Guid.Empty)
+            {
+                data["bsd_handovernotices@odata.bind"] = "/bsd_handovernotices(" + UnitHandover.handovernotice_id + ")";
+            }
+            data["bsd_handoverdate"] = UnitHandover.bsd_handoverdate;
+            data["bsd_actualnsa"] = UnitHandover.bsd_actualnsa;
+            data["bsd_producterror"] = UnitHandover.bsd_producterror;
+            data["bsd_name"] = UnitHandover.bsd_name;
+            data["bsd_handovernumber"] = UnitHandover.bsd_handovernumber;
+            data["bsd_handoverid"] = Guid.NewGuid();
+            return data;
         }
     }
 }

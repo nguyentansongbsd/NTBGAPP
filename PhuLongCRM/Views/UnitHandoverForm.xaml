@@ -48,14 +48,20 @@
                             <StackLayout BackgroundColor="White" Padding="10">
 
                                 <controls:FormLabel Text="{x:Static lang:Language.ma_ban_giao}" FontSize="15"/>
-                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
-                                    <Label Text="{Binding UnitHandover.bsd_handovernumber}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
-                                </telerikPrimitives:RadBorder>
+                                <Grid>
+                                    <controls:MainEntry Text="{Binding UnitHandover.bsd_handovernumber}" FontSize="15"/>
+                                    <telerikPrimitives:RadBorder x:Name="label_maBanGiao" BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                        <Label Text="{Binding UnitHandover.bsd_handovernumber}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
+                                    </telerikPrimitives:RadBorder>
+                                </Grid>
 
                                 <controls:FormLabel Text="{x:Static lang:Language.ten}" FontSize="15"/>
-                                <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
-                                    <Label Text="{Binding UnitHandover.bsd_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
-                                </telerikPrimitives:RadBorder>
+                                <Grid>
+                                    <controls:MainEntry Text="{Binding UnitHandover.bsd_name}" FontSize="15"/>
+                                    <telerikPrimitives:RadBorder x:Name="label_tenBanGiao" BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">
+                                        <Label Text="{Binding UnitHandover.bsd_name}" TextColor="#444444" FontSize="15" VerticalOptions="Center" Padding="5,0,5,0"/>
+                                    </telerikPrimitives:RadBorder>
+                                </Grid>
 
                                 <controls:FormLabel Text="{x:Static lang:Language.du_an}" FontSize="15"/>
                                 <telerikPrimitives:RadBorder BorderColor="#f1f1f1" CornerRadius="5" BorderThickness="1" HeightRequest="40" BackgroundColor="#f1f1f1">

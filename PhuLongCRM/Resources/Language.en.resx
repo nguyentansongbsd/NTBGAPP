@@ -3822,4 +3822,7 @@
 	<data name="xac_nhan_du_ho_so" xml:space="preserve">
 		<value>Confirm document</value>
 	</data>
+	<data name="tao_ban_giao_san_pham" xml:space="preserve">
+		<value>Create Unit handover</value>
+	</data>
 </root>

@@ -8521,6 +8521,15 @@ namespace PhuLongCRM.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tạo Bàn giao sản phẩm.
+        /// </summary>
+        internal static string tao_ban_giao_san_pham {
+            get {
+                return ResourceManager.GetString("tao_ban_giao_san_pham", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tạo bảng tính giá.
         /// </summary>
         internal static string tao_bang_tinh_gia {

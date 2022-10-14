@@ -19,7 +19,16 @@ namespace PhuLongCRM.Views
             viewModel.UnitHandoverId = id;
             Init();
         }
-
+        public UnitHandoverForm(ContractModel contract)
+        {
+            InitializeComponent();
+            LoadingHelper.Show();
+            this.BindingContext = viewModel = new UnitHandoverFormViewModel();
+            if (contract != null)
+            {
+                InitCreate(contract);
+            }    
+        }
         public async void Init()
         {
             await viewModel.LoadUnitHandover();
@@ -32,24 +41,60 @@ namespace PhuLongCRM.Views
                 OnCompleted?.Invoke(false);
             }
         }
-
-        private async void Save_Clicked(object sender, EventArgs e)
+        public async void InitCreate(ContractModel contract)
         {
-            LoadingHelper.Show();
-            CrmApiResponse result = await viewModel.UpdateUnitHandover();
-            if (result.IsSuccess)
+            await viewModel.LoadContract(contract);
+            if (viewModel.UnitHandover != null)
             {
-                if (UnitHandoverPage.NeedRefresh.HasValue) UnitHandoverPage.NeedRefresh = true;
-                if (UnitHandovers.NeedRefresh.HasValue) UnitHandovers.NeedRefresh = true;
-                await Navigation.PopAsync();
-                ToastMessageHelper.ShortMessage(Language.thanh_cong);
+                label_maBanGiao.IsVisible = false;
+                label_tenBanGiao.IsVisible = false;
                 LoadingHelper.Hide();
+                OnCompleted?.Invoke(true);
             }
             else
             {
                 LoadingHelper.Hide();
-                ToastMessageHelper.ShortMessage(result.ErrorResponse.error.message);
+                OnCompleted?.Invoke(false);
             }
+        }
+
+        private async void Save_Clicked(object sender, EventArgs e)
+        {
+            LoadingHelper.Show();
+            if (viewModel.UnitHandoverId != Guid.Empty)
+            {
+                CrmApiResponse result = await viewModel.UpdateUnitHandover();
+                if (result.IsSuccess)
+                {
+                    if (UnitHandoverPage.NeedRefresh.HasValue) UnitHandoverPage.NeedRefresh = true;
+                    if (UnitHandovers.NeedRefresh.HasValue) UnitHandovers.NeedRefresh = true;
+                    await Navigation.PopAsync();
+                    ToastMessageHelper.ShortMessage(Language.thanh_cong);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(result.ErrorResponse.error.message);
+                }
+            }
+            else
+            {
+                CrmApiResponse result = await viewModel.CreateUnitHandover();
+                if (result.IsSuccess)
+                {
+                    if (UnitHandoverPage.NeedRefresh.HasValue) UnitHandoverPage.NeedRefresh = true;
+                    if (UnitHandovers.NeedRefresh.HasValue) UnitHandovers.NeedRefresh = true;
+                    await Navigation.PopAsync();
+                    ToastMessageHelper.ShortMessage(Language.thanh_cong);
+                    LoadingHelper.Hide();
+                }
+                else
+                {
+                    LoadingHelper.Hide();
+                    ToastMessageHelper.ShortMessage(result.ErrorResponse.error.message);
+                }
+            }    
         }
     }
 }

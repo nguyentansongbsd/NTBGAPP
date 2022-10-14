@@ -129,6 +129,7 @@ namespace PhuLongCRM.ViewModels
                                     <attribute name='bsd_totalamountpaidinstallment' />
                                     <attribute name='bsd_totalpercent' />
                                     <attribute name='bsd_selectedchietkhaupttt' />
+                                    <attribute name='bsd_specialhandoverunit' />
                                     <order attribute='ordernumber' descending='false' />
                                     <link-entity name='bsd_project' from='bsd_projectid' to='bsd_project' link-type='outer' alias='aa'>
                                        <attribute name='bsd_projectid' alias='project_id'/>

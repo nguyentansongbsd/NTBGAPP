@@ -369,5 +369,6 @@ namespace PhuLongCRM.Models
         public Guid unit_handoverid { get; set; }
         public Guid acceptanceid { get; set; }
         public Guid pinkbook_handoverid { get; set; }
+        public bool bsd_specialhandoverunit { get; set; }
     }
 }
