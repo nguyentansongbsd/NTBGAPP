@@ -17,7 +17,6 @@ namespace PhuLongCRM.Views
         public static bool? NeedToRefreshPhoneCall = null;
         public static bool? NeedToRefreshMeet = null;
         public static bool? NeedToRefreshTask = null;
-        public static bool? NeedToRefreshQueue = null;
         public static bool? NeedToRefreshLeads = null;
         public DashboardViewModel viewModel;
 
@@ -28,7 +27,6 @@ namespace PhuLongCRM.Views
             NeedToRefreshPhoneCall = false;
             NeedToRefreshMeet = false;
             NeedToRefreshTask = false;
-            NeedToRefreshQueue = false;
             NeedToRefreshLeads = false;
             Init();
         }
@@ -47,18 +45,7 @@ namespace PhuLongCRM.Views
 
                 );
 
-
-
-
-            //viewModel.LoadQueueFourMonths(),
-            //     viewModel.LoadQuoteFourMonths(),
-            //     viewModel.LoadOptionEntryFourMonths(),
-            //     viewModel.LoadUnitFourMonths(),
-            //     viewModel.LoadLeads(),
-            //viewModel.LoadCommissionTransactions()
-
-
-
+            //Call back qr code
             MessagingCenter.Subscribe<ScanQRPage, string>(this, "CallBack", async (sender, e) =>
             {
                 try
@@ -134,25 +121,6 @@ namespace PhuLongCRM.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-
-            if (NeedToRefreshQueue == true)
-            {
-                LoadingHelper.Show();
-                viewModel.DataMonthQueue.Clear();
-                await viewModel.LoadQueueFourMonths();
-                NeedToRefreshQueue = false;
-                LoadingHelper.Hide();
-            }
-
-            if (NeedToRefreshLeads == true)
-            {
-                LoadingHelper.Show();
-                viewModel.LeadsChart.Clear();
-                await viewModel.LoadLeads();
-                NeedToRefreshLeads = false;
-                LoadingHelper.Hide();
-            }
-
             if (NeedToRefreshTask == true || NeedToRefreshPhoneCall == true || NeedToRefreshMeet == true)
             {
                 LoadingHelper.Show();
@@ -198,83 +166,6 @@ namespace PhuLongCRM.Views
                 await Navigation.PushAsync(scanQR);
                 LoadingHelper.Hide();
             }
-        }
-
-        private void DatCoc_Hover_Tapped(object sender, EventArgs e)
-        {
-            try
-            {
-                PopupHover.ShowHover(Language.so_dat_coc_da_tao_trong_thang_nay);
-            }
-            catch(Exception ex)
-            {
-
-            }
-        }
-
-        private void GiaoDich_Hover_Tapped(object sender, EventArgs e)
-        {
-            try
-            {
-                PopupHover.ShowHover(Language.so_giu_cho_da_tao_trong_thang_nay);
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-        private void HopDong_Hover_Tapped(object sender, EventArgs e)
-        {
-            try
-            {
-                PopupHover.ShowHover(Language.so_hop_dong_da_tao_trong_thang_nay);
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-        private void DaBan_Hover_Tapped(object sender, EventArgs e)
-        {
-            try
-            {
-                PopupHover.ShowHover(Language.so_san_pham_da_ban_trong_thang_nay);
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-        private void TongTien_Hover_Tapped(object sender, EventArgs e)
-        {
-            try
-            {
-                PopupHover.ShowHover(Language.tong_tien_co_the_nhan_trong_thang_nay);
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-        private void DaNhan_Hover_Tapped(object sender, EventArgs e)
-        {
-            try
-            {
-                PopupHover.ShowHover(Language.tong_tien_da_nhan_trong_thang_nay);
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        private void BieuDo_Hover_Tapped(object sender, EventArgs e)
-        {
-            PopupHover.ShowHover(Language.bieu_do_hoa_hong_4_thang_gan_nhat);
-        }
-        private void BieuDoGiaoDich_Hover_Tapped(object sender, EventArgs e)
-        {
-            PopupHover.ShowHover(Language.bieu_do_giao_dich_4_thang_gan_nhat);
         }
     }
 }
