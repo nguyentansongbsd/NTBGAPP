@@ -18,6 +18,10 @@ namespace PhuLongCRM.ViewModels
 
         public ObservableCollection<ChartModel> AcceptanceTotalExpense { get; set; } = new ObservableCollection<ChartModel>();
         public ObservableCollection<ChartModel> AcceptanceNumTotal { get; set; } = new ObservableCollection<ChartModel>();
+        public ObservableCollection<ChartModel> UnitHandoverTotalExpense { get; set; } = new ObservableCollection<ChartModel>();
+        public ObservableCollection<ChartModel> UnitHandoverNumTotal { get; set; } = new ObservableCollection<ChartModel>();
+        public ObservableCollection<ChartModel> PinkBookHandoverTotalExpense { get; set; } = new ObservableCollection<ChartModel>();
+        public ObservableCollection<ChartModel> PinkBookHandoverNumTotal { get; set; } = new ObservableCollection<ChartModel>();
 
         private bool _isRefreshing;
         public bool IsRefreshing { get => _isRefreshing; set { _isRefreshing = value; OnPropertyChanged(nameof(IsRefreshing)); } }
@@ -113,6 +117,7 @@ namespace PhuLongCRM.ViewModels
                                     <attribute name='bsd_handoverid' />
                                     <attribute name='bsd_name' />
                                     <attribute name='statuscode' />
+                                    <attribute name='bsd_totalpaidamount' />
                                     <order attribute='bsd_name' descending='false' />
                                     <filter type='and'>
                                       <condition attribute='statuscode' operator='in'>
@@ -121,12 +126,23 @@ namespace PhuLongCRM.ViewModels
                                         <value>100000001</value>
                                       </condition>
                                     </filter>
+                                    <link-entity name='bsd_project' from='bsd_projectid' to='bsd_projectid' link-type='inner' alias='aa'>
+                                        <attribute name='bsd_projectcode' alias='project_code' />
+                                        <attribute name='bsd_projectid' alias='project_id'/>
+                                    </link-entity>
                                   </entity>
                                 </fetch>";
             var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<UnitHandoversModel>>("bsd_handovers", fetchXml);
             if (result == null || result.value.Any() == false) return;
             this.TotalUnitHandovering = result.value.Where(x => x.statuscode == "1").Count(); //sts = Active : Dang ban giao sp
             this.TotalUnitHandovered = result.value.Where(x => x.statuscode == "100000001").Count(); //sts = Handover : Da ban giao sp
+
+            List<UnitHandoversModel> listGroupByProject = result.value.GroupBy(x => x.project_id).Select(y => y.First()).ToList();
+            foreach (var item in listGroupByProject)
+            {
+                this.UnitHandoverTotalExpense.Add(new ChartModel() { Category = item.project_code, Value = TotalAMonth(result.value.Where(x => x.project_id == item.project_id).Select(x => x.bsd_totalpaidamount).Sum()) });
+                this.UnitHandoverNumTotal.Add(new ChartModel() { Category = item.project_code, Value = result.value.Where(x => x.project_id == item.project_id).Count() });
+            }
         }
 
         public async Task LoadPinkBookHandovers()
@@ -136,6 +152,7 @@ namespace PhuLongCRM.ViewModels
                                     <attribute name='bsd_pinkbookhandoverid' />
                                     <attribute name='bsd_name' />
                                     <attribute name='statuscode' />
+                                    <attribute name='bsd_totalpaidamount' />
                                     <order attribute='bsd_name' descending='false' />
                                     <filter type='and'>
                                       <condition attribute='statuscode' operator='in'>
@@ -143,12 +160,23 @@ namespace PhuLongCRM.ViewModels
                                         <value>100000000</value>
                                       </condition>
                                     </filter>
+                                    <link-entity name='bsd_project' from='bsd_projectid' to='bsd_project' link-type='inner' alias='ac'>
+                                        <attribute name='bsd_projectcode' alias='project_code' />
+                                        <attribute name='bsd_projectid' alias='project_id'/>
+                                    </link-entity>
                                   </entity>
                                 </fetch>";
             var result = await CrmHelper.RetrieveMultiple<RetrieveMultipleApiResponse<PinkBookHandoversModel>>("bsd_pinkbookhandovers", fetchXml);
             if (result == null || result.value.Any() == false) return;
             this.TotalPinkBookHandovering = result.value.Where(x => x.statuscode == "1").Count();// sts = Active : Dang ban giao gcn
             this.TotalPinkBookHandovered = result.value.Where(x => x.statuscode == "100000000").Count();// sts = Handed over certificate : Da ban giao gcn
+
+            List<PinkBookHandoversModel> listGroupByProject = result.value.GroupBy(x => x.project_id).Select(y => y.First()).ToList();
+            foreach (var item in listGroupByProject)
+            {
+                this.PinkBookHandoverTotalExpense.Add(new ChartModel() { Category = item.project_code, Value = TotalAMonth(result.value.Where(x => x.project_id == item.project_id).Select(x => x.bsd_totalpaidamount).Sum()) });
+                this.PinkBookHandoverNumTotal.Add(new ChartModel() { Category = item.project_code, Value = result.value.Where(x => x.project_id == item.project_id).Count() });
+            }
         }
 
         private double TotalAMonth(double total)
