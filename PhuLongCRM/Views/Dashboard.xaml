@@ -64,6 +64,7 @@
                                 </StackLayout>
                             </controls:ExtendedFrame>
                         </Grid>
+                        <controls:ChartBarSeriesControl FirBarSeriesData="{Binding UnitHandoverTotalExpense}" SecBarSeriesData="{Binding UnitHandoverNumTotal}" FirBarSeriesColor="#2196F3" SecBarSeriesColor="#D42A16" MinLeftBarSeries="0" MaxLeftBarSeries="500" MajorStepLeftBarSeries="100" LabelFormatLeftBarSeries="#,0 tỷ" MinRightBarSeries="0" MaxRightBarSeries="100" MajorStepRightBarSeries="20" />
                         <!--#endregion Ban giao sp-->
 
                         <!--#region Ban giao GCN-->
@@ -82,6 +83,7 @@
                                 </StackLayout>
                             </controls:ExtendedFrame>
                         </Grid>
+                        <controls:ChartBarSeriesControl FirBarSeriesData="{Binding PinkBookHandoverTotalExpense}" SecBarSeriesData="{Binding PinkBookHandoverNumTotal}" FirBarSeriesColor="#2196F3" SecBarSeriesColor="#D42A16" MinLeftBarSeries="0" MaxLeftBarSeries="500" MajorStepLeftBarSeries="100" LabelFormatLeftBarSeries="#,0 tỷ" MinRightBarSeries="0" MaxRightBarSeries="100" MajorStepRightBarSeries="20" />
                         <!--#endregion Ban giao sp-->
 
                         <!--#regionCong viec hom nay-->
