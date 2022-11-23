@@ -6,9 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Services\**" />
-    <EmbeddedResource Remove="Services\**" />
-    <None Remove="Services\**" />
     <None Remove="Behaviors\" />
     <None Remove="Resources\" />
     <None Remove="FirebaseDatabase.net" />
